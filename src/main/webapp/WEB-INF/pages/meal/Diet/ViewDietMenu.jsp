@@ -16,7 +16,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>健康優生網</title>
-<link href="css/styles.css" rel="stylesheet" />
+<link href="/css/styles.css" rel="stylesheet" />
 <!-- <link -->
 <!-- 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" -->
 <!-- 	rel="stylesheet" /> -->
@@ -137,7 +137,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 						aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 						<nav class="sb-sidenav-menu-nested nav"> <a class="nav-link"
 							href="${pageContext.request.contextPath}/meals/mealView.controller">營養餐管理</a> <a class="nav-link"
-							href="dietView.controller">食品資料管理</a> </nav>
+							href="${pageContext.request.contextPath}/diet/dietView.controller">食品資料管理</a> </nav>
 					</div>
 					<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 						data-bs-target="#collapseLayouts4" aria-expanded="false"
