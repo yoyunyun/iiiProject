@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-//@RequestMapping(path = "diet")
+@RequestMapping(path = "diet")
 @Controller("DietController")
 public class DietController {
 

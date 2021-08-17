@@ -89,8 +89,8 @@
 						<div class="collapse" id="collapseLayouts1"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="../Taxi/taxisystemEntry.controller">計程車資訊</a>
-								<a class="nav-link" href="../Taxi/locsystemEntry.controller">店家資訊</a>
+								<a class="nav-link" href="${pageContext.request.contextPath}/taxi/taximainpage.controller">計程車資訊</a>
+								<a class="nav-link" href="${pageContext.request.contextPath}/taxi/locmainpage.controller">店家資訊</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -109,9 +109,9 @@
 								<a class="nav-link"
 									href="${pageContext.request.contextPath}/helper/list">看護系統</a>
 								<a class="nav-link"
-									href="${pageContext.request.contextPath}/equip/list">輔具系統</a> <a
+									href="${pageContext.request.contextPath}/equip/findall">輔具系統</a> <a
 									class="nav-link"
-									href="${pageContext.request.contextPath}/order/list">輔具訂單系統</a>
+									href="${pageContext.request.contextPath}/order/findall">輔具訂單系統</a>
 							</nav>
 						</div>
 
@@ -131,8 +131,8 @@
 						<div class="collapse" id="collapseLayouts3"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="../meals/mealView.controller">營養餐管理</a> <a
-									class="nav-link" href="../diet/dietView.controller">食品資料管理</a>
+								<a class="nav-link" href="${pageContext.request.contextPath}/meals/mealView.controller">營養餐管理</a> <a
+									class="nav-link" href="${pageContext.request.contextPath}/diet/dietView.controller">食品資料管理</a>
 
 							</nav>
 						</div>
@@ -149,8 +149,8 @@
 						<div class="collapse" id="collapseLayouts4"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="../Drugs/Drugs">藥品辨識系統</a> 
-								<a class="nav-link" href="../Drugs/DrugsProduct">藥品包裝變更</a>
+								<a class="nav-link" href="${pageContext.request.contextPath}/Drug/findalldrug">藥品辨識系統</a> 
+								<a class="nav-link" href="${pageContext.request.contextPath}/DrugProduct/findalldrugproduct">藥品包裝變更</a>
 
 							</nav>
 						</div>

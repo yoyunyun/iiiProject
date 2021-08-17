@@ -26,7 +26,7 @@ public class DrugController {
 	DrugService DrugService;
 	
 	
-	@RequestMapping(path="findall")
+	@RequestMapping(path="/findalldrug")
 	public String ListAllDrug(Model model) {
 		List<Drug> list = DrugService.findAll();
 		model.addAttribute("list", list);

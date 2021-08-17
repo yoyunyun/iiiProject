@@ -71,7 +71,7 @@ td{
 					<li><a class="dropdown-item" href="#!">Settings</a></li>
 					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
 					<li><hr class="dropdown-divider" /></li>
-					<li><a class="dropdown-item" href="../Member/PostLoginAP">登出</a></li>
+					<li><a class="dropdown-item" href="/logout">登出</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -82,7 +82,7 @@ td{
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						 <div class="sb-sidenav-menu-heading">會員中心</div>
-                            <a class="nav-link" href="../Member/searchAllHealthAction.controller">  >
+                            href="/HealthProject/ManagerHealth/searchAllManagerAction.controller"
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 會員系統
                             </a>
@@ -100,8 +100,8 @@ td{
 						<div class="collapse" id="collapseLayouts1"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="../taxi/taximainpage.controller">計程車資訊</a>
-								<a class="nav-link" href="../taxi/locmainpage.controller">店家資訊</a>
+								<a class="nav-link" href="${pageContext.request.contextPath}/taxi/taximainpage.controller">計程車資訊</a>
+								<a class="nav-link" href="${pageContext.request.contextPath}/taxi/locmainpage.controller">店家資訊</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -118,8 +118,8 @@ td{
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="${pageContext.request.contextPath}/helper/list">看護系統</a>
-									<a class="nav-link" href="${pageContext.request.contextPath}/equip/list">輔具系統</a> 
-									<a class="nav-link" href="${pageContext.request.contextPath}/order/list">輔具訂單系統</a>
+									<a class="nav-link" href="${pageContext.request.contextPath}/equip/findall">輔具系統</a> 
+									<a class="nav-link" href="${pageContext.request.contextPath}/order/findall">輔具訂單系統</a>
                                 </nav>
 						</div>
 
@@ -139,8 +139,8 @@ td{
 						<div class="collapse" id="collapseLayouts3"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link"  href="../meals/mealView.controller">營養餐管理</a> 
-								<a class="nav-link"  href="../diet/dietView.controller">食品資料管理</a>
+								<a class="nav-link"  href="${pageContext.request.contextPath}/meals/mealView.controller">營養餐管理</a> 
+								<a class="nav-link"  href="${pageContext.request.contextPath}/diet/dietView.controller">食品資料管理</a>
 
 							</nav>
 						</div>
@@ -157,8 +157,8 @@ td{
 						<div class="collapse" id="collapseLayouts4"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="../Drugs/Drugs">藥品辨識系統</a> 
-									<a class="nav-link" href="../Drugs/DrugsProduct">藥品包裝變更</a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/Drug/findalldrug">藥品辨識系統</a> 
+									<a class="nav-link" href="${pageContext.request.contextPath}/DrugProduct/findalldrugproduct">藥品包裝變更</a>
                           
                                 </nav>
 						</div>
