@@ -74,7 +74,7 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						 <div class="sb-sidenav-menu-heading">會員中心</div>
-                            href="/HealthProject/ManagerHealth/searchAllManagerAction.controller"
+                           <a class="nav-link" href="/HealthProject/ManagerHealth/searchAllManagerAction.controller">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 會員系統
                             </a>
@@ -109,7 +109,6 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="${pageContext.request.contextPath}/helper/list">看護系統</a>
 									<a class="nav-link" href="${pageContext.request.contextPath}/equip/findall">輔具系統</a> 
 									<a class="nav-link" href="${pageContext.request.contextPath}/order/findall">輔具訂單系統</a>
                                 </nav>
