@@ -106,7 +106,7 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								
+				
 								<a class="nav-link"
 									href="${pageContext.request.contextPath}/equip/findall">輔具系統</a> <a
 									class="nav-link"
@@ -165,62 +165,72 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">藥物查詢系統</h1>
+					<h1 class="mt-4">藥品管理系統</h1>
+
+
 					<div class="card mb-4">
 						<div class="card-header">
-
-							<i class="fas fa-table me-1"></i> 藥物清單
+							<i class="fas fa-table me-1"></i> 藥品資料
 						</div>
 						<div class="card-body">
-							<c:if test="${!empty list}">
-								<table id="datatablesSimple">
-								        <tr> 
-											<td>編號</td>
-											<td>許可證字號</td>
-											<td>中文藥名</td>
-											<td>英文藥名</td>
-											<td>申請商</td>
-											<td>形狀</td>
-											<td>顏色</td>
-											<td>外型</td>
-											<td>修改</td>
-											<td>刪除</td>
-										</tr>
-								
-								<c:forEach items="${list}" var="Drug">
-										    <tr>
-												<td>${Drug.id}</td>
-												<td>${Drug.cnumber}</td>
-												<td>${Drug.chinesename}</td>
-												<td>${Drug.englishname}</td>
-												<td>${Drug.applicant}</td>
-												<td>${Drug.shape}</td>
-												<td>${Drug.color}</td>
-												<td>${Drug.appearance}</td>
+							
+							<div>
+									<form:form action="showFormForAdd" method="post">
+								<input type="submit" value="新增藥品" />
+							</form:form>
+							</div>
+							<br/>
+
+
+							<table id="datatablesSimple">
+								<thead>
+									<tr>
+										<th>更改日期</th>
+										<th>更改前照片</th>
+										<th>更改後照片</th>
+										<th>藥品名稱</th>
+										<th>更改描述</th>
+										<th>更新</th>
+										<th>刪除</th>
+									</tr>
+								</thead>
+
+
+								<tbody>
+									<c:forEach var="drugproduct" items="${list}">
+
+							
+										<tr>
+											<td>${drugproduct.releasedate}</td>
+											<td><img src="${pageContext.request.contextPath}/DrugProductImg/${drugproduct.beforechange}"
+												onerror="this.style.display='none'" width="120px"
+												height="120px" /></td>
+											<td><img src="${pageContext.request.contextPath}/DrugProductImg/${drugproduct.afterchange}"
+												onerror="this.style.display='none'" width="120px"
+												height="120px" /></td>
+											<td>${drugproduct.drugname}</td>
+											<td>${drugproduct.direction}</td>
 											<td>
 												<form action="showUpdate" method="post">
-													<input type="hidden" name="eId" value="${Drug.id}" /> 
+													<input type="hidden" name="eId" value="${drugproduct.id}" /> 
 													<input type="image" src="/images/update.png" />
 												</form>
 											</td>
 											<td>
 												<form action="delete" method="post">
-													<input type="hidden" name="eId" value="${Drug.id}"/> 
-													<input type="image" src="/images/delete.png" id="delete${Drug.id}" class="delete" />
+													<input type="hidden" name="eId" value="${drugproduct.id}"/> 
+													<input type="image" src="/images/delete.png" id="delete${drugproduct.id}" class="delete" />
 												</form>
 											</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</c:if>
+										</tr>
+
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
 			</main>
-						<form:form action="showFormForAdd" method="post">
-								<input type="submit" value="新增藥品" />
-							</form:form>
 			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid px-4">
 					<div
@@ -235,19 +245,15 @@
 			</footer>
 		</div>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script
-		src="../js/scripts.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="/js/scripts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 	<script src="assets/demo/chart-area-demo.js"></script>
 	<script src="assets/demo/chart-bar-demo.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-		crossorigin="anonymous"></script>
-	<script
-		src="../js/datatables-simple-demo.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+	<script src="/js/datatables-simple-demo.js"></script>
+	<script src="/js/jquery-3.6.0.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
 </body>
 </html>

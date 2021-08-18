@@ -165,62 +165,96 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">藥物查詢系統</h1>
+					<h1 class="mt-4">藥品管理系統</h1>
+
+
 					<div class="card mb-4">
 						<div class="card-header">
-
-							<i class="fas fa-table me-1"></i> 藥物清單
+							<i class="fas fa-table me-1"></i> 藥品資料
 						</div>
 						<div class="card-body">
-							<c:if test="${!empty list}">
-								<table id="datatablesSimple">
-								        <tr> 
-											<td>編號</td>
-											<td>許可證字號</td>
-											<td>中文藥名</td>
-											<td>英文藥名</td>
-											<td>申請商</td>
-											<td>形狀</td>
-											<td>顏色</td>
-											<td>外型</td>
-											<td>修改</td>
-											<td>刪除</td>
-										</tr>
-								
-								<c:forEach items="${list}" var="Drug">
-										    <tr>
-												<td>${Drug.id}</td>
-												<td>${Drug.cnumber}</td>
-												<td>${Drug.chinesename}</td>
-												<td>${Drug.englishname}</td>
-												<td>${Drug.applicant}</td>
-												<td>${Drug.shape}</td>
-												<td>${Drug.color}</td>
-												<td>${Drug.appearance}</td>
-											<td>
-												<form action="showUpdate" method="post">
-													<input type="hidden" name="eId" value="${Drug.id}" /> 
-													<input type="image" src="/images/update.png" />
-												</form>
-											</td>
-											<td>
-												<form action="delete" method="post">
-													<input type="hidden" name="eId" value="${Drug.id}"/> 
-													<input type="image" src="/images/delete.png" id="delete${Drug.id}" class="delete" />
-												</form>
-											</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</c:if>
+
+
+							<div class="row">
+
+								<div class="col-md-6">
+									<form:form action="save" modelAttribute="DrugProduct"
+										method="post" enctype="multipart/form-data" id="submit">
+
+										<form:hidden path="id" />
+										<form:hidden path="beforechange" />
+                                        <form:hidden path="afterchange" />
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>欄位名稱</th>
+													<th>欄位資料</th>
+												</tr>
+											</thead>
+											<tbody>
+										
+												<tr>
+													<td><label>日期</label></td>
+													<td><form:input path="releasedate" /></td>
+												</tr>
+												<tr>
+													<td>商品照片</td>
+													<td><img src="${pageContext.request.contextPath}/DrugProductImg/${equip.beforechange}"
+														onerror="this.style.display='none'" width="100px" height="100px" >
+													</td>
+												</tr>
+												<tr>
+													<td>上傳預覽</td>
+													<td><img id="sourceImage"  width="100px" height="100px"></td>
+												</tr>
+												<tr>
+													<td>新增照片</td>
+													<td><input type="file" name="pic" accept="image/*" id="inputImageFile" /></td>
+												</tr>
+												<tr>
+													<td>商品照片</td>
+													<td><img src="${pageContext.request.contextPath}/DrugProductImg/${equip.afterchange}"
+														onerror="this.style.display='none'" width="100px" height="100px" >
+													</td>
+												</tr>
+												<tr>
+													<td>上傳預覽</td>
+													<td><img id="sourceImage2"  width="100px" height="100px"></td>
+												</tr>
+												<tr>
+													<td>新增照片</td>
+													<td><input type="file" name="pic2" accept="image/*" id="inputImageFile2" /></td>
+												</tr>
+												
+												<tr>
+													<td><label>藥物名稱:</label></td>
+													<td><form:input path="drugname" /></td>
+												</tr>
+												<tr>
+													<td><label>藥品敘述:</label></td>
+													<td><form:input path="direction" /></td>
+												</tr>
+													<td><label></label></td>
+													<td><input type="submit" value="提交" class="save"
+														id="update" /></td>
+												</tr>
+												<tr>
+													<td><label></label></td>
+													<td><p>
+															<a href="${pageContext.request.contextPath}/drug/findalldrug">返回主頁</a>
+														</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</form:form>
+								</div>
+								<div class="col-md-6"></div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</main>
-						<form:form action="showFormForAdd" method="post">
-								<input type="submit" value="新增藥品" />
-							</form:form>
 			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid px-4">
 					<div
@@ -239,7 +273,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script
-		src="../js/scripts.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
 		crossorigin="anonymous"></script>
@@ -248,6 +282,64 @@
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
 		crossorigin="anonymous"></script>
 	<script
-		src="../js/datatables-simple-demo.js"></script>
+		src="/js/datatables-simple-demo.js"></script>
+
+	<!--  sweet alert -->
+	<script src="/js/sweetalert2.all.min.js"></script>
+	
+	<!--  jQuery -->
+	 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+	<script>
+		var submit = document.getElementById("submit")
+
+		submit.onsubmit = function() {
+			return false;
+		}
+
+		document.getElementById("update").onclick = function() {
+
+			setTimeout(function() {
+				submit.submit();
+			}, 1400);
+
+			Swal.fire({
+				position : 'top',
+				icon : 'success',
+				title : '資料已更新',
+				showConfirmButton : false,
+				timer : 1500
+			})
+		}
+		
+		
+		
+		/* 更新圖片 or 上傳圖片 */
+	    $("#inputImageFile").change(function(e){
+        	processImageFile(e.target.files[0]);
+    	});
+	    
+	    
+	    function processImageFile(imageObject) {
+	        //顯示分析的圖片
+	        var sourceImageUrl = URL.createObjectURL(imageObject);
+	        //document.querySelector("#sourceImage").src = sourceImageUrl;
+	        $("#sourceImage").attr('src', sourceImageUrl);
+	    }
+	    
+	    
+	    $("#inputImageFile2").change(function(a){
+        	processImageFile2(a.target.files[0]);
+    	});
+	    
+	    
+	    function processImageFile2(imageObject2) {
+	        //顯示分析的圖片
+	        var sourceImageUrl2 = URL.createObjectURL2(imageObject2);
+	        //document.querySelector("#sourceImage").src = sourceImageUrl;
+	        $("#sourceImage2").attr('src', sourceImageUrl2);
+	    }
+		
+	</script>
 </body>
 </html>

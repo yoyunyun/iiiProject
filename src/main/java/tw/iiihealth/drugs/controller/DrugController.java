@@ -3,6 +3,7 @@ package tw.iiihealth.drugs.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,7 +27,7 @@ public class DrugController {
 	DrugService DrugService;
 	
 	
-	@RequestMapping(path="/findalldrug")
+	@RequestMapping(path="findalldrug")
 	public String ListAllDrug(Model model) {
 		List<Drug> list = DrugService.findAll();
 		model.addAttribute("list", list);
@@ -65,10 +66,10 @@ public class DrugController {
 
 
 	
-	@RequestMapping(path = "/delete", method = RequestMethod.POST)
+	@RequestMapping(path = "delete", method = RequestMethod.POST)
 	public String delete(@RequestParam("eId") int eId) {
 		DrugService.delete(eId);
-		return "redirect:/Drug/findall";
+		return "redirect:/Drug/findalldrug";
 	
 	}
 	
