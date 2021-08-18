@@ -48,13 +48,13 @@ public class ManagerController {
 	}
 
 	// 註冊單筆(跳轉)
-	@RequestMapping(path = "/ManagerHealth/insertManager", method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(path = "/HealthProject/ManagerHealth/insertManager", method = {RequestMethod.POST,RequestMethod.GET})
 	public String insertManager() {
 		return "membersystem/Manager/InsertManager";
 	}
 
 	// 註冊單筆(返回上一頁)
-	@RequestMapping(path = "/ManagerHealth/reInsertManager", method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(path = "/HealthProject/ManagerHealth/reInsertManager", method = {RequestMethod.POST,RequestMethod.GET})
 	public String reRegisterForm(@RequestParam(name = "managername") String managername,
 			@RequestParam(name = "managergender") String managergender,
 			@RequestParam(name = "manageraccount") String manageraccount,
@@ -77,7 +77,7 @@ public class ManagerController {
 	}
 
 	// 確認註冊的單筆是否正確
-	@RequestMapping(path = "/ManagerHealth/displayInsertManagerHealth", method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(path = "/HealthProject/ManagerHealth/displayInsertManagerHealth", method = {RequestMethod.POST,RequestMethod.GET})
 	public String displayInsertManagerHealth(@RequestParam(name = "managername") String managername,
 			@RequestParam(name = "managergender") String managergender,
 			@RequestParam(name = "manageraccount") String manageraccount,
@@ -123,7 +123,7 @@ public class ManagerController {
 //	}
 	
 	// 註冊單筆進SQL(1)
-	@RequestMapping(path = "/ManagerHealth/insertManagerHealth.controller", method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(path = "/HealthProject/ManagerHealth/insertManagerHealth.controller", method = {RequestMethod.POST,RequestMethod.GET})
 	public String insertManagerHealth(@RequestParam(name = "managername") String managername,
 			@RequestParam(name = "managergender") String managergender,
 			@RequestParam(name = "manageraccount") String manageraccount,

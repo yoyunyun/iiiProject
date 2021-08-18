@@ -58,7 +58,7 @@
 					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
 					<li><hr class="dropdown-divider" /></li>
 					<li><a class="dropdown-item"
-						href="/ManagerHealth/insertManager">註冊</a></li>
+						href="/HealthProject/ManagerHealth/insertManager">註冊</a></li>
 					<li><a class="dropdown-item" href="/logout">登出</a></li>
 				</ul></li>
 		</ul>
@@ -108,8 +108,6 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link"
-									href="${pageContext.request.contextPath}/helper/list">看護系統</a>
 								<a class="nav-link"
 									href="${pageContext.request.contextPath}/equip/findall">輔具系統</a> <a
 									class="nav-link"
@@ -182,7 +180,7 @@
 							<div class="row">
 								<div class="col-md-6">
 									<table class="table  table-hover">
-										<form action="/ManagerHealth/displayInsertManagerHealth"
+										<form action="/HealthProject/ManagerHealth/displayInsertManagerHealth"
 											method="post" id="form1" onsubmit="return checkSubBtn();">
 											<tr>
 												<td>管理者姓名:</td>

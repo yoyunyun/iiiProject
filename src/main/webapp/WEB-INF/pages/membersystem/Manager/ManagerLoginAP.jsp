@@ -53,7 +53,6 @@
 					<li><a class="dropdown-item" href="#!">Settings</a></li>
 					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
 					<li><hr class="dropdown-divider" /></li>
-					<li><a class="dropdown-item" href="/ManagerHealth/insertManager">註冊</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -101,8 +100,6 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link"
-									href="#">看護系統</a>
 								<a class="nav-link"
 									href="#">輔具系統</a> <a
 									class="nav-link"

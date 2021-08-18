@@ -33,7 +33,10 @@ a {
 			<h3>恭喜您成功註冊!!</h3>
 			<p>請檢查您的信箱並作驗證</p>
 			<h4>
-				<a href="/login">請點此登入</a>
+				<a href="https://www.google.com/gmail/">請點此進入Gmail</a>
+			</h4>
+			<h4>
+				<a href="https://www.google.com/">或點此進入Google首頁</a>
 			</h4>
 		</div>
 	</fieldset>

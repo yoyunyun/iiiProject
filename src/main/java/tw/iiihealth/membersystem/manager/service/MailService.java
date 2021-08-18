@@ -85,13 +85,13 @@ public class MailService {
 	        throws MessagingException, UnsupportedEncodingException {
 	    String toAddress = manager.getManageremail();
 	    String fromAddress = "iiieeit12907@gmail.com";
-	    String senderName = "Your company name";
-	    String subject = "Please verify your registration";
-	    String content = "Dear [[name]],<br>"
-	            + "Please click the link below to verify your registration:<br>"
+	    String senderName = "健康優生網";
+	    String subject = "請驗證您註冊的帳戶";
+	    String content = "親愛的 [[name]],<br>"
+	            + "請點選下面的連結來驗證您註冊的帳戶:<br>"
 	            + "<h3><a href=\"[[URL]]\" target=\"_self\">請點此驗證</a></h3>"
-	            + "Thank you,<br>"
-	            + "Your company name.";
+	            + "謝謝,<br>"
+	            + "健康優生網，關心您";
 	     
 	    MimeMessage message = mailSender.createMimeMessage();
 	    MimeMessageHelper helper = new MimeMessageHelper(message);

@@ -57,7 +57,7 @@
 					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
 					<li><hr class="dropdown-divider" /></li>
 					<li><a class="dropdown-item"
-						href="/ManagerHealth/insertManager">註冊</a></li>
+						href="/HealthProject/ManagerHealth/insertManager">註冊</a></li>
 					<li><a class="dropdown-item" href="/logout">登出</a></li>
 				</ul></li>
 		</ul>
@@ -107,8 +107,6 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link"
-									href="${pageContext.request.contextPath}/helper/list">看護系統</a>
 								<a class="nav-link"
 									href="${pageContext.request.contextPath}/equip/findall">輔具系統</a> <a
 									class="nav-link"
@@ -181,7 +179,7 @@
 							<div class="row">
 								<div class="col-md-6">
 									<table class="table  table-hover">
-										<form action="/ManagerHealth/displayInsertManagerHealth"
+										<form action="/HealthProject/ManagerHealth/displayInsertManagerHealth"
 											method="post" id="form1" onsubmit="return checkSubBtn();">
 										<tr>
 											<td>管理者姓名:</td>
@@ -258,9 +256,6 @@
 										</td>
 										</tr>
 									</table>
-
-									<button id="onekey">範例一</button>
-
 								</div>
 								<div class="col-md-6"></div>
 							</div>
@@ -283,31 +278,6 @@
 			</footer>
 		</div>
 	</div>
-
-	<script type="text/javascript">
-//一鍵輸入
-$('#onekey').on('click', function(){
-	$('#ename1').val('林政達');
-	$('#sex1').prop('checked',true)
-	$('#account1').val('1258wsdq3');
-	$('#pwd1').val('8755koisnmw3');
-	$('#pwd2').val('8755koisnmw3');
-	$('#year1').val('77');
-	$('#month1').val('5');
-	$('#day1').val('15');
-	$('#email1').val('iiieeit12907@gmail.com');
-}).on('dblclick', function(){
-	$('#ename1').val('黃薇聿');
-	$('#sex2').prop('checked',true)
-	$('#account1').val('dds16585');
-	$('#pwd1').val('rosd28asdfa');
-	$('#pwd2').val('rosd28asdfa');
-	$('#year1').val('73');
-	$('#month1').val('8');
-	$('#day1').val('9');
-	$('#email1').val('iiieeit12907@gmail.com');
-})
-</script>
 
 	<script>
 	
