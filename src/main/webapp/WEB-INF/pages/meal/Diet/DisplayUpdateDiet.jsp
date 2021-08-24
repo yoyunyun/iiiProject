@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 response.setContentType("text/html;charset=UTF-8");
@@ -18,24 +19,14 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <meta name="author" content="" />
 <title>健康優生網</title>
 <link href="/css/styles.css" rel="stylesheet" />
-<!-- <link -->
-<!-- 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" -->
-<!-- 	rel="stylesheet" /> -->
-<%-- <link href="${pageContext.request.contextPath}/resources/css/styles.css" --%>
-<!-- 	rel="stylesheet" /> -->
-<!-- <script type="text/javascript" -->
-<!-- 	src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=CJuop6gIt_2wDZluUZr6TU8GAI5W_DvE3Q8RjyThL62GmmPY9qzmRyo2I1sAwTqQo49wsRPe6-Wdov66JPvKlTBYruiRWeZv8PpKKeLcX9BDPvuBxVqv90oFHCjkWARuSoa25ABLECOY0YJ0bfuFbv6Jx4WRUXgOlDzHgQYc8XT2c0Pv0Xn4XoZO4w5eHC5CYLZAIxoOsn2YdBwEA2CAbnBZIPKrsIT9tuIeBI_6iemgBTppaa3vpDgp1CN9vBsR1lpamT3aajoUES0WrKOk7B-EP3jOCBHxdFGa5j7i7xjX_m9L23i219CYCLK4WwAvBo7eTGEWKw6E6ZZuFEF87eVdab-aYMpY70iHmqDl6AiFND22a_dgxAuF6E1wwCGXYC4tgPVQVc6JfDrqpYUr91GwpWLpiVWLvaLaneUW1C9-OhLSy2UKXPeUTjnxfIyXjdyslHei6-NS83wwlXQ75g" -->
-<!-- 	charset="UTF-8"></script> -->
-<!-- <link rel="stylesheet" crossorigin="anonymous" -->
-<!-- 	href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9kb2MtMGstNmMtZG9jcy5nb29nbGV1c2VyY29udGVudC5jb20vZG9jcy9zZWN1cmVzYy9nNGQ0ZWNydjZvOTlwZTFtbXNjaGxyMTBnMXQ4M2J2YS9zZnRnbWhsYzcxa2lnZDhvOHNzdGhmMnJvMjZwczhudS8xNjI3NjI3MDUwMDAwLzAxODM4MzU4OTI3NzEwMDYzNzQ3LzA3ODI5MjYyMDA1ODM5NzM2MDAxLzFSSnZ0Y0l3c08tSURUZm5fbjRPVFB1TGhEUXFfTEpTMz9lPWRvd25sb2FkJmF1dGh1c2VyPTAmbm9uY2U9Z2VobTI3aWw1anAxbyZ1c2VyPTA3ODI5MjYyMDA1ODM5NzM2MDAxJmhhc2g9NGQ0OTdpZTg5c3Vmc3A2ZmN2N2UwbXV2Ym5xdXBkb2w" /> -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> -->
 		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="/js/datatables-simple-demo.js"></script>
+        <script src="/js/sweetalert2.all.min.js"></script>
 </head>
 <body class="sb-nav-fixed">
 <jsp:useBean id="u" class="tw.iiihealth.meal.diet.DietBean" scope="session" />
@@ -170,48 +161,96 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
   
 		<div id="layoutSidenav_content">
 			<main>
-			<div class="card-header">
-				<form action="dietView.controller" method="get" class="btn">
-					<input type="submit" name="asubmit" value="瀏覽食品資料庫">
-				</form>
-				<form action="dietCreate.controller" method="get" class="btn">
-					<input type="submit" name="submit" value="新增食品資料">
-				</form>
-				<form action="dietUpdate.controller" method="get" class="btn">
-					<input type="submit" name="submit" value="修改食品資料">
-				</form>
-				<form action="dietDelete.controller" method="get" class="btn">
-					<input type="submit" name="submit" value="刪除食品資料">
-				</form>
-
-<h3>
-修改食品資料如下請確認：
-</h3>
-<form action="updateDietConfirm.controller" method="post">
-
-<br>食品名稱：<jsp:getProperty name="u" property="name" /><br>
-<br>食品分類：${u.type}<br>
-<br><label for="calories">熱量(kcal)：</label>
-<input type="text" id="calories" name="calories" value="${u.calories}"><br>
-<br><label for="protein">蛋白質：</label>
-<input type="text" id="protein" name="protein" value="${u.protein}"><br>
-<br><label for="carbohydrates">碳水化合物(g)：</label>
-<input type="text" id="carbohydrates" name="carbohydrates" value="${u.carbohydrates}"><br>
-<br><label for="fat">脂肪(g)：</label>
-<input type="text" id="fat" name="fat" value="${u.fat}"><br>
-<br><label for="sugar">糖(g)：</label>
-<input type="text" id="sugar" name="sugar" value="${u.sugar}"><br>
-<br><label for="na">鈉(mg)：</label>
-<input type="text" id="na" name="na" value="${u.na}"><br><br>
-
-<input type="submit" name="uconfirm" value="確認修改" >
-
-
-</form>
-
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">食品管理系統</h1>
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i> 修改食品資料
+						</div>
+						<div class="card-body">
+					<div class="row">
+						<div class="col-md-6">
+							<form action="updateDietConfirm.controller"	method="post">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>欄位名稱</th>
+											<th>欄位資料</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>食品名稱</td>
+											<td><jsp:getProperty name="u" property="name" /></td>
+										</tr>
+										<tr>
+											<td>食品分類</td>
+											<td>${u.type}</td>
+										</tr>
+										<tr>
+											<td>熱量(kcal)</td>
+											<td><input type="text" id="calories" name="calories" value="${u.calories}"></td>
+										</tr>
+										<tr>
+											<td>蛋白質(g)</td>
+											<td><input type="text" id="protein"	name="protein" value="${u.protein}"></td>
+										</tr>
+										<tr>
+											<td>碳水化合物(g)</td>
+											<td><input type="text" id="carbohydrates" name="carbohydrates" value="${u.carbohydrates}"></td>
+										</tr>
+										<tr>
+											<td>脂肪(g)</td>
+											<td><input type="text" id="fat"	name="fat" value="${u.fat}"></td>
+										</tr>
+										<tr>
+											<td>糖(g)</td>
+											<td><input type="text" id="sugar" name="sugar" value="${u.sugar}"></td>
+										</tr>
+										<tr>
+											<td>鈉(mg)</td>
+											<td><input type="text" id="na" name="na" value="${u.na}"></td>
+										</tr>
+										<tr>
+											<td><label></label></td>
+											<td><input type="submit" name="uconfirm" value="確認修改"></td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+						<div class="col-md-6"></div>
+					</div>
+				</div>
 			</div>
-			</main>
 		</div>
+		</main>
+	</div>
+<%-- <form action="updateDietConfirm.controller" method="post"> --%>
+
+<%-- <br>食品名稱：<jsp:getProperty name="u" property="name" /><br> --%>
+<%-- <br>食品分類：${u.type}<br> --%>
+<!-- <br><label for="calories">熱量(kcal)：</label> -->
+<%-- <input type="text" id="calories" name="calories" value="${u.calories}"><br> --%>
+<!-- <br><label for="protein">蛋白質：</label> -->
+<%-- <input type="text" id="protein" name="protein" value="${u.protein}"><br> --%>
+<!-- <br><label for="carbohydrates">碳水化合物(g)：</label> -->
+<%-- <input type="text" id="carbohydrates" name="carbohydrates" value="${u.carbohydrates}"><br> --%>
+<!-- <br><label for="fat">脂肪(g)：</label> -->
+<%-- <input type="text" id="fat" name="fat" value="${u.fat}"><br> --%>
+<!-- <br><label for="sugar">糖(g)：</label> -->
+<%-- <input type="text" id="sugar" name="sugar" value="${u.sugar}"><br> --%>
+<!-- <br><label for="na">鈉(mg)：</label> -->
+<%-- <input type="text" id="na" name="na" value="${u.na}"><br><br> --%>
+
+<!-- <input type="submit" name="uconfirm" value="確認修改" > -->
+
+
+<%-- </form> --%>
+
+<!-- 			</div> -->
+<!-- 			</main> -->
+<!-- 		</div> -->
 
 
 </body>

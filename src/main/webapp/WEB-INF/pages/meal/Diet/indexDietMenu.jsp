@@ -168,22 +168,15 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 
 		<div id="layoutSidenav_content">
 			<main>
-			<div class="card-header">
-				<form action="dietView.controller" method="get" class="btn">
-					<input type="submit" name="asubmit" value="瀏覽食品資料庫">
-				</form>
-				<form action="dietCreate.controller" method="get" class="btn">
-					<input type="submit" name="submit" value="新增食品資料">
-				</form>
-				<form action="dietUpdate.controller" method="get" class="btn">
-					<input type="submit" name="submit" value="修改食品資料">
-				</form>
-				<form action="dietDelete.controller" method="get" class="btn">
-					<input type="submit" name="submit" value="刪除食品資料">
-				</form>
-				<h3>瀏覽食品資料庫</h3>
-				<br>
-				<form action="dietViewAll.controller" method="get">
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">食品管理系統</h1>
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i> 分類食品資料
+						</div>
+						<div class="card-body">
+
+<form action="dietView.controller" method="get">
 					<input type="submit" name="asubmit" value="檢視全部">
 				</form>
 				<br>
@@ -211,8 +204,11 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 					<!--         <input type="submit" name="bsubmit" value="加工調理食品及其他類" onclick="h.value=this.value"> -->
 				</form>
 
-			</div>
+						</div>
+					</div>
+				</div>
 			</main>
 		</div>
+		
 </body>
 </html>

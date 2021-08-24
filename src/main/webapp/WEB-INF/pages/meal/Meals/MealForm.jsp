@@ -230,49 +230,11 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 						</div>
 						<div class="col-md-6"></div>
 					</div>
-
-
-
-
 						</div>
 					</div>
 				</div>
 			</main>
 		</div>
-<!-- 			<h3>新增餐點資料填寫：</h3> -->
-<!-- 			<br> -->
-<%-- 			<form action="addMeals.controller" method="post"> --%>
-<!-- 				<label for="name">餐點名稱：</label><br>  -->
-<!-- 				<input type="text" id="name" name="name" required> <span id="ndsp"></span><br /> -->
-<!-- 				<label for="price">價格($NT)：</label><br>  -->
-<!-- 				<input type="text" id="price" name="price" required><br>  -->
-<!-- 				<label for="material">主原料：</label><br>  -->
-<!-- 				<input type="text" id="material" name="material"><br>  -->
-<!-- 				<label for="calories">熱量(kcal)：</label><br>  -->
-<!-- 				<input type="text" id="calories" name="calories"><br>  -->
-<!-- 				<label for="protein">蛋白質(g)：</label><br>  -->
-<!-- 				<input type="text" id="protein" name="protein"><br>  -->
-<!-- 				<label for="carbohydrates">碳水化合物(g)：</label><br>  -->
-<!-- 				<input type="text" id="carbohydrates" name="carbohydrates"><br>  -->
-<!-- 				<label for="fat">脂肪(g)：</label><br>  -->
-<!-- 				<input type="text" id="fat"	name="fat"> -->
-<!-- 				<br> <br>商店編號：<br>  -->
-<!-- 				<input type="radio" id="store1" name="store_ID" value="1">  -->
-<!-- 				<label for="store1">1</label>  -->
-<!-- 				<input type="radio" id="store2"	name="store_ID" value="2">  -->
-<!-- 				<label for="store2">2</label>  -->
-<!-- 				<input type="radio" id="store3" name="store_ID" value="3">  -->
-<!-- 				<label for="store3">3</label>  -->
-<!-- 				<input type="radio" id="store4"	name="store_ID" value="4">  -->
-<!-- 				<label for="store4">4</label>  -->
-<!-- 				<input type="radio" id="store5" name="store_ID" value="5">  -->
-<!-- 				<label for="store5">5</label><br> <br>  -->
-				
-<!-- 				<input type="submit" name="submit" value="送出"> -->
-<%-- 			</form> --%>
-<!-- 		</div> -->
-<!-- 		</main> -->
-<!-- 	</div> -->
 	<script>
 		//姓名
 		document.getElementById("name").onblur = checkName;
