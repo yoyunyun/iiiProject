@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequestMapping(path = "meals")
 @Controller("MealController")
@@ -79,10 +80,9 @@ public class MealController {
 
 	// 確認刪除
 	@RequestMapping(path = "/deleteConfirm.controller", method = RequestMethod.POST)
-	public String deleteConfirm(@RequestParam(name = "name",required = false) String name,HttpServletRequest request, Model m) {
+	public String deleteConfirm(@RequestParam(name = "selected") int mId) {
 
-	    MealBean mealData = (MealBean)request.getSession(true).getAttribute("m");
-	    mealService.delete(mealData);
+	    mealService.delete(mId);
 		
 		return "meal/Meals/Thanks";
 	}

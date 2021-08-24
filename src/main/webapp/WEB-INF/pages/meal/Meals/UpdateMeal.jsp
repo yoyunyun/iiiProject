@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	response.setContentType("text/html;charset=UTF-8");
@@ -17,24 +19,14 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 <meta name="author" content="" />
 <title>健康優生網</title>
 <link href="/css/styles.css" rel="stylesheet" />
-<!-- <link -->
-<!-- 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" -->
-<!-- 	rel="stylesheet" /> -->
-<%-- <link href="${pageContext.request.contextPath}/resources/css/styles.css" --%>
-<!-- 	rel="stylesheet" /> -->
-<!-- <script type="text/javascript" -->
-<!-- 	src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=CJuop6gIt_2wDZluUZr6TU8GAI5W_DvE3Q8RjyThL62GmmPY9qzmRyo2I1sAwTqQo49wsRPe6-Wdov66JPvKlTBYruiRWeZv8PpKKeLcX9BDPvuBxVqv90oFHCjkWARuSoa25ABLECOY0YJ0bfuFbv6Jx4WRUXgOlDzHgQYc8XT2c0Pv0Xn4XoZO4w5eHC5CYLZAIxoOsn2YdBwEA2CAbnBZIPKrsIT9tuIeBI_6iemgBTppaa3vpDgp1CN9vBsR1lpamT3aajoUES0WrKOk7B-EP3jOCBHxdFGa5j7i7xjX_m9L23i219CYCLK4WwAvBo7eTGEWKw6E6ZZuFEF87eVdab-aYMpY70iHmqDl6AiFND22a_dgxAuF6E1wwCGXYC4tgPVQVc6JfDrqpYUr91GwpWLpiVWLvaLaneUW1C9-OhLSy2UKXPeUTjnxfIyXjdyslHei6-NS83wwlXQ75g" -->
-<!-- 	charset="UTF-8"></script> -->
-<!-- <link rel="stylesheet" crossorigin="anonymous" -->
-<!-- 	href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9kb2MtMGstNmMtZG9jcy5nb29nbGV1c2VyY29udGVudC5jb20vZG9jcy9zZWN1cmVzYy9nNGQ0ZWNydjZvOTlwZTFtbXNjaGxyMTBnMXQ4M2J2YS9zZnRnbWhsYzcxa2lnZDhvOHNzdGhmMnJvMjZwczhudS8xNjI3NjI3MDUwMDAwLzAxODM4MzU4OTI3NzEwMDYzNzQ3LzA3ODI5MjYyMDA1ODM5NzM2MDAxLzFSSnZ0Y0l3c08tSURUZm5fbjRPVFB1TGhEUXFfTEpTMz9lPWRvd25sb2FkJmF1dGh1c2VyPTAmbm9uY2U9Z2VobTI3aWw1anAxbyZ1c2VyPTA3ODI5MjYyMDA1ODM5NzM2MDAxJmhhc2g9NGQ0OTdpZTg5c3Vmc3A2ZmN2N2UwbXV2Ym5xdXBkb2w" /> -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> -->
 		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="/js/datatables-simple-demo.js"></script>
+        <script src="/js/sweetalert2.all.min.js"></script>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
