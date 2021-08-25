@@ -28,36 +28,36 @@ public class FrontTaxiController {
 	
 	@GetMapping(path = "/fronttaximainpage.controller")
 	public String processQueryMainPage() {		
-		return "taxi/FrontSearchTaxi";
-	}
-
-	@PostMapping(path = "/queryfronttaxibypage/{pageNo}")
-	@ResponseBody
-	public List<TaxiBean> QueryByPageAction(@PathVariable("pageNo") int pageNo, Model m) {
-		int pageSize = 10;
-		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-		Page<TaxiBean> page = tService.findAllByPage(pageable);
-		int totalPages = page.getTotalPages();
-		long totalElement = page.getTotalElements();
-		m.addAttribute("totalPages", totalPages);
-		m.addAttribute("totalElement", totalElement);
-
-		return page.getContent();
+		return "taxi/FrontSearchTaxi2";
 	}
 	
-	@GetMapping(path = "/queryfronttaxi/{search}/{pageNo}")
-	@ResponseBody
-	public List<TaxiBean> processQuery(@PathVariable("search") String search,@PathVariable("pageNo") int pageNo, Model m) {
+	@GetMapping(path = "/frontstart")
+	public String start() {
+		return "index";
+	}
 
-		int pageSize = 10;
-		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-		Page<TaxiBean> page = tService.query(search,pageable);
-		int totalPages = page.getTotalPages();
-		long totalElement = page.getTotalElements();
-		m.addAttribute("totalPages", totalPages);
-		m.addAttribute("totalElement", totalElement);
-		
-		return page.getContent();
+//	@GetMapping(path = "/fronttaxitest.controller")
+//	public String processQueryTest() {		
+//		return "taxi/test";
+//	}
+	
+	@PostMapping(path = "/queryalltest")
+	@ResponseBody
+	public List<TaxiBean> QueryAll() {
+		return tService.findAll();
+	}
+	
+	@PostMapping(path = "/queryfronttaxi/{search}")
+	@ResponseBody
+	public List<TaxiBean> processQueryCity(@PathVariable("search") String search) {
+	
+		List<TaxiBean> city ;
+		if(search.equals("1")) {
+			city = tService.findAll();
+		}else {
+			city = tService.search(search);
+		}
+		return city;
 
 	}
 }

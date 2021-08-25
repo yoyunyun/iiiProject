@@ -18,10 +18,10 @@ public class TaxiService {
 	@Autowired
 	private TaxiRepository taxiRepository;
 	
-//	public List<TaxiBean> search(String name){
-//
-//		return taxiRepository.Search(name);
-//	}
+	public List<TaxiBean> search(String name){
+
+		return taxiRepository.Search(name);
+	}
 	
 	public Page<TaxiBean> query(String name, Pageable pageable){
 
