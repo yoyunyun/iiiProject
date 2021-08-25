@@ -34,13 +34,8 @@
 		<!-- Navbar Search-->
 		<form
 			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-			<div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..."
-					aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-				<button class="btn btn-primary" id="btnNavbarSearch" type="button">
-					<i class="fas fa-search"></i>
-				</button>
-			</div>
+
+				<a class="navbar-brand ps-3" href="#">歡迎您，${user.managername}</a>
 		</form>
 		<!-- Navbar-->
 		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -50,9 +45,11 @@
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">Settings</a></li>
-					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
+					<li><a class="dropdown-item" href="#">管理員資料表</a></li>
+					<li><a class="dropdown-item" href="#!">會員資料表</a></li>
+					<li><a class="dropdown-item" href="#!">廠商資料表</a></li>
 					<li><hr class="dropdown-divider" /></li>
+					<li><a class="dropdown-item" href="/Manager/login">登入</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -64,11 +61,25 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">會員中心</div>
-						<a class="nav-link" href="#">
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+							data-bs-target="#collapseLayouts0" aria-expanded="false"
+							aria-controls="collapseLayouts0">
 							<div class="sb-nav-link-icon">
-								<i class="fas fa-table"></i>
+								<i class="fas fa-chart-area"></i>
 							</div> 會員系統
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
 						</a>
+						<div class="collapse" id="collapseLayouts0"
+							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="#">管理員資料表</a>
+								<a class="nav-link" href="#">會員資料表</a>
+								<a class="nav-link" href="#">廠商資料表</a>
+							</nav>
+						</div>
+						
 						<div class="sb-sidenav-menu-heading">長照服務</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts1" aria-expanded="false"
@@ -171,8 +182,7 @@
 
 							<div class="row">
 								<div class="col-md-6">
-									<form action="/login" method="post"
-										id="form1" onsubmit="return checkSubBtn();">
+									<form action="/Manager/login" method="post" id="form1" onsubmit="return checkSubBtn();">
 										<table class="table  table-hover">
 											<tr>
 												<td>帳號:</td>
@@ -181,17 +191,19 @@
 											</tr>
 											<tr>
 												<td>密碼:</td>
-												<td><input type="password" id="pwd1" name="password"
-													maxlength="15" size="15"> <span id="pwd1Check"></span><br>
-													<input type="checkbox" id="showPwd">顯示密碼     <input type="checkbox"
-													name="remember-me">記住我</td>
+												<td><input type="password" id="pwd1" name="password" maxlength="15" size="15"> 
+												<span id="pwd1Check"></span><br>
+												<input type="checkbox" id="showPwd">顯示密碼     
+<!-- 												<input type="checkbox" name="remember-me">記住我</td> -->
 											</tr>
 											<tr>
 												<td><span style="color: red;" id="subBtnCheck"></span></td>
 											</tr>
 											<tr>
-												<td><input type="submit" class="btn" id="subBtn"
-													name="sublogin" value="登陸"></td>
+												<td>
+													<input type="submit" class="btn" id="subBtn" value="登陸">
+												</td>
+											</tr>	
 										</table>
 									</form>
 								</div>

@@ -38,13 +38,8 @@
 		<!-- Navbar Search-->
 		<form
 			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-			<div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..."
-					aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-				<button class="btn btn-primary" id="btnNavbarSearch" type="button">
-					<i class="fas fa-search"></i>
-				</button>
-			</div>
+
+				<a class="navbar-brand ps-3" href="#">歡迎您，${user.managername}</a>
 		</form>
 		<!-- Navbar-->
 		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -54,11 +49,12 @@
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">Settings</a></li>
-					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
+					<li><a class="dropdown-item" href="/Manager/searchAllManagerAction.controller">管理員資料表</a></li>
+					<li><a class="dropdown-item" href="#!">會員資料表</a></li>
+					<li><a class="dropdown-item" href="#!">廠商資料表</a></li>
 					<li><hr class="dropdown-divider" /></li>
-					<li><a class="dropdown-item" href="/HealthProject/ManagerHealth/insertManager">註冊</a></li>
-					<li><a class="dropdown-item" href="/logout">登出</a></li>
+					<li><a class="dropdown-item" href="/Manager/insertManager">註冊</a></li>
+					<li><a class="dropdown-item" href="/Manager/logout">登出</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -70,11 +66,25 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">會員中心</div>
-						<a class="nav-link" href="/HealthProject/ManagerHealth/searchAllManagerAction.controller">
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+							data-bs-target="#collapseLayouts0" aria-expanded="false"
+							aria-controls="collapseLayouts0">
 							<div class="sb-nav-link-icon">
-								<i class="fas fa-table"></i>
+								<i class="fas fa-chart-area"></i>
 							</div> 會員系統
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
 						</a>
+						<div class="collapse" id="collapseLayouts0"
+							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="/Manager/searchAllManagerAction.controller">管理員資料表</a>
+								<a class="nav-link" href="#">會員資料表</a>
+								<a class="nav-link" href="#">廠商資料表</a>
+							</nav>
+						</div>
+						
 						<div class="sb-sidenav-menu-heading">長照服務</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts1" aria-expanded="false"
@@ -182,43 +192,42 @@
 									<table class="table  table-hover">
 										<tr>
 											<td>管理者編號:</td>
-											<td>${managerid}</td>
+											<td>${manager.managerid}</td>
 										</tr>
 										<tr>
 											<td>管理者姓名:</td>
-											<td>${managername}</td>
+											<td>${manager.managername}</td>
 										</tr>
 										<tr>
 											<td>性別:</td>
-											<td>${managergender}</td>
+											<td>${manager.managergender}</td>
 										</tr>
 										<tr>
 											<td>帳號:</td>
-											<td>${manageraccount}</td>
+											<td>${manager.manageraccount}</td>
 										</tr>
 										<tr>
 											<td>密碼:</td>
-											<td>${managerpwd}</td>
+											<td>${manager.managerpwd}</td>
 										</tr>
 										<tr>
 											<td>出生日期:</td>
-											<td>民國 ${manageryear} 年 ${managermonth} 月 ${managerday} 日</td>
+											<td>民國 ${manager.manageryear} 年 ${manager.managermonth} 月 ${manager.managerday} 日</td>
 										</tr>
 										<tr>
 											<td>E-mail:</td>
-											<td>${manageremail}</td>
+											<td>${manager.manageremail}</td>
 										</tr>
 										<tr>
 											<td>
-												<form action="/HealthProject/ManagerHealth/deleteManagerAction.controller" method="post">
-													<input type="hidden" name="managerid" value="${managerid}">
+												<form action="/Manager/deleteManagerAction.controller" method="post">
+													<input type="hidden" name="managerid" value="${manager.managerid}">
 													<input type="submit" class="btn" name="insertToSQL" value="確認">
 												</form>
 											</td>
 											<td>
-												<form action="/HealthProject/ManagerHealth/searchAllManagerAction.controller"
-													method="post">
-													<input type="submit" class="btn" name="insertToSQL" value="返回上一頁">
+												<form action="/Manager/searchAllManagerAction.controller" method="post">
+													<input type="submit" class="btn" value="取消">
 												</form>
 											</td>
 										</tr>

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.iiihealth.membersystem.manager.exception.UserNotFoundException;
 import tw.iiihealth.membersystem.manager.model.Manager;
 import tw.iiihealth.membersystem.manager.model.ManagerRepository;
 
@@ -20,44 +19,40 @@ public class ManagerService {
 
 	// 查詢全部資料
 	public List<Manager> searchAllManager() {
-
-		List<Manager> list = managerRepository.findAll();
-
-		return list;
+		return managerRepository.findAll();
 	}
 	
 	//確認帳號
-	public Manager searchManageraccount(String manageraccount) {
-		
-		Optional<Manager> opManager = managerRepository.searchAccount(manageraccount);
+	public List<Manager> searchManagerAccount(String manageraccount) {
+		return managerRepository.searchAccount(manageraccount);
+	}
 	
-		if(opManager.isEmpty()) {
-			throw new UserNotFoundException("帳號或密碼不正確");
-		}
-		
-		return opManager.get();
-	
+	//查詢登入後的帳戶資料
+	public Manager searchUserDetails(String manageraccount) {
+		return managerRepository.searchUsername(manageraccount);
 	}
 
-	// 新增資料
-	public Manager insertManager(Manager managerData) {
-
-		Manager managerObj = managerRepository.save(managerData);
-
-		return managerObj;
+	// 新增資料 or 修改資料
+	public Manager saveManager(Manager manager) {
+		return managerRepository.save(manager);
 	}
 
 	// 刪除單筆資料
-	public void deleteManager(Manager managerData) {
-
-		managerRepository.delete(managerData);
+	public void deleteManager(Integer managerid) {
+		managerRepository.deleteById(managerid);
 	}
 
-	// 修改單筆資料
-	public Manager updateManager(Manager managerData) {
-
-		Manager managerObj = managerRepository.save(managerData);
-
-		return managerObj;
+	// 查詢單筆資料
+	public Manager searchManagerId(Integer managerid) {
+		Optional<Manager> opManager = managerRepository.findById(managerid);
+		if(opManager.isPresent()) {
+			return opManager.get();
+		}
+		return null;
+	}
+	
+	// 信箱驗證
+	public Manager searchMailCode(String verificationCode) {
+		return managerRepository.searchVerificationCode(verificationCode);
 	}
 }

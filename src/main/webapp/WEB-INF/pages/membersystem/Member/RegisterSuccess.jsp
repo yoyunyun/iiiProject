@@ -30,9 +30,13 @@ a {
 	<fieldset>
 		<legend>管理者註冊</legend>
 		<div class="divItem">
-			<h3>抱歉，此帳戶不接受驗證。請確認此帳戶是否已驗證，或驗證碼不正確。</h3>
+			<h3>恭喜您成功註冊!!</h3>
+			<p>請檢查您的信箱並作驗證</p>
 			<h4>
-				<a href="/Manager/login">請點此登入</a>
+				<a href="https://www.google.com/gmail/">請點此進入Gmail</a>
+			</h4>
+			<h4>
+				<a href="https://www.google.com/">或點此進入Google首頁</a>
 			</h4>
 		</div>
 	</fieldset>

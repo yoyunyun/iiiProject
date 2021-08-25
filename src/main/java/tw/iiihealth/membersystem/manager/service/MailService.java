@@ -2,7 +2,6 @@ package tw.iiihealth.membersystem.manager.service;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.util.Optional;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import net.bytebuddy.utility.RandomString;
 import tw.iiihealth.membersystem.manager.model.Manager;
-import tw.iiihealth.membersystem.manager.model.ManagerRepository;
 
 @Service
 public class MailService {
@@ -26,7 +24,7 @@ public class MailService {
 	private JavaMailSender mailSender;
 	
 	@Autowired
-	private ManagerRepository managerRepository;
+	private ManagerService managerService;
 	
 	//一封簡單郵件的傳送
 	public void sendSimpleMail() throws Exception {
@@ -67,27 +65,30 @@ public class MailService {
 		mailSender.send(mimeMessage);
 		}
 	
+	//信箱驗證(1)
 	public void register(Manager manager, String siteURL) throws UnsupportedEncodingException, MessagingException {
-//	    String encodedPassword = passwordEncoder.encode(user.getPassword());
-//	    user.setPassword(encodedPassword);
-	    System.out.println(siteURL); //
 		
 	    String randomCode = RandomString.make(64);
 	    manager.setVerificationCode(randomCode);
-	    manager.setEnabled(false);
+	    
+    	manager.setDisabled(true);
+    	manager.setAccountExpired(true);
+    	manager.setAccountLocked(true);
+    	manager.setCredentialsExpired(true);
 	     
-	    managerRepository.save(manager);
+    	managerService.saveManager(manager);
 	     
 	    sendVerificationEmail(manager, siteURL);
 	}
 	
+	//信箱驗證(2)
 	private void sendVerificationEmail(Manager manager, String siteURL)
 	        throws MessagingException, UnsupportedEncodingException {
 	    String toAddress = manager.getManageremail();
 	    String fromAddress = "iiieeit12907@gmail.com";
 	    String senderName = "健康優生網";
 	    String subject = "請驗證您註冊的帳戶";
-	    String content = "親愛的 [[name]],<br>"
+	    String content = "親愛的[[name]],<br>"
 	            + "請點選下面的連結來驗證您註冊的帳戶:<br>"
 	            + "<h3><a href=\"[[URL]]\" target=\"_self\">請點此驗證</a></h3>"
 	            + "謝謝,<br>"
@@ -111,15 +112,21 @@ public class MailService {
 	     
 	}
 	
+	//信箱驗證(3)
 	public boolean verify(String verificationCode) {
-		Manager manager = managerRepository.searchVerificationCode(verificationCode);
+		Manager manager = managerService.searchMailCode(verificationCode);
 	     
-	    if (manager == null || manager.isEnabled()) {
+	    if (manager == null || manager.isDisabled() == false ) {
 	        return false;
 	    } else {
 	    	manager.setVerificationCode(null);
-	    	manager.setEnabled(true);
-	    	managerRepository.save(manager);
+	    	manager.setDisabled(false);
+	    	manager.setAccountExpired(false);
+	    	manager.setAccountLocked(false);
+	    	manager.setCredentialsExpired(false);
+	    	manager.setRole("MANAGER");
+	    	
+	    	managerService.saveManager(manager);
 	         
 	        return true;
 	    }

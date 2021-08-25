@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,13 +37,8 @@
 		<!-- Navbar Search-->
 		<form
 			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-			<div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..."
-					aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-				<button class="btn btn-primary" id="btnNavbarSearch" type="button">
-					<i class="fas fa-search"></i>
-				</button>
-			</div>
+
+				<a class="navbar-brand ps-3" href="#">歡迎您，${user.managername}</a>
 		</form>
 		<!-- Navbar-->
 		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -53,12 +48,12 @@
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">Settings</a></li>
-					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
+					<li><a class="dropdown-item" href="/Manager/searchAllManagerAction.controller">管理員資料表</a></li>
+					<li><a class="dropdown-item" href="#!">會員資料表</a></li>
+					<li><a class="dropdown-item" href="#!">廠商資料表</a></li>
 					<li><hr class="dropdown-divider" /></li>
-					<li><a class="dropdown-item"
-						href="/HealthProject/ManagerHealth/insertManager">註冊</a></li>
-					<li><a class="dropdown-item" href="/logout">登出</a></li>
+					<li><a class="dropdown-item" href="/Manager/insertManager">註冊</a></li>
+					<li><a class="dropdown-item" href="/Manager/logout">登出</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -70,12 +65,25 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">會員中心</div>
-						<a class="nav-link"
-							href="/HealthProject/ManagerHealth/searchAllManagerAction.controller">
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+							data-bs-target="#collapseLayouts0" aria-expanded="false"
+							aria-controls="collapseLayouts0">
 							<div class="sb-nav-link-icon">
-								<i class="fas fa-table"></i>
+								<i class="fas fa-chart-area"></i>
 							</div> 會員系統
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
 						</a>
+						<div class="collapse" id="collapseLayouts0"
+							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="/Manager/searchAllManagerAction.controller">管理員資料表</a>
+								<a class="nav-link" href="#">會員資料表</a>
+								<a class="nav-link" href="#">廠商資料表</a>
+							</nav>
+						</div>
+						
 						<div class="sb-sidenav-menu-heading">長照服務</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts1" aria-expanded="false"
@@ -172,90 +180,94 @@
 
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 新增員工資料
+							<i class="fas fa-table me-1"></i> 修改單筆員工資料
 						</div>
 						<div class="card-body">
 
 							<div class="row">
 								<div class="col-md-6">
-									<table class="table  table-hover">
-										<form action="/HealthProject/ManagerHealth/displayInsertManagerHealth"
-											method="post" id="form1" onsubmit="return checkSubBtn();">
-										<tr>
-											<td>管理者姓名:</td>
-											<td><input type="text" id="ename1" name="managername"
-												size="10" placeholder="例如:王衍申" autocomplete="off"
-												value="${managername}"> <span id="enameCheck"></span></td>
-										</tr>
-										<tr>
-											<td>性別:<input type="hidden" value="${managergender}"></td>
-											<td><input type="radio" name="managergender" id="sex1"
-												value="male"
-												<%if (request.getParameter("managergender").equals("male")) {
-	out.print(" checked");
-}%>>男
-												<input type="radio" name="managergender" id="sex2"
-												value="female"
-												<%if (request.getParameter("managergender").equals("female")) {
-	out.print(" checked");
-}%>>女
-												<input type="radio" name="managergender" id="sex3"
-												value="other"
-												<%if (request.getParameter("managergender").equals("other")) {
-	out.print(" checked");
-}%>>其他
-												<span id="sexCheck"></span></td>
-										</tr>
-										<tr>
-											<td>帳號:</td>
-											<td><input type="text" id="account1"
-												name="manageraccount" size="15" value="${manageraccount}">
-												<span id="acntCheck"></span></td>
-										</tr>
-										<tr>
-											<td>密碼:</td>
-											<td><input type="password" id="pwd1" name="managerpwd"
-												maxlength="15" size="15" value="${managerpwd}"> <span
-												id="pwd1Check"></span><br> <input type="checkbox"
-												id="showPwd">顯示密碼</td>
-										</tr>
-										<tr>
-											<td>確認密碼:</td>
-											<td><input type="password" id="pwd2" name="pwd2"
-												maxlength="15" size="15"> <span id="pwd2Check"></span><br>
-										</tr>
-										<tr>
-											<td>生日日期:</td>
-											<td>民國 <input class="in" type="text" name="manageryear"
-												id="year1" maxlength="3" size="3" value="${manageryear}">
-												年 <input class="in" type="text" name="managermonth"
-												id="month1" maxlength="2" size="2" value="${managermonth}">
-												月 <input class="in" type="text" name="managerday" id="day1"
-												maxlength="2" size="2" value="${managerday}"> 日 <span
-												id="birthCheck"></span></td>
-										</tr>
-										<tr>
-											<td>E-mail:</td>
-											<td><input type="text" name="manageremail" id="email1"
-												size="15" placeholder="aaa@gmail.com"
-												value="${manageremail}"> <span id="emailCheck"></span></td>
-										</tr>
-										<tr>
-											<td><span style="color: red;" id="subBtnCheck"></span></td>
-										</tr>
-										<tr>
-											<td><input type="submit" class="btn" id="subBtn"
-												name="insertHealth" value="送出"></td>
-										</form>
-										<td>
-											<form
-												action="/HealthProject/ManagerHealth/searchAllManagerAction.controller"
-												method="post">
-												<input type="submit" class="btn" name="search" value="返回上一頁">
-											</form>
-										</td>
-										</tr>
-									</table>
+										<table class="table  table-hover">
+									<form:form id="form1" method="POST" action="/Manager/displayUpdateManager" modelAttribute="manager" onsubmit="return checkSubBtn();">
+											<tr>
+												<td><form:label path="managername">管理者姓名:</form:label></td>
+												<td>
+													<form:hidden path="managerid" value="${manager.managerid}" />
+													<form:hidden path="verificationCode" value="${manager.verificationCode}" />
+													<form:hidden path="role" value="${manager.role}" />
+													<form:hidden path="disabled" value="${manager.disabled}" />
+													<form:hidden path="accountExpired" value="${manager.accountExpired}" />
+													<form:hidden path="accountLocked" value="${manager.accountLocked}" />
+													<form:hidden path="credentialsExpired" value="${manager.credentialsExpired}" />
+													<form:input path="managername" size="10" placeholder="例如:王衍申" autofocus="autofocus"/>
+													<span id="nameCheck"></span>
+												</td>
+											</tr>
+											<tr>
+												<td><form:label path="managergender">性別:</form:label></td>
+												<td>
+													<form:radiobutton path="managergender" value="男" label="男" />
+            										<form:radiobutton path="managergender" value="女" label="女" />
+            										<form:radiobutton path="managergender" value="其他" label="其他" />
+            										<span id="genderCheck"></span>
+            									</td>
+											</tr>
+											<tr>
+												<td><form:label path="manageraccount">帳號:</form:label></td>
+												<td>
+													<form:input path="manageraccount" maxlength="15" size="15" />
+													<span id="accountCheck"></span>
+												</td>
+											</tr>
+											<tr>
+												<td><form:label path="managerpwd">密碼:</form:label></td>
+												<td>
+													<form:password path="managerpwd" maxlength="15" size="15" />
+													<span id="pwd1Check"></span><br>
+													<input type="checkbox" id="showPwd" />顯示密碼
+												</td>
+											</tr>
+											<tr>
+												<td><label id="pwd2">確認密碼:</label></td>
+												<td>
+													<input type="password" id="pwd2" maxlength="15" size="15" />
+													<span id="pwd2Check"></span>
+												</td>
+											</tr>
+											<tr>
+												<td><form:label path="manageryear">生日日期:</form:label></td>
+												<td>
+												民國 
+													<form:input path="manageryear" maxlength="3" size="3" placeholder="70" />
+												 年
+													<form:input path="managermonth" maxlength="2" size="2" placeholder="7" />
+												 月
+													<form:input path="managerday" maxlength="2" size="2" placeholder="7" />
+												 日
+													<span id="birthCheck"></span>
+												</td>
+											</tr>
+											<tr>
+												<td><form:label path="manageremail">E-mail:</form:label></td>
+												<td>
+													<form:input path="manageremail" size="15" placeholder="aaa@gmail.com" />
+													<span id="emailCheck"></span>
+												</td>
+											</tr>
+											<tr>
+												<td><span style="color: red;" id="subBtnCheck"></span></td>
+											</tr>
+											<tr>
+												<td style="text-align: center">
+													<input type="submit" class="btn" id="subBtn" value="送出" />
+												</td>
+										</form:form>
+												<td>
+													<form
+														action="/Manager/searchAllManagerAction.controller" method="post">
+														<input type="submit" class="btn" value="取消">
+													</form>
+												</td>
+										</table>
 								</div>
 								<div class="col-md-6"></div>
 							</div>
@@ -278,6 +290,8 @@
 			</footer>
 		</div>
 	</div>
+
+
 
 	<script>
 	
@@ -652,7 +666,6 @@ if(val!=true) {
 
     }
     </script>
-
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

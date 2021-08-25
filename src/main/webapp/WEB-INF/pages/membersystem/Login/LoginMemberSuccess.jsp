@@ -26,13 +26,13 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 
 <body>
     <fieldset>
-        <legend>管理者登入</legend>
+        <legend>會員登入</legend>
         <div class="divItem">
             <h4 style="font-size: larger;text-align: center;">登入成功</h4>
         </div>
         <div class="divItem">
             <div style="text-align: center;">
-                <a href="/HealthProject/ManagerHealth/searchAllManagerAction.controller">登入管理者介面</a>
+                <a href="/Member/HealthProject">返回首頁</a>
             </div>
         </div>
     </fieldset>
