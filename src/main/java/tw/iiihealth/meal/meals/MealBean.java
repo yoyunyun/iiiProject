@@ -14,6 +14,7 @@ public class MealBean{
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	int ID;
+	String photo;
 	String name;
 	int price;
 	String material;
@@ -46,6 +47,14 @@ public class MealBean{
 
 	public void setID(int iD) {
 		ID = iD;
+	}
+	
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public String getMaterial() {

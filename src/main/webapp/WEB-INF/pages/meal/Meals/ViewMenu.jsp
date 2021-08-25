@@ -177,6 +177,7 @@
 					<table id="datatablesSimple">
 						<thead>
 							<tr>
+								<th>餐點照片</th>
 								<th>餐點名稱</th>
 								<th>價格</th>
 								<th>主原料</th>
@@ -192,6 +193,9 @@
 						<tbody>
 							<c:forEach var="meals" items="${queryAll}">
 								<tr>
+									<td><img src="${pageContext.request.contextPath}/MealImg/${meals.photo}"
+												onerror="this.style.display='none'" width="120px"
+												height="120px" /></td>
 									<td>${meals.name}</td>
 									<td>${meals.price}</td>
 									<td>${meals.material}</td>
@@ -202,14 +206,14 @@
 									<td>${meals.store_ID}</td>
 									<td>
 										<form action="updateByName.controller" method="post">
-											<input type="image" src="/images/update001.jpg" />
+											<input type="image" src="/images/update.jpg" />
 											<input type="hidden" name="name" value="${meals.name}" /> 
 										</form>
 									</td>
 									<td>
 										<form id="delete${meals.ID}" action="deleteConfirm.controller" method="post">
 											<input type="hidden" name="selected" value="${meals.ID}">
-											<button type="button" style="border-width:0" onclick="check(${meals.ID})"><img src="/images/delete001.png"></button>
+											<button type="button" style="border-width:0" onclick="check(${meals.ID})"><img src="/images/delete.png"></button>
 <%-- 											<input type="button" onclick="check(${meals.ID})" value="刪除">  --%>
 <%-- 											<input type="image" src="/images/delete.png" onclick="check(${meals.ID})"/> --%>
 										</form>
