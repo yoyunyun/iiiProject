@@ -183,7 +183,7 @@ td{
 								<h4 style="margin: 10px 20px; text-align: center">登記資料如下請確認</h4>
 								<div class="card-body">
 
-									<form action="addloc" method="post">
+									<form action="addloc" method="post" id="okk">
 										<table style="margin: 10px auto">
 											<tr>
 												<td>店家名稱</td>
@@ -253,7 +253,7 @@ td{
 											</tr>
 										</table>
 										<div class="sub" style="text-align: center">
-											<input type="submit" name="confirm" value="確認" style="margin:10px 25px">
+											<input type="button" name="confirm" value="確認" style="margin:10px 25px" onclick="okk()">
 											<input type="button" onclick="document.querySelector('#back').submit()" value="回上頁" style="margin:10px 25px">
 										</div>
 									</form>
@@ -278,6 +278,19 @@ td{
 					</div>
 			</main>
 		</div>
+		
+		<script src="../js/sweetalert2.all.min.js"></script>
+		<script>
+	function okk(){
+		Swal.fire({
+			  icon: 'success',
+			  title: '新增成功',
+			  showConfirmButton: false,
+			  timer: 1500
+			})	
+			setTimeout(() => document.getElementById("okk").submit(), 1600)
+	}
+	</script>
 </body>
 
 </html>

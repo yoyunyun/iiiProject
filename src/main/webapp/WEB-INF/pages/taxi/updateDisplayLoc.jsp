@@ -180,8 +180,7 @@ td{
 						<div class="row">
 							<div class="col-md-6">
 								<h4 style="margin: 10px 20px; text-align: center">登記資料如下請確認</h4>
-								<form:form method="POST" action="addloc"
-									modelAttribute="updatelocation">
+								<form:form id="okk" method="POST" action="addloc" modelAttribute="updatelocation">
 
 									<table style="margin: 10px auto">
 										<tbody>
@@ -249,7 +248,7 @@ td{
 										</tbody>
 									</table>
 									<div class="sub" style="text-align: center">
-										<input type="submit" name="updateLoc" value="更新" style="margin:10px 25px">
+										<input type="button" name="updateLoc" value="更新" style="margin:10px 25px" onclick="okk()">
 										<input type="button" onclick="document.querySelector('#back').submit()" value="回上頁" style="margin:0 auto">
 									</div>
 								</form:form>
@@ -274,6 +273,18 @@ td{
 				</div>
 			</main>
 		</div>
+		<script src="../js/sweetalert2.all.min.js"></script>
+		<script>
+	function okk(){
+		Swal.fire({
+			  icon: 'success',
+			  title: '更新成功',
+			  showConfirmButton: false,
+			  timer: 1500
+			})	
+			setTimeout(() => document.getElementById("okk").submit(), 1600)
+	}
+	</script>
 </body>
 
 </html>

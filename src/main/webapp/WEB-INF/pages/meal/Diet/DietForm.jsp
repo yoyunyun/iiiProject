@@ -212,7 +212,10 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										</tr>
 										<tr>
 											<td><label></label></td>
-											<td><input type="submit" name="submit" value="送出"></td>
+											<td>
+											<input type="submit" name="submit" value="送出">
+											<input type="button" value="取消" onclick="window.location.href='dietView.controller'" />
+											</td>
 										</tr>
 									</tbody>
 								</table>
