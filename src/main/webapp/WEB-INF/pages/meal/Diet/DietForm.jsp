@@ -169,7 +169,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 						<div class="card-body">
 					<div class="row">
 						<div class="col-md-6">
-							<form action="addDiet.controller"	method="post">
+							<form action="addDiet.controller"	method="post" id="add">
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -213,7 +213,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										<tr>
 											<td><label></label></td>
 											<td>
-											<input type="submit" name="submit" value="送出">
+											<input type="button" name="confirm" value="送出" onclick="add()">
 											<input type="button" value="取消" onclick="window.location.href='dietView.controller'" />
 											</td>
 										</tr>
@@ -259,6 +259,17 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 			} else {
 				sp.innerHTML = "<img src='../images/error.png'> 請輸入2個字(含)以上之中文字!";
 			}
+		}
+	</script>
+		<script>
+		function add(){
+			Swal.fire({
+				  icon: 'success',
+				  title: '新增成功',
+				  showConfirmButton: false,
+				  timer: 1300
+				})	
+				setTimeout(() => document.getElementById("add").submit(), 1300)
 		}
 	</script>
 </body>

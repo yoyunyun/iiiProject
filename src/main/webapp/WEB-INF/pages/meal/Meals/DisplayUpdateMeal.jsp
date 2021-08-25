@@ -170,7 +170,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 						<div class="card-body">
 					<div class="row">
 						<div class="col-md-6">
-							<form action="updateConfirm.controller"	method="post">
+							<form action="updateConfirm.controller"	method="post" id="upd">
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -213,7 +213,10 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										</tr>
 										<tr>
 											<td><label></label></td>
-											<td><input type="submit" name="uconfirm" value="確認修改"></td>
+											<td>
+												<input type="button" name="confirm" value="確認修改" onclick="upd()">
+												<input type="button" value="取消修改" onclick="window.location.href='mealView.controller'" />
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -226,6 +229,16 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 		</div>
 		</main>
 	</div>
-
+	<script>
+		function upd(){
+			Swal.fire({
+				  icon: 'success',
+				  title: '修改成功',
+				  showConfirmButton: false,
+				  timer: 1300
+				})	
+				setTimeout(() => document.getElementById("upd").submit(), 1300)
+		}
+	</script>
 </body>
 </html>
