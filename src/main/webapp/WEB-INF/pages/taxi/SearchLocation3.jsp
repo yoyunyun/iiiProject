@@ -262,9 +262,15 @@
 		  confirmButtonText: '是的!我要刪除!',
 		  cancelButtonText: '取消刪除'
 		}).then((result) => {
-		  if (result.isConfirmed) {
-		    document.getElementById("delT"+id).submit();
-		  }
+			if (result.isConfirmed) {
+				  Swal.fire({
+					  icon: 'success',
+					  title: '刪除成功',
+					  showConfirmButton: false,
+					  timer: 1000
+					})	
+					setTimeout(() => document.getElementById("delT"+id).submit(), 1000)
+			  }
 		})
 	}
 	</script>
