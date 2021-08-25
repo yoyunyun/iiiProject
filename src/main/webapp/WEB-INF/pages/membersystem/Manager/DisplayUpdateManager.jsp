@@ -85,8 +85,6 @@
 						</div>
 						
 						<div class="sb-sidenav-menu-heading">長照服務</div>
-						
-						
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts1" aria-expanded="false"
 							aria-controls="collapseLayouts1">
@@ -104,8 +102,6 @@
 								<a class="nav-link" href="${pageContext.request.contextPath}/taxi/locmainpage.controller">店家資訊</a>
 							</nav>
 						</div>
-						
-						
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts" aria-expanded="false"
 							aria-controls="collapseLayouts">
@@ -142,8 +138,8 @@
 						<div class="collapse" id="collapseLayouts3"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link"  href="${pageContext.request.contextPath}/meals/mealView.controller">營養餐管理</a> 
-								<a class="nav-link"  href="${pageContext.request.contextPath}/diet/dietView.controller">食品資料管理</a>									
+								<a class="nav-link" href="${pageContext.request.contextPath}/meals/mealView.controller">營養餐管理</a> <a
+									class="nav-link" href="${pageContext.request.contextPath}/diet/dietView.controller">食品資料管理</a>
 
 							</nav>
 						</div>
@@ -160,8 +156,8 @@
 						<div class="collapse" id="collapseLayouts4"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="${pageContext.request.contextPath}/Drug/findalldrug">藥品辨識系統</a> <a
-									class="nav-link" href="${pageContext.request.contextPath}/DrugProduct/findalldrugproduct">藥品包裝變更</a>
+								<a class="nav-link" href="${pageContext.request.contextPath}/Drug/findalldrug">藥品辨識系統</a> 
+								<a class="nav-link" href="${pageContext.request.contextPath}/DrugProduct/findalldrugproduct">藥品包裝變更</a>
 
 							</nav>
 						</div>
@@ -184,60 +180,85 @@
 
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 管理者表單總覽
+							<i class="fas fa-table me-1"></i> 修改員工資料如下請確認
 						</div>
 						<div class="card-body">
-							<table id="datatablesSimple">
-								<thead>
-									<tr>
-										<th>管理者編號</th>
-										<th>管理者姓名</th>
-										<th>性別</th>
-										<th>帳號</th>
-										<th>密碼</th>
-										<th>出生日期</th>
-										<th>E-mail</th>
-										<th colspan="2"></th>
-									</tr>
-								</thead>
-								<tfoot>
-									<tr>
-										<th>管理者編號</th>
-										<th>管理者姓名</th>
-										<th>性別</th>
-										<th>帳號</th>
-										<th>密碼</th>
-										<th>出生日期</th>
-										<th>E-mail</th>
-										<th colspan="2"></th>
-									</tr>
-								</tfoot>
-								<tbody>
-									<c:forEach var="manager" varStatus="status" items="${allManager}">
+
+							<div class="row">
+								<div class="col-md-3"></div>
+								<div class="col-md-6">
+									<table class="table  table-hover">
 										<tr>
-											<td>${manager.managerid}</td>
+											<td>管理者姓名:</td>
 											<td>${manager.managername}</td>
+										</tr>
+										<tr>
+											<td>性別:</td>
 											<td>${manager.managergender}</td>
-											<td>${manager.manageraccount}</td>
-											<td>${manager.managerpwd}</td>
+										</tr>
+										<tr>
+											<td>出生日期:</td>
 											<td>民國 ${manager.manageryear} 年 ${manager.managermonth} 月 ${manager.managerday} 日</td>
+										</tr>
+										<tr>
+											<td>帳號:</td>
+											<td>${manager.manageraccount}</td>
+										</tr>
+										<tr>
+											<td>密碼:</td>
+											<td>${manager.managerpwd}</td>
+										</tr>
+										<tr>
+											<td>E-mail:</td>
 											<td>${manager.manageremail}</td>
+										</tr>
+										<tr>
 											<td>
-												<form method="POST" action="/Manager/updateManager">
-													<input type="hidden" name="managerid" value="${manager.managerid}" />
-													<input type="submit" value="修改">
-												</form>
+												<form:form method="POST" action="/Manager/updateManagerAction.controller" modelAttribute="manager">
+													<form:hidden path="managerid" value="${manager.managerid}" />
+													<form:hidden path="verificationCode" value="${manager.verificationCode}" />
+													<form:hidden path="role" value="${manager.role}" />
+													<form:hidden path="disabled" value="${manager.disabled}" />
+													<form:hidden path="accountExpired" value="${manager.accountExpired}" />
+													<form:hidden path="accountLocked" value="${manager.accountLocked}" />
+													<form:hidden path="credentialsExpired" value="${manager.credentialsExpired}" />
+													<form:hidden path="managername" value="${manager.managername}" />
+													<form:hidden path="managergender" value="${manager.managergender}" />
+													<form:hidden path="manageryear" value="${manager.manageryear}" />
+													<form:hidden path="managermonth" value="${manager.managermonth}" />
+													<form:hidden path="managerday" value="${manager.managerday}" />
+													<form:hidden path="manageraccount" value="${manager.manageraccount}" />
+													<form:hidden path="managerpwd" value="${manager.managerpwd}" />
+													<form:hidden path="manageremail" value="${manager.manageremail}" />
+													<input type="submit" class="btn" value="確認">
+												</form:form>
 											</td>
 											<td>
-												<form method="POST" action="/Manager/displayDeleteManager">
-													<input type="hidden" name="managerid" value="${manager.managerid}" />
-													<input type="submit" value="刪除">
-												</form>
+												<form:form method="POST" action="/Manager/reUpdateManager" modelAttribute="manager">
+													<form:hidden path="managerid" value="${manager.managerid}" />
+													<form:hidden path="verificationCode" value="${manager.verificationCode}" />
+													<form:hidden path="role" value="${manager.role}" />
+													<form:hidden path="disabled" value="${manager.disabled}" />
+													<form:hidden path="accountExpired" value="${manager.accountExpired}" />
+													<form:hidden path="accountLocked" value="${manager.accountLocked}" />
+													<form:hidden path="credentialsExpired" value="${manager.credentialsExpired}" />
+													<form:hidden path="managername" value="${manager.managername}" />
+													<form:hidden path="managergender" value="${manager.managergender}" />
+													<form:hidden path="manageryear" value="${manager.manageryear}" />
+													<form:hidden path="managermonth" value="${manager.managermonth}" />
+													<form:hidden path="managerday" value="${manager.managerday}" />
+													<form:hidden path="manageraccount" value="${manager.manageraccount}" />
+													<form:hidden path="managerpwd" value="${manager.managerpwd}" />
+													<form:hidden path="manageremail" value="${manager.manageremail}" />
+													<input type="submit" class="btn" value="返回上一頁">
+												</form:form>
 											</td>
 										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+									</table>
+								</div>
+								<div class="col-md-3"></div>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -256,6 +277,7 @@
 			</footer>
 		</div>
 	</div>
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
