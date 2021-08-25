@@ -27,6 +27,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/js/datatables-simple-demo.js"></script>
         <script src="/js/sweetalert2.all.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -183,6 +184,14 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 											<td><input type="text" id="name" name="name" required> <span id="ndsp"></span></td>
 										</tr>
 										<tr>
+											<td>上傳預覽</td>
+											<td><img id="sourceImage"  width="100px" height="100px"></td>
+										</tr>											
+										<tr>
+											<td>新增照片</td>
+											<td><input type="file" name="pic" accept="image/*" id="inputImageFile" /></td>
+										</tr>
+										<tr>
 											<td>價格($NT)</td>
 											<td><input type="text" id="price" name="price" required></td>
 										</tr>
@@ -270,6 +279,44 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 				sp.innerHTML = "<img src='../images/error.png'> 請輸入2個字(含)以上之中文字!";
 			}
 		}
+	</script>
+		<script>
+		var submit = document.getElementById("submit")
+
+		submit.onsubmit = function() {
+			return false;
+		}
+
+		document.getElementById("update").onclick = function() {
+
+			setTimeout(function() {
+				submit.submit();
+			}, 1400);
+
+			Swal.fire({
+				position : 'top',
+				icon : 'success',
+				title : '資料已更新',
+				showConfirmButton : false,
+				timer : 1500
+			})
+		}
+		
+		
+		
+		/* 更新圖片 or 上傳圖片 */
+	    $("#inputImageFile").change(function(e){
+        	processImageFile(e.target.files[0]);
+    	});
+	    
+	    
+	    function processImageFile(imageObject) {
+	        //顯示分析的圖片
+	        var sourceImageUrl = URL.createObjectURL(imageObject);
+	        //document.querySelector("#sourceImage").src = sourceImageUrl;
+	        $("#sourceImage").attr('src', sourceImageUrl);
+	    }
+		
 	</script>
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tw.iiihealth.elder.model.Equip;
 import tw.iiihealth.meal.diet.DietBean;
 
 
@@ -25,6 +26,10 @@ public class MealService {
 	// 修改餐點
 	public MealBean update(MealBean m) {
 		return mealRepository.save(m);
+	}
+	
+	public void save(MealBean mealBean) {
+		mealRepository.save(mealBean);
 	}
 	
 	// 刪除餐點
