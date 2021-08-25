@@ -27,8 +27,8 @@ public class DietService {
 	}
 	
 	// 刪除食品資料
-	public void delete(DietBean d) {
-		dietRepository.delete(d);
+	public void delete(int mId) {
+		dietRepository.deleteById(mId);
 	}
 	
 	// 查詢食品資料庫

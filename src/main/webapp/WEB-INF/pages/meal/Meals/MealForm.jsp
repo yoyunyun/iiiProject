@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	response.setContentType("text/html;charset=UTF-8");
@@ -18,24 +19,14 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 <meta name="author" content="" />
 <title>健康優生網</title>
 <link href="/css/styles.css" rel="stylesheet" />
-<!-- <link -->
-<!-- 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" -->
-<!-- 	rel="stylesheet" /> -->
-<%-- <link href="${pageContext.request.contextPath}/resources/css/styles.css" --%>
-<!-- 	rel="stylesheet" /> -->
-<!-- <script type="text/javascript" -->
-<!-- 	src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=CJuop6gIt_2wDZluUZr6TU8GAI5W_DvE3Q8RjyThL62GmmPY9qzmRyo2I1sAwTqQo49wsRPe6-Wdov66JPvKlTBYruiRWeZv8PpKKeLcX9BDPvuBxVqv90oFHCjkWARuSoa25ABLECOY0YJ0bfuFbv6Jx4WRUXgOlDzHgQYc8XT2c0Pv0Xn4XoZO4w5eHC5CYLZAIxoOsn2YdBwEA2CAbnBZIPKrsIT9tuIeBI_6iemgBTppaa3vpDgp1CN9vBsR1lpamT3aajoUES0WrKOk7B-EP3jOCBHxdFGa5j7i7xjX_m9L23i219CYCLK4WwAvBo7eTGEWKw6E6ZZuFEF87eVdab-aYMpY70iHmqDl6AiFND22a_dgxAuF6E1wwCGXYC4tgPVQVc6JfDrqpYUr91GwpWLpiVWLvaLaneUW1C9-OhLSy2UKXPeUTjnxfIyXjdyslHei6-NS83wwlXQ75g" -->
-<!-- 	charset="UTF-8"></script> -->
-<!-- <link rel="stylesheet" crossorigin="anonymous" -->
-<!-- 	href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9kb2MtMGstNmMtZG9jcy5nb29nbGV1c2VyY29udGVudC5jb20vZG9jcy9zZWN1cmVzYy9nNGQ0ZWNydjZvOTlwZTFtbXNjaGxyMTBnMXQ4M2J2YS9zZnRnbWhsYzcxa2lnZDhvOHNzdGhmMnJvMjZwczhudS8xNjI3NjI3MDUwMDAwLzAxODM4MzU4OTI3NzEwMDYzNzQ3LzA3ODI5MjYyMDA1ODM5NzM2MDAxLzFSSnZ0Y0l3c08tSURUZm5fbjRPVFB1TGhEUXFfTEpTMz9lPWRvd25sb2FkJmF1dGh1c2VyPTAmbm9uY2U9Z2VobTI3aWw1anAxbyZ1c2VyPTA3ODI5MjYyMDA1ODM5NzM2MDAxJmhhc2g9NGQ0OTdpZTg5c3Vmc3A2ZmN2N2UwbXV2Ym5xdXBkb2w" /> -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> -->
 		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="/js/datatables-simple-demo.js"></script>
+        <script src="/js/sweetalert2.all.min.js"></script>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -167,51 +158,83 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 			</nav>
 		</div>
 
-	<div id="layoutSidenav_content">
-		<main>
-		<div class="card-header">
-			<form action="mealView.controller" method="get" class="btn">
-				<input type="submit" name="asubmit" value="瀏覽菜單">
-			</form>
-			<form action="mealCreate.controller" method="get" class="btn">
-				<input type="submit" name="submit" value="新增餐點">
-			</form>
-			<form action="mealUpdate.controller" method="get" class="btn">
-				<input type="submit" name="submit" value="修改餐點">
-			</form>
-			<form action="mealDelete.controller" method="get" class="btn">
-				<input type="submit" name="submit" value="刪除餐點">
-			</form>
-			<h3>新增餐點資料填寫：</h3>
-			<br>
-			<form action="addMeals.controller" method="post">
-				<label for="name">餐點名稱：</label><br> <input type="text"
-					id="name" name="name" required> <span id="ndsp"></span><br />
-				<label for="price">價格($NT)：</label><br> <input type="text"
-					id="price" name="price" required><br> <label
-					for="material">主原料：</label><br> <input type="text"
-					id="material" name="material"><br> <label
-					for="calories">熱量(kcal)：</label><br> <input type="text"
-					id="calories" name="calories"><br> <label
-					for="protein">蛋白質(g)：</label><br> <input type="text"
-					id="protein" name="protein"><br> <label
-					for="carbohydrates">碳水化合物(g)：</label><br> <input type="text"
-					id="carbohydrates" name="carbohydrates"><br> <label
-					for="fat">脂肪(g)：</label><br> <input type="text" id="fat"
-					name="fat"><br> <br>商店編號：<br> <input
-					type="radio" id="store1" name="store_ID" value="1"> <label
-					for="store1">1</label> <input type="radio" id="store2"
-					name="store_ID" value="2"> <label for="store2">2</label> <input
-					type="radio" id="store3" name="store_ID" value="3"> <label
-					for="store3">3</label> <input type="radio" id="store4"
-					name="store_ID" value="4"> <label for="store4">4</label> <input
-					type="radio" id="store5" name="store_ID" value="5"> <label
-					for="store5">5</label><br> <br> <input type="submit"
-					name="submit" value="送出">
-			</form>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">營養管理系統</h1>
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i> 新增餐點資料
+						</div>
+						<div class="card-body">
+					<div class="row">
+						<div class="col-md-6">
+							<form action="addMeals.controller"	method="post">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>欄位名稱</th>
+											<th>欄位資料</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>餐點名稱</td>
+											<td><input type="text" id="name" name="name" required> <span id="ndsp"></span></td>
+										</tr>
+										<tr>
+											<td>價格($NT)</td>
+											<td><input type="text" id="price" name="price" required></td>
+										</tr>
+										<tr>
+											<td>主原料</td>
+											<td><input type="text" id="material" name="material"></td>
+										</tr>
+										<tr>
+											<td>熱量(kcal)</td>
+											<td><input type="text" id="calories" name="calories"></td>
+										</tr>
+										<tr>
+											<td>蛋白質(g)</td>
+											<td><input type="text" id="protein" name="protein"></td>
+										</tr>
+										<tr>
+											<td>碳水化合物(g)</td>
+											<td><input type="text" id="carbohydrates" name="carbohydrates"></td>
+										</tr>
+										<tr>
+											<td>脂肪(g)</td>
+											<td><input type="text" id="fat"	name="fat"></td>
+										</tr>
+										<tr>
+											<td>商店編號</td>
+											<td><input type="radio" id="store1" name="store_ID" value="1"> 
+												<label for="store1">1</label> 
+												<input type="radio" id="store2"	name="store_ID" value="2"> 
+												<label for="store2">2</label> 
+												<input type="radio" id="store3" name="store_ID" value="3"> 
+												<label for="store3">3</label> 
+												<input type="radio" id="store4"	name="store_ID" value="4"> 
+												<label for="store4">4</label> 
+												<input type="radio" id="store5" name="store_ID" value="5"> 
+												<label for="store5">5</label>
+											</td>
+										</tr>
+										<tr>
+											<td><label></label></td>
+											<td><input type="submit" name="submit" value="送出"></td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+						<div class="col-md-6"></div>
+					</div>
+						</div>
+					</div>
+				</div>
+			</main>
 		</div>
-		</main>
-	</div>
 	<script>
 		//姓名
 		document.getElementById("name").onblur = checkName;
@@ -222,7 +245,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 			let theNameObjValLen = theNameObjVal.length;
 			let flag = false;
 			if (theNameObjVal == "")
-				sp.innerHTML = "<img src='images/error.png'> 必填";
+				sp.innerHTML = "<img src='../images/error.png'> 必填";
 			else if (theNameObjValLen >= 2) {
 				for (let i = 0; i < theNameObjValLen; i++) {
 					let ch = theNameObjVal.charAt(i)
@@ -236,12 +259,12 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 					}
 				}
 				if (flag) {
-					sp.innerHTML = "<img src='images/ok.png'> 格式正確!";
+					sp.innerHTML = "<img src='../images/ok.png'> 格式正確!";
 				} else {
-					sp.innerHTML = "<img src='images/error.png'> 請輸入2個字(含)以上之中文字!"
+					sp.innerHTML = "<img src='../images/error.png'> 請輸入2個字(含)以上之中文字!"
 				}
 			} else {
-				sp.innerHTML = "<img src='images/error.png'> 請輸入2個字(含)以上之中文字!";
+				sp.innerHTML = "<img src='../images/error.png'> 請輸入2個字(含)以上之中文字!";
 			}
 		}
 	</script>

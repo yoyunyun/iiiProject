@@ -28,8 +28,8 @@ public class MealService {
 	}
 	
 	// 刪除餐點
-	public void delete(MealBean m) {
-		mealRepository.delete(m);
+	public void delete(int mId) {
+		mealRepository.deleteById(mId);
 	}
 	
 	// 查詢菜單

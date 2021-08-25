@@ -46,59 +46,16 @@ public class Manager {
 	@Column(name = "verification_code", length = 64)
 	private String verificationCode;
 
-	private boolean enabled;
+	@Column(name = "role")
+	private String role;
 
-	public Manager() {
-	}
+	private boolean disabled;
 	
-	//信箱要用(新增)
-	public Manager(int managerid, String managername, String managergender, String manageraccount, String managerpwd,
-			String manageryear, String managermonth, String managerday, String manageremail, String verificationCode,
-			boolean enabled) {
-		this.managerid = managerid;
-		this.managername = managername;
-		this.managergender = managergender;
-		this.manageraccount = manageraccount;
-		this.managerpwd = managerpwd;
-		this.manageryear = manageryear;
-		this.managermonth = managermonth;
-		this.managerday = managerday;
-		this.manageremail = manageremail;
-		this.verificationCode = verificationCode;
-		this.enabled = enabled;
-	}
-
-	//修改要用
-	public Manager(int managerid, String managername, String managergender, String manageraccount, String managerpwd,
-			String manageryear, String managermonth, String managerday, String manageremail) {
-		this.managerid = managerid;
-		this.managername = managername;
-		this.managergender = managergender;
-		this.manageraccount = manageraccount;
-		this.managerpwd = managerpwd;
-		this.manageryear = manageryear;
-		this.managermonth = managermonth;
-		this.managerday = managerday;
-		this.manageremail = manageremail;
-	}
-
-	//新增要用
-	public Manager(String managername, String managergender, String manageraccount, String managerpwd,
-			String manageryear, String managermonth, String managerday, String manageremail) {
-		this.managername = managername;
-		this.managergender = managergender;
-		this.manageraccount = manageraccount;
-		this.managerpwd = managerpwd;
-		this.manageryear = manageryear;
-		this.managermonth = managermonth;
-		this.managerday = managerday;
-		this.manageremail = manageremail;
-	}
-
-	//刪除要用
-	public Manager(int managerid) {
-		this.managerid = managerid;
-	}
+	private boolean accountExpired;
+	
+	private boolean accountLocked;
+	
+	private boolean credentialsExpired;
 
 	public int getManagerid() {
 		return managerid;
@@ -180,12 +137,43 @@ public class Manager {
 		this.verificationCode = verificationCode;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isDisabled() {
+		return disabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setDisabled(boolean disabled) {
+		this.disabled = disabled;
 	}
 
+	public boolean isAccountExpired() {
+		return accountExpired;
+	}
+
+	public void setAccountExpired(boolean accountExpired) {
+		this.accountExpired = accountExpired;
+	}
+
+	public boolean isAccountLocked() {
+		return accountLocked;
+	}
+
+	public void setAccountLocked(boolean accountLocked) {
+		this.accountLocked = accountLocked;
+	}
+
+	public boolean isCredentialsExpired() {
+		return credentialsExpired;
+	}
+
+	public void setCredentialsExpired(boolean credentialsExpired) {
+		this.credentialsExpired = credentialsExpired;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

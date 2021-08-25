@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,8 +37,13 @@
 		<!-- Navbar Search-->
 		<form
 			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-
-				<a class="navbar-brand ps-3" href="#">歡迎您，${user.managername}</a>
+			<div class="input-group">
+				<input class="form-control" type="text" placeholder="Search for..."
+					aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+				<button class="btn btn-primary" id="btnNavbarSearch" type="button">
+					<i class="fas fa-search"></i>
+				</button>
+			</div>
 		</form>
 		<!-- Navbar-->
 		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -48,12 +53,11 @@
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="/Manager/searchAllManagerAction.controller">管理員資料表</a></li>
-					<li><a class="dropdown-item" href="#!">會員資料表</a></li>
-					<li><a class="dropdown-item" href="#!">廠商資料表</a></li>
+					<li><a class="dropdown-item" href="#!">Settings</a></li>
+					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
 					<li><hr class="dropdown-divider" /></li>
-					<li><a class="dropdown-item" href="/Manager/insertManager">註冊</a></li>
-					<li><a class="dropdown-item" href="/Manager/logout">登出</a></li>
+					<li><a class="dropdown-item" href="/HealthProject/ManagerHealth/insertManager">註冊</a></li>
+					<li><a class="dropdown-item" href="/logout">登出</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -65,28 +69,12 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">會員中心</div>
-						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-							data-bs-target="#collapseLayouts0" aria-expanded="false"
-							aria-controls="collapseLayouts0">
+						<a class="nav-link" href="/HealthProject/ManagerHealth/searchAllManagerAction.controller">
 							<div class="sb-nav-link-icon">
-								<i class="fas fa-chart-area"></i>
+								<i class="fas fa-table"></i>
 							</div> 會員系統
-							<div class="sb-sidenav-collapse-arrow">
-								<i class="fas fa-angle-down"></i>
-							</div>
 						</a>
-						<div class="collapse" id="collapseLayouts0"
-							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="/Manager/searchAllManagerAction.controller">管理員資料表</a>
-								<a class="nav-link" href="#">會員資料表</a>
-								<a class="nav-link" href="#">廠商資料表</a>
-							</nav>
-						</div>
-						
 						<div class="sb-sidenav-menu-heading">長照服務</div>
-						
-						
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts1" aria-expanded="false"
 							aria-controls="collapseLayouts1">
@@ -104,8 +92,6 @@
 								<a class="nav-link" href="${pageContext.request.contextPath}/taxi/locmainpage.controller">店家資訊</a>
 							</nav>
 						</div>
-						
-						
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts" aria-expanded="false"
 							aria-controls="collapseLayouts">
@@ -143,7 +129,7 @@
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link"  href="${pageContext.request.contextPath}/meals/mealView.controller">營養餐管理</a> 
-								<a class="nav-link"  href="${pageContext.request.contextPath}/diet/dietView.controller">食品資料管理</a>									
+								<a class="nav-link"  href="${pageContext.request.contextPath}/diet/dietView.controller">食品資料管理</a>
 
 							</nav>
 						</div>
@@ -160,8 +146,8 @@
 						<div class="collapse" id="collapseLayouts4"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="${pageContext.request.contextPath}/Drug/findalldrug">藥品辨識系統</a> <a
-									class="nav-link" href="${pageContext.request.contextPath}/DrugProduct/findalldrugproduct">藥品包裝變更</a>
+								<a class="nav-link" href="${pageContext.request.contextPath}/Drug/findalldrug">藥品辨識系統</a> <a class="nav-link"
+									href="${pageContext.request.contextPath}/DrugProduct/findalldrugproduct">藥品包裝變更</a>
 
 							</nav>
 						</div>
@@ -184,60 +170,112 @@
 
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 管理者表單總覽
+							<i class="fas fa-table me-1"></i> 刪除員工資料如下請確認
 						</div>
 						<div class="card-body">
-							<table id="datatablesSimple">
-								<thead>
-									<tr>
-										<th>管理者編號</th>
-										<th>管理者姓名</th>
-										<th>性別</th>
-										<th>帳號</th>
-										<th>密碼</th>
-										<th>出生日期</th>
-										<th>E-mail</th>
-										<th colspan="2"></th>
-									</tr>
-								</thead>
-								<tfoot>
-									<tr>
-										<th>管理者編號</th>
-										<th>管理者姓名</th>
-										<th>性別</th>
-										<th>帳號</th>
-										<th>密碼</th>
-										<th>出生日期</th>
-										<th>E-mail</th>
-										<th colspan="2"></th>
-									</tr>
-								</tfoot>
-								<tbody>
-									<c:forEach var="manager" varStatus="status" items="${allManager}">
+
+							<div class="row">
+								<div class="col-md-3"></div>
+								<div class="col-md-6">
+									<table class="table  table-hover">
 										<tr>
-											<td>${manager.managerid}</td>
-											<td>${manager.managername}</td>
-											<td>${manager.managergender}</td>
-											<td>${manager.manageraccount}</td>
-											<td>${manager.managerpwd}</td>
-											<td>民國 ${manager.manageryear} 年 ${manager.managermonth} 月 ${manager.managerday} 日</td>
-											<td>${manager.manageremail}</td>
+											<td>被看護人姓名:</td>
+											<td>${member.membername}</td>
+										</tr>
+										<tr>
+											<td>性別:</td>
+											<td>${member.membergender}</td>
+										</tr>
+										<tr>
+											<td>出生日期:</td>
+											<td>民國 ${member.memberyear} 年 ${member.membermonth} 月 ${member.memberday} 日</td>
+										</tr>
+										<tr>
+											<td>E-mail:</td>
+											<td>${member.memberemail}</td>
+										</tr>
+										<tr>
+											<td>手機:</td>
+											<td>${member.memberphone}</td>
+										</tr>
+										<tr>
+											<td>被看護人居住地址:</td>
+											<td>${member.membercity}${member.membertown}${member.memberaddress}</td>
+										</tr>
+										<tr>
+											<td>身心障礙手冊/證明:</td>
+											<td>${member.handbook}</td>
+										</tr>
+										<tr>
+											<td>失智症確診:</td>
+											<td>${member.dementia}</td>
+										</tr>
+										<tr>
+											<td>大頭照:</td>
+											<td><img src="${pageContext.request.contextPath}/MemberPhoto/${member.memberphoto}"
+														onerror="this.style.display='none'" width="200px" height="200px" ></td>
+										</tr>
+										<tr>
 											<td>
-												<form method="POST" action="/Manager/updateManager">
-													<input type="hidden" name="managerid" value="${manager.managerid}" />
-													<input type="submit" value="修改">
-												</form>
+												<form:form method="POST" action="/Member/updateMemberAction.controller" modelAttribute="member" enctype="multipart/form-data">
+													<form:hidden path="memberid" value="${member.memberid}" />
+													<form:hidden path="verificationCode" value="${member.verificationCode}" />
+													<form:hidden path="role" value="${member.role}" />
+													<form:hidden path="disabled" value="${member.disabled}" />
+													<form:hidden path="accountExpired" value="${member.accountExpired}" />
+													<form:hidden path="accountLocked" value="${member.accountLocked}" />
+													<form:hidden path="credentialsExpired" value="${member.credentialsExpired}" />
+													<form:hidden path="membername" value="${member.membername}" />
+													<form:hidden path="membergender" value="${member.membergender}" />
+													<form:hidden path="memberyear" value="${member.memberyear}" />
+													<form:hidden path="membermonth" value="${member.membermonth}" />
+													<form:hidden path="memberday" value="${member.memberday}" />
+													<form:hidden path="memberaccount" value="${member.memberaccount}" />
+													<form:hidden path="memberpwd" value="${member.memberpwd}" />
+													<form:hidden path="memberemail" value="${member.memberemail}" />
+													<form:hidden path="memberphone" value="${member.memberphone}" />
+													<form:hidden path="membercity" value="${member.membercity}" />
+													<form:hidden path="membertown" value="${member.membertown}" />
+													<form:hidden path="memberaddress" value="${member.memberaddress}" />
+													<form:hidden path="handbook" value="${member.handbook}" />
+													<form:hidden path="dementia" value="${member.dementia}" />
+													<form:hidden path="memberphoto" value="${member.memberphoto}" />
+													 <input type="submit" class="btn" name="updateToSQL" value="確認">
+												</form:form>
 											</td>
 											<td>
-												<form method="POST" action="/Manager/displayDeleteManager">
-													<input type="hidden" name="managerid" value="${manager.managerid}" />
-													<input type="submit" value="刪除">
-												</form>
+												<form:form method="POST" action="/Member/reUpdateMember" modelAttribute="member" enctype="multipart/form-data">
+													<form:hidden path="memberid" value="${member.memberid}" />
+													<form:hidden path="verificationCode" value="${member.verificationCode}" />
+													<form:hidden path="role" value="${member.role}" />
+													<form:hidden path="disabled" value="${member.disabled}" />
+													<form:hidden path="accountExpired" value="${member.accountExpired}" />
+													<form:hidden path="accountLocked" value="${member.accountLocked}" />
+													<form:hidden path="credentialsExpired" value="${member.credentialsExpired}" />
+													<form:hidden path="membername" value="${member.membername}" />
+													<form:hidden path="membergender" value="${member.membergender}" />
+													<form:hidden path="memberyear" value="${member.memberyear}" />
+													<form:hidden path="membermonth" value="${member.membermonth}" />
+													<form:hidden path="memberday" value="${member.memberday}" />
+													<form:hidden path="memberaccount" value="${member.memberaccount}" />
+													<form:hidden path="memberpwd" value="${member.memberpwd}" />
+													<form:hidden path="memberemail" value="${member.memberemail}" />
+													<form:hidden path="memberphone" value="${member.memberphone}" />
+													<form:hidden path="membercity" value="${member.membercity}" />
+													<form:hidden path="membertown" value="${member.membertown}" />
+													<form:hidden path="memberaddress" value="${member.memberaddress}" />
+													<form:hidden path="handbook" value="${member.handbook}" />
+													<form:hidden path="dementia" value="${member.dementia}" />
+													<form:hidden path="memberphoto" value="${member.memberphoto}" />
+													<input type="submit" class="btn" name="updateToSQL" value="返回上一頁">
+												</form:form>
 											</td>
 										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+									</table>
+								</div>
+								<div class="col-md-3"></div>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -256,6 +294,7 @@
 			</footer>
 		</div>
 	</div>
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>

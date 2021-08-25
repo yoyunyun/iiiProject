@@ -20,10 +20,6 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-	crossorigin="anonymous">
 </head>
 <body class="sb-nav-fixed">
 
@@ -57,8 +53,6 @@
 					<li><a class="dropdown-item" href="#!">Settings</a></li>
 					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
 					<li><hr class="dropdown-divider" /></li>
-					<li><a class="dropdown-item" href="/HealthProject/ManagerHealth/insertManager">註冊</a></li>
-					<li><a class="dropdown-item" href="/logout">登出</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -70,7 +64,7 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">會員中心</div>
-						<a class="nav-link" href="/HealthProject/ManagerHealth/searchAllManagerAction.controller">
+						<a class="nav-link" href="#">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
 							</div> 會員系統
@@ -89,8 +83,8 @@
 						<div class="collapse" id="collapseLayouts1"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="${pageContext.request.contextPath}/taxi/taximainpage.controller">計程車資訊</a>
-								<a class="nav-link" href="${pageContext.request.contextPath}/taxi/locmainpage.controller">店家資訊</a>
+								<a class="nav-link" href="#">計程車資訊</a>
+								<a class="nav-link" href="#">店家資訊</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -107,9 +101,9 @@
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link"
-									href="${pageContext.request.contextPath}/equip/findall">輔具系統</a> <a
+									href="#">輔具系統</a> <a
 									class="nav-link"
-									href="${pageContext.request.contextPath}/order/findall">輔具訂單系統</a>
+									href="#">輔具訂單系統</a>
 							</nav>
 						</div>
 
@@ -129,8 +123,8 @@
 						<div class="collapse" id="collapseLayouts3"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="${pageContext.request.contextPath}/meals/mealView.controller">營養餐管理</a> <a
-									class="nav-link" href="${pageContext.request.contextPath}/diet/dietView.controller">食品資料管理</a>
+								<a class="nav-link" href="#">營養餐管理</a> <a
+									class="nav-link" href="#">食品資料管理</a>
 
 							</nav>
 						</div>
@@ -147,8 +141,8 @@
 						<div class="collapse" id="collapseLayouts4"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="${pageContext.request.contextPath}/Drug/findalldrug">藥品辨識系統</a> 
-								<a class="nav-link" href="${pageContext.request.contextPath}/DrugProduct/findalldrugproduct">藥品包裝變更</a>
+								<a class="nav-link" href="#">藥品辨識系統</a> <a
+									class="nav-link" href="#">藥品包裝變更</a>
 
 							</nav>
 						</div>
@@ -166,82 +160,48 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">會員系統</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active">管理者介面</li>
+						<li class="breadcrumb-item active">會員介面</li>
 					</ol>
 
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 修改員工資料如下請確認
+							<i class="fas fa-table me-1"></i> 會員登入
 						</div>
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-3"></div>
 								<div class="col-md-6">
-									<table class="table  table-hover">
-										<tr>
-											<td>管理者編號:</td>
-											<td>${managerid}</td>
-										</tr>
-										<tr>
-											<td>管理者姓名:</td>
-											<td>${managername}</td>
-										</tr>
-										<tr>
-											<td>性別:</td>
-											<td>${managergender}</td>
-										</tr>
-										<tr>
-											<td>帳號:</td>
-											<td>${manageraccount}</td>
-										</tr>
-										<tr>
-											<td>密碼:</td>
-											<td>${managerpwd}</td>
-										</tr>
-										<tr>
-											<td>出生日期:</td>
-											<td>民國 ${manageryear} 年 ${managermonth} 月 ${managerday} 日</td>
-										</tr>
-										<tr>
-											<td>E-mail:</td>
-											<td>${manageremail}</td>
-										</tr>
-										<tr>
-											<td>
-												<form action="/HealthProject/ManagerHealth/updateManagerAction.controller" method="post">
-													<input type="hidden" name="managerid" value="${managerid}">
-													<input type="hidden" name="managername" value="${managername}">
-													<input type="hidden" name="managergender" value="${managergender}">
-													<input type="hidden" name="manageraccount" value="${manageraccount}">
-													<input type="hidden" name="managerpwd" value="${managerpwd}">
-													<input type="hidden" name="manageryear" value="${manageryear}">
-													<input type="hidden" name="managermonth" value="${managermonth}">
-													<input type="hidden" name="managerday" value="${managerday}"> 
-													<input type="hidden" name="manageremail" value="${manageremail}"> 
-													<input type="hidden" name="enabled" value="${manager.enabled}">
-													<input type="submit" class="btn" name="displayUpdateSearchHealth" value="確認">
-												</form>
-											</td>
-											<td>
-												<form action="/HealthProject/ManagerHealth/reUpdateSearchManager" method="post">
-													<input type="hidden" name="managerid" value="${managerid}">
-													<input type="hidden" name="managername" value="${managername}">
-													<input type="hidden" name="managergender" value="${managergender}">
-													<input type="hidden" name="manageraccount" value="${manageraccount}">
-													<input type="hidden" name="managerpwd" value="${managerpwd}">
-													<input type="hidden" name="manageryear" value="${manageryear}">
-													<input type="hidden" name="managermonth" value="${managermonth}">
-													<input type="hidden" name="managerday" value="${managerday}"> 
-													<input type="hidden" name="manageremail" value="${manageremail}"> 
-													<input type="hidden" name="enabled" value="${manager.enabled}">
-													<input type="submit" class="btn" name="displayUpdateSearchHealth" value="返回上一頁">
-												</form>
-											</td>
-										</tr>
-									</table>
+										<table class="table  table-hover">
+									<form action="/Member/login" method="post" id="form1" onsubmit="return checkSubBtn();">
+											<tr>
+												<td>帳號:</td>
+												<td><input type="text" id="account1" name="username"
+													size="15" autocomplete="off"><span id="acntCheck"></span></td>
+											</tr>
+											<tr>
+												<td>密碼:</td>
+												<td><input type="password" id="pwd1" name="password" maxlength="15" size="15"> 
+												<span id="pwd1Check"></span><br>
+												<input type="checkbox" id="showPwd">顯示密碼     
+												<input type="checkbox" name="remember-me">記住我</td>
+											</tr>
+											<tr>
+												<td><span style="color: red;" id="subBtnCheck"></span></td>
+											</tr>
+											<tr>
+												<td>
+													<input type="submit" class="btn" id="subBtn" name="sublogin" value="登陸">
+												</td>
+									</form>
+												<td>
+													<form action="/HealthProject" method="post">
+														<input type="submit" class="btn" value="取消">
+													</form>
+												</td>
+											</tr>	
+										</table>
 								</div>
-								<div class="col-md-3"></div>
+								<div class="col-md-6"></div>
 							</div>
 
 						</div>
@@ -262,6 +222,111 @@
 			</footer>
 		</div>
 	</div>
+
+
+	<script>
+    let acntCheck = document.getElementById("acntCheck");
+    let pwd1Check = document.getElementById("pwd1Check");
+    document.getElementById("subBtn").onclick = checkSubBtn;
+
+    let flagSubmit1 = true;
+    let flagSubmit2 = true;
+    //account1
+    function checkAccount() {
+        flagSubmit1 = true;
+        let acntObj = document.getElementById("account1");
+        let acntValue = acntObj.value;
+        let acntLen = acntValue.length;
+        let flag1 = false, flag2 = false;
+
+        if (acntLen == "") {
+            acntCheck.innerHTML = "<img src ='${pageContext.request.contextPath}/images/incorrect.jpg'>帳號不能為空";
+            flagSubmit1 = false;
+        } else if (acntLen >= 6) {
+            for (let i = 0; i <= acntLen; i++) {
+                let ch = acntValue.charAt(i).toUpperCase();
+                if (ch >= "A" && ch <= "Z") {
+                    flag1 = true;
+                } else if (ch >= "0" && ch <= "9") {
+                    flag2 = true;
+                }
+                if (flag1 && flag2) {
+                    break;
+                }
+            } if (flag1 && flag2) {
+                acntCheck.innerHTML = "<img src ='${pageContext.request.contextPath}/images/correct.jpg'>";
+            } else {
+                acntCheck.innerHTML = "<img src ='${pageContext.request.contextPath}/images/incorrect.jpg'>帳號必須包含英文與數字";
+                flagSubmit1 = false;
+            }
+        } else if (acntLen < 6 && acntLen > 0) {
+            acntCheck.innerHTML = "<img src ='${pageContext.request.contextPath}/images/incorrect.jpg'>帳號字數過少";
+            flagSubmit1 = false;
+        }
+    }
+
+    //pwd1
+    function checkPwd1() {
+        flagSubmit2 = true
+        let pwd1Obj = document.getElementById("pwd1");
+        let pwd1Value = pwd1Obj.value;
+        let pwd1Len = pwd1Value.length;
+        let flag1 = false, flag2 = false;
+
+        if (pwd1Len == "") {
+            pwd1Check.innerHTML = "<img src ='${pageContext.request.contextPath}/images/incorrect.jpg'>密碼不能為空";
+            flagSubmit2 = false;
+        } else if (pwd1Len >= 6) {
+            for (let i = 0; i <= pwd1Len; i++) {
+                let ch = pwd1Value.charAt(i).toUpperCase();
+                if (ch >= "A" && ch <= "Z") {
+                    flag1 = true;
+                } else if (ch >= "0" && ch <= "9") {
+                    flag2 = true;
+                }
+                if (flag1 && flag2) {
+                    break;
+                }
+            } if (flag1 && flag2) {
+                pwd1Check.innerHTML = "<img src ='${pageContext.request.contextPath}/images/correct.jpg'>";
+            } else {
+                pwd1Check.innerHTML = "<img src ='${pageContext.request.contextPath}/images/incorrect.jpg'>密碼必須包含英文與數字";
+                flagSubmit2 = false;
+            }
+        } else if (pwd1Len < 6 && pwd1Len > 0) {
+            pwd1Check.innerHTML = "<img src ='${pageContext.request.contextPath}/images/incorrect.jpg'>密碼字數過少";
+            flagSubmit2 = false;
+        }
+    }
+
+    //顯示密碼
+    document.getElementById("showPwd").onclick = showPwd;
+    function showPwd() {
+        let pwdType = document.getElementById("pwd1").type;
+        //pwdType現在是密碼的話，就轉成文字顯示
+        if (pwdType === "password") {
+            document.getElementById("pwd1").type = "text";
+            //pwdType現在是文字的話，就轉回密碼來不顯示
+        } else {
+            document.getElementById("pwd1").type = "password";
+        }
+    }
+
+    //checkSubBtn
+    function checkSubBtn() {
+        checkAccount();
+        checkPwd1();
+
+        if (flagSubmit1 == false || flagSubmit2 == false) {
+            subBtnCheck.innerHTML = "**資料不完整，請重新檢查**";
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+    </script>
+
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

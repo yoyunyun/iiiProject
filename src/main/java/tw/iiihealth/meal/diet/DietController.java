@@ -22,7 +22,7 @@ public class DietController {
 	@Autowired
 	private DietService dietService;
 
-	@RequestMapping(path = "/dietView.controller", method = RequestMethod.GET)
+	@RequestMapping(path = "/dietViewIndex.controller", method = RequestMethod.GET)
 	public String processShowIndex(Model m) {
 		return "meal/Diet/indexDietMenu";
 	}
@@ -56,7 +56,7 @@ public class DietController {
 	}
 
 	// 查詢食品資料庫
-	@RequestMapping(path="/dietViewAll.controller",method = RequestMethod.GET)
+	@RequestMapping(path="/dietView.controller",method = RequestMethod.GET)
 	public String processQueryAll(HttpServletRequest request,Model m) throws SQLException {
 
 		List<DietBean> db = dietService.findAllDiet();
@@ -92,13 +92,13 @@ public class DietController {
 
 	// 確認刪除
 	@RequestMapping(path = "/deleteDietConfirm.controller", method = RequestMethod.POST)
-	public String deleteConfirm(@RequestParam(name = "name",required = false) String name,HttpServletRequest request, Model m) {
+	public String deleteConfirm(@RequestParam(name = "selected",required = false) int dId) {
 
-		DietBean dietData = (DietBean)request.getSession(true).getAttribute("d");
-	    dietService.delete(dietData);
+	    dietService.delete(dId);
 		
 		return "meal/Diet/Thanks2";
 	}
+	
 
 	// 修改食品資料
 	@RequestMapping(path = "/updateDietByName.controller", method = RequestMethod.POST)

@@ -24,7 +24,6 @@ public class MailController {
 //		mailService.sendAttachmentsMail();
 		mailService.sendInlineMail();
 
-
 		return "";
 	}
 	
