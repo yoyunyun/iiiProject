@@ -29,68 +29,7 @@
   
   <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.js"></script>
   
-  
-<style>
-#pic{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 280px;
-  height:280px;
-  border: none;
-  border-radius: 4px;
 
-
-}
-
-
-h4{
-	font-size:22px;
-	font-weight:bold;
-}
-
-p{
-	font-size:20px;
-}
-
-.service{
-	padding-bottom:20px;
-	padding-top:10px;
-	padding-left:20px;
-	padding-right:20px;
-	border:1px solid lightgrey;
-
-}
-
-
-#minus , #plus{
-	border:0; 
-	font-size:20px;
-	background-color:white
-
-}
-
-#text-box{
-	font-size:14px;
-	text-align:center;
-	width:35px;
-	height:30px;
-
-}
-
-#cart-icon {
-  position: fixed;
-  bottom: 80px;
-  right: 10px;
-}
-
-#top {
-  position: fixed;
-  bottom: 170px;
-  right: 10px;
-}
-
-</style>
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -155,7 +94,7 @@ p{
 
 
                  <li class="has-children">
-                  <a href="#" class="nav-link">營養專區</a>
+                  <a href="services.html" class="nav-link">營養專區</a>
                   <ul class="dropdown">
                     <li><a href="#" class="nav-link">營養餐</a></li>
                     <li><a href="#" class="nav-link">食品資料</a></li>
@@ -208,109 +147,117 @@ p{
         </div>
       </div>  
     </div>
-	
-	
-	
-	 <div id="top">
-		  <a href="#"><img src="${pageContext.request.contextPath}/images/top.png" width="50px" height="50px"/></a>
-	</div>	
 
-	<div id="cart-icon">
-		  <a href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/checklist.png" width="60px" height="60px"/></a>
-	</div>	
 
 
 
   
-    <div class="site-section">
+   <div class="site-section">
       <div class="container">
-        <div class="row">
-        	
-         
-          <div class="col-md-4">
-	          <div class="service">
-		         	<div>
-		         		<h4>商品名稱</h4>
-		         		<p>${equip.name}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	<div>
-		         		<h4>商品種類</h4>
-		         		<p>${equip.type}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	<div>
-		         		<h4>販售商</h4>
-		         		<p>${equip.vendor}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	<div>
-		         		<h4>醫療器材查驗登記字號</h4>
-		         		<p>${equip.document}</p>
-		         	</div>
-	          </div>
-      	  </div>
-      	  
-      	  
-      	  
-      	  
-          <div class="col-md-4">
-            <div class="service">
-            	 <img src="${pageContext.request.contextPath}/EquipImg/${equip.photo}" id="pic"/>
-            </div>
-          </div>
-          
-          
-          
-          
-          <div class="col-md-3">
-            <div class="service">
-            		
-		         	
-		         	<div>
-		         		<h4>商品價格</h4>
-		         		<p>NT$${equip.price}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	<div>
-	            		<p>購買數量: &nbsp 
-	            		
-	            			<input type="button" value="-" id="minus" >
-	            			<input type="text" value="1" id="text-box">
-	            			<input type="button" value="+" id="plus">	            		
-		         		</p>
-	            			
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	
-		         	<div>
-		         		<a href="${pageContext.request.contextPath}/consumer/toTheFrontPage" 
-		         				class="btn btn-outline-primary" style="font-weight:bold; font-size:14px">返回商品頁</a>
-		         		
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	
-		         	<div>
-		         		<input type="button" value="加入購物車" id="buttonAddToCart" class="btn btn-outline-dark" style="font-weight:bold; font-size:14px">
-		         	</div>
-		         	
-	        	</div>
-            </div>
-       
-       
-       		<div class="col-md-1">
-        	</div>
-       			
-        </div>
+      
+      	<!-- 第一列 -->
+      	  <div class="row">
+	          <div class="col-md-1"></div>
+	   		  
+	          <div class="col-md-10">
+	          		<h3>訂單已送出， 資訊如下</h3>
+	          		<table class="table table-hover" style="margin-top:50px">
+		          		<thead style="background-color:#F5F5F5">
+		          			<tr>
+		          				<th colspan="2">訂購人資訊</th>
+		          			</tr>
+		          		</thead>
+		          		<tbody>
+			          		<tr>
+			          			<td><label>收件人姓名:</label></td>
+				          		<td>${order.name}</td>
+			          		</tr>
+			          		<tr>
+				          		<td><label>收件人電話:</label></td>
+				          		<td>${order.number}</td>
+			          		</tr>
+			          		<tr>
+				          		<td><label>收件人email:</label></td>
+				          		<td>${order.email}</td>
+			          		</tr>
+			          		<tr>
+				          		<td><label>收件人地址:</label></td>
+				          		<td>${order.address}</td>
+			          		</tr>
+			          		<tr>
+				          		<td><label>訂單編號:</label></td>
+				          		<td>${order.id}</td>
+			          		</tr>
+		          		</tbody>
+		          	</table>
+	          
+	          
+	          </div>	
+      			
+      		<div class="col-md-1"></div>
+      	</div>	
+     	<!--  -->
+      
+      
+      	<!-- 第二列 -->
+	      <div class="row" style="margin-top:50px">
+	          <div class="col-md-1"></div>
+	   
+	          <div class="col-md-10">
+	          	
+	          	<table class="table table-hover">
+	          		<thead style="background-color:#F5F5F5">
+	          			<tr>
+	          				<th>商品名稱</th>
+	          				<th>單價</th>
+	          				<th>數量</th>
+	          				<th>小計</th>
+	          			</tr>
+	          		</thead>
+		          		<c:forEach var="detail" items="${order.orderDetail}" >
+			          		<tbody id="row${item.equip.id}">
+			          			<tr>
+									<td>${detail.product}</td>
+									<td>${detail.price}</td>
+									<td>${detail.quantity}</td>
+									<td class=single>${detail.total}</td>
+			          			</tr>
+			          		</tbody>
+		          		</c:forEach>
+			  
+			  				
+					<tfoot style="background-color:#F5F5F5">
+						<tr>
+	          				<td></td>
+	          				<td></td>
+	          				<td>商品總金額:</td>
+	          				<td id=all style="font-weight:bold; font-size:22px"></td>
+	          			</tr>	
+
+	          			<tr style="border-top-style:hidden;">
+	          				<td></td>
+	          				<td></td>
+	          				<td></td>
+	          				<td>
+	          					<a href="${pageContext.request.contextPath}/consumer/toTheFrontPage" class="btn btn-info" id="checkout" style="font-weight:bold; font-size:14px; border-radius:0px">
+	          						返回商品頁
+	          					</a>
+	          				</td>
+	          			</tr>		
+					</tfoot>
+	         	</table>
+	       	</div>
+	        <div class="col-md-1"></div>	
+	    </div>
+       	<!--  -->
+      
       </div>
     </div>
   
+  
+  
+  
     <!-- Footer -->
-
 
     <div class="site-footer bg-light">
       <div class="container">
@@ -395,62 +342,19 @@ p{
   <!--  sweet alert -->
   <script src="/js/sweetalert2.all.min.js"></script>
 	
+	
+	
 
 <script>
-	$("#plus").click(function(){
-		
-		var o1 = $("#text-box").val();
-		var o2 = parseInt(o1);
-		if (o2 < 20){
-			var n  = o2  + 1;
-			$("#text-box").val(n);
-		}
-		
-	})
-	
-	
-	
-	$("#minus").click(function(){
-		
-		var o1 = $("#text-box").val();
-		var o2 = parseInt(o1);
-		
-		if (o2 > 1){
-			var n  = o2  - 1;
-			$("#text-box").val(n);
-		}
-		
-	})
-	
-	
-	
-	
-	// 新增到購物車
-	$("#buttonAddToCart").click(function(){
-		var eid	= ${equip.id}
-		var qty= parseInt($("#text-box").val());
-
-		$.ajax({
-			type:"post",
-			url: "${pageContext.request.contextPath}/cart/add/" + eid + "/" + qty,
+		var result = 0;
+		$(".single").each(function(){
+			result += parseInt($(this).html())
 			
-			success: function(data){
-				Swal.fire({
-					  position: 'top',
-					  icon: 'success',
-					  title: '商品已加入購物車',
-					  showConfirmButton: false,
-					  timer: 1500
-					})
-				}
-		})
-	
-	
-	
-	
-	})
+		});	
+			
+		$("#all").text(result);
 
 </script>
-
+	
 </body>
 </html>

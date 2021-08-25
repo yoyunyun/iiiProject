@@ -29,48 +29,16 @@
   
   <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.js"></script>
   
-  
 <style>
-#pic{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 280px;
-  height:280px;
-  border: none;
-  border-radius: 4px;
-
-
-}
-
-
-h4{
-	font-size:22px;
-	font-weight:bold;
-}
-
-p{
-	font-size:20px;
-}
-
-.service{
-	padding-bottom:20px;
-	padding-top:10px;
-	padding-left:20px;
-	padding-right:20px;
-	border:1px solid lightgrey;
-
-}
-
-
-#minus , #plus{
+.minus , .plus{
 	border:0; 
 	font-size:20px;
-	background-color:white
+	background-color: transparent;
 
 }
 
-#text-box{
+
+.text-box{
 	font-size:14px;
 	text-align:center;
 	width:35px;
@@ -78,19 +46,11 @@ p{
 
 }
 
-#cart-icon {
-  position: fixed;
-  bottom: 80px;
-  right: 10px;
-}
 
-#top {
-  position: fixed;
-  bottom: 170px;
-  right: 10px;
-}
+
 
 </style>
+
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -155,7 +115,7 @@ p{
 
 
                  <li class="has-children">
-                  <a href="#" class="nav-link">營養專區</a>
+                  <a href="services.html" class="nav-link">營養專區</a>
                   <ul class="dropdown">
                     <li><a href="#" class="nav-link">營養餐</a></li>
                     <li><a href="#" class="nav-link">食品資料</a></li>
@@ -208,104 +168,101 @@ p{
         </div>
       </div>  
     </div>
-	
-	
-	
-	 <div id="top">
-		  <a href="#"><img src="${pageContext.request.contextPath}/images/top.png" width="50px" height="50px"/></a>
-	</div>	
 
-	<div id="cart-icon">
-		  <a href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/checklist.png" width="60px" height="60px"/></a>
-	</div>	
 
 
 
   
-    <div class="site-section">
+   <div class="site-section">
       <div class="container">
-        <div class="row">
-        	
-         
-          <div class="col-md-4">
-	          <div class="service">
-		         	<div>
-		         		<h4>商品名稱</h4>
-		         		<p>${equip.name}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	<div>
-		         		<h4>商品種類</h4>
-		         		<p>${equip.type}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	<div>
-		         		<h4>販售商</h4>
-		         		<p>${equip.vendor}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	<div>
-		         		<h4>醫療器材查驗登記字號</h4>
-		         		<p>${equip.document}</p>
-		         	</div>
-	          </div>
-      	  </div>
-      	  
-      	  
-      	  
-      	  
-          <div class="col-md-4">
-            <div class="service">
-            	 <img src="${pageContext.request.contextPath}/EquipImg/${equip.photo}" id="pic"/>
-            </div>
-          </div>
-          
-          
-          
-          
-          <div class="col-md-3">
-            <div class="service">
-            		
-		         	
-		         	<div>
-		         		<h4>商品價格</h4>
-		         		<p>NT$${equip.price}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	<div>
-	            		<p>購買數量: &nbsp 
-	            		
-	            			<input type="button" value="-" id="minus" >
-	            			<input type="text" value="1" id="text-box">
-	            			<input type="button" value="+" id="plus">	            		
-		         		</p>
-	            			
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	
-		         	<div>
-		         		<a href="${pageContext.request.contextPath}/consumer/toTheFrontPage" 
-		         				class="btn btn-outline-primary" style="font-weight:bold; font-size:14px">返回商品頁</a>
-		         		
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	
-		         	<div>
-		         		<input type="button" value="加入購物車" id="buttonAddToCart" class="btn btn-outline-dark" style="font-weight:bold; font-size:14px">
-		         	</div>
-		         	
-	        	</div>
-            </div>
-       
-       
-       		<div class="col-md-1">
-        	</div>
-       			
-        </div>
+	      <div class="row">
+	          <div class="col-md-1"></div>
+	   
+	          <div class="col-md-10">
+	          	<table class="table table-hover">
+	          		<thead style="background-color:#F5F5F5">
+	          			<tr>
+	          				<th>商品照</th>
+	          				<th>商品名稱</th>
+	          				<th>單價</th>
+	          				<th>數量</th>
+	          				<th>小計</th>
+	          				<th></th>
+	          			</tr>
+	          		</thead>
+	          		
+			    <c:choose>
+					<c:when test="${not empty cartItems}">
+			          		<c:forEach var="item" items="${cartItems}" >
+				          		<tbody id="row${item.equip.id}">
+				          			<tr>
+										<td><img src="${pageContext.request.contextPath}/EquipImg/${item.equip.photo}" style="width:100px; height:100px"/></td>
+										<td>
+											<a href="${pageContext.request.contextPath}/consumer/findByIdforCustomer/${item.equip.id}">
+												${item.equip.name}
+											</a>
+										</td>
+										<td> $${item.equip.price}</td>
+										<td>
+											<input type="button" value="-"  class="minus" onclick="minus(${item.equip.id})">
+					            			<input type="text" value="${item.quantity}" class="text-box" id="text-box${item.equip.id}">
+					            			<input type="button" value="+" class="plus" onclick="plus(${item.equip.id})">
+										</td>
+										<td class="subtotal" id="subtotal${item.equip.id}" >
+											 $${item.subtotal}	
+										</td>
+										<td>
+											<input type="image" src="${pageContext.request.contextPath}/images/delete.png"  onclick="deletefromcart(${item.equip.id})">
+										</td>
+				          			</tr>
+				          		</tbody>
+			          		</c:forEach>
+			          	</c:when>
+			          	
+			            <c:otherwise>
+							<tbody>
+								<tr>
+									<td> <span>購物車目前為空</span> </td>
+								</tr>
+							</tbody>
+						</c:otherwise>
+					</c:choose>
+					
+					<tfoot style="background-color:#F5F5F5">
+						<tr>
+	          				<td></td>
+	          				<td></td>
+	          				<td></td>
+	          				<td></td>
+	          				<td>商品總金額:</td>
+	          				<td id="totalAmount" style="color:red; font-size:22px"></td>
+	          			</tr>	
+	          			<tr style="border-top-style:hidden;">
+	          				<td></td>
+	          				<td></td>
+	          				<td></td>
+	          				<td></td>
+	          				<td>
+	          					<a href="${pageContext.request.contextPath}/consumer/toTheFrontPage" class="btn btn-info" style="font-weight:bold; font-size:14px; border-radius:0px">返回商品頁</a>
+	          				</td>
+	          				<td>
+	          					<form action="${pageContext.request.contextPath}/checkout" method="get" id="submit">
+	          						<input type="button" value="前往結帳" class="btn btn-dark" id="checkout" style="font-weight:bold; font-size:14px; border-radius:0px">
+	          					</form>
+	          				</td>
+
+	          			</tr>	
+					</tfoot>
+
+	         </table>
+	         
+	         
+	         
+	         
+	         
+	         
+	          </div><div class="col-md-1"></div>	
+	        </div>
       </div>
     </div>
   
@@ -395,61 +352,140 @@ p{
   <!--  sweet alert -->
   <script src="/js/sweetalert2.all.min.js"></script>
 	
-
+	
 <script>
-	$("#plus").click(function(){
+	
+	updateTotal();
+	
+	
+
+
+	// 增加數量的按鈕
+	function plus(eid){
 		
-		var o1 = $("#text-box").val();
+		var o1 = $("#text-box"+eid).val()
 		var o2 = parseInt(o1);
 		if (o2 < 20){
-			var n  = o2  + 1;
-			$("#text-box").val(n);
+			var qty  = o2  + 1;
+			$("#text-box"+eid).val(qty);
+			updateQuantity(eid , qty)
 		}
+	}
+	
+	
+	// 減少數量的按鈕
+	function minus(eid){
 		
-	})
-	
-	
-	
-	$("#minus").click(function(){
-		
-		var o1 = $("#text-box").val();
+		var o1 = $("#text-box"+eid).val();
 		var o2 = parseInt(o1);
 		
 		if (o2 > 1){
-			var n  = o2  - 1;
-			$("#text-box").val(n);
-		}
+			var qty  = o2  - 1;
+			$("#text-box"+eid).val(qty);
+			updateQuantity(eid , qty)
+		}	
+	}
+	
+	
+	// 計算總數量	
+	function updateTotal(){
+		total=0.0;
 		
-	})
+		
+		$(".subtotal").each(function(index, element){	
+			total =  total + parseInt(element.innerHTML.replace("$",""));
+		})
+		
+		$("#totalAmount").text("$"+total);	
+		
+		console.log($("#totalAmount").val());
+	}
 	
 	
 	
 	
-	// 新增到購物車
-	$("#buttonAddToCart").click(function(){
-		var eid	= ${equip.id}
-		var qty= parseInt($("#text-box").val());
+	// 動態更新個別數量(資料庫)
+	function updateQuantity(eid, qty){
 
 		$.ajax({
 			type:"post",
-			url: "${pageContext.request.contextPath}/cart/add/" + eid + "/" + qty,
+			url: "${pageContext.request.contextPath}/cart/update/" + eid + "/" + qty,
 			
-			success: function(data){
-				Swal.fire({
-					  position: 'top',
-					  icon: 'success',
-					  title: '商品已加入購物車',
-					  showConfirmButton: false,
-					  timer: 1500
-					})
-				}
-		})
+			success: function(newSubtotal){
+				updateSubtotal(newSubtotal, eid);
+				updateTotal()
+			}
+		})	
+	}
 	
 	
-	
-	
-	})
+	// 動態更新個別數量(顯示)
+	function updateSubtotal(newSubtotal, eid){
+		$("#subtotal"+eid).text("$"+newSubtotal);
+	}
 
+	
+	
+	// 刪除
+	function deletefromcart(eid){
+		
+		Swal.fire({
+			  title: '從購物車中移除?',
+			  text: "移除後無法復原!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '移除',
+			  cancelButtonText: '取消'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				  
+				  Swal.fire(
+						  '刪除!',
+					      '商品已從購物車中移除',
+					      'success'
+					    )
+					
+
+					$.ajax({
+						type:"post",
+						url: "${pageContext.request.contextPath}/cart/remove/" + eid,
+						success: function(data){
+							$("#row"+eid).remove();
+							console.log(data);
+							updateTotal();
+						 }					
+					})
+					
+					
+					
+			  }
+
+		})	
+	}
+	
+	
+	// 前往結帳頁面
+	$("#checkout").click(function(){
+		
+		if($("#totalAmount").text() == "$0"){
+			
+			Swal.fire({
+				  icon: 'error',
+				  title: 'Oops...',
+				  text: '無任何商品'
+			})
+	
+		}
+		
+		else{
+			
+			$("#submit").submit()
+		}
+		
+		
+	})
 </script>
 
 </body>
