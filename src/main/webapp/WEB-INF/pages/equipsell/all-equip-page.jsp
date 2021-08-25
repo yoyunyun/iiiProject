@@ -4,7 +4,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Elderly &mdash; Website Template by Colorlib</title>
+  <title>健康優生網</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
 
@@ -30,6 +30,7 @@
   <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.js"></script>
   
   <style>
+  	
   	#button{
   		width:200px;
   		margin: 0 auto 20px auto;
@@ -45,24 +46,58 @@
   		outline:none;
 
   	}
+  	
   	#myPage:hover {
   		background-color: skyblue;
   		color: white;
+	} 
+	
+	
+	#cart-icon {
+	  position: fixed;
+	  bottom: 80px;
+	  right: 10px;
+	}
+	
+	
+	#top {
+	  position: fixed;
+	  bottom: 170px;
+	  right: 10px;
+	}
+	
+	
+	.sort{
+	    position: absolute;  /*固定在網頁上不隨卷軸移動，若要隨卷軸移動用absolute*/
+	    top: 118%;  /*設置垂直位置*/
+	    left: -17px;  /*設置水平位置，依所放的內容多寡需要自行手動調整*/
+	    background: transparent;  /*背景顏色*/
+		transition-duration:1s;
+	}
+	
+	
+	.btn{
+		font-size:16px;
+		font-family:serif;
+		border-radius:0;
+	}
+	
+	.btn-dark{
+		font-size:18px;
+		font-family:serif;
 	}
   </style>  
   
    
 <script>
-  
-  <!-- ajax 載入內容 -->
+    <!-- ajax 載入內容 -->
 	
-	// 設定頁數
+    // 設定頁數
   	var indexPage = 2;
   
   
-	// 分頁啟動時載入
+	// 啟動時載入，顯示在第一頁
 	$(function(){
-		load(indexPage); 
 		createInitialButton(indexPage);
 		change(1);
 	})
@@ -97,33 +132,32 @@
 				 // 清除div下的所有子內容
 				 $(".site-section .container .row").empty();
 				 
-				
-				 
 				 var div =  $(".site-section .container .row");
 				
-				
-				 
+
 				 var content =""
+				 
 				 // 資料迴圈寫出
 				 $.each(parsedObjinArray,function(i,n){
 					 
 					 content += 
 						"<div class='col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3'>" 
-					 +	"<div class='service' style='background-color:light-grey'>"	
+					 +	"<div class='service' style='border:2px double rgba(0,0,0,.1); margin-bottom:50px; padding:0px;'>"	
 					 +	"<a href='/consumer/findByIdforCustomer/"+ n.id  + "' class='d-block'>"
 					 +  "<img src='../../EquipImg/" + n.photo +"'"
-					 +  "alt='Image' class='img-fluid' style='height:220px; width:220px;  margin-left: 15px'></a>"
-					 +	"<div class='service-inner' style='height:100px'>"
-					 +  "<h3>" + n.name + "</h3>"
-					 +  "<p style='color:red'> $" + n.price +"</P>"
+					 +  "alt='Image' class='img-fluid' style='height:240px; width:100%;'></a>"
+					 +	"<div class='service-inner' style='padding-bottom:2px; padding-left:15px;'>"
+					 +  "<p style='font-size:18px; font-weight:bold; color:black'>" + n.name + "<p>"
+					 +  "<p style='color:red; font-size:18px; "
+					 +  " margin-top:50px; text-align:left; font-weight:bold'> $" + n.price +"</P>"
 					 +  "</div>"
 					 +  "</div>"
 					 +  "</div>"
 					 
 				 })
 				 
-				  
-				 
+			
+	
 				 // append
 				div.append(content);		 
 			}
@@ -133,7 +167,7 @@
 	}
 	
 	
-	// 創建第一次的button
+	// 創建button
 	function createInitialButton(indexPage){
 		
 			$("#button").empty();
@@ -148,6 +182,97 @@
 	}
 	
 	
+	
+	
+	
+	// 依據輔具種類搜索，創建button，並顯示在第一頁
+	function sort(sort){
+		var indexPage = 1;
+		createSortButton(sort, indexPage);
+		sortchange(sort, 1)
+	}
+	
+	
+	// ajax依照輔具種類搜索
+	function findsort(sort, indexPage){ 
+		
+		$.ajax({
+			
+			type:"post",
+			url:"/consumer/findSortforConsumerByPage/" +  sort + "/" +indexPage,
+			dataType:'JSON',
+			contentType:'application/json',
+			
+			success : function(data){
+				 var json = JSON.stringify(data, null, 4);
+			     //console.log("SUCCESS : ", json);
+			     
+				 var parsedObjinArray = JSON.parse(json);
+				 
+				 
+				 // 清除div下的所有子內容
+				 $(".site-section .container .row").empty();
+				 
+				 var div =  $(".site-section .container .row");
+				
+
+				 var content =""
+				 
+				 // 資料迴圈寫出
+				 $.each(parsedObjinArray,function(i,n){
+					 
+					 content += 
+						"<div class='col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3'>" 
+					 +	"<div class='service' style='border:2px double rgba(0,0,0,.1); margin-bottom:50px; padding:0px;'>"	
+					 +	"<a href='/consumer/findByIdforCustomer/"+ n.id  + "' class='d-block'>"
+					 +  "<img src='../../EquipImg/" + n.photo +"'"
+					 +  "alt='Image' class='img-fluid' style='height:240px; width:100%;'></a>"
+					 +	"<div class='service-inner' style='padding-bottom:2px; padding-left:15px;'>"
+					 +  "<p style='font-size:18px; font-weight:bold; color:black'>" + n.name + "<p>"
+					 +  "<p style='color:red; font-size:18px; "
+					 +  " margin-top:50px; text-align:left; font-weight:bold'> $" + n.price +"</P>"
+					 +  "</div>"
+					 +  "</div>"
+					 +  "</div>"
+					 
+				 })
+				// append
+				div.append(content);		 
+			}
+		
+		})
+	}
+	
+	
+
+	// 搜索後創建button
+	function createSortButton(sort, indexPage){
+		
+			$("#button").empty();
+					 
+			var button = "";
+					
+			for (var i=1; i <= indexPage; i++){
+				button += "<button  id='myPage' value='" + i + "' onclick='sortchange("+ '"'+sort + '"'+ ", " + i +" )' >" + i +  "</button>";   
+			}
+			
+			$("#button").append(button);
+	}
+	
+	
+	
+	// 點擊sort button的時候換頁
+	function sortchange(sort, indexPage){
+		findsort(sort, indexPage);
+	}
+	
+	
+	
+	// 重新使用全搜索
+	function reset(){
+		createInitialButton(2);
+		change(1);
+	}
 </script>
   
 </head>
@@ -187,36 +312,61 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html" class="active nav-link">首頁</a></li>
+
+
                 <li class="has-children">
-                  <a href="services.html" class="active nav-link">Services</a>
+                  <a href="services.html" class="nav-link">叫車專區</a>
                   <ul class="dropdown">
-                    <li><a href="#" class="nav-link">Amazing Atmosphere</a></li>
-                    <li><a href="#" class="nav-link">Courteous & Caring Staff</a></li>
-                    <li><a href="#" class="nav-link">Hospice Care</a></li>
-                    <li><a href="#" class="nav-link">Quality Medical Care</a></li>
-                    <li><a href="#" class="nav-link">Excellent Cuisine</a></li>
+                    <li><a href="#" class="nav-link">附近店家資訊</a></li>
                     <li class="has-children">
-                      <a href="#">More Links</a>
+                      <a href="#">我要叫車</a>
                       <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
+                        <li><a href="#">立即叫車</a></li>
+                        <li><a href="#">預約叫車</a></li>
                       </ul>
                     </li>
                   </ul>
                 </li>
-                <li><a href="testimonial.html" class="nav-link">Testimonials</a></li>
+
+                <li class="has-children">
+                  <a href="#" class="nav-link">長者專區</a>
+                  <ul class="dropdown">
+                    <li><a href="${pageContext.request.contextPath}/consumer/toTheFrontPage" class="nav-link">輔具購買</a></li>
+                  </ul>
+                </li>
 
 
-                <li><a href="blog.html" class="nav-link">Blog</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                 <li class="has-children">
+                  <a href="services.html" class="nav-link">營養專區</a>
+                  <ul class="dropdown">
+                    <li><a href="#" class="nav-link">營養餐</a></li>
+                    <li><a href="#" class="nav-link">食品資料</a></li>
+                  </ul>
+                </li>
 
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-facebook"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-twitter"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li>
+
+                <li class="has-children">
+                  <a href="services.html" class="nav-link">用藥查詢</a>
+                  <ul class="dropdown">
+                    <li><a href="#" class="nav-link">藥品辨識</a></li>
+                    <li><a href="#" class="nav-link">藥品包裝</a></li>
+                  </ul>
+                </li>
+
+                <!-- <li><a href="contact.html" class="nav-link">會員登入</a></li> -->
+                <li class="has-children">
+                  <a href="services.html" class="nav-link">登入</a>
+                  <ul class="dropdown">
+                    <li><a href="#" class="nav-link">會員登入</a></li>
+                    <li><a href="#" class="nav-link">廠商登入</a></li>
+                  </ul>
+                </li>
+                
+                
+                <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
               </ul>
+
             </nav>
           </div>
 
@@ -230,37 +380,66 @@
 
 
     <!-- MAIN -->
-
     <div class="slide-item overlay" style="background-image: url('${pageContext.request.contextPath}/images/slider-2.jpg')">
       <div class="container">
-        <div class="row justify-content-center text-center">
+        <div class="row">
           <div class="col-lg-6 align-self-center">
-            <h1 class="heading mb-3">Our Services</h1>
-            <p class="lead text-white mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum totam alias iusto?</p>
-            <p><a href="#" class="btn btn-primary">Get In Touch</a></p>
+            <h1 class="heading mb-3">健康悠生伴你一生</h1>
+            <p class="lead text-white mb-5">健康一生 悠活一生</p>
+            <p><a href="about.html" class="btn btn-primary">關於我們</a></p>
           </div>
         </div>
       </div>  
     </div>
+    
+    
 
+    <!-- 最上面 -->
+    <div id="top">
+		  <a href="#"><img src="${pageContext.request.contextPath}/images/top.png" width="50px" height="50px"/></a>
+	</div>	
+	
+	<!-- 購物車 -->
+	<div id="cart-icon">
+		  <a href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/checklist.png" width="60px" height="60px"/></a>
+	</div>	
+	
+	<!-- 搜索列 -->	
+	<div class="sort btn-group-vertical">
+		<span class="btn btn-dark btn-lg">搜索列</span>
+		<input type="button" value="全部搜索" class="btn btn-outline-secondary btn-lg" onclick="reset()">
+		<input type="button" value="個人照護輔具" class="btn btn-outline-secondary btn-lg" onclick="sort('個人照護輔具')">
+		<input type="button" value="個人醫療輔具" class="btn btn-outline-secondary btn-lg"  onclick="sort('個人醫療輔具')"> 
+		<input type="button" value="個人行動輔具" class="btn btn-outline-secondary btn-lg" onclick="sort('個人行動輔具')">
+		<input type="button" value="矯正輔具" class="btn btn-outline-secondary btn-lg" onclick="sort('矯正輔具')">
+		<input type="button" value="溝通與資訊輔具" class="btn btn-outline-secondary btn-lg" onclick="sort('溝通與資訊輔具')">
+		
+		<button type="button" class="btn btn-outline-secondary btn-lg" onclick="sort('住家及其他場所之家具與改裝組件')">
+		住家及其他場所<br>之家具與改裝組件 </button>
 
+	</div>
 
 
     <div class="site-section">
+	    	  
       <div class="container">
+      		
         <div class="row">
+	       
         </div>
       </div>
+      
+      
     </div>
 		
 		
 
 	<div id="button">
-    <!--
+		<!-- 
 		<c:forEach var="i" begin="1" end="${totalPages}" step="1">
 			<button id="myPage" value="${i}" onclick="change(${i})">${i}</button>
 		</c:forEach>
-    -->
+		 -->
     </div>
 
     

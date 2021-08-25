@@ -174,8 +174,8 @@
 										<th>地址</th>
 										<th>服務縣市</th>
 										<th>是否為長照專車</th>
-										<th></th>
-										<th></th>
+										<th>修改</th>
+										<th>刪除</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -191,15 +191,14 @@
 											<td>
 												<form action="updateold2.controller" method="post">
 													<input type="hidden" name="id" value="${taxi.id}">
-													<input type="submit" class="btn" name="update" value="修改">
+													<input type="image" name="update" src="/images/update.jpg" />
 												</form>
 											</td>
 											<td>
 
-												<form id="delT${taxi.id}" action="delete"
-													method="post">
+												<form id="delT${taxi.id}" action="delete" method="post">
 													<input type="hidden" name="delete"> 
-													<input type="button" class="btn" onclick="check(${taxi.id})" value="刪除"> 
+													<input type="button" class="btn" style="background-image:url(/images/delete.png);background-repeat:no-repeat;" onclick="check(${taxi.id})">
 													<input type="hidden" name="selected" value="${taxi.id}">
 												</form>
 											</td>
@@ -247,10 +246,17 @@
 		  cancelButtonText: '取消刪除'
 		}).then((result) => {
 		  if (result.isConfirmed) {
-		    document.getElementById("delT"+id).submit();
+			  Swal.fire({
+				  icon: 'success',
+				  title: '刪除成功',
+				  showConfirmButton: false,
+				  timer: 1000
+				})	
+				setTimeout(() => document.getElementById("delT"+id).submit(), 1000)
 		  }
 		})
 	}
+	
 	</script>
 </body>
 </html>

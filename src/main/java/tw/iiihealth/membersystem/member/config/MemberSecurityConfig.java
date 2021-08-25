@@ -30,10 +30,12 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http
-		.antMatcher("/Member/**")
+		.requestMatchers()
+		.antMatchers("/Member/**","/cart/**")
+		.and()
 		.authorizeRequests().anyRequest().authenticated()
 		.and().formLogin().loginPage("/Member/login")
-			.defaultSuccessUrl("/Member/login/success", true)
+			.defaultSuccessUrl("/Member/HealthProject")
 			.failureUrl("/Member/login/AccessDenied")
 		.permitAll()
 		.and().logout().logoutUrl("/Member/logout").logoutSuccessUrl("/HealthProject");

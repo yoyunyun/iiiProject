@@ -13,14 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.iiihealth.elder.model.Equip;
 import tw.iiihealth.elder.model.EquipService;
 
 @Controller
 @RequestMapping(path="/consumer")
-@SessionAttributes(names = {"totalPages","totalElements"})
 public class EquipConsumerController {
 
 	
@@ -51,18 +49,6 @@ public class EquipConsumerController {
 		// 開始查詢
 		Page<Equip> page = equipService.findAllByPage(pageable);
 		
-		// 總共頁數
-		int totalPages = page.getTotalPages();
-				
-		// 總共幾筆
-		long totalElements = page.getTotalElements();
-		
-		
-		m.addAttribute("totalPages", totalPages);
-		
-		m.addAttribute("totalElements", totalElements);
-		
-		
 		return page.getContent();
 	}
 	
@@ -75,5 +61,25 @@ public class EquipConsumerController {
 		Equip equip = equipService.findById(eid);
 		model.addAttribute("equip", equip);
 		return "equipsell/equip-detail-page";
+	}
+	
+	
+	
+	// Ajax請求商品內容(依商品種類)
+	@PostMapping(path="/findSortforConsumerByPage/{type}/{pageNo}")
+	@ResponseBody
+	public List<Equip> findSortforConsumerByPage(@PathVariable("type") String type, @PathVariable("pageNo") int pageNo){
+		
+		// 每頁幾筆
+		int pageSize = 8;
+				
+		// 要查詢幾頁 (因為是從0算起，所以要減掉1)， 每頁幾筆
+		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+			
+		// 開始查詢
+		Page<Equip> page = equipService.findSortByPage(type, pageable);
+		
+
+		return page.getContent();
 	}
 }

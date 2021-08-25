@@ -14,12 +14,19 @@ public class LocService {
 	@Autowired
 	private LocRepository locRepository;
 	
-	public Location findById(Integer id) {
+	public Location findById(int id) {
 		Optional<Location> pRep = locRepository.findById(id);
 		if(pRep.isPresent()) {
 			return pRep.get();
 		}
 		return null;
+	}
+	
+	public List<Location> queryCity(String city, String type){
+		return locRepository.SearchCity(city, type);
+	}
+	public List<Location> queryTown(String town, String type){
+		return locRepository.SearchTown(town, type);
 	}
 	
 	
