@@ -210,9 +210,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 									<td>
 										<form id="delete${diet.ID}" action="deleteDietConfirm.controller" method="post">
 											<input type="hidden" name="selected" value="${diet.ID}">
-											<button type="button" style="border-width:0" onclick="check(${diet.ID})"><img src="/images/delete.png"></button>
-<%-- 											<input type="button" onclick="check(${meals.ID})" value="刪除">  --%>
-<%-- 											<input type="image" src="/images/delete001.png" onclick="check(${meals.ID})"/> --%>
+											<input type="button" class="btn" style="background-image:url(/images/delete.png);background-repeat:no-repeat;" onclick="check(${diet.ID})">
 										</form>
 											</td>
 										</tr>
@@ -236,9 +234,15 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 							  confirmButtonText: '刪除',
 							  cancelButtonText: '取消'
 							}).then((result) => {
-							  if (result.isConfirmed) {
-							    document.getElementById("delete"+id).submit();
-							  }
+								  if (result.isConfirmed) {
+									  Swal.fire({
+										  icon: 'success',
+										  title: '刪除成功',
+										  showConfirmButton: false,
+										  timer: 1300
+										})	
+										setTimeout(() => document.getElementById("delete"+id).submit(), 1300)
+								  }
 							})
 					}
 	</script>

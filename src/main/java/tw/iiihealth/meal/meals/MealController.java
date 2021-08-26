@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import tw.iiihealth.elder.model.Equip;
 
@@ -51,19 +52,19 @@ public class MealController {
 
 	//新增餐點
 	@RequestMapping(path = "/addMeals.controller", method = RequestMethod.POST)
-	public String processFormAction(@RequestParam(name = "name") String name,@ModelAttribute(name = "Mealform") MealBean meal2) {
+	public ModelAndView processFormAction(@RequestParam(name = "name") String name,@ModelAttribute(name = "Mealform") MealBean meal2) {
 
 		if (mealService.findMeal(name) != null) {
-			return "meal/Meals/existfail";
+			return new ModelAndView("forward:/WEB-INF/pages/meal/Meals/existfail.jsp");
 		}else {
 			mealService.insert(meal2);
-			return "meal/Meals/Thanks";
+			return new ModelAndView("forward:/meals/mealView.controller");
 		}
 
 	}
 
 	//查詢菜單
-	@RequestMapping(path="/mealView.controller",method = RequestMethod.GET)
+	@RequestMapping(path="/mealView.controller",method = { RequestMethod.POST, RequestMethod.GET })
 	public String processQueryAll(HttpServletRequest request,Model m) throws SQLException {
 
 		ArrayList<MealBean> mb = mealService.findAllMeals();
@@ -88,14 +89,14 @@ public class MealController {
 
 	// 確認刪除
 	@RequestMapping(path = "/deleteConfirm.controller", method = RequestMethod.POST)
-	public String deleteConfirm(@RequestParam(name = "selected") int mId) {
+	public ModelAndView deleteConfirm(@RequestParam(name = "selected") int mId) {
 
 	    mealService.delete(mId);
 		
-		return "meal/Meals/Thanks";
+		return new ModelAndView("forward:/meals/mealView.controller");
 	}
 	
-	// 管理者儲存
+	// 儲存
 	@PostMapping(path="save")
 	public String saveById(@ModelAttribute("mealBean") MealBean mealBean, 
 						   @RequestParam("pic") MultipartFile multipartFile,
@@ -161,7 +162,7 @@ public class MealController {
 	
 	// 確認修改
 	@RequestMapping(path = "/updateConfirm.controller", method = RequestMethod.POST)
-	public String updateConfirm(@ModelAttribute(name = "DisplayUpdateMeal") MealBean meal2,HttpServletRequest request) {
+	public ModelAndView updateConfirm(@ModelAttribute(name = "DisplayUpdateMeal") MealBean meal2,HttpServletRequest request) {
 
 		String name = (String) request.getSession(true).getAttribute("un");
 		int store_ID =(int) request.getSession(true).getAttribute("us");
@@ -170,7 +171,7 @@ public class MealController {
 		meal2.setID(mealService.findMeal(name).getID());
 	    mealService.update(meal2);
 		
-		return "meal/Meals/Thanks";
+	    return new ModelAndView("forward:/meals/mealView.controller");
 	}
 
 }

@@ -170,7 +170,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 						<div class="card-body">
 					<div class="row">
 						<div class="col-md-6">
-							<form action="updateDietConfirm.controller"	method="post">
+							<form action="updateDietConfirm.controller"	method="post" id="upd">
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -213,7 +213,10 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 										</tr>
 										<tr>
 											<td><label></label></td>
-											<td><input type="submit" name="uconfirm" value="確認修改"></td>
+											<td>
+												<input type="button" name="confirm" value="確認修改" onclick="upd()">
+												<input type="button" value="取消修改" onclick="window.location.href='mealView.controller'" />
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -226,32 +229,16 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 		</div>
 		</main>
 	</div>
-<%-- <form action="updateDietConfirm.controller" method="post"> --%>
-
-<%-- <br>食品名稱：<jsp:getProperty name="u" property="name" /><br> --%>
-<%-- <br>食品分類：${u.type}<br> --%>
-<!-- <br><label for="calories">熱量(kcal)：</label> -->
-<%-- <input type="text" id="calories" name="calories" value="${u.calories}"><br> --%>
-<!-- <br><label for="protein">蛋白質：</label> -->
-<%-- <input type="text" id="protein" name="protein" value="${u.protein}"><br> --%>
-<!-- <br><label for="carbohydrates">碳水化合物(g)：</label> -->
-<%-- <input type="text" id="carbohydrates" name="carbohydrates" value="${u.carbohydrates}"><br> --%>
-<!-- <br><label for="fat">脂肪(g)：</label> -->
-<%-- <input type="text" id="fat" name="fat" value="${u.fat}"><br> --%>
-<!-- <br><label for="sugar">糖(g)：</label> -->
-<%-- <input type="text" id="sugar" name="sugar" value="${u.sugar}"><br> --%>
-<!-- <br><label for="na">鈉(mg)：</label> -->
-<%-- <input type="text" id="na" name="na" value="${u.na}"><br><br> --%>
-
-<!-- <input type="submit" name="uconfirm" value="確認修改" > -->
-
-
-<%-- </form> --%>
-
-<!-- 			</div> -->
-<!-- 			</main> -->
-<!-- 		</div> -->
-
-
+	<script>
+		function upd(){
+			Swal.fire({
+				  icon: 'success',
+				  title: '修改成功',
+				  showConfirmButton: false,
+				  timer: 1300
+				})	
+				setTimeout(() => document.getElementById("upd").submit(), 1300)
+		}
+	</script>
 </body>
 </html>

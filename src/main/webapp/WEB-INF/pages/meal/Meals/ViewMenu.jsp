@@ -213,9 +213,7 @@
 									<td>
 										<form id="delete${meals.ID}" action="deleteConfirm.controller" method="post">
 											<input type="hidden" name="selected" value="${meals.ID}">
-											<button type="button" style="border-width:0" onclick="check(${meals.ID})"><img src="/images/delete.png"></button>
-<%-- 											<input type="button" onclick="check(${meals.ID})" value="刪除">  --%>
-<%-- 											<input type="image" src="/images/delete.png" onclick="check(${meals.ID})"/> --%>
+											<input type="button" class="btn" style="background-image:url(/images/delete.png);background-repeat:no-repeat;" onclick="check(${meals.ID})">
 										</form>
 											</td>
 										</tr>
@@ -240,7 +238,13 @@
 							  cancelButtonText: '取消'
 							}).then((result) => {
 							  if (result.isConfirmed) {
-							    document.getElementById("delete"+id).submit();
+								  Swal.fire({
+									  icon: 'success',
+									  title: '刪除成功',
+									  showConfirmButton: false,
+									  timer: 1300
+									})	
+									setTimeout(() => document.getElementById("delete"+id).submit(), 1300)
 							  }
 							})
 					}

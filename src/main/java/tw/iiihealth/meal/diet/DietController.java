@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RequestMapping(path = "diet")
 @Controller("DietController")
@@ -44,19 +45,19 @@ public class DietController {
 
 	// 新增食品資料
 	@RequestMapping(path = "/addDiet.controller", method = RequestMethod.POST)
-	public String processFormAction(@RequestParam(name = "name") String name,@ModelAttribute(name = "Dietform") DietBean diet2) {
+	public ModelAndView processFormAction(@RequestParam(name = "name") String name,@ModelAttribute(name = "Dietform") DietBean diet2) {
 
 		if (dietService.findDiet(name) != null) {
-			return "meal/Diet/existfaildiet";
+			return new ModelAndView("forward:/WEB-INF/pages/meal/Diet/existfail.jsp");
 		}else {
 			dietService.insert(diet2);
-			return "meal/Diet/Thanks2";
+			return new ModelAndView("forward:/diet/dietView.controller");
 		}
 
 	}
 
 	// 查詢食品資料庫
-	@RequestMapping(path="/dietView.controller",method = RequestMethod.GET)
+	@RequestMapping(path="/dietView.controller",method = { RequestMethod.POST, RequestMethod.GET })
 	public String processQueryAll(HttpServletRequest request,Model m) throws SQLException {
 
 		List<DietBean> db = dietService.findAllDiet();
@@ -92,11 +93,11 @@ public class DietController {
 
 	// 確認刪除
 	@RequestMapping(path = "/deleteDietConfirm.controller", method = RequestMethod.POST)
-	public String deleteConfirm(@RequestParam(name = "selected",required = false) int dId) {
+	public ModelAndView deleteConfirm(@RequestParam(name = "selected",required = false) int dId) {
 
 	    dietService.delete(dId);
 		
-		return "meal/Diet/Thanks2";
+	    return new ModelAndView("forward:/diet/dietView.controller");
 	}
 	
 
@@ -117,7 +118,7 @@ public class DietController {
 	
 	// 確認修改
 	@RequestMapping(path = "/updateDietConfirm.controller", method = RequestMethod.POST)
-	public String updateConfirm(@ModelAttribute(name = "DisplayUpdateMeal") DietBean diet2,HttpServletRequest request) {
+	public ModelAndView updateConfirm(@ModelAttribute(name = "DisplayUpdateMeal") DietBean diet2,HttpServletRequest request) {
 
 		String name = (String) request.getSession(true).getAttribute("un");
 		String type = (String) request.getSession(true).getAttribute("ut");
@@ -126,7 +127,7 @@ public class DietController {
 		diet2.setID(dietService.findDiet(name).getID());
 		dietService.update(diet2);
 		
-		return "meal/Diet/Thanks2";
+		return new ModelAndView("forward:/diet/dietView.controller");
 	}
 	
 	
