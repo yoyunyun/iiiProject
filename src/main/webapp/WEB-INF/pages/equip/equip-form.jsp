@@ -204,30 +204,33 @@
 
 												<tr>
 													<td><label>輔具名稱</label></td>
-													<td><form:input path="name" /></td>
+													<td><form:input path="name"  id="name"/></td>
 												</tr>
 												<tr>
 													<td><label>輔具類型:</label></td>
-													<td><form:input path="type" /></td>
+													<td><form:input path="type" id="type" /></td>
 												</tr>
 												<tr>
 													<td><label>輔具販賣商:</label></td>
-													<td><form:input path="vendor" /></td>
+													<td><form:input path="vendor" id="vendor" /></td>
 												</tr>
 												<tr>
 													<td><label>輔具價格:</label></td>
-													<td><form:input path="price" /></td>
+													<td><form:input path="price" id="price"/></td>
 												</tr>
 												<tr>
 													<td><label>衛生署字號:</label></td>
-													<td><form:input path="document" /></td>
+													<td><form:input path="document"  id="document"/></td>
 												</tr>
 
 												<tr>
 													<td><label></label></td>
-													<td><input type="submit" value="提交" class="save"
-														id="update" /></td>
+													<td>
+														<input type="submit" value="提交" class="save" id="update" />
+														<input type="button" value="一鍵輸入" id="input"/>
+													</td>
 												</tr>
+											
 												<tr>
 													<td><label></label></td>
 													<td><p>
@@ -316,6 +319,17 @@
 	        //document.querySelector("#sourceImage").src = sourceImageUrl;
 	        $("#sourceImage").attr('src', sourceImageUrl);
 	    }
+	    
+	    
+	    
+	    /* 一鍵輸入的資料 */
+	    $("#input").click(function(){
+	    	$("#name").val("視障語音電子體重計");
+	    	$("#type").val("個人照護輔具");
+	    	$("#vendor").val("日華國際");
+	    	$("#price").val("785");
+	    	$("#document").val("衛署醫器陸輸壹字第004551號");
+	    })
 		
 	</script>
 </body>

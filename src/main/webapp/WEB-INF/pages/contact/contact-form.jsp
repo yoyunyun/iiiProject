@@ -29,68 +29,7 @@
   
   <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.js"></script>
   
-  
-<style>
-#pic{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 280px;
-  height:280px;
-  border: none;
-  border-radius: 4px;
 
-
-}
-
-
-h4{
-	font-size:22px;
-	font-weight:bold;
-}
-
-p{
-	font-size:20px;
-}
-
-.service{
-	padding-bottom:20px;
-	padding-top:10px;
-	padding-left:20px;
-	padding-right:20px;
-	border:1px solid lightgrey;
-
-}
-
-
-#minus , #plus{
-	border:0; 
-	font-size:20px;
-	background-color:white
-
-}
-
-#text-box{
-	font-size:14px;
-	text-align:center;
-	width:35px;
-	height:30px;
-
-}
-
-#cart-icon {
-  position: fixed;
-  bottom: 80px;
-  right: 10px;
-}
-
-#top {
-  position: fixed;
-  bottom: 170px;
-  right: 10px;
-}
-
-</style>
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -208,109 +147,87 @@ p{
         </div>
       </div>  
     </div>
-	
-	
-	
-	 <div id="top">
-		  <a href="#"><img src="${pageContext.request.contextPath}/images/top.png" width="50px" height="50px"/></a>
-	</div>	
 
-	<div id="cart-icon">
-		  <a href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/checklist.png" width="60px" height="60px"/></a>
-	</div>	
 
 
 
   
+
     <div class="site-section">
       <div class="container">
         <div class="row">
-        	
-         
-          <div class="col-md-4">
-	          <div class="service">
-		         	<div>
-		         		<h4>商品名稱</h4>
-		         		<p>${equip.name}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	<div>
-		         		<h4>商品種類</h4>
-		         		<p>${equip.type}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	<div>
-		         		<h4>販售商</h4>
-		         		<p>${equip.vendor}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	<div>
-		         		<h4>醫療器材查驗登記字號</h4>
-		         		<p>${equip.document}</p>
-		         	</div>
-	          </div>
-      	  </div>
-      	  
-      	  
-      	  
-      	  
-          <div class="col-md-4">
-            <div class="service">
-            	 <img src="${pageContext.request.contextPath}/EquipImg/${equip.photo}" id="pic"/>
-            </div>
+          <div class="col-lg-8 mb-5">
+            
+            
+            
+            <form action="${pageContext.request.contextPath}/submit" method="post" id="submit">
+
+
+              <div class="row form-group">
+                
+                <div class="col-md-6">
+                  <label class="text-black" for="lname">姓氏</label>
+                  <input type="text" name="lname" id="lname" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">名字</label>
+                  <input type="text" name="fname" id="fname" class="form-control">
+                </div>
+              </div>
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-black" for="email">Email</label> 
+                  <input type="email" name="email" id="email" class="form-control">
+                </div>
+              </div>
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-black" for="subject">主題</label> 
+                  <input type="text" name="subject" id="subject" class="form-control">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="message">訊息</label> 
+                  <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="button" id="button" value="寄出" class="btn btn-primary text-white">
+                </div>
+              </div>
+
+
+            </form>
           </div>
-          
-          
-          
-          
-          <div class="col-md-3">
-            <div class="service">
-            		
-		         	
-		         	<div>
-		         		<h4>商品價格</h4>
-		         		<p>NT$${equip.price}</p>
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	<div>
-	            		<p>購買數量: &nbsp 
-	            		
-	            			<input type="button" value="-" id="minus" >
-	            			<input type="text" value="1" id="text-box">
-	            			<input type="button" value="+" id="plus">	            		
-		         		</p>
-	            			
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	
-		         	<div>
-		         		<a href="${pageContext.request.contextPath}/consumer/toTheFrontPage" 
-		         				class="btn btn-outline-primary" style="font-weight:bold; font-size:14px">返回商品頁</a>
-		         		
-		         		<p>.......................</p>
-		         	</div>
-		         	
-		         	
-		         	<div>
-		         		<input type="button" value="加入購物車" id="buttonAddToCart" class="btn btn-outline-dark" style="font-weight:bold; font-size:14px">
-		         	</div>
-		         	
-	        	</div>
+          <div class="col-lg-3 ml-auto">
+            <div class="mb-3">
+              <p class="mb-0 font-weight-bold text-black">聯絡地址</p>
+              <p class="mb-4">台北市大安區復興南路二段234號</p>
+
+              <p class="mb-0 font-weight-bold text-black">聯絡電話</p>
+              <p class="mb-4"><a href="#">02-8790-6146</a></p>
+
+              <p class="mb-0 font-weight-bold text-black">Email</p>
+              <p class="mb-0">youremail@domain.com</p>
+
             </div>
-       
-       
-       		<div class="col-md-1">
-        	</div>
-       			
+
+          </div>
         </div>
       </div>
     </div>
   
+  
+  
     <!-- Footer -->
-
 
     <div class="site-footer bg-light">
       <div class="container">
@@ -394,79 +311,27 @@ p{
   
   <!--  sweet alert -->
   <script src="/js/sweetalert2.all.min.js"></script>
-	
-
+  
+  
 <script>
-	$("#plus").click(function(){
-		
-		var o1 = $("#text-box").val();
-		var o2 = parseInt(o1);
-		if (o2 < 20){
-			var n  = o2  + 1;
-			$("#text-box").val(n);
-		}
-		
-	})
-	
-	
-	
-	$("#minus").click(function(){
-		
-		var o1 = $("#text-box").val();
-		var o2 = parseInt(o1);
-		
-		if (o2 > 1){
-			var n  = o2  - 1;
-			$("#text-box").val(n);
-		}
-		
-	})
-	
-	
-	
-	
-	// 新增到購物車
-	$("#buttonAddToCart").click(function(){
-		var eid	= ${equip.id}
-		var qty= parseInt($("#text-box").val());
+$("#button").click(function(){
+	if ($.trim($("#lname").val()) == "" || $.trim($("#fname").val()) =="" || $.trim($("#email").val()) ==""
+		|| $.trim($("#subject").val()) =="" || $.trim($("#message").val()) ==""){
 
-		$.ajax({
-			type:"post",
-			url: "${pageContext.request.contextPath}/cart/add/" + eid + "/" + qty,
-			datatype: "json",
-			success: function(data){
-				
-				if (data == "success"){
-					
-					Swal.fire({
-						  position: 'top',
-						  icon: 'success',
-						  title: '商品已加入購物車',
-						  showConfirmButton: false,
-						  timer: 1500
-						})
-					}
-					
-				else{
-					
-					Swal.fire({
-						  icon: 'error',
-						  title: 'Oops...',
-						  text: '請先登入會員!',
-						})
-				}
-				
-				}
+		Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: '請填選所有欄位!',
+			})
+	}
+	
+	else {
+		$("#submit").submit();
+	}
+	
 
-				
-		})
 	
-	
-	
-	
-	})
-
+});
 </script>
-
 </body>
 </html>
