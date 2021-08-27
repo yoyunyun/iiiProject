@@ -282,7 +282,7 @@
 				let flag2 = phoneCheck(document.getElementById("phone"), sp2);
 				let flag3 = addressCheck(document.getElementById("address"),
 						sp3);
-				// 		let flag4= checkckbox(cityN,idsp4);
+				let flag4= checkckbox(cityN,idsp4);
 				let flag5 = checkradio(careTX, idsp5);
 
 				if (flag1 & flag2 & flag3 & flag5) {
