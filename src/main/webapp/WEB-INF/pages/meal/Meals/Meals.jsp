@@ -45,6 +45,24 @@
 			  transition:all 0.6s ease-in-out;//過渡
 			}
         </style>
+            <style>
+        .hel {
+            background-color: #66B3FF;
+            margin: 25px;
+            border-radius: 20px;
+            width: 250px;
+            height: 110px;
+            float: left;
+            text-align: center;
+        }
+        .phel {
+            color:white;
+            margin:12px 10px;
+            padding: 0px 0px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -164,7 +182,7 @@
               遠離疾病最好的方法就在於日常的保健，而正確的自食卻不啻為最經濟實惠的保健方法。
               健康與飲食的重要掌控在你我之間，絕不能夠輕視這個議題。 
             </p>
-            <p><a href="#" class="btn btn-primary">Contact us</a></p>
+            <p><a href="#" class="btn btn-primary">Contact　us</a></p>
           </div>
         </div>
       </div>  
@@ -178,11 +196,26 @@
         <div class="row mb-5 justify-content-center">
           <div class="col-10 text-center">
             <div class="heading">
-              <h2 class="text-black">最新菜單</h2>
+            <div style="margin:50px 0 100px 0;"><a style="font-weight:bold;font-size:32px;color:black;">你也有這些困擾嗎？</a></div>
+    <div class="hel">
+        <p class="phel">慢性疾病的飲食控制？</p>
+        <p class="phel">健身增肌控糖餐食？</p>
+    </div>
+    <div class="hel">
+        <p class="phel">咀嚼吞嚥開始退化？</p>
+        <p class="phel">限鈉磷鉀飲食如何吃？</p>
+    </div>
+    <div class="hel">
+        <p class="phel">追求健康不知從何開始？</p>
+        <p class="phel">孝親照護餐點好難選？</p>
+    </div>
+    <br><br><div></div>
+    <div style="margin:200px 0 130px 0;"><a style="font-weight:bold;font-size:28px;color:#FF7575;">健康養生餐是你最好的選擇！</a></div>
+              <h2 class="text-black" style="margin:0 0 50px 0;">最新菜單</h2>
             </div>
-            <p>餐盒均附營養米飯、配菜、蛋，配菜依照當令季節時蔬略有不同，會不定期更換，皆採現場製作配菜為主。</p>
+            <p style="font-size:18px">餐盒均附營養米飯、配菜、蛋，配菜依照當令季節時蔬略有不同，會不定期更換，皆採現場製作配菜為主。</p>
 <!--             <span class="1" style="color:blue"></span> -->
-            <div class="flip" style="float:right"><input type="button" value="詳細資訊(展開/收合)"></div>
+            <div class="flip" style="float:right;margin:50px 0 0 0;"><input type="button" value="詳細資訊(展開/收合)"></div>
           </div>
         </div>
         <div class="row">
@@ -194,7 +227,7 @@
           <div class="col-12 col-sm-6 col-md-4 mb-4">
             <div class="blog-entry">
 <!--             <a data-fancybox="gallery" href="images/0409.png"><img src="images/泰享受酸辣雞腿排.jpg" width="300"></a> -->
-              <a class="d-block" data-fancybox="gallery" href="${pageContext.request.contextPath}/MealImg/${meals.photo}">
+              <a class="d-block" data-fancybox="gallery" data-caption="${meals.name}" href="${pageContext.request.contextPath}/MealImg/${meals.photo}">
               	<img src="${pageContext.request.contextPath}/MealImg/${meals.photo}"
 				      alt="Image" class="img-fluid" onerror="this.style.display='none'"
 				       />
@@ -203,21 +236,21 @@
               </a>
               <div class="post-meta d-flex justify-content-center">
                 <span>
-                  <span class="icon-calendar"></span>
-                  <span>23 Jul</span>
+                  <span class="icon-truck"></span>
+                  <span>Deliverable</span>
                 </span>
                 <span>
-                  <span class="icon-user"></span>
-                  <span>Admin</span>
+                  <span class="icon-dollar"></span>
+                  <span>NT:${meals.price}</span>
                 </span>
                 <span>
-                  <span class="icon-comment"></span>
-                  <span>2 Comments</span>
+                  <span class="icon-thumbs-o-up"></span>
+                  <span>${meals.ID} likes</span>
                 </span>
               </div>
               <h2><a style="color: #2894FF;">${meals.name}</a></h2>
 			  <div class="panel" style="display:none">
-			  	  價格：${meals.price}<br/>
+<%-- 			  	  價格：${meals.price}<br/> --%>
 			  	  主原料：${meals.material}<br/>
 			  	  熱量(kcal)：${meals.calories}<br/>
 			  	  蛋白質(g)：${meals.protein}<br/>

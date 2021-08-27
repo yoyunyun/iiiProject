@@ -166,7 +166,7 @@
               飲食與人們的身體健康息息相關。養成良好的飲食習慣，才能真正把身體養好。如果無法攝取足夠的營養，那麼我們的身體機能只會越來越弱，
               也就更容易生病。怎麼才能吃得健康一些呢？食材是所有飲食的基礎，選好食材真的非常重要！
             </p>
-            <p><a href="#" class="btn btn-primary">Contact us</a></p>
+            <p><a href="${pageContext.request.contextPath}/meal/Diet/ViewDietMenu.jsp" class="btn btn-primary">Contact　us</a></p>
           </div>
         </div>
       </div>  
