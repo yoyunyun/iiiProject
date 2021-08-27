@@ -204,29 +204,29 @@
 
 												<tr>
 													<td><label>輔具名稱</label></td>
-													<td><form:input path="name"  id="name"/></td>
+													<td><form:input path="name"/></td>
 												</tr>
 												<tr>
 													<td><label>輔具類型:</label></td>
-													<td><form:input path="type" id="type" /></td>
+													<td><form:input path="type"/></td>
 												</tr>
 												<tr>
 													<td><label>輔具販賣商:</label></td>
-													<td><form:input path="vendor" id="vendor" /></td>
+													<td><form:input path="vendor"/></td>
 												</tr>
 												<tr>
 													<td><label>輔具價格:</label></td>
-													<td><form:input path="price" id="price"/></td>
+													<td><form:input path="price"/></td>
 												</tr>
 												<tr>
 													<td><label>衛生署字號:</label></td>
-													<td><form:input path="document"  id="document"/></td>
+													<td><form:input path="document"/></td>
 												</tr>
 
 												<tr>
 													<td><label></label></td>
 													<td>
-														<input type="submit" value="提交" class="save" id="update" />
+														<input type="button" value="提交" id="update" />
 														<input type="button" value="一鍵輸入" id="input"/>
 													</td>
 												</tr>
@@ -285,10 +285,6 @@
 
 	<script>
 		var submit = document.getElementById("submit")
-
-		submit.onsubmit = function() {
-			return false;
-		}
 
 		document.getElementById("update").onclick = function() {
 
