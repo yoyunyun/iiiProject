@@ -318,7 +318,7 @@ function search(){
                 		  
             "<div class='col-12 col-sm-6 col-md-4 mb-4'>"+
             "<div class='blog-entry'>"+
-              "<a href='/taxi/search/"+(ele.id)+"' class='d-block'>" +
+              "<a href='/taxi/search/"+(ele.id)+"' class='d-block' target='_blank'>" +
                 "<img src='/images/hospital2.png' alt='Image' class='img-fluid'></a>"+
               "<div class='post-meta d-flex justify-content-center'>" +
                 "<span>"+
@@ -329,7 +329,7 @@ function search(){
                   	
                 "</span>" +
               "</div>" +
-              "<h2><a href='/taxi/search/"+(ele.id)+"'>"+ (ele.store) +"</a></h2>" +
+              "<h2><a href='/taxi/search/"+(ele.id)+"' target='_blank'>"+ (ele.store) +"</a></h2>" +
               "<p>"+ (ele.brief) + "</p>" +
             "</div>" +
           "</div>"

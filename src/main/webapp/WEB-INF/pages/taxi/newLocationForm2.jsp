@@ -269,7 +269,7 @@
 			var resultText='';
 			resultText="<option value=0>請選擇</option>";
 			for(var i=0; i<data.length; i++){
-				resultText+="<option value='"+data[i].name+"'/>"+data[i].name
+				resultText+="<option value='"+data[i].name+"'>"+data[i].name+"</option>"
 			}
 			
 			$("#city").html(resultText);
@@ -284,7 +284,7 @@
     			if(CN == data[n].name){
     				var resultText2='';
     				for(var j=0; j<data[n].districts.length; j++){
-    					resultText2+="<option value='"+data[n].districts[j].name+"'/>"+data[n].districts[j].name
+    					resultText2+="<option value='"+data[n].districts[j].name+"'>"+data[n].districts[j].name+"</option>"
     				}
     							    				
     			}
