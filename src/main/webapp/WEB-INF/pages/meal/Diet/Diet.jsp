@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*,tw.iiihealth.meal.meals.*"%>
+	pageEncoding="UTF-8" import="java.util.*,tw.iiihealth.meal.diet.*"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -10,6 +10,14 @@
 </head>
 <head>
   <title>Elderly &mdash; Website Template by Colorlib</title>
+  <link href="/css/styles.css" rel="stylesheet" />
+		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="/js/datatables-simple-demo.js"></script>
+        <script src="/js/sweetalert2.all.min.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
 
@@ -39,12 +47,6 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/js/datatables-simple-demo.js"></script>
         <script src="/js/sweetalert2.all.min.js"></script>
-        <style>
-        	img{
-			  cursor:pointer;//滑鼠手型
-			  transition:all 0.6s ease-in-out;//過渡
-			}
-        </style>
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -155,14 +157,14 @@
 
 
 
-    <div class="slide-item overlay" style="background-image: url('../images/0409.png')">
+    <div class="slide-item overlay" style="background-image: url('../images/0408.jpg')">
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-6 align-self-center">
-            <h1 class="heading mb-3">健康 &amp; 飲食</h1>
+            <h1 class="heading mb-3">食材 &amp; 營養</h1>
             <p class="lead text-white mb-5">
-              遠離疾病最好的方法就在於日常的保健，而正確的自食卻不啻為最經濟實惠的保健方法。
-              健康與飲食的重要掌控在你我之間，絕不能夠輕視這個議題。 
+              飲食與人們的身體健康息息相關。養成良好的飲食習慣，才能真正把身體養好。如果無法攝取足夠的營養，那麼我們的身體機能只會越來越弱，
+              也就更容易生病。怎麼才能吃得健康一些呢？食材是所有飲食的基礎，選好食材真的非常重要！
             </p>
             <p><a href="#" class="btn btn-primary">Contact us</a></p>
           </div>
@@ -176,67 +178,61 @@
     <div class="site-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
-          <div class="col-10 text-center">
+          <div class="col-7 text-center">
             <div class="heading">
-              <h2 class="text-black">最新菜單</h2>
+              <h2 class="text-black">最新食材</h2>
             </div>
-            <p>餐盒均附營養米飯、配菜、蛋，配菜依照當令季節時蔬略有不同，會不定期更換，皆採現場製作配菜為主。</p>
-<!--             <span class="1" style="color:blue"></span> -->
-            <div class="flip" style="float:right"><input type="button" value="詳細資訊(展開/收合)"></div>
+            <p>食物是為生物提供營養的物質，來源通常是植物、動物、菌類，包含著維生所需的營養素，如蛋白質、脂肪、水等，能夠藉由進食或飲用為生物提供營養、維持生命或愉悅的物質。生物攝取食物後，被生物的細胞同化，提供能量，維持生命及刺激成長。</p>
           </div>
         </div>
         <div class="row">
 
-<table >
-	<thead></thead>
-	<tbody>
-		<c:forEach var="meals" items="${queryAll}">
-          <div class="col-12 col-sm-6 col-md-4 mb-4">
-            <div class="blog-entry">
-<!--             <a data-fancybox="gallery" href="images/0409.png"><img src="images/泰享受酸辣雞腿排.jpg" width="300"></a> -->
-              <a class="d-block" data-fancybox="gallery" href="${pageContext.request.contextPath}/MealImg/${meals.photo}">
-              	<img src="${pageContext.request.contextPath}/MealImg/${meals.photo}"
-				      alt="Image" class="img-fluid" onerror="this.style.display='none'"
-				       />
-<!-- 				      style="display:block" onclick="showMaxImg(this)" /> -->
-<!-- 				      <img style="width:62px;height:83px;display:block" src="images/0409.png" onclick="showMaxImg(this)"> -->
-              </a>
-              <div class="post-meta d-flex justify-content-center">
-                <span>
-                  <span class="icon-calendar"></span>
-                  <span>23 Jul</span>
-                </span>
-                <span>
-                  <span class="icon-user"></span>
-                  <span>Admin</span>
-                </span>
-                <span>
-                  <span class="icon-comment"></span>
-                  <span>2 Comments</span>
-                </span>
-              </div>
-              <h2><a style="color: #2894FF;">${meals.name}</a></h2>
-			  <div class="panel" style="display:none">
-			  	  價格：${meals.price}<br/>
-			  	  主原料：${meals.material}<br/>
-			  	  熱量(kcal)：${meals.calories}<br/>
-			  	  蛋白質(g)：${meals.protein}<br/>
-			  	  碳水化合物(g)：${meals.carbohydrates}<br/>
-			  	  脂肪(g)：${meals.fat}
-			  </div>
 
-            </div>
-          </div>
-       </c:forEach>
-      <div class="modal fade bs-example-modal-lg text-center" id="imgModal" tabindex="-1" role="dialog" data-toggle="modal" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-         <div class="modal-dialog modal-lg" style="display:inline-block;width:auto;">
-         	 <div class="modal-content">
-              	<div id="imgshow"></div>
-           	 </div>
-         </div>
-      </div>
-	</tbody>
-</table>
+<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i> 食品資料庫
+						</div>
+						<div class="card-body">
+							
+							
+							
+					<table id="datatablesSimple">
+						<thead>
+							<tr>
+						        <th>食品名稱</th>
+						        <th>食品分類</th>
+						        <th>熱量(kcal)</th>
+						        <th>蛋白質</th>
+						        <th>碳水化合物(g)</th>
+						        <th>脂肪(g)</th>
+						        <th>糖(g)</th>
+						        <th>鈉(mg)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="diet" items="${queryAll}">
+								<tr>
+									<td>${diet.name}</td>
+									<td>${diet.type}</td>
+									<td>${diet.calories}</td>
+									<td>${diet.protein}</td>
+									<td>${diet.carbohydrates}</td>
+									<td>${diet.fat}</td>
+									<td>${diet.sugar}</td>
+									<td>${diet.na}</td>
+								</tr>
+								</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+
 
         </div>
       </div>
@@ -305,11 +301,9 @@
           </div>
         </div>
       </div>
+    </div>
 
   </div> <!-- .site-wrap -->
-  
-
-  
 
   <script src="/js/jquery-3.3.1.min.js"></script>
   <script src="/js/jquery-ui.js"></script>
@@ -327,21 +321,7 @@
 
 
   <script src="/js/main.js"></script>
-  <script>
-	  $(function(){
-		  $(".flip").click(function(){
-		      $(".panel").slideToggle("slow");
-		      $(".xs1").toggle();
-		      $(".xs2").toggle();
-		  });});
-  </script>
-  <script>
-    function showMaxImg(obj){
-        var src=$(obj).attr("src");
-        $("#imgModal").find("#imgshow")
-                      .html("<img src='"+src+"' class='carousel-inner img-responsive img-rounded' data-dismiss='modal'>");
-        $("#imgModal").modal('show');
-    }
-  </script>
+
+
 </body>
 </html>
