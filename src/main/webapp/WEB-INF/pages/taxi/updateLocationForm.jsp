@@ -267,19 +267,38 @@
 			crossorigin="anonymous"></script>
 		<script src="../js/datatables-simple-demo.js"></script>
 		<script type="text/javascript">
+		
+	var cn = "${updatelocation.city}"
+	var tn = "${updatelocation.town}"
+		
 	$(document).ready(function(){
 		$.getJSON('/json/taiwan_districts.json',function(data){
 			var resultText='';
 			resultText="<option value=0>請選擇</option>";
 			for(var i=0; i<data.length; i++){
-				resultText+="<option value='"+data[i].name+"'/>"+data[i].name
+				if(cn == (data[i].name)){
+					resultText+="<option value='"+data[i].name+"' selected>"+data[i].name+"</option>"
+				}else{
+					resultText+="<option value='"+data[i].name+"'>"+data[i].name+"</option>"
+				}
 			}
-			
 			$("#city").html(resultText);
+			let CN=$("select[name='city']").val();		
+			for(n=0; n<data.length; n++ ){
+    			if(CN == data[n].name){
+    				var resultText2='';
+    				for(var j=0; j<data[n].districts.length; j++){
+    					if(tn == data[n].districts[j].name){
+    						resultText2+="<option value='"+data[n].districts[j].name+"' selected>"+data[n].districts[j].name+"</option>"
+    					}else{
+    						resultText2+="<option value='"+data[n].districts[j].name+"'>"+data[n].districts[j].name+"</option>"
+    					}
+    				}
+    			}
+    		}	
+			$("#town").html(resultText2);
 		});
-// 	});
 
-// 	$(document).ready(function(){
 	$("select[name='city']").on('change',function(){
 		$.getJSON('/json/taiwan_districts.json',function(data){	
 			let CN=$("select[name='city']").val();		
@@ -287,7 +306,7 @@
     			if(CN == data[n].name){
     				var resultText2='';
     				for(var j=0; j<data[n].districts.length; j++){
-    					resultText2+="<option value='"+data[n].districts[j].name+"'/>"+data[n].districts[j].name
+    					resultText2+="<option value='"+data[n].districts[j].name+"'>"+data[n].districts[j].name+"</option>"
     				}
     							    				
     			}

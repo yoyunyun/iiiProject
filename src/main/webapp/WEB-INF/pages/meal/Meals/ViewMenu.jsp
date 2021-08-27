@@ -27,6 +27,7 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/js/datatables-simple-demo.js"></script>
         <script src="/js/sweetalert2.all.min.js"></script>
+        
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -172,7 +173,6 @@
 								<input type="button" value="新增一筆資料" onclick="window.location.href='mealCreate.controller'" />
 							</div>
 							<br/>
-							
 							
 					<table id="datatablesSimple">
 						<thead>

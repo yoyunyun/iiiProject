@@ -159,7 +159,7 @@
 				</div>
 			</nav>
 		</div>
-		<div id="layoutSidenav_content">
+		<div id="layoutSidenav_content" style="margin:1px">
 			<main>
 				<div class="card mb-4">
 					<div class="card-header">
@@ -269,9 +269,8 @@
 			function CheckandSub() {
 				let flag1 = Onblur(document.getElementById("tname"), sp1);
 				let flag2 = phoneCheck(document.getElementById("phone"), sp2);
-				let flag3 = addressCheck(document.getElementById("address"),
-						sp3);
-				// 		let flag4= checkckbox(cityN,idsp4);
+				let flag3 = addressCheck(document.getElementById("address"),sp3);
+				let flag4= checkckbox(cityN,idsp4);
 				let flag5 = checkradio(careTX, idsp5);
 
 				if (flag1 & flag2 & flag3 & flag5) {

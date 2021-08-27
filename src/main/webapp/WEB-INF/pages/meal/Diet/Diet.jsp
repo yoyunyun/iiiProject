@@ -1,9 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*,tw.iiihealth.meal.diet.*"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>健康優生網</title>
+</head>
+<head>
   <title>Elderly &mdash; Website Template by Colorlib</title>
+  <link href="/css/styles.css" rel="stylesheet" />
+		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="/js/datatables-simple-demo.js"></script>
+        <script src="/js/sweetalert2.all.min.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
 
@@ -25,24 +39,15 @@
   <link rel="stylesheet" href="/css/aos.css">
 
   <link rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<style>
-        button{
-            width:75px; 
-            height: 75px; 
-            border-radius: 50%;
-            margin:10px;
-            position: relative;
-            left: 1000px;
-            top: -80px
-        }
-        
-        #choose{
-        	position: relative;
-        	left: 300px;
-        	top:-30px
-        }
-   </style>
+  
+  		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="/js/datatables-simple-demo.js"></script>
+        <script src="/js/sweetalert2.all.min.js"></script>
+
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
@@ -80,36 +85,62 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html" class="active nav-link">首頁</a></li>
+
+
                 <li class="has-children">
-                  <a href="services.html" class="nav-link">Services</a>
+                  <a href="services.html" class="nav-link">叫車專區</a>
                   <ul class="dropdown">
-                    <li><a href="#" class="nav-link">Amazing Atmosphere</a></li>
-                    <li><a href="#" class="nav-link">Courteous & Caring Staff</a></li>
-                    <li><a href="#" class="nav-link">Hospice Care</a></li>
-                    <li><a href="#" class="nav-link">Quality Medical Care</a></li>
-                    <li><a href="#" class="nav-link">Excellent Cuisine</a></li>
+                    <li><a href="#" class="nav-link">附近店家資訊</a></li>
                     <li class="has-children">
-                      <a href="#">More Links</a>
+                      <a href="#">我要叫車</a>
                       <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
+                        <li><a href="#">立即叫車</a></li>
+                        <li><a href="#">預約叫車</a></li>
                       </ul>
                     </li>
                   </ul>
                 </li>
-                <li><a href="testimonial.html" class=" nav-link">Testimonials</a></li>
+
+                <li class="has-children">
+                  <a href="services.html" class="nav-link">長者專區</a>
+                  <ul class="dropdown">
+                    <li><a href="#" class="nav-link">看護服務</a></li>
+                    <li><a href="#" class="nav-link">輔具購買</a></li>
+                  </ul>
+                </li>
 
 
-                <li><a href="blog.html" class="active nav-link">Blog</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                 <li class="has-children">
+                  <a href="services.html" class="nav-link">營養專區</a>
+                  <ul class="dropdown">
+                    <li><a href="#" class="nav-link">營養餐</a></li>
+                    <li><a href="#" class="nav-link">食品資料</a></li>
+                  </ul>
+                </li>
 
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-facebook"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-twitter"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li>
+
+                <li class="has-children">
+                  <a href="services.html" class="nav-link">用藥查詢</a>
+                  <ul class="dropdown">
+                    <li><a href="#" class="nav-link">藥品辨識</a></li>
+                    <li><a href="#" class="nav-link">藥品包裝</a></li>
+                  </ul>
+                </li>
+
+                <!-- <li><a href="contact.html" class="nav-link">會員登入</a></li> -->
+                <li class="has-children">
+                  <a href="services.html" class="nav-link">登入</a>
+                  <ul class="dropdown">
+                    <li><a href="#" class="nav-link">會員登入</a></li>
+                    <li><a href="#" class="nav-link">廠商登入</a></li>
+                  </ul>
+                </li>
+                
+                <li><a href="about.html" class="nav-link">關於我們</a></li>
+                <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
               </ul>
+
             </nav>
           </div>
 
@@ -126,13 +157,16 @@
 
 
 
-    <div class="slide-item overlay" style="background-image: url('images/slider-2.jpg')">
+    <div class="slide-item overlay" style="background-image: url('../images/0408.jpg')">
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-6 align-self-center">
-            <h1 class="heading mb-3">便利專區</h1>
-            <p class="lead text-white mb-5">提供叫車資訊、長照專車、以及相關醫療店家地址，多個相關需求一次滿足，讓長者的生活充滿便利</p>
-            <p><a href="#" class="btn btn-primary">尋找附近店家</a></p>
+            <h1 class="heading mb-3">食材 &amp; 營養</h1>
+            <p class="lead text-white mb-5">
+              飲食與人們的身體健康息息相關。養成良好的飲食習慣，才能真正把身體養好。如果無法攝取足夠的營養，那麼我們的身體機能只會越來越弱，
+              也就更容易生病。怎麼才能吃得健康一些呢？食材是所有飲食的基礎，選好食材真的非常重要！
+            </p>
+            <p><a href="#" class="btn btn-primary">Contact us</a></p>
           </div>
         </div>
       </div>  
@@ -141,30 +175,68 @@
 
 
 
-<div style="margin: 20px; height:150px">
- <h4 style="position:relative; top:10px; left:50px">請選擇想搜尋的縣市:</h4> 
-  <div id="choose">
-   <select id="city" name="city"></select><select id="town" name="town"><option value=0>請選擇</option></select>
-	</div>
-	<button id="hos" style="background-color: #C4E1FF;" disabled><h4 style="margin: 2px 2px;">搜尋醫院</h4></button>
-    <button id="med" style="background-color: #FFDCB9;"><h4 style="margin: 2px 2px;">搜尋藥局</h4></button>
-    <button id="care" style="background-color: #E2C2DE;"><h4 style="margin: 2px 2px;">長照中心</h4></button>
-</div> 
-<div class="site-section" style="padding: 45px 0 90px 0">
+    <div class="site-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-7 text-center">
             <div class="heading">
-              <h2 class="text-black" id="title">醫院</h2>
+              <h2 class="text-black">最新食材</h2>
             </div>
+            <p>食物是為生物提供營養的物質，來源通常是植物、動物、菌類，包含著維生所需的營養素，如蛋白質、脂肪、水等，能夠藉由進食或飲用為生物提供營養、維持生命或愉悅的物質。生物攝取食物後，被生物的細胞同化，提供能量，維持生命及刺激成長。</p>
           </div>
         </div>
-        
-        <div class="row" id="insert" style="text-align: center">
-          </div>
-          
-          </div>
+        <div class="row">
+
+
+<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i> 食品資料庫
+						</div>
+						<div class="card-body">
+							
+							
+							
+					<table id="datatablesSimple">
+						<thead>
+							<tr>
+						        <th>食品名稱</th>
+						        <th>食品分類</th>
+						        <th>熱量(kcal)</th>
+						        <th>蛋白質</th>
+						        <th>碳水化合物(g)</th>
+						        <th>脂肪(g)</th>
+						        <th>糖(g)</th>
+						        <th>鈉(mg)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="diet" items="${queryAll}">
+								<tr>
+									<td>${diet.name}</td>
+									<td>${diet.type}</td>
+									<td>${diet.calories}</td>
+									<td>${diet.protein}</td>
+									<td>${diet.carbohydrates}</td>
+									<td>${diet.fat}</td>
+									<td>${diet.sugar}</td>
+									<td>${diet.na}</td>
+								</tr>
+								</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+
+
         </div>
+      </div>
+    </div>
 
     
 
@@ -249,134 +321,7 @@
 
 
   <script src="/js/main.js"></script>
-<script>
 
-var cv = $("#city").val();
-var tv = $("#town").val();
-var tp = "醫院";
-
-$(document).ready(function(){
-	$.getJSON('/json/taiwan_districts.json',function(data){
-		var resultText='';
-		resultText="<option value=0>請選擇</option>";
-		for(var i=0; i<data.length; i++){
-			resultText+="<option value='"+data[i].name+"'>"+data[i].name +"</option>"
-		}
-		
-		$("#city").html(resultText);
-	});
-
-$("select[name='city']").on('change',function(){
-	$.getJSON('/json/taiwan_districts.json',function(data){	
-		let CN=$("select[name='city']").val();		
-		for(n=0; n<data.length; n++ ){
-			if(CN == data[n].name){
-				var resultText2='';
-				resultText2="<option value=0>請選擇</option>";
-				for(var j=0; j<data[n].districts.length; j++){
-					resultText2+="<option value='"+data[n].districts[j].name+"'>"+data[n].districts[j].name+"</option>"
-				}
-							    				
-			}
-		}	
-		$("#town").html(resultText2);
-		
-	});		
-});
-});
-
-$(function(){
-	$("#city").on('change',function(){
-		cv=this.value;
-		tv=0;
-		search();
-	})
-})
-$(function(){
-	$("#town").on('change',function(){
-		tv=this.value;
-		search();
-	})
-})
-
-function search(){
-        $.ajax({
-        	type:'post',
-     		url:'/taxi/queryloc/' +cv+'/'+tv+'/'+tp,
-     		dataType:'JSON',
-     		contentType:'application/json',
-            success:function(response){
-            	$("#insert").empty();
-                	if(response.length == 0){
-                		$("#insert").append("無此地區資料");
-                		$("#insert").removeClass("row")
-                	}else{
-                		
-                $.each(response,function(index,ele){
-                	$("#insert").addClass("row")
-                	$("#insert").append(
-                		  
-            "<div class='col-12 col-sm-6 col-md-4 mb-4'>"+
-            "<div class='blog-entry'>"+
-              "<a href='/taxi/search/"+(ele.id)+"' class='d-block' target='_blank'>" +
-                "<img src='/images/hospital2.png' alt='Image' class='img-fluid'></a>"+
-              "<div class='post-meta d-flex justify-content-center'>" +
-                "<span>"+
-                	"<span class='icon-phone'></span>" +
-            	 	"<span >"+ (ele.phone)+"</span><br/>" +
-                	"<span class='icon-map-marker'></span>"+
-                 	"<span >"+ (ele.city)+ (ele.town)+ (ele.address) +"</span>"+
-                  	
-                "</span>" +
-              "</div>" +
-              "<h2><a href='/taxi/search/"+(ele.id)+"' target='_blank'>"+ (ele.store) +"</a></h2>" +
-              "<p>"+ (ele.brief) + "</p>" +
-            "</div>" +
-          "</div>"
-                 ) 
-              
-                })
-                	}
-            },
-            error:function(){
-                alert(`發生錯誤`)
-            }
-        })
-}
-
-$(function () {
-	$('#hos').on('click', function () {
-		tp = "醫院";
-		$("#insert").empty();
-		$('#title').text('醫院');
-		$('#hos').prop('disabled',true)
-		$('#med').prop('disabled',false)
-		$('#care').prop('disabled',false)
-	})
-})
-
-$(function () {
-	$('#med').on('click', function () {
-		tp = "藥局";
-		$("#insert").empty();
-		$('#title').text('藥局');
-		$('#hos').prop('disabled',false)
-		$('#med').prop('disabled',true)
-		$('#care').prop('disabled',false)
-	})
-})
-
-$(function () {
-	$('#care').on('click', function () {
-		tp = "長照中心";
-		$("#insert").empty();
-		$('#title').text('長照中心');
-		$('#hos').prop('disabled',false)
-		$('#med').prop('disabled',false)
-		$('#care').prop('disabled',true)
-	})
-})
-</script>
 
 </body>
 </html>

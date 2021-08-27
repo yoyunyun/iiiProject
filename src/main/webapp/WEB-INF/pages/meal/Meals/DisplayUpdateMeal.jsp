@@ -27,6 +27,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/js/datatables-simple-demo.js"></script>
         <script src="/js/sweetalert2.all.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body class="sb-nav-fixed">
 <jsp:useBean id="u" class="tw.iiihealth.meal.meals.MealBean" scope="session" />
@@ -170,7 +171,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 						<div class="card-body">
 					<div class="row">
 						<div class="col-md-6">
-							<form action="updateConfirm.controller"	method="post" id="upd">
+							<form action="updateConfirm.controller"	method="post" id="upd" enctype="multipart/form-data">
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -182,6 +183,18 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										<tr>
 											<td>餐點名稱</td>
 											<td><jsp:getProperty name="u" property="name" /></td>
+										</tr>
+										<tr>
+											<td>上傳預覽</td>
+											<td>
+											修改前：<img src="${pageContext.request.contextPath}/MealImg/${u.photo}"
+												onerror="this.style.display='none'" width="100px" height="100px" />
+											修改後：<img id="sourceImage"  width="100px" height="100px">
+											</td>
+										</tr>											
+										<tr>
+											<td>新增照片</td>
+											<td><input type="file" name="pic" accept="image/*" id="inputImageFile" /></td>
 										</tr>
 										<tr>
 											<td>價格($NT)</td>
@@ -239,6 +252,22 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 				})	
 				setTimeout(() => document.getElementById("upd").submit(), 1300)
 		}
+	</script>
+	<script>
+
+		/* 更新圖片 or 上傳圖片 */
+	    $("#inputImageFile").change(function(e){
+        	processImageFile(e.target.files[0]);
+    	});
+	    
+	    
+	    function processImageFile(imageObject) {
+	        //顯示分析的圖片
+	        var sourceImageUrl = URL.createObjectURL(imageObject);
+	        //document.querySelector("#sourceImage").src = sourceImageUrl;
+	        $("#sourceImage").attr('src', sourceImageUrl);
+	    }
+		
 	</script>
 </body>
 </html>

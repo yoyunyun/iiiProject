@@ -170,7 +170,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 						<div class="card-body">
 					<div class="row">
 						<div class="col-md-6">
-							<form action="addMeals.controller"	method="post" id="add">
+							<form action="addMeals.controller"	method="post" id="add" enctype="multipart/form-data">
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -280,30 +280,20 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 			}
 		}
 	</script>
-		<script>
-		var submit = document.getElementById("submit")
 
-		submit.onsubmit = function() {
-			return false;
-		}
-
-		document.getElementById("update").onclick = function() {
-
-			setTimeout(function() {
-				submit.submit();
-			}, 1400);
-
+	<script>
+		function add(){
 			Swal.fire({
-				position : 'top',
-				icon : 'success',
-				title : '資料已更新',
-				showConfirmButton : false,
-				timer : 1500
-			})
+				  icon: 'success',
+				  title: '新增成功',
+				  showConfirmButton: false,
+				  timer: 1300
+				})	
+				setTimeout(() => document.getElementById("add").submit(), 1300)
 		}
-		
-		
-		
+	</script>
+	<script>
+
 		/* 更新圖片 or 上傳圖片 */
 	    $("#inputImageFile").change(function(e){
         	processImageFile(e.target.files[0]);
@@ -317,17 +307,6 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 	        $("#sourceImage").attr('src', sourceImageUrl);
 	    }
 		
-	</script>
-	<script>
-		function add(){
-			Swal.fire({
-				  icon: 'success',
-				  title: '新增成功',
-				  showConfirmButton: false,
-				  timer: 1300
-				})	
-				setTimeout(() => document.getElementById("add").submit(), 1300)
-		}
 	</script>
 </body>
 </html>
