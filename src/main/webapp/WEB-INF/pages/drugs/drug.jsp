@@ -200,7 +200,7 @@
 											<td>
 												<form action="showUpdate" method="post">
 													<input type="hidden" name="eId" value="${Drug.id}" /> 
-													<input type="image" src="/images/update.png" />
+													<input type="image" src="/images/update.jpg" />
 												</form>
 											</td>
 											<td>
