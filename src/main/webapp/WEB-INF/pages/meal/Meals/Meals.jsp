@@ -48,10 +48,10 @@
             <style>
         .hel {
             background-color: #66B3FF;
-            margin: 25px;
+            margin: 35px;
             border-radius: 20px;
-            width: 250px;
-            height: 110px;
+            width: 300px;
+            height: 130px;
             float: left;
             text-align: center;
         }
@@ -59,7 +59,7 @@
             color:white;
             margin:12px 10px;
             padding: 0px 0px;
-            font-size: 20px;
+            font-size: 25px;
             font-weight: bold;
         }
     </style>
@@ -194,9 +194,8 @@
     <div class="site-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
-          <div class="col-10 text-center">
             <div class="heading">
-            <div style="margin:50px 0 100px 0;"><a style="font-weight:bold;font-size:32px;color:black;">你也有這些困擾嗎？</a></div>
+            <div class="text-center" style="margin:50px 0 100px 0;"><a style="font-weight:bold;font-size:32px;color:black;">你也有這些困擾嗎？</a></div>
     <div class="hel">
         <p class="phel">慢性疾病的飲食控制？</p>
         <p class="phel">健身增肌控糖餐食？</p>
@@ -210,9 +209,10 @@
         <p class="phel">孝親照護餐點好難選？</p>
     </div>
     <br><br><div></div>
-    <div style="margin:200px 0 130px 0;"><a style="font-weight:bold;font-size:28px;color:#FF7575;">健康養生餐是你最好的選擇！</a></div>
-              <h2 class="text-black" style="margin:0 0 50px 0;">最新菜單</h2>
+    <div class="text-center" style="margin:270px 0 130px 0;"><a style="font-weight:bold;font-size:30px;color:#FF7575;">健康養生餐是你最好的選擇！</a></div>
+              <h2 class="text-black text-center" style="margin:0 0 50px 0;">最新菜單</h2>
             </div>
+          <div class="col-10 text-center">
             <p style="font-size:18px">餐盒均附營養米飯、配菜、蛋，配菜依照當令季節時蔬略有不同，會不定期更換，皆採現場製作配菜為主。</p>
 <!--             <span class="1" style="color:blue"></span> -->
             <div class="flip" style="float:right;margin:50px 0 0 0;"><input type="button" value="詳細資訊(展開/收合)"></div>

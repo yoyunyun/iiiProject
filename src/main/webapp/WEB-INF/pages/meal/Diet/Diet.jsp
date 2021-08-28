@@ -47,6 +47,45 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/js/datatables-simple-demo.js"></script>
         <script src="/js/sweetalert2.all.min.js"></script>
+         <style>
+        	img{
+			  cursor:pointer;//滑鼠手型
+			  transition:all 0.6s ease-in-out;//過渡
+			}
+        </style>
+        <style>
+	        .hel2 {
+	            background-color: #FF8000;
+	            margin: 35px;
+	            border-radius: 20px;
+	            width: 300px;
+	            height: 130px;
+	            float: left;
+	            text-align: center;
+	        }
+	        .hel3 {
+	            margin: 35px;
+	            border-radius: 20px;
+	            width: 300px;
+	            height: 600px;
+	            float: left;
+	            text-align: center;
+	        }
+	        .cel{
+	        	border-radius: 999em;
+	        	margin: 0 auto;
+	        	width: 200px;
+	        	height: 200px;
+	        	text-align: center;
+	        }
+	        .phel2 {
+	            color:white;
+	            margin:12px 10px;
+	            padding: 0px 0px;
+	            font-size: 25px;
+	            font-weight: bold;
+	        }
+	    </style>
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -178,11 +217,53 @@
     <div class="site-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
-          <div class="col-7 text-center">
             <div class="heading">
-              <h2 class="text-black">最新食材</h2>
+            <div class="text-center" style="margin:50px 0 100px 0;"><a style="font-weight:bold;font-size:32px;color:black;">為什麼「食」在很重要？</a></div>
+    <div class="hel2">
+        <p class="phel2">重視食材了解食材</p>
+        <p class="phel2">讓你越吃越健康！</p>
+    </div>
+    <div class="hel2">
+        <p class="phel2">好食材是健康源頭</p>
+        <p class="phel2">亦是美味源頭！</p>
+    </div>
+    <div class="hel2">
+        <p class="phel2">洞察加工食品的全貌</p>
+        <p class="phel2">知己知彼，百戰百勝！</p>
+    </div>
+    <br><br><div></div>
+    <div class="text-center" style="margin:270px 0 130px 0;"><a style="font-weight:bold;font-size:32px;color:black;">三大營養素</a></div>
+    <div class="hel3">
+        <div class="cel" style="background-image: url('../images/chicken.jpg')"></div>
+        <a style="font-weight:bold;font-size:25px;color:black;">蛋白質</a>
+        <p style="font-size:16px">
+        蛋白質被稱為「生命的積木」之一，並不是沒有原因的。 這個巨量元素是人體細胞的主要成分，且提供重要的胺基酸，
+        讓我們身體獲得精力持續運作、幫助身體復原，還可以讓我們有飽足感。
+        </p>
+    </div>
+    <div class="hel3">
+        <div class="cel" style="background-image: url('../images/carbon.jpg')"></div>
+        <a style="font-weight:bold;font-size:25px;color:black;">碳水化合物</a>
+        <p style="font-size:16px">
+        碳水化合物對人體相當重要，在一個健康、均衡的飲食中，碳水化合物是提供人體熱量的主要能源。
+        碳水化合物會在消化道先被分解為葡萄糖後，進入細胞當做能源，是維持身體功能正常運作的必須營養素。
+        </p>
+    </div>
+    <div class="hel3">
+        <div class="cel" style="background-image: url('../images/fat.jpg')"></div>
+        <a style="font-weight:bold;font-size:25px;color:black;">脂肪</a>
+        <p style="font-size:16px">
+		脂肪是構成身體細胞的重要成分，在腦神經、肝臟、腎臟等重要器官中都含有相當的脂肪，可以保護這些臟器。
+		而脂肪還可以為人體儲存備用的「能量」，等到需要時再轉換利用。
+
+		</p>
+    </div>
+    <div></div>
+    <div class="text-center" style="margin:200px 0 200px 0;"><a style="font-weight:bold;font-size:30px;color:#FF7575;">民以食為天，聰明選食，吃出人生精彩下半場！</a></div>
+              <h2 class="text-black text-center"  style="margin:0 0 50px 0;">最新食材</h2>
             </div>
-            <p>食物是為生物提供營養的物質，來源通常是植物、動物、菌類，包含著維生所需的營養素，如蛋白質、脂肪、水等，能夠藉由進食或飲用為生物提供營養、維持生命或愉悅的物質。生物攝取食物後，被生物的細胞同化，提供能量，維持生命及刺激成長。</p>
+          <div class="col-10 text-center">
+            <p style="font-size:18px">食物是為生物提供營養的物質，來源通常是植物、動物、菌類，包含著維生所需的營養素，如蛋白質、脂肪、水等，能夠藉由進食或飲用為生物提供營養、維持生命或愉悅的物質。生物攝取食物後，被生物的細胞同化，提供能量，維持生命及刺激成長。</p>
           </div>
         </div>
         <div class="row">
