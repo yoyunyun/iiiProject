@@ -27,35 +27,20 @@ public class ManagerSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http
-		.antMatcher("/Manager/**")
+		.requestMatchers()
+		.antMatchers("/Manager/**","/iiiHealth/**")
+		.and()
 		.authorizeRequests().anyRequest().authenticated()
-		.and().formLogin().loginPage("/Manager/login")
-			.defaultSuccessUrl("/Manager/login/success", true)
-			.failureUrl("/Manager/login/AccessDenied")
-		.permitAll()
-		.and().logout().logoutUrl("/Manager/logout").logoutSuccessUrl("/Manager/login")
-		.and().exceptionHandling().accessDeniedPage("/Manager/AccessDenied");
-		http.csrf().disable();
-		
-		
-//		http
-//		.authorizeRequests()
-//		.antMatchers(HttpMethod.GET, "/Manager/**").authenticated()
-//		.antMatchers(HttpMethod.GET).permitAll()
-//		.antMatchers(HttpMethod.POST, "/Manager/**").authenticated()
-//		.antMatchers(HttpMethod.POST).permitAll()
-//		.anyRequest().authenticated()
 //		.and()
 //		.rememberMe().tokenValiditySeconds(86400).key("rememberMe-key")
-//		.and()
-//		.csrf().disable()
-//		.formLogin().loginPage("/Manager/login").defaultSuccessUrl("/Manager/login/success",true).failureUrl("/Manager/login/AccessDenied").permitAll()
-//        .and()
-//        .logout().logoutUrl("/Manager/logout").logoutSuccessUrl("/Manager/login")
-//        .and()
-//        .exceptionHandling().accessDeniedPage("/Manager/AccessDenied");
+		.and().formLogin().loginPage("/iiiHealth/login")
+			.defaultSuccessUrl("/Manager/searchAllManagerAction.controller")
+			.failureUrl("/iiiHealth/login/AccessDenied")
+		.permitAll()
+		.and().logout().logoutUrl("/iiiHealth/logout").logoutSuccessUrl("/iiiHealth/login")
+		.and().exceptionHandling().accessDeniedPage("/iiiHealth/AccessDenied");
+		
+		http.csrf().disable();
+		
 	}
-
-	
-	
 }

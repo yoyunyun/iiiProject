@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,17 +55,4 @@ public class MemberService {
 	public Member searchMailCode(String verificationCode) {
 		return memberRepository.searchVerificationCode(verificationCode);
 	}
-	
-	
-	
-	// 當前登入的會員
-	public Member getCurrentlyLoggedInMember(Authentication auth) {
-		
-		String account = auth.getName();
-		
-		Member member = memberRepository.searchUsername(account);
-		
-		return member;
-	}
-	
 }

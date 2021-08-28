@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 	<!-- Navbar Brand--> <a class="navbar-brand ps-3" href="index.html">控制中心</a>
 	<!-- Sidebar Toggle-->
@@ -8,42 +7,55 @@
 		<i class="fas fa-bars"></i>
 	</button>
 	<!-- Navbar Search-->
-	<form
-		class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-		<div class="input-group">
-			<input class="form-control" type="text" placeholder="Search for..."
-				aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-			<button class="btn btn-primary" id="btnNavbarSearch" type="button">
-				<i class="fas fa-search"></i>
-			</button>
-		</div>
-	</form>
-	<!-- Navbar-->
-	<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
-			id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-			aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-			<ul class="dropdown-menu dropdown-menu-end"
-				aria-labelledby="navbarDropdown">
-				<li><a class="dropdown-item" href="#!">Settings</a></li>
-				<li><a class="dropdown-item" href="#!">Activity Log</a></li>
-				<li><hr class="dropdown-divider" /></li>
-				<li><a class="dropdown-item" href="/logout">登出</a></li>
-			</ul></li>
-	</ul>
+		<form
+			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+
+				<a class="navbar-brand ps-3" href="#">歡迎您，${user.managername}</a>
+		</form>
+		<!-- Navbar-->
+		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+				role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+					class="fas fa-user fa-fw"></i></a>
+				<ul class="dropdown-menu dropdown-menu-end"
+					aria-labelledby="navbarDropdown">
+<!-- 					<li><a class="dropdown-item" href="/Manager/searchAllManagerAction.controller">管理員資料表</a></li> -->
+<!-- 					<li><a class="dropdown-item" href="/Manager/searchAllMtoM">會員資料表</a></li> -->
+<!-- 					<li><a class="dropdown-item" href="#!">廠商資料表</a></li> -->
+<!-- 					<li><hr class="dropdown-divider" /></li> -->
+					<li><a class="dropdown-item" style="font-size:20px" href="/Manager/insertManager">註冊</a></li>
+					<li><a class="dropdown-item" style="font-size:20px" href="/iiiHealth/logout">登出</a></li>
+				</ul></li>
+		</ul>
 	</nav>
+
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark"
 				id="sidenavAccordion">
-			<div class="sb-sidenav-menu">
-				<div class="nav">
-					<div class="sb-sidenav-menu-heading">會員中心</div>
-					<a class="nav-link" href="/HealthProject/ManagerHealth/searchAllManagerAction.controller">
-						<div class="sb-nav-link-icon">
-							<i class="fas fa-table"></i>
-						</div> 會員系統
-					</a>
+				<div class="sb-sidenav-menu">
+					<div class="nav">
+						<div class="sb-sidenav-menu-heading">會員中心</div>
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+							data-bs-target="#collapseLayouts0" aria-expanded="false"
+							aria-controls="collapseLayouts0">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-chart-area"></i>
+							</div> 會員系統
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a>
+						<div class="collapse" id="collapseLayouts0"
+							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="/Manager/searchAllManagerAction.controller">管理員資料表</a>
+								<a class="nav-link" href="/Manager/searchAllMtoM">會員資料表</a>
+								<a class="nav-link" href="#">廠商資料表</a>
+							</nav>
+						</div>
+						
 					<div class="sb-sidenav-menu-heading">長照服務</div>
 					<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 						data-bs-target="#collapseLayouts1" aria-expanded="false"

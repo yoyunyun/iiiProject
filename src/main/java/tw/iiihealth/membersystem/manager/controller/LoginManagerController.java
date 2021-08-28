@@ -14,36 +14,27 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginManagerController {
-	
-//	@Autowired
-//	private ManagerService managerService;
 
 	//登入(1)
-	@RequestMapping("/Manager/")
+	@RequestMapping("/iiiHealth/")
 	public ModelAndView managerLogin1() {
 		return new ModelAndView("membersystem/Login/ManagerLogin");
 	}
 
 	//登入(2)
-	@RequestMapping("/Manager/login")
+	@RequestMapping("/iiiHealth/login")
 	public ModelAndView managerLogin2() {
 		return new ModelAndView("membersystem/Login/ManagerLogin");
 	}
-
-	//登入成功
-	@RequestMapping("/Manager/login/success")
-	public ModelAndView managerSuccess() {
-		return new ModelAndView("membersystem/Login/LoginManagerSuccess");
-	}
 	
 	//登入失敗(1)
-	@RequestMapping("/Manager/login/AccessDenied")
+	@RequestMapping("/iiiHealth/login/AccessDenied")
 	public ModelAndView managerAccessError1() {
 		return new ModelAndView("membersystem/Login/ManagerAccessdenied");
 	}
 
 	//登入失敗(2)
-	@RequestMapping("/Manager/AccessDenied")
+	@RequestMapping("/iiiHealth/AccessDenied")
 	public ModelAndView managerAccessError2() {	
 		return new ModelAndView("membersystem/Login/ManagerAccessdenied");
 	}
