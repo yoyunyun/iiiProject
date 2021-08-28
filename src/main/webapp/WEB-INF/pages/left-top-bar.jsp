@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
          pageEncoding="UTF-8" import="java.util.*,tw.iiihealth.membersystem.manager.model.*"%>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-	<!-- Navbar Brand--> <a class="navbar-brand ps-3" href="index.html">控制中心</a>
+	<!-- Navbar Brand--> <a class="navbar-brand ps-3 disabled" href="#">健康優生網</a>
 	<!-- Sidebar Toggle-->
 	<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 		id="sidebarToggle" href="#!">

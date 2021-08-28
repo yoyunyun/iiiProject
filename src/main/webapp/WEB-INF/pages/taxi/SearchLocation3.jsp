@@ -13,13 +13,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>健康優生網</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-	rel="stylesheet" />
-<link href="../css/styles.css" rel="stylesheet" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-	crossorigin="anonymous"></script>
+<%@ include file="/WEB-INF/pages/css.jsp"%>
 </head>
 <body class="sb-nav-fixed">
 	<%@ include file="/WEB-INF/pages/left-top-bar.jsp"%>
@@ -95,22 +89,12 @@
 					</div>
 				</div>
 			</main>
-			
+		
 		</div>
 		<!--   <div style="text-align:right; margin-right:200px; margin-top:20px"> -->
 		<!-- 	<button class="btn" onclick="location.href='../login.html'">返回登入首頁</button> -->
 		<!-- 	</div> -->
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-			crossorigin="anonymous"></script>
-		<script src="../js/scripts.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-			crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-			crossorigin="anonymous"></script>
-		<script src="../js/datatables-simple-demo.js"></script>
-		<script src="../js/sweetalert2.all.min.js"></script>
+		
 		<script>
 	function check(id){
 	Swal.fire({
