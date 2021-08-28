@@ -30,7 +30,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 </head>
 <body class="sb-nav-fixed">
 
-<%@ include file="/WEB-INF/pages/test01.jsp"%>
+<%@ include file="/WEB-INF/pages/left-top-bar.jsp"%>
   
 <div id="layoutSidenav_content">
 			<main>
