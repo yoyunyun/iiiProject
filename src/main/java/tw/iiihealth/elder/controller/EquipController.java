@@ -9,8 +9,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,8 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tw.iiihealth.elder.model.Equip;
 import tw.iiihealth.elder.model.EquipService;
-import tw.iiihealth.membersystem.manager.model.Manager;
-import tw.iiihealth.membersystem.manager.service.ManagerService;
 
 
 
@@ -35,11 +31,6 @@ public class EquipController {
 	@Autowired
 	EquipService equipService;
 	
-	@Autowired
-	private ManagerService managerService;
-
-	
-	
 	// 管理者商品頁
 	@RequestMapping(path="/findall")
 	public String findAllEquip(Model model) {
@@ -47,12 +38,6 @@ public class EquipController {
 		List<Equip> list = equipService.findAll();
 		
 		model.addAttribute("list", list);
-		
-		// 會員姓名顯示
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		model.addAttribute("user", user);
 		
 		return "equip/equip-list";
 	}
@@ -65,13 +50,6 @@ public class EquipController {
 	public String QueryById(@RequestParam("eId") int eid, Model model) {
 		Equip equip = equipService.findById(eid);
 		model.addAttribute("equip", equip);
-		
-		// 會員姓名顯示
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		model.addAttribute("user", user);
-		
 		
 		return "equip/equip-form";
 	}
@@ -86,15 +64,10 @@ public class EquipController {
 		
 		model.addAttribute("equip", equip);
 		
-		// 會員姓名顯示
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		model.addAttribute("user", user);
-		
 		return "equip/equip-form";
 	}
 
+	
 	
 	// 管理者刪除
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
