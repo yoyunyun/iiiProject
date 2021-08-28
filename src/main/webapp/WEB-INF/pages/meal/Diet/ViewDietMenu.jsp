@@ -18,15 +18,9 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>健康優生網</title>
-<link href="/css/styles.css" rel="stylesheet" />
-<!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> -->
-		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="/js/datatables-simple-demo.js"></script>
-        <script src="/js/sweetalert2.all.min.js"></script>
+
+<%@ include file="/WEB-INF/pages/css.jsp"%>
+
 </head>
 <body class="sb-nav-fixed">
 
@@ -120,53 +114,6 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 							})
 					}
 	</script>
-
-
-
-
-<!-- <table> -->
-<!-- <thead> -->
-<!--     <tr> -->
-<!--         <th>食品名稱</th> -->
-<!--         <th>食品分類</th> -->
-<!--         <th>熱量(kcal)</th> -->
-<!--         <th>蛋白質</th> -->
-<!--         <th>碳水化合物(g)</th> -->
-<!--         <th>脂肪(g)</th> -->
-<!--         <th>糖(g)</th> -->
-<!--         <th>鈉(mg)</th> -->
-<!--     </tr> -->
-<!-- </thead> -->
-<!-- <tbody> -->
-<%-- <%   --%>
-<!-- // List<DietBean> DB = (List<DietBean>) session.getAttribute("queryAll"); -->
-<!-- // for (DietBean item : DB) { -->
-<%-- %> --%>
-<!--     <tr> -->
-<%--         <td><%=item.getName() %></td> --%>
-<%--         <td><%=item.getType() %></td> --%>
-<%--         <td><%=item.getCalories() %></td> --%>
-<%--         <td><%=item.getProtein() %></td> --%>
-<%--         <td><%=item.getCarbohydrates() %></td> --%>
-<%--         <td><%=item.getFat() %></td> --%>
-<%--         <td><%=item.getSugar() %></td> --%>
-<%--         <td><%=item.getNa() %></td> --%>
-<!--     </tr> -->
-<%-- <% --%>
-<!-- // } -->
-<!-- // session.invalidate(); -->
-<%-- %> --%>
-<!-- </tbody> -->
-<!-- </table> -->
-<!-- </fieldset> -->
-
-
-<!-- </form> -->
-
-<!-- 			</div> -->
-<!-- 			</main> -->
-<!-- 		</div> -->
-
 
 </body>
 </html>
