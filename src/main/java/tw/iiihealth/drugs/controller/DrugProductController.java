@@ -38,6 +38,13 @@ public class DrugProductController {
 		return "drugs/DrugProductlist";
 	}
 	
+	@RequestMapping(path="findalldrugproductFront")
+	public String ListAllDrugProductFront(Model model) {
+		List<DrugProduct> list = DrugProductService.findAll();
+		model.addAttribute("list", list);
+		return "drugs/DrugProductFront";
+	}
+	
 	
 	
 	@PostMapping(path="/showUpdate")

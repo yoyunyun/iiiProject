@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.iiihealth.drugs.model.Drug;
 import tw.iiihealth.drugs.model.DrugService;
+import tw.iiihealth.membersystem.manager.model.Manager;
+import tw.iiihealth.membersystem.manager.service.ManagerService;
 
 
 
@@ -25,13 +29,25 @@ public class DrugController {
 	
 	@Autowired
 	DrugService DrugService;
-	
+	@Autowired
+	private ManagerService managerService;
 	
 	@RequestMapping(path="findalldrug")
 	public String ListAllDrug(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String manageraccount = auth.getName();
+		Manager user = managerService.searchUserDetails(manageraccount);
+		model.addAttribute("user", user);
 		List<Drug> list = DrugService.findAll();
 		model.addAttribute("list", list);
 		return "drugs/drug";
+	}
+	
+	@RequestMapping(path="findalldrugFront")
+	public String ListAllDrugFront(Model model) {
+		List<Drug> list = DrugService.findAll();
+		model.addAttribute("list", list);
+		return "drugs/DrugFront";
 	}
 	
 	

@@ -205,24 +205,24 @@
 												</tr>
 												<tr>
 													<td>上傳預覽</td>
-													<td><img id="sourceImage"  width="100px" height="100px"></td>
+													<td><img id="sourceImage"  width="300px" height="200px"></td>
 												</tr>
 												<tr>
 													<td>新增照片</td>
 													<td><input type="file" name="pic" accept="image/*" id="inputImageFile" /></td>
 												</tr>
 												<tr>
-													<td>商品照片</td>
+													<td>藥品照片</td>
 													<td><img src="${pageContext.request.contextPath}/DrugProductImg/${equip.afterchange}"
 														onerror="this.style.display='none'" width="100px" height="100px" >
 													</td>
 												</tr>
 												<tr>
 													<td>上傳預覽</td>
-													<td><img id="sourceImage2"  width="100px" height="100px"></td>
+													<td><img id="sourceImage2"  width="300px" height="200px"></td>
 												</tr>
 												<tr>
-													<td>新增照片</td>
+													<td>藥品照片</td>
 													<td><input type="file" name="pic2" accept="image/*" id="inputImageFile2" /></td>
 												</tr>
 												
@@ -335,7 +335,7 @@
 	    
 	    function processImageFile2(imageObject2) {
 	        //顯示分析的圖片
-	        var sourceImageUrl2 = URL.createObjectURL2(imageObject2);
+	        var sourceImageUrl2 = URL.createObjectURL(imageObject2);
 	        //document.querySelector("#sourceImage").src = sourceImageUrl;
 	        $("#sourceImage2").attr('src', sourceImageUrl2);
 	    }
