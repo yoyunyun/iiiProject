@@ -28,7 +28,7 @@ public class ManagerSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		http
 		.requestMatchers()
-		.antMatchers("/Manager/**","/iiiHealth/**")
+		.antMatchers("/Manager/**","/iiiHealth/**","/taxi/**","/Drug/**","/DrugProduct/**","/equip/**","/order/**","/meals/**","/diet/**")
 		.and()
 		.authorizeRequests().anyRequest().authenticated()
 //		.and()
