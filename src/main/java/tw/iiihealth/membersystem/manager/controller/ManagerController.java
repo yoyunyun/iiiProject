@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.iiihealth.membersystem.manager.model.Manager;
 import tw.iiihealth.membersystem.manager.service.MailService;
@@ -28,6 +29,7 @@ import tw.iiihealth.membersystem.manager.service.ManagerService;
 //	陳厚丞 帳:eeit12904  密:password04
 //	陳宥芸 帳:eeit12905  密:password05
 
+@SessionAttributes(names="user")
 @Controller
 public class ManagerController {
 	

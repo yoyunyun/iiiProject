@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import tw.iiihealth.membersystem.manager.model.Manager;
@@ -25,9 +26,6 @@ import tw.iiihealth.membersystem.manager.service.ManagerService;
 @Controller("DietController")
 public class DietController {
 
-	@Autowired
-	private ManagerService managerService;
-	
 	@Autowired
 	private DietService dietService;
 
@@ -83,11 +81,6 @@ public class DietController {
 	@RequestMapping(path="/dietView.controller",method = { RequestMethod.POST, RequestMethod.GET })
 	public String processQueryAll(HttpServletRequest request,Model m) throws SQLException {
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		m.addAttribute("user", user);
-
 		List<DietBean> db = dietService.findAllDiet();
 		
 		request.getSession().setAttribute("queryAll", db);
