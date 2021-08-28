@@ -19,11 +19,17 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
+	<style type="text/css">
+	a.disabled {
+ 	 pointer-events: none;
+  	 cursor: default;
+	}
+	</style>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="index.html">控制中心</a>
+		<a class="navbar-brand ps-3 disabled" href="#">健康優生網</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -61,7 +67,7 @@
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
-                            <div class="sb-sidenav-menu-heading">會員中心</div>
+                            <div class="sb-sidenav-menu-heading">管理中心</div>
                             <a class="nav-link" href="/HealthProject/ManagerHealth/searchAllManagerAction.controller">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 會員系統
@@ -146,10 +152,7 @@
 
 					</div>
 				</div>
-				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
-				</div>
+				
 			</nav>
 		</div>
 
@@ -209,18 +212,18 @@
 						</div>
 					</div>
 			</main>
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; Your Website 2021</div>
-						<div>
-							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms
-								&amp; Conditions</a>
-						</div>
-					</div>
-				</div>
-			</footer>
+<!-- 			<footer class="py-4 bg-light mt-auto"> -->
+<!-- 				<div class="container-fluid px-4"> -->
+<!-- 					<div -->
+<!-- 						class="d-flex align-items-center justify-content-between small"> -->
+<!-- 						<div class="text-muted">Copyright &copy; Your Website 2021</div> -->
+<!-- 						<div> -->
+<!-- 							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms -->
+<!-- 								&amp; Conditions</a> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</footer> -->
 		</div>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
