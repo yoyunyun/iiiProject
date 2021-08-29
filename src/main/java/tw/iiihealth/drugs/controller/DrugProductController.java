@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import tw.iiihealth.drugs.model.DrugProduct;
 import tw.iiihealth.drugs.model.DrugProductService;
 
 
-
+@SessionAttributes(names="user")
 @Controller
 @RequestMapping(path="/DrugProduct")
 public class DrugProductController {
