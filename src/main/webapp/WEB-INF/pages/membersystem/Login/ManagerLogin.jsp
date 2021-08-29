@@ -28,6 +28,9 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/login1/css/util.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/login1/css/main.css">
 <!--===============================================================================================-->
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 </head>
 <body>
 	
@@ -43,7 +46,7 @@
 						帳號
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" >
+						<input class="input100" type="text" id="account1" name="username" >
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -54,7 +57,7 @@
 						<span class="btn-show-pass">
 							<i class="fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="password" >
+						<input class="input100" type="password" id="pwd1" name="password" >
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -67,9 +70,12 @@
 						</div>
 
 						<div>
-							<a href="#" class="txt3">
-								忘記密碼?
-							</a>
+<!-- 							<a href="#" class="txt3"> -->
+<!-- 								忘記密碼? -->
+<!-- 							</a><br> -->
+					<a class="txt1" id="onekey" href="#">紀岱昀/林昱伸</a><br>
+					<a class="txt1" id="twokey" href="#">林羽墨/陳厚丞</a><br>
+					<a class="txt1" id="threekey" href="#">陳宥芸</a>
 						</div>
 					</div>
 
@@ -78,7 +84,6 @@
 							登入
 						</button>
 					</div>
-
 				</form>
 			</div>
 		</div>
@@ -88,6 +93,33 @@
 	<div id="dropDownSelect1"></div>
 	
 	
+	
+
+<script type="text/javascript">
+//一鍵輸入
+$('#onekey').on('click', function(){
+	$('#account1').val('eeit12901');
+	$('#pwd1').val('password01');
+}).on('dblclick', function(){
+	$('#account1').val('eeit12902');
+	$('#pwd1').val('password02');
+})
+
+//一鍵輸入
+$('#twokey').on('click', function(){
+	$('#account1').val('eeit12903');
+	$('#pwd1').val('password03');
+}).on('dblclick', function(){
+	$('#account1').val('eeit12904');
+	$('#pwd1').val('password04');
+})
+
+//一鍵輸入
+$('#threekey').on('click', function(){
+	$('#account1').val('eeit12905');
+	$('#pwd1').val('password05');
+})
+</script>	
 	
 	
 	

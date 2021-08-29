@@ -375,7 +375,7 @@ public class MemberController {
 		memberService.saveMember(member);
 		
 		
-		return "redirect:/Member/login";
+		return "redirect:/Member/logout";
 	}
 
 	// 確認刪除的單筆是否正確
