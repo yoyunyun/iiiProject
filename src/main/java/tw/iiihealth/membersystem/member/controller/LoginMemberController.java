@@ -1,12 +1,17 @@
 package tw.iiihealth.membersystem.member.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import tw.iiihealth.membersystem.member.model.Member;
+import tw.iiihealth.membersystem.member.service.MemberService;
 
 
 
@@ -19,28 +24,26 @@ import tw.iiihealth.membersystem.member.model.Member;
 @Controller
 public class LoginMemberController {
 	
-	@RequestMapping("/test")
-	public ModelAndView test(@ModelAttribute("member") Member member, Model m) {
-		return new ModelAndView("membersystem/test");
-	}
 	
-	//首頁(無會員)
-	@RequestMapping("/HealthProject")
-	public ModelAndView index1() {
-		return new ModelAndView("membersystem/Index");
-	}
+	@Autowired
+	private MemberService memberService;
+	
+	
+//	@RequestMapping("/test")
+//	public ModelAndView test(@ModelAttribute("member") Member member, Model m) {
+//		return new ModelAndView("membersystem/test");
+//	}
+	
+//	//首頁(無會員)
+//	@RequestMapping("/HealthProject")
+//	public ModelAndView index1() {
+//		return new ModelAndView("index");
+//	}
 
-	// 登入(1)
-	@RequestMapping("/Member/")
-	public ModelAndView memberLogin1() {
-		return new ModelAndView("membersystem/Login/MemberLogin");
-	}
 
-	// 登入(2)
-	@RequestMapping("/Member/login")
-	public ModelAndView managerLogin2() {
-		return new ModelAndView("membersystem/Login/MemberLogin");
-	}
+
+
+
 
 	// 登入失敗
 	@RequestMapping("/Member/login/AccessDenied")
