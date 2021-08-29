@@ -19,7 +19,7 @@ import tw.iiihealth.taxi.model.TaxiBean;
 import tw.iiihealth.taxi.model.TaxiService;
 
 @Controller
-@RequestMapping(path = "/taxi")
+@RequestMapping(path = "/taxiFront")
 @SessionAttributes(names = { "totalPages", "totalElement" } )
 public class FrontTaxiController {
 
