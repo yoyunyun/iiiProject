@@ -100,13 +100,11 @@
 
 
     <!-- MAIN -->
-    <div class="slide-item overlay" style="background-image: url('${pageContext.request.contextPath}/images/slider-2.jpg')">
+    <div class="slide-item overlay" style="background-image: url('${pageContext.request.contextPath}/images/藥物系統.jpg')">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 align-self-center">
-            <h1 class="heading mb-3">健康悠生伴你一生</h1>
-            <p class="lead text-white mb-5">健康一生 悠活一生</p>
-            <p><a href="about.html" class="btn btn-primary">關於我們</a></p>
+            <h1 class="heading mb-3">藥物查詢系統</h1>   
           </div>
         </div>
       </div>  
@@ -166,7 +164,7 @@
 
 
   </div> <!-- .site-wrap -->
-
+<script src="/js/jquery-3.6.0.js"></script>
 <%@ include file="/WEB-INF/pages/user-js.jsp"%>
 
 </body>
