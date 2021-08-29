@@ -221,8 +221,8 @@
 
   </div> <!-- .site-wrap -->
 
-<%@ include file="/WEB-INF/pages/user-js.jsp"%>
 <script src="/js/jquery-3.3.1.min.js"></script>
+<%@ include file="/WEB-INF/pages/user-js.jsp"%>
 
 </body>
 </html>
