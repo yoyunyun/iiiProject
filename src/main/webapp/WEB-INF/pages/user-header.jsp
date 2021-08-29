@@ -20,7 +20,7 @@
                 <a href="services.html" class="nav-link">便利專區</a>
                 <ul class="dropdown">
                   <li><a href="/taxiFront/fronttaximainpage.controller" class="nav-link">叫車資訊</a></li>
-                  <li><a href="/taxiFront/frontlocmainpage.controller" class="nav-link">尋找附近店家</a></li>
+                  <li><a href="/taxiFront/frontlocmainpage.controller" class="nav-link">尋找醫療機構</a></li>
                 </ul>
               </li>
 
