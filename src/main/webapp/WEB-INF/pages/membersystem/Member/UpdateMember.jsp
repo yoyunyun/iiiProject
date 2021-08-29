@@ -169,7 +169,7 @@
 								<h2 style="margin: 8px 150px">請填寫註冊資料</h2>
 								<div class="card-body">
 										<table class="table  table-hover">
-									<form:form id="newLoc" method="POST" action="/Member/displayUpdateMember" modelAttribute="member" enctype="multipart/form-data">
+									<form:form id="newLoc" method="POST" action="/Member/displayUpdateMember" modelAttribute="member" enctype="multipart/form-data" onsubmit="return checkSubBtn();">
 											<tr>
 												<td><form:label path="membername">被看護人姓名:</form:label></td>
 												<td>

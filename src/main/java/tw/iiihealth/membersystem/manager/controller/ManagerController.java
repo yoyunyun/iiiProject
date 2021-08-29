@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.iiihealth.membersystem.manager.model.Manager;
 import tw.iiihealth.membersystem.manager.service.MailService;
@@ -28,6 +29,7 @@ import tw.iiihealth.membersystem.manager.service.ManagerService;
 //	陳厚丞 帳:eeit12904  密:password04
 //	陳宥芸 帳:eeit12905  密:password05
 
+@SessionAttributes(names="user")
 @Controller
 public class ManagerController {
 	
@@ -54,11 +56,6 @@ public class ManagerController {
 	// 註冊單筆(跳轉)
 	@RequestMapping(path = "/Manager/insertManager", method = {RequestMethod.GET, RequestMethod.POST})
 	public String insertManager(@ModelAttribute("manager") Manager manager, Model m) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		m.addAttribute("user", user);
 		
 		m.addAttribute("manager", manager);
 
@@ -68,11 +65,6 @@ public class ManagerController {
 	// 註冊單筆(返回上一頁)
 	@PostMapping(path = "/Manager/reInsertManager")
 	public String reInsertManager(@ModelAttribute("manager") Manager manager, Model m) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		m.addAttribute("user", user);
 		
 		m.addAttribute("manager", manager);
 
@@ -82,11 +74,6 @@ public class ManagerController {
 	// 確認註冊的單筆是否正確
 	@PostMapping(path = "/Manager/displayInsertManager")
 	public String displayInsertManager(@ModelAttribute("manager") Manager manager, Model m) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		m.addAttribute("user", user);
 		
 		m.addAttribute("manager", manager);
 
@@ -116,11 +103,6 @@ public class ManagerController {
 	@PostMapping(path = "/Manager/updateManager")
 	public String updateManager(@ModelAttribute("manager") Manager manager,
 			@RequestParam(name = "managerid") int managerid, Model m) {
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		m.addAttribute("user", user);
 
 		manager = managerService.searchManagerId(managerid);
 		
@@ -132,11 +114,6 @@ public class ManagerController {
 	// 修改單筆(返回上一頁)
 	@PostMapping(path = "/Manager/reUpdateManager")
 	public String reUpdateManager(@ModelAttribute("manager") Manager manager, Model m) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		m.addAttribute("user", user);
 		
 		m.addAttribute("manager", manager);
 
@@ -146,11 +123,6 @@ public class ManagerController {
 	// 確認修改的單筆是否正確
 	@PostMapping(path = "/Manager/displayUpdateManager")
 	public String displayUpdateManager(@ModelAttribute("manager") Manager manager, Model m) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		m.addAttribute("user", user);
 		
 		m.addAttribute("manager", manager);
 
@@ -173,11 +145,6 @@ public class ManagerController {
 	// 確認刪除的單筆是否正確
 	@PostMapping(path = "/Manager/displayDeleteManager")
 	public String displayDeleteManager(@RequestParam(name = "managerid") int managerid, Model m) {
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		m.addAttribute("user", user);
 
 		Manager manager = managerService.searchManagerId(managerid);
 		m.addAttribute("manager", manager);
