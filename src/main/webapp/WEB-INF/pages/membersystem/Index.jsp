@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page
+	import="org.springframework.security.core.*,org.springframework.security.core.context.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,7 +107,35 @@
                     <li><a href="#" class="nav-link">藥品包裝</a></li>
                   </ul>
                 </li>
-                
+<%
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		if (auth != null) {
+%>
+               <li class="has-children">
+                  <a href="/Member/searchOneMemberAction.controller" class="nav-link">歡迎您，${member.membername}</a>
+                  <ul class="dropdown">
+                   <li class="has-children">
+                      <a href="#">會員專區</a>
+                      <ul class="dropdown">
+                        <li><a href="/Member/searchOneMemberAction.controller">會員個人資料</a></li>
+                        <li><a href="/Member/logout">會員登出</a></li>
+                        <li><a href="/HealthProject/insertMember">會員註冊</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-children">
+                      <a href="#">廠商專區</a>
+                      <ul class="dropdown">
+                        <li><a href="#">廠商登入</a></li>
+                        <li><a href="#">廠商註冊</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+<%
+		}else{
+%>
+		
                <li class="has-children">
                   <a href="#" class="nav-link">登入</a>
                   <ul class="dropdown">
@@ -125,6 +155,12 @@
                     </li>
                   </ul>
                 </li>
+
+<%
+		}
+%>
+                
+
                 
                 <li><a href="about.html" class="nav-link">關於我們</a></li>
                 <li><a href="contact.html" class="nav-link">聯絡我們</a></li>

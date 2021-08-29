@@ -351,7 +351,7 @@ public class MemberController {
 		memberService.saveMember(member);
 		
 		
-		return "redirect:/Member/searchOneMemberAction.controller";
+		return "redirect:/Member/login";
 	}
 
 	// 確認刪除的單筆是否正確

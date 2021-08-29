@@ -41,12 +41,12 @@
 
     <!-- MAIN -->
 
-    <div class="slide-item overlay" style="background-image: url('images/slider-2.jpg')">
+    <div class="slide-item overlay" style="background-image: url('/images/Taxi.jpg')">
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-6 align-self-center">
-            <h1 class="heading mb-3">便利專區</h1>
-            <p class="lead text-white">提供叫車資訊、長照專車、以及相關醫療店家地址，多個生活需求一次滿足，讓長者的生活充滿便利</p>
+            <h1 class="heading mb-3">計程車資訊</h1>
+            <p class="lead text-white">提供多家計程車資訊，不管是跨縣市還是長照專車，均可透過平台搜尋</p>
           </div>
         </div>
       </div>

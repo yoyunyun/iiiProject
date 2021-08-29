@@ -80,12 +80,12 @@
 
 
 
-    <div class="slide-item overlay" style="background-image: url('/images/slider-2.jpg')">
+    <div class="slide-item overlay" style="background-image: url('/images/location.jpg')">
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-6 align-self-center">
-            <h1 class="heading mb-3">便利專區</h1>
-            <p class="lead text-white mb-5">提供叫車資訊、長照專車、以及相關醫療店家地址，多個相關需求一次滿足，讓長者的生活充滿便利</p>
+            <h1 class="heading mb-3">醫療機構資訊</h1>
+            <p class="lead text-white mb-5">提供相關醫療店家地址，包含醫院、藥局、長照中心，多個相關需求一次滿足，讓長者的生活充滿便利</p>
             <p><a href="#" class="btn btn-primary">尋找附近店家</a></p>
           </div>
         </div>
