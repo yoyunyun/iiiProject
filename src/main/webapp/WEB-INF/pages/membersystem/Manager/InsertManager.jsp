@@ -13,6 +13,10 @@
 <meta name="author" content="" />
 <title>健康優生網</title>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+</head>
+
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
@@ -41,9 +45,9 @@
 											<tr>
 												<td><form:label path="managergender">性別:</form:label></td>
 												<td>
-													<form:radiobutton path="managergender" value="男" label="男" />
-            										<form:radiobutton path="managergender" value="女" label="女" />
-            										<form:radiobutton path="managergender" value="其他" label="其他" />
+													<form:radiobutton id="male" path="managergender" value="男" label="男" />
+            										<form:radiobutton id="female" path="managergender" value="女" label="女" />
+            										<form:radiobutton id="other" path="managergender" value="其他" label="其他" />
             										<span id="genderCheck"></span>
             									</td>
 											</tr>
@@ -63,7 +67,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td><label id="pwd2">確認密碼:</label></td>
+												<td><label>確認密碼:</label></td>
 												<td>
 													<input type="password" id="pwd2" maxlength="15" size="15" />
 													<span id="pwd2Check"></span>
@@ -105,8 +109,8 @@
 											</tr>
 									</table>
 
+									<button id="onekey">範例</button>
 <!-- 									<button id="onekey">錯誤範例</button> -->
-									<button id="twokey">正確範例</button>
 
 								</div>
 								<div class="col-md-6"></div>
@@ -135,31 +139,31 @@
 //一鍵輸入
 $('#onekey').on('click', function(){
 	$('#managername').val('林政達');
-	$('#sex1').prop('checked',true)
-	$('#account1').val('1258wsdq3');
-	$('#pwd1').val('8755koisnmw3');
+	$('#male').prop('checked',true)
+	$('#manageraccount').val('1258wsdq3');
+	$('#managerpwd').val('8755koisnmw3');
 	$('#pwd2').val('8755koisnmw3');
-	$('#year1').val('77');
-	$('#month1').val('5');
-	$('#day1').val('15');
-	$('#email1').val('iiieeit12907@gmail.com');
+	$('#manageryear').val('77');
+	$('#managermonth').val('5');
+	$('#managerday').val('15');
+	$('#manageremail').val('iiieeit12907@gmail.com');
 }).on('dblclick', function(){
-	$('#ename1').val('黃薇聿');
-	$('#sex2').prop('checked',true)
-	$('#account1').val('dds16585');
-	$('#pwd1').val('rosd28asdfa');
+	$('#managername').val('黃薇聿');
+	$('#female').prop('checked',true)
+	$('#manageraccount').val('dds16585');
+	$('#managerpwd').val('rosd28asdfa');
 	$('#pwd2').val('rosd28asdfa');
-	$('#year1').val('73');
-	$('#month1').val('8');
-	$('#day1').val('9');
-	$('#email1').val('iiieeit12907@gmail.com');
+	$('#manageryear').val('73');
+	$('#managermonth').val('8');
+	$('#managerday').val('9');
+	$('#manageremail').val('iiieeit12907@gmail.com');
 })
 </script>
 
 	<script>
 	
 	//Check
-    let enameCheck = document.getElementById("enameCheck");
+    let enameCheck = document.getElementById("nameCheck");
     let sexCheck = document.getElementById("sexCheck");
     let birthCheck = document.getElementById("birthCheck");
     let acntCheck = document.getElementById("acntCheck");
@@ -496,14 +500,14 @@ if(val!=true) {
     //顯示密碼
     document.getElementById("showPwd").onclick=showPwd;
         function showPwd(){
-            let pwdType=document.getElementById("pwd1").type;
+            let pwdType=document.getElementById("managerpwd").type;
             //pwdType現在是密碼的話，就轉成文字顯示
             if(pwdType === "password"){
-                document.getElementById("pwd1").type="text";
+                document.getElementById("managerpwd").type="text";
                 document.getElementById("pwd2").type="text";
                 //pwdType現在是文字的話，就轉回密碼來不顯示
             }else{
-                document.getElementById("pwd1").type="password";
+                document.getElementById("managerpwd").type="password";
                 document.getElementById("pwd2").type="password";
             }
         }
