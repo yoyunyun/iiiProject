@@ -36,7 +36,7 @@ function load(indexPage){
 	
 $.ajax({
    type:'post',
-   url:'/taxi/queryfronttaxibypage/' + indexPage,
+   url:'/taxiFront/queryfronttaxibypage/' + indexPage,
    dataType:'JSON',
    contentType:'application/json',
    success: function(data) {
@@ -69,7 +69,7 @@ function query(search,indexPage){
 
 	$.ajax({	
 		   type:'get',
-		   url:'/taxi/query/' +search+'/' +indexPage ,
+		   url:'/taxiFront/query/' +search+'/' +indexPage ,
 		   dataType:'JSON',
 		   contentType:'application/json',
 		   success: function(data) {
@@ -156,7 +156,7 @@ function load(indexPage){
 	
 $.ajax({
    type:'post',
-   url:'/taxi/queryfronttaxibypage/' + indexPage,
+   url:'/taxiFront/queryfronttaxibypage/' + indexPage,
    dataType:'JSON',
    contentType:'application/json',
    success: function(data) {
@@ -188,7 +188,7 @@ function query(search,indexPage){
 
 	$.ajax({	
 		   type:'get',
-		   url:'/taxi/queryfronttaxi/' +search+'/' +indexPage ,
+		   url:'/taxiFront/queryfronttaxi/' +search+'/' +indexPage ,
 		   dataType:'JSON',
 		   contentType:'application/json',
 		   success: function(data) {

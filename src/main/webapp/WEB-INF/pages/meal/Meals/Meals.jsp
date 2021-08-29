@@ -80,7 +80,7 @@
               遠離疾病最好的方法就在於日常的保健，而正確的自食卻不啻為最經濟實惠的保健方法。
               健康與飲食的重要掌控在你我之間，絕不能夠輕視這個議題。 
             </p>
-            <p><a href="#" class="btn btn-primary">Contact　us</a></p>
+            <p><a href="${pageContext.request.contextPath}/contact" class="btn btn-primary">Contact　us</a></p>
           </div>
         </div>
       </div>  
@@ -135,7 +135,7 @@
               <div class="post-meta d-flex justify-content-center">
                 <span>
                   <span class="icon-truck"></span>
-                  <span>Deliverable</span>
+                  <span style="font-size:8px">Deliverable</span>
                 </span>
                 <span>
                   <span class="icon-dollar"></span>
@@ -180,6 +180,7 @@
 
   </div> <!-- .site-wrap -->
   
+<script src="/js/jquery-3.3.1.min.js"></script>
 <%@ include file="/WEB-INF/pages/user-js.jsp"%>
   
   <script>
