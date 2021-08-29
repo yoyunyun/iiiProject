@@ -26,12 +26,7 @@
 		
 		<%@ include file="/WEB-INF/pages/left-top-bar.jsp"%>
 			
-				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
-				</div>
-			</nav>
-		</div>
+		
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
@@ -104,17 +99,14 @@
 													<td><label>藥品敘述:</label></td>
 													<td><form:input path="direction" /></td>
 												</tr>
-													<td><label></label></td>
+												<tr>
 													<td><input type="submit" value="提交" class="save"
 														id="update" /></td>
+													<td><input type="button" class="btn"
+											onclick="history.back()" value="取消新增"></td>
 												</tr>
-												<tr>
-													<td><label></label></td>
-													<td><p>
-															<a href="${pageContext.request.contextPath}/drug/findalldrug">返回主頁</a>
-														</p>
-													</td>
-												</tr>
+										<tr><td><input type="button" value="一鍵輸入" id="input"/></td></tr>
+											
 											</tbody>
 										</table>
 									</form:form>
@@ -209,6 +201,12 @@
 	        //document.querySelector("#sourceImage").src = sourceImageUrl;
 	        $("#sourceImage2").attr('src', sourceImageUrl2);
 	    }
+	    
+	    $("#input").click(function(){
+	    	$("#releasedate").val("2021/08/27");
+	    	$("#drugname").val("Menopur Powder for Injection equivalent to FSH 75 IU & LH 75 IU/vial");
+	    	$("#direction").val("藥證標示主成分名稱由「menotropin」變更為「menotrophin」，藥瓶包裝標籤變更起始批號為S12302C。");	    
+	    })
 		
 	</script>
 </body>

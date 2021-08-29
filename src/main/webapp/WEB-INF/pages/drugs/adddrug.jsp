@@ -72,10 +72,11 @@
 									</tr>
 									<tr>
 										<td><input type="submit" value="送出" class="save"
-														id="update" /></td>
+														id="update" />	</td>	
 										<td><input type="button" class="btn"
 											onclick="history.back()" value="取消新增"></td>
-									</tr>
+								</tr>
+
 								</table>
 							</form:form>
 						</div>
