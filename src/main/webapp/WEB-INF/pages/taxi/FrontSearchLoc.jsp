@@ -33,14 +33,36 @@
             border-radius: 50%;
             margin:10px;
             position: relative;
-            left: 1000px;
-            top: -80px
+            left: 1100px;
+            top: -80px;
+            opacity: 0.5;
         }
+        
+        button :hover{
+        	opacity: 1;
+/*         	background-color:red; */
+          	border-radius: 50%; 
+            box-shadow:0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            width:75px;
+            height:75px;
+        }
+/*         button>#hos> :hover{ */
+/*         	background-color:#46A3FF; */
+/*         } */
         
         #choose{
         	position: relative;
         	left: 300px;
         	top:-30px
+        }
+        
+        body{
+        	background-image: url(/images/older1.png);
+            background-repeat: no-repeat;
+            background-size: 500px 500px; 
+            background-position: 750px 700px;
+            
+/*          background-attachment: fixed;  */
         }
    </style>
 </head>
@@ -69,64 +91,84 @@
     
     <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
 
-      <div class="container">
-        <div class="row align-items-center">
+    <div class="container">
+      <div class="row align-items-center">
 
-          <div class="col-6 col-xl-2">
-            <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly<span class="text-primary">.</span> </a></div>
-          </div>
-
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li class="has-children">
-                  <a href="services.html" class="nav-link">Services</a>
-                  <ul class="dropdown">
-                    <li><a href="#" class="nav-link">Amazing Atmosphere</a></li>
-                    <li><a href="#" class="nav-link">Courteous & Caring Staff</a></li>
-                    <li><a href="#" class="nav-link">Hospice Care</a></li>
-                    <li><a href="#" class="nav-link">Quality Medical Care</a></li>
-                    <li><a href="#" class="nav-link">Excellent Cuisine</a></li>
-                    <li class="has-children">
-                      <a href="#">More Links</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="testimonial.html" class=" nav-link">Testimonials</a></li>
-
-
-                <li><a href="blog.html" class="active nav-link">Blog</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-facebook"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-twitter"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li>
-              </ul>
-            </nav>
-          </div>
-
-
-          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-white"></span></a></div>
-
+        <div class="col-6 col-xl-2">
+          <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly<span class="text-primary">.</span> </a></div>
         </div>
-      </div>
 
-    </header>
+        <div class="col-12 col-md-10 d-none d-xl-block">
+          <nav class="site-navigation position-relative text-right" role="navigation">
+
+            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+              <li><a href="index.html" class="active nav-link">首頁</a></li>
+
+
+              <li class="has-children">
+                <a href="services.html" class="nav-link">便利專區</a>
+                <ul class="dropdown">
+                  <li><a href="/taxi/fronttaximainpage.controller" class="nav-link">叫車資訊</a></li>
+                  <li>
+                    <a href="/taxi/frontlocmainpage.controller">尋找附近店家</a></li>
+                </ul>
+              </li>
+
+              <li class="has-children">
+                <a href="services.html" class="nav-link">長者專區</a>
+                <ul class="dropdown">
+                  <li><a href="#" class="nav-link">看護服務</a></li>
+                  <li><a href="#" class="nav-link">輔具購買</a></li>
+                </ul>
+              </li>
+
+
+               <li class="has-children">
+                <a href="services.html" class="nav-link">營養專區</a>
+                <ul class="dropdown">
+                  <li><a href="#" class="nav-link">營養餐</a></li>
+                  <li><a href="#" class="nav-link">食品資料</a></li>
+                </ul>
+              </li>
+
+
+              <li class="has-children">
+                <a href="services.html" class="nav-link">用藥查詢</a>
+                <ul class="dropdown">
+                  <li><a href="#" class="nav-link">藥品辨識</a></li>
+                  <li><a href="#" class="nav-link">藥品包裝</a></li>
+                </ul>
+              </li>
+
+              <!-- <li><a href="contact.html" class="nav-link">會員登入</a></li> -->
+              <li class="has-children">
+                <a href="services.html" class="nav-link">登入</a>
+                <ul class="dropdown">
+                  <li><a href="#" class="nav-link">會員登入</a></li>
+                  <li><a href="#" class="nav-link">廠商登入</a></li>
+                </ul>
+              </li>
+              
+              <li><a href="about.html" class="nav-link">關於我們</a></li>
+              <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
+            </ul>
+
+          </nav>
+        </div>
+
+        <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-white"></span></a></div>
+
+      </div>
+    </div>
+
+  </header>
 
 
     <!-- MAIN -->
 
 
 
-    <div class="slide-item overlay" style="background-image: url('images/slider-2.jpg')">
+    <div class="slide-item overlay" style="background-image: url('/images/slider-2.jpg')">
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-6 align-self-center">
@@ -151,7 +193,7 @@
     <button id="care" style="background-color: #E2C2DE;"><h4 style="margin: 2px 2px;">長照中心</h4></button>
 </div> 
 <div class="site-section" style="padding: 45px 0 90px 0">
-      <div class="container">
+      <div class="container" >
         <div class="row mb-5 justify-content-center">
           <div class="col-7 text-center">
             <div class="heading">
@@ -161,6 +203,7 @@
         </div>
         
         <div class="row" id="insert" style="text-align: center">
+        	<div id="pic"></div>
           </div>
           
           </div>
@@ -318,7 +361,7 @@ function search(){
                 		  
             "<div class='col-12 col-sm-6 col-md-4 mb-4'>"+
             "<div class='blog-entry'>"+
-              "<a href='/taxi/search/"+(ele.id)+"' class='d-block' target='_blank'>" +
+              "<a href='/taxi/search/"+(ele.id)+"' class='d-block'>" +
                 "<img src='/images/hospital2.png' alt='Image' class='img-fluid'></a>"+
               "<div class='post-meta d-flex justify-content-center'>" +
                 "<span>"+

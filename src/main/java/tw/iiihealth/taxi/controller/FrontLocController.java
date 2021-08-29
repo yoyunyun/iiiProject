@@ -17,7 +17,7 @@ import tw.iiihealth.taxi.model.LocService;
 import tw.iiihealth.taxi.model.Location;
 
 @Controller
-@RequestMapping(path="/taxi")
+@RequestMapping(path="/taxiFront")
 public class FrontLocController {
 
 	@Autowired
