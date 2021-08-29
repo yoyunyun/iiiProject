@@ -6,21 +6,21 @@
         <div class="row align-items-center">
 
           <div class="col-6 col-xl-2">
-            <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly<span class="text-primary">.</span> </a></div>
+            <div class="mb-0 site-logo"><a href="${pageContext.request.contextPath}/index.jsp" class="mb-0">Elderly<span class="text-primary">.</span> </a></div>
           </div>
 
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="active nav-link">首頁</a></li>
+                <li><a href="${pageContext.request.contextPath}/index.jsp" class="active nav-link">首頁</a></li>
 
 
 			  <li class="has-children">
                 <a href="services.html" class="nav-link">便利專區</a>
                 <ul class="dropdown">
                   <li><a href="/taxiFront/fronttaximainpage.controller" class="nav-link">叫車資訊</a></li>
-                  <li><a href="/taxiFront/frontlocmainpage.controller" class="nav-link">尋找附近店家</a></li>
+                  <li><a href="/taxiFront/frontlocmainpage.controller" class="nav-link">尋找醫療機構</a></li>
                 </ul>
               </li>
 
@@ -48,14 +48,13 @@
                     <li><a href="${pageContext.request.contextPath}/DrugProductr/findalldrugproductFront" class="nav-link">藥品包裝</a></li>
                   </ul>
                 </li>
-
-<!--                 <li><a href="about.html" class="nav-link">關於我們</a></li> -->
-                <li><a href="${pageContext.request.contextPath}/contact" class="nav-link">聯絡我們</a></li>
                 
-                <!-- <li><a href="contact.html" class="nav-link">會員登入</a></li> -->
+                
+                
 <%
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		if (auth != null) {
 %>
                <li class="has-children">
                   <a href="/Member/searchOneMemberAction.controller" class="nav-link">歡迎您，${member.membername}</a>
@@ -73,10 +72,14 @@
                       <ul class="dropdown">
                         <li><a href="#">廠商登入</a></li>
                         <li><a href="#">廠商註冊</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
 <%
-        }else{
+		}else{
 %>
-        
+		
                <li class="has-children">
                   <a href="#" class="nav-link">登入</a>
                   <ul class="dropdown">
@@ -96,9 +99,16 @@
                     </li>
                   </ul>
                 </li>
+
 <%
-        }
+		}
 %>
+
+
+
+<!--                 <li><a href="about.html" class="nav-link">關於我們</a></li> -->
+                <li><a href="${pageContext.request.contextPath}/contact" class="nav-link">聯絡我們</a></li>
+
               </ul>
 
             </nav>
