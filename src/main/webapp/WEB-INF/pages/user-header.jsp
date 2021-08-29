@@ -48,14 +48,13 @@
                     <li><a href="${pageContext.request.contextPath}/DrugProductr/findalldrugproductFront" class="nav-link">藥品包裝</a></li>
                   </ul>
                 </li>
-
-<!--                 <li><a href="about.html" class="nav-link">關於我們</a></li> -->
-                <li><a href="${pageContext.request.contextPath}/contact" class="nav-link">聯絡我們</a></li>
                 
-                <!-- <li><a href="contact.html" class="nav-link">會員登入</a></li> -->
+                
+                
 <%
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		if (auth != null) {
 %>
                <li class="has-children">
                   <a href="/Member/searchOneMemberAction.controller" class="nav-link">歡迎您，${member.membername}</a>
@@ -73,10 +72,14 @@
                       <ul class="dropdown">
                         <li><a href="#">廠商登入</a></li>
                         <li><a href="#">廠商註冊</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
 <%
-        }else{
+		}else{
 %>
-        
+		
                <li class="has-children">
                   <a href="#" class="nav-link">登入</a>
                   <ul class="dropdown">
@@ -96,9 +99,16 @@
                     </li>
                   </ul>
                 </li>
+
 <%
-        }
+		}
 %>
+
+
+
+<!--                 <li><a href="about.html" class="nav-link">關於我們</a></li> -->
+                <li><a href="${pageContext.request.contextPath}/contact" class="nav-link">聯絡我們</a></li>
+
               </ul>
 
             </nav>
