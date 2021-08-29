@@ -16,25 +16,19 @@
                 <li><a href="index.html" class="active nav-link">首頁</a></li>
 
 
-                <li class="has-children">
-                  <a href="services.html" class="nav-link">叫車專區</a>
-                  <ul class="dropdown">
-                    <li><a href="#" class="nav-link">附近店家資訊</a></li>
-                    <li class="has-children">
-                      <a href="#">我要叫車</a>
-                      <ul class="dropdown">
-                        <li><a href="#">立即叫車</a></li>
-                        <li><a href="#">預約叫車</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
+			  <li class="has-children">
+                <a href="services.html" class="nav-link">便利專區</a>
+                <ul class="dropdown">
+                  <li><a href="/taxi/fronttaximainpage.controller" class="nav-link">叫車資訊</a></li>
+                  <li>
+                    <a href="/taxi/frontlocmainpage.controller">尋找附近店家</a></li>
+                </ul>
+              </li>
 
-                <li class="has-children">
-                  <a href="services.html" class="nav-link">長者專區</a>
+     		    <li class="has-children">
+                  <a href="#" class="nav-link">長者專區</a>
                   <ul class="dropdown">
-                    <li><a href="#" class="nav-link">看護服務</a></li>
-                    <li><a href="#" class="nav-link">輔具購買</a></li>
+                    <li><a href="${pageContext.request.contextPath}/consumer/toTheFrontPage" class="nav-link">輔具購買</a></li>
                   </ul>
                 </li>
 
@@ -42,8 +36,8 @@
                  <li class="has-children">
                   <a href="services.html" class="nav-link">營養專區</a>
                   <ul class="dropdown">
-                    <li><a href="#" class="nav-link">營養餐</a></li>
-                    <li><a href="#" class="nav-link">食品資料</a></li>
+                    <li><a href="mealIndex.controller" class="nav-link">營養餐</a></li>
+                    <li><a href="dietViewIndex.controller" class="nav-link">食品資料</a></li>
                   </ul>
                 </li>
 
@@ -51,11 +45,14 @@
                 <li class="has-children">
                   <a href="services.html" class="nav-link">用藥查詢</a>
                   <ul class="dropdown">
-                    <li><a href="#" class="nav-link">藥品辨識</a></li>
-                    <li><a href="#" class="nav-link">藥品包裝</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Drug/findalldrugFront" class="nav-link">藥品辨識</a></li>
+                    <li><a href="${pageContext.request.contextPath}/DrugProductr/findalldrugproductFront" class="nav-link">藥品包裝</a></li>
                   </ul>
                 </li>
 
+<!--                 <li><a href="about.html" class="nav-link">關於我們</a></li> -->
+                <li><a href="${pageContext.request.contextPath}/contact" class="nav-link">聯絡我們</a></li>
+                
                 <!-- <li><a href="contact.html" class="nav-link">會員登入</a></li> -->
                 <li class="has-children">
                   <a href="services.html" class="nav-link">登入</a>
@@ -64,9 +61,6 @@
                     <li><a href="#" class="nav-link">廠商登入</a></li>
                   </ul>
                 </li>
-                
-                <li><a href="about.html" class="nav-link">關於我們</a></li>
-                <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
               </ul>
 
             </nav>
