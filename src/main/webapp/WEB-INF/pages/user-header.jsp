@@ -6,14 +6,14 @@
         <div class="row align-items-center">
 
           <div class="col-6 col-xl-2">
-            <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly<span class="text-primary">.</span> </a></div>
+            <div class="mb-0 site-logo"><a href="${pageContext.request.contextPath}/index.html" class="mb-0">Elderly<span class="text-primary">.</span> </a></div>
           </div>
 
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="active nav-link">首頁</a></li>
+                <li><a href="${pageContext.request.contextPath}/index.html" class="active nav-link">首頁</a></li>
 
 
 			  <li class="has-children">
