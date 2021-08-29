@@ -65,11 +65,11 @@
                 
 
 
-<c:if test="${not empty user}">
+<c:if test="${not empty user_Member}">
    
 
                <li class="has-children">
-                  <a href="/Member/searchOneMemberAction.controller" class="nav-link">歡迎您，${user.membername}</a>
+                  <a href="/Member/searchOneMemberAction.controller" class="nav-link">歡迎您，${user_Member.membername}</a>
                   <ul class="dropdown">
                    <li class="has-children">
                       <a href="#">會員專區</a>
@@ -91,7 +91,7 @@
 </c:if>
 
 
-<c:if test="${empty user}">	
+<c:if test="${empty user_Member}">	
 		
                <li class="has-children">
                   <a href="#" class="nav-link">登入</a>

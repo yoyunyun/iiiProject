@@ -40,7 +40,7 @@ import tw.iiihealth.membersystem.member.service.MemberService;
 //張仲淑 帳:cj4y24mabc7  		密:bp969hg8
 
 
-@SessionAttributes(names={"user"})
+@SessionAttributes(names={"user_Member"})
 @Controller
 public class MemberController {
 
@@ -57,8 +57,8 @@ public class MemberController {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
-		Member user = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user", user);
+		Member user_Member = memberService.searchUserDetails(memberaccount);
+		m.addAttribute("user_Member", user_Member);
 		
 		
 		return new ModelAndView("membersystem/Login/MemberLogin");
@@ -92,8 +92,8 @@ public class MemberController {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
-		Member user = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user", user);
+		Member user_Member = memberService.searchUserDetails(memberaccount);
+		m.addAttribute("user_Member", user_Member);
 		
 		List<Member> list = memberService.searchAllMember();
 		m.addAttribute("allMember", list);
@@ -106,10 +106,10 @@ public class MemberController {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
-		Member user = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user", user);
+		Member user_Member = memberService.searchUserDetails(memberaccount);
+		m.addAttribute("user_Member", user_Member);
 		
-		Member member = memberService.searchMemberId(user.getMemberid());
+		Member member = memberService.searchMemberId(user_Member.getMemberid());
 		m.addAttribute("member", member);
 		return "membersystem/Member/MemberFront";
 	}
@@ -222,10 +222,10 @@ public class MemberController {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
-		Member user = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user", user);
+		Member user_Member = memberService.searchUserDetails(memberaccount);
+		m.addAttribute("user_Member", user_Member);
 		
-		member = memberService.searchMemberId(user.getMemberid());
+		member = memberService.searchMemberId(user_Member.getMemberid());
 		
 		List<String> handbookOption = new ArrayList<String>();
 		handbookOption.add("有");
@@ -245,8 +245,8 @@ public class MemberController {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
-		Member user = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user", user);
+		Member user_Member = memberService.searchUserDetails(memberaccount);
+		m.addAttribute("user_Member", user_Member);
 		
 		//刪除本機舊圖
 		String saveDir = request.getSession().getServletContext().getRealPath("/") + "MemberPhoto\\";
@@ -273,8 +273,8 @@ public class MemberController {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
-		Member user = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user", user);
+		Member user_Member = memberService.searchUserDetails(memberaccount);
+		m.addAttribute("user_Member", user_Member);
 		
 		if (multipartFile!= null && !multipartFile.isEmpty()) {
 			// 抓取檔案名稱
@@ -326,10 +326,10 @@ public class MemberController {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
-		Member user = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user", user);
+		Member user_Member = memberService.searchUserDetails(memberaccount);
+		m.addAttribute("user_Member", user_Member);
 		
-		member = memberService.searchMemberId(user.getMemberid());
+		member = memberService.searchMemberId(user_Member.getMemberid());
 		
 		m.addAttribute("member", member);
 
@@ -342,8 +342,8 @@ public class MemberController {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
-		Member user = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user", user);
+		Member user_Member = memberService.searchUserDetails(memberaccount);
+		m.addAttribute("user_Member", user_Member);
 		
 		m.addAttribute("member", member);
 		
@@ -356,8 +356,8 @@ public class MemberController {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
-		Member user = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user", user);
+		Member user_Member = memberService.searchUserDetails(memberaccount);
+		m.addAttribute("user_Member", user_Member);
 		
 		m.addAttribute("member", member);
 		
