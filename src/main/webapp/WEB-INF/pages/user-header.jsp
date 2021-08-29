@@ -29,7 +29,7 @@
 
 
 			  <li class="has-children">
-                <a href="services.html" class="nav-link">便利專區</a>
+                <a href="#" class="nav-link">便利專區</a>
                 <ul class="dropdown">
                   <li><a href="/taxiFront/fronttaximainpage.controller" class="nav-link">叫車資訊</a></li>
                   <li><a href="/taxiFront/frontlocmainpage.controller" class="nav-link">尋找醫療機構</a></li>
@@ -45,7 +45,7 @@
 
 
                  <li class="has-children">
-                  <a href="services.html" class="nav-link">營養專區</a>
+                  <a href="#" class="nav-link">營養專區</a>
                   <ul class="dropdown">
                     <li><a href="${pageContext.request.contextPath}/mealIndex.controller" class="nav-link">營養餐</a></li>
                     <li><a href="${pageContext.request.contextPath}/dietIndex.controller" class="nav-link">食品資料</a></li>
@@ -54,7 +54,7 @@
 
 
                 <li class="has-children">
-                  <a href="services.html" class="nav-link">用藥查詢</a>
+                  <a href="#" class="nav-link">用藥查詢</a>
                   <ul class="dropdown">
                     <li><a href="${pageContext.request.contextPath}/Drugfront/findalldrugFront" class="nav-link">藥品辨識</a></li>
                     <li><a href="${pageContext.request.contextPath}/Drugfront/findalldrugproductFront" class="nav-link">藥品包裝</a></li>
