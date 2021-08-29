@@ -18,9 +18,11 @@
               <div class="col-lg-4">
                 <h2 class="footer-heading mb-4">Quick Links</h2>
                 <ul class="list-unstyled">
-                  <li><a href="#">Amazing Atmosphere</a></li>
-                  <li><a href="#">Caring Staff</a></li>
-                  <li><a href="#">FAQs</a></li>
+                  <li><a href="/taxi/fronttaximainpage.controller">Taxi</a></li>
+                  <li><a href="/taxi/frontlocmainpage.controller">Location</a></li>
+                  <li><a href="${pageContext.request.contextPath}/consumer/toTheFrontPage">Assistive device shop</a></li>
+                  <li><a href="mealIndex.controller">Nutrition</a></li>
+                  <li><a href="#"></a></li>
                   <li><a href="#">About Us</a></li>
                   <li><a href="#">Contact Us</a></li>
                 </ul>

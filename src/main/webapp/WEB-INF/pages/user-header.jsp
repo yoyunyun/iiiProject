@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="org.springframework.security.core.*,org.springframework.security.core.context.*"%>
     <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
 
       <div class="container">
@@ -19,9 +19,8 @@
 			  <li class="has-children">
                 <a href="services.html" class="nav-link">便利專區</a>
                 <ul class="dropdown">
-                  <li><a href="/taxi/fronttaximainpage.controller" class="nav-link">叫車資訊</a></li>
-                  <li>
-                    <a href="/taxi/frontlocmainpage.controller">尋找附近店家</a></li>
+                  <li><a href="/taxiFront/fronttaximainpage.controller" class="nav-link">叫車資訊</a></li>
+                  <li><a href="/taxiFront/frontlocmainpage.controller" class="nav-link">尋找附近店家</a></li>
                 </ul>
               </li>
 
@@ -36,8 +35,8 @@
                  <li class="has-children">
                   <a href="services.html" class="nav-link">營養專區</a>
                   <ul class="dropdown">
-                    <li><a href="mealIndex.controller" class="nav-link">營養餐</a></li>
-                    <li><a href="dietViewIndex.controller" class="nav-link">食品資料</a></li>
+                    <li><a href="${pageContext.request.contextPath}/mealIndex.controller" class="nav-link">營養餐</a></li>
+                    <li><a href="${pageContext.request.contextPath}/dietIndex.controller" class="nav-link">食品資料</a></li>
                   </ul>
                 </li>
 
@@ -54,13 +53,52 @@
                 <li><a href="${pageContext.request.contextPath}/contact" class="nav-link">聯絡我們</a></li>
                 
                 <!-- <li><a href="contact.html" class="nav-link">會員登入</a></li> -->
-                <li class="has-children">
-                  <a href="services.html" class="nav-link">登入</a>
+<%
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+%>
+               <li class="has-children">
+                  <a href="/Member/searchOneMemberAction.controller" class="nav-link">歡迎您，${member.membername}</a>
                   <ul class="dropdown">
-                    <li><a href="#" class="nav-link">會員登入</a></li>
-                    <li><a href="#" class="nav-link">廠商登入</a></li>
+                   <li class="has-children">
+                      <a href="#">會員專區</a>
+                      <ul class="dropdown">
+                        <li><a href="/Member/searchOneMemberAction.controller">會員個人資料</a></li>
+                        <li><a href="/Member/logout">會員登出</a></li>
+                        <li><a href="/HealthProject/insertMember">會員註冊</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-children">
+                      <a href="#">廠商專區</a>
+                      <ul class="dropdown">
+                        <li><a href="#">廠商登入</a></li>
+                        <li><a href="#">廠商註冊</a></li>
+<%
+        }else{
+%>
+        
+               <li class="has-children">
+                  <a href="#" class="nav-link">登入</a>
+                  <ul class="dropdown">
+                   <li class="has-children">
+                      <a href="#">會員專區</a>
+                      <ul class="dropdown">
+                        <li><a href="/Member/login">會員登入</a></li>
+                        <li><a href="/HealthProject/insertMember">會員註冊</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-children">
+                      <a href="#">廠商專區</a>
+                      <ul class="dropdown">
+                        <li><a href="#">廠商登入</a></li>
+                        <li><a href="#">廠商註冊</a></li>
+                      </ul>
+                    </li>
                   </ul>
                 </li>
+<%
+        }
+%>
               </ul>
 
             </nav>
