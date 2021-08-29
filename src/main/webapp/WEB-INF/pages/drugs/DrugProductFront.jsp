@@ -100,13 +100,13 @@
 
 
     <!-- MAIN -->
-    <div class="slide-item overlay" style="background-image: url('${pageContext.request.contextPath}/images/slider-2.jpg')">
+    <div class="slide-item overlay" style="background-image: url('${pageContext.request.contextPath}/images/藥物產品.jpg')">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 align-self-center">
-            <h1 class="heading mb-3">健康悠生伴你一生</h1>
-            <p class="lead text-white mb-5">健康一生 悠活一生</p>
-            <p><a href="about.html" class="btn btn-primary">關於我們</a></p>
+            <h1 class="heading mb-3">藥物包裝</h1>
+            <p class="lead text-white mb-5">幫助您查詢近期藥物變更資訊</p>
+           
           </div>
         </div>
       </div>  
@@ -173,8 +173,8 @@
 <%@ include file="/WEB-INF/pages/user-site-footer.jsp"%>
 
   </div> <!-- .site-wrap -->
-
- <%@ include file="/WEB-INF/pages/user-js.jsp"%>
+<script src="/js/jquery-3.6.0.js"></script>
+<%@ include file="/WEB-INF/pages/user-js.jsp"%>
 
 </body>
 </html>
