@@ -45,7 +45,7 @@
                   <a href="services.html" class="nav-link">用藥查詢</a>
                   <ul class="dropdown">
                     <li><a href="${pageContext.request.contextPath}/Drug/findalldrugFront" class="nav-link">藥品辨識</a></li>
-                    <li><a href="${pageContext.request.contextPath}/DrugProductr/findalldrugproductFront" class="nav-link">藥品包裝</a></li>
+                    <li><a href="${pageContext.request.contextPath}/DrugProduct/findalldrugproductFront" class="nav-link">藥品包裝</a></li>
                   </ul>
                 </li>
                 
