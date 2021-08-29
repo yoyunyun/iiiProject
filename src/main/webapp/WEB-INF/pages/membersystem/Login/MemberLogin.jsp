@@ -91,7 +91,7 @@
 						</span>
 						<div class="text-center p-t-46 p-b-20">
 							<span class="txt2">
-								<a class="txt1" href="/HealthProject/">返回首頁</a>
+								<a class="txt1" href="/HealthProject">返回首頁</a>
 							</span>
 						</div>
 					</div>

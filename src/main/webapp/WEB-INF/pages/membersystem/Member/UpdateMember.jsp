@@ -155,10 +155,10 @@
 											</tr>
 									</form:form>
 											<tr>
-												<td style="text-align: center"><input type="button" class="btn" onclick="CheckandSub()" value="送出" /></td>
+												<td style="text-align: center"><input type="button" class="btn" style="font-size:20px;" onclick="CheckandSub()" value="送出" /></td>
 												<td>
 													<form action="/Member/searchOneMemberAction.controller" method="post">
-														<input type="submit" class="btn" value="取消">
+														<input type="submit" class="btn" style="font-size:20px;" value="取消">
 													</form>
 												</td>
 											</tr>

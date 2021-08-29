@@ -134,7 +134,7 @@
 	<script type="text/javascript">
 //一鍵輸入
 $('#onekey').on('click', function(){
-	$('#ename1').val('林政達');
+	$('#managername').val('林政達');
 	$('#sex1').prop('checked',true)
 	$('#account1').val('1258wsdq3');
 	$('#pwd1').val('8755koisnmw3');

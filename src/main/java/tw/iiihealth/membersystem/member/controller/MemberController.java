@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import tw.iiihealth.membersystem.member.model.Member;
 import tw.iiihealth.membersystem.member.service.MemberMailService;
@@ -37,6 +39,8 @@ import tw.iiihealth.membersystem.member.service.MemberService;
 //林睿梅 帳:kpxcepbjgu3h  		密:df3isjbj
 //張仲淑 帳:cj4y24mabc7  		密:bp969hg8
 
+
+@SessionAttributes(names={"user"})
 @Controller
 public class MemberController {
 
@@ -47,20 +51,40 @@ public class MemberController {
 	private MemberMailService mailService;
 	
 	
-	//首頁(有會員)
-	@RequestMapping("/Member/HealthProject")
-	public String indexMember(Model m) {
+	// 登入
+	@RequestMapping("/Member/login")
+	public ModelAndView managerLogin2(Model m) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
 		Member user = memberService.searchUserDetails(memberaccount);
 		m.addAttribute("user", user);
 		
-		Member member = memberService.searchMemberId(user.getMemberid());
-		m.addAttribute("member", member);
 		
-		return "membersystem/MemberIndex";
+		return new ModelAndView("membersystem/Login/MemberLogin");
 	}
+	
+	
+	//首頁(無會員)
+	@RequestMapping("/HealthProject")
+	public ModelAndView index1() {
+		return new ModelAndView("index");
+	}
+	
+//	//首頁(有會員)
+//	@RequestMapping("/Member/guest")
+//	public String indexMember(Model m) {
+//		
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		String memberaccount = auth.getName();
+//		Member user = memberService.searchUserDetails(memberaccount);
+//		m.addAttribute("user", user);
+//		
+//		Member member = memberService.searchMemberId(user.getMemberid());
+//		m.addAttribute("member", member);
+//		
+//		return "index";
+//	}
 
 	// 查詢所有
 	@RequestMapping(path = "/Member/searchAllMemberAction.controller", method = {RequestMethod.GET, RequestMethod.POST})
