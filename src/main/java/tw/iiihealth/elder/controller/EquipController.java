@@ -31,10 +31,6 @@ public class EquipController {
 	@Autowired
 	EquipService equipService;
 	
-	
-
-	
-	
 	// 管理者商品頁
 	@RequestMapping(path="/findall")
 	public String findAllEquip(Model model) {
@@ -54,6 +50,7 @@ public class EquipController {
 	public String QueryById(@RequestParam("eId") int eid, Model model) {
 		Equip equip = equipService.findById(eid);
 		model.addAttribute("equip", equip);
+		
 		return "equip/equip-form";
 	}
 	
@@ -70,6 +67,7 @@ public class EquipController {
 		return "equip/equip-form";
 	}
 
+	
 	
 	// 管理者刪除
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
