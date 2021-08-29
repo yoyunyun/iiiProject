@@ -46,6 +46,7 @@
 							</div>
 							<c:if test="${!empty list}">
 								<table id="datatablesSimple">
+								<thead>
 								        <tr> 
 											<td>編號</td>
 											<td>許可證字號</td>
@@ -58,7 +59,7 @@
 											<td>修改</td>
 											<td>刪除</td>
 										</tr>
-								
+								</thead>
 								<c:forEach items="${list}" var="Drug">
 										    <tr>
 												<td>${Drug.id}</td>

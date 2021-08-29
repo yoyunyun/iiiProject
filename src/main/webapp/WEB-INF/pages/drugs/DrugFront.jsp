@@ -7,7 +7,14 @@
   <title>健康優生網</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
-
+<link href="/css/styles.css" rel="stylesheet" />
+        <script    src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="/js/datatables-simple-demo.js"></script>
+        <script src="/js/sweetalert2.all.min.js"></script>
 <%@ include file="/WEB-INF/pages/user-css-js.jsp"%>
   
   <style>
@@ -104,7 +111,11 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 align-self-center">
-            <h1 class="heading mb-3">藥物查詢系統</h1>   
+            <h1 class="heading mb-3">藥物查詢系統</h1>
+              <p class="lead text-white mb-5">
+              讓您更了解所服用的藥物
+              </p>
+               
           </div>
         </div>
       </div>  
@@ -122,7 +133,8 @@
 						</div>
 						<div class="card-body">
 							<c:if test="${!empty list}">
-								<table width="100%" style="table-layout:fixed line-height:25px;">
+								<table id="datatablesSimple">
+								<thead>
 								        <tr> 
 											<td>編號</td>
 											<td>許可證字號</td>
@@ -133,7 +145,7 @@
 											<td>顏色</td>
 											<td>外型</td>
 										</tr>
-								
+								</thead>
 								<c:forEach items="${list}" var="Drug">
 										    <tr>
 												<td>${Drug.id}</td>
