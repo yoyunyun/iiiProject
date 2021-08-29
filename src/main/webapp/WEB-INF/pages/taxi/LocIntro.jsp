@@ -279,7 +279,7 @@ $(document).ready(function(){
 function shop(id){
         $.ajax({
             type: 'post',
-            url: '/taxi/search2/' +id,
+            url: '/taxiFront/search2/' +id,
             dataType: 'JSON',
             contentType: 'application/json',
             success: function (response) {

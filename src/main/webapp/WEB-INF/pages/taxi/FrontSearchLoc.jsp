@@ -345,7 +345,7 @@ $(function(){
 function search(){
         $.ajax({
         	type:'post',
-     		url:'/taxi/queryloc/' +cv+'/'+tv+'/'+tp,
+     		url:'/taxiFront/queryloc/' +cv+'/'+tv+'/'+tp,
      		dataType:'JSON',
      		contentType:'application/json',
             success:function(response){
@@ -372,7 +372,7 @@ function search(){
                   	
                 "</span>" +
               "</div>" +
-              "<h2><a href='/taxi/search/"+(ele.id)+"' target='_blank'>"+ (ele.store) +"</a></h2>" +
+              "<h2><a href='/taxiFront/search/"+(ele.id)+"' target='_blank'>"+ (ele.store) +"</a></h2>" +
               "<p>"+ (ele.brief) + "</p>" +
             "</div>" +
           "</div>"
