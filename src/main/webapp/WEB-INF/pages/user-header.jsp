@@ -6,7 +6,7 @@
         <div class="row align-items-center">
 
           <div class="col-6 col-xl-2">
-            <div class="mb-0 site-logo"><a href="${pageContext.request.contextPath}/index.html" class="mb-0">Elderly<span class="text-primary">.</span> </a></div>
+            <div class="mb-0 site-logo"><a href="${pageContext.request.contextPath}/index.jsp" class="mb-0">Elderly<span class="text-primary">.</span> </a></div>
           </div>
 
           <div class="col-12 col-md-10 d-none d-xl-block">
