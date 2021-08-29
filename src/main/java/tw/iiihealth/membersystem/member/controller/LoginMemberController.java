@@ -1,8 +1,12 @@
 package tw.iiihealth.membersystem.member.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import tw.iiihealth.membersystem.member.model.Member;
 
 
 
@@ -16,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginMemberController {
 	
 	@RequestMapping("/test")
-	public ModelAndView test() {
+	public ModelAndView test(@ModelAttribute("member") Member member, Model m) {
 		return new ModelAndView("membersystem/test");
 	}
 	
