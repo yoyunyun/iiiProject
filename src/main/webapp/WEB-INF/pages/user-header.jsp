@@ -13,7 +13,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="${pageContext.request.contextPath}/index.html" class="active nav-link">首頁</a></li>
+                <li><a href="${pageContext.request.contextPath}/index.jsp" class="active nav-link">首頁</a></li>
 
 
 			  <li class="has-children">
