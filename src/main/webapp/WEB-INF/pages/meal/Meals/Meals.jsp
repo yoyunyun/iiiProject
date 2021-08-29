@@ -127,8 +127,7 @@
 <!--             <a data-fancybox="gallery" href="images/0409.png"><img src="images/泰享受酸辣雞腿排.jpg" width="300"></a> -->
               <a class="d-block" data-fancybox="gallery" data-caption="${meals.name}" href="${pageContext.request.contextPath}/MealImg/${meals.photo}">
               	<img src="${pageContext.request.contextPath}/MealImg/${meals.photo}"
-				      alt="Image" class="img-fluid" onerror="this.style.display='none'"
-				       />
+				      alt="Image" class="img-fluid" onerror="this.style.display='none'"/>
 <!-- 				      style="display:block" onclick="showMaxImg(this)" /> -->
 <!-- 				      <img style="width:62px;height:83px;display:block" src="images/0409.png" onclick="showMaxImg(this)"> -->
               </a>
