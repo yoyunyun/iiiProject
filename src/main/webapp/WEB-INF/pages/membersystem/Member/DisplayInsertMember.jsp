@@ -2,7 +2,8 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,22 +12,36 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>健康優生網</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-	rel="stylesheet" />
-<link href="${pageContext.request.contextPath}/css/styles.css"
-	rel="stylesheet" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-	crossorigin="anonymous">
-</head>
-<body class="sb-nav-fixed">
 
-	
+<script src="../js/jquery-3.6.0.js"></script>
+
+<%@ include file="/WEB-INF/pages/user-css-js.jsp"%>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+<%@ include file="/WEB-INF/pages/user-header.jsp"%>
+
+
+
+  <!-- 老人圖 -->
+
+    <div class="slide-item overlay" style="background-image: url('${pageContext.request.contextPath}/images/slider-1.jpg')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 align-self-center">
+            <h1 class="heading mb-3">健康悠生伴你一生</h1>
+            <p class="lead text-white mb-5">健康一生 悠活一生</p>
+            <p><a href="about.html" class="btn btn-primary">關於我們</a></p>
+          </div>
+        </div>
+      </div>  
+    </div>
+
+
+
+	<!-- 表單 -->
+		
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="card mb-4">
@@ -102,7 +117,7 @@
 													<form:hidden path="handbook" value="${member.handbook}" />
 													<form:hidden path="dementia" value="${member.dementia}" />
 													<form:hidden path="memberphoto" value="${member.memberphoto}" />
-													 <input type="submit" class="btn" name="insertToSQL" value="確認">
+													 <input type="submit" class="btn" style="font-size:20px;" name="insertToSQL" value="確認">
 												</form:form>
 											</td>
 											<td>
@@ -122,7 +137,7 @@
 													<form:hidden path="handbook" value="${member.handbook}" />
 													<form:hidden path="dementia" value="${member.dementia}" />
 													<form:hidden path="memberphoto" value="${member.memberphoto}" />
-													<input type="submit" class="btn" name="insertToSQL" value="返回上一頁">
+													<input type="submit" class="btn" style="font-size:20px;" name="insertToSQL" value="返回上一頁">
 												</form:form>
 											</td>
 										</tr>
@@ -134,21 +149,11 @@
 					</div>
 			</main>
 		</div>
+		
+		
+<%@ include file="/WEB-INF/pages/user-site-footer.jsp"%>
+<%@ include file="/WEB-INF/pages/user-js.jsp"%>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script src="${pageContext.request.contextPath}/js/scripts.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-		crossorigin="anonymous"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/demo/chart-area-demo.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/demo/chart-bar-demo.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-		crossorigin="anonymous"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/datatables-simple-demo.js"></script>
+
 </body>
 </html>
