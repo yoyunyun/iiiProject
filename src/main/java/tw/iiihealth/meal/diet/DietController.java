@@ -29,15 +29,15 @@ public class DietController {
 	@Autowired
 	private DietService dietService;
 
-	@RequestMapping(path = "/dietIndex.controller", method = { RequestMethod.POST, RequestMethod.GET })
-	public String dietIndex(HttpServletRequest request,Model m) throws SQLException {
-		
-		List<DietBean> db = dietService.findAllDiet();
-		
-		request.getSession().setAttribute("queryAll", db);
-		
-		return "meal/Diet/Diet";
-	}
+//	@RequestMapping(path = "/dietIndex.controller", method = { RequestMethod.POST, RequestMethod.GET })
+//	public String dietIndex(HttpServletRequest request,Model m) throws SQLException {
+//		
+//		List<DietBean> db = dietService.findAllDiet();
+//		
+//		request.getSession().setAttribute("queryAll", db);
+//		
+//		return "meal/Diet/Diet";
+//	}
 	
 	@RequestMapping(path = "/dietViewIndex.controller", method = { RequestMethod.POST, RequestMethod.GET })
 	public String processShowIndex(HttpServletRequest request,Model m) throws SQLException {

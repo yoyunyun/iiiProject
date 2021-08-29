@@ -1,8 +1,16 @@
 package tw.iiihealth.membersystem.manager.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+
+import tw.iiihealth.membersystem.manager.model.Manager;
+import tw.iiihealth.membersystem.manager.service.ManagerService;
 
 
 
@@ -15,15 +23,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginManagerController {
 
+	@Autowired
+	private ManagerService managerService;
+	
 	//登入(1)
 	@RequestMapping("/iiiHealth/")
-	public ModelAndView managerLogin1() {
+	public ModelAndView managerLogin1(Model m) {
 		return new ModelAndView("membersystem/Login/ManagerLogin");
 	}
 
 	//登入(2)
 	@RequestMapping("/iiiHealth/login")
-	public ModelAndView managerLogin2() {
+	public ModelAndView managerLogin2(Model m) {
 		return new ModelAndView("membersystem/Login/ManagerLogin");
 	}
 	

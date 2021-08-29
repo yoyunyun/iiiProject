@@ -13,32 +13,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
 
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/fonts/icomoon/style.css">
+<%@ include file="/WEB-INF/pages/user-css-js.jsp"%>
 
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/jquery-ui.css">
-  <link rel="stylesheet" href="/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="/css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="/css/owl.theme.default.min.css">
-
-  <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
-
-  <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
-
-  <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css">
-
-  <link rel="stylesheet" href="/css/aos.css">
-
-  <link rel="stylesheet" href="/css/style.css">
-  
-  		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="/js/datatables-simple-demo.js"></script>
-        <script src="/js/sweetalert2.all.min.js"></script>
         <style>
         	img{
 			  cursor:pointer;//滑鼠手型
@@ -48,10 +24,10 @@
             <style>
         .hel {
             background-color: #66B3FF;
-            margin: 25px;
+            margin: 35px;
             border-radius: 20px;
-            width: 250px;
-            height: 110px;
+            width: 300px;
+            height: 130px;
             float: left;
             text-align: center;
         }
@@ -59,7 +35,7 @@
             color:white;
             margin:12px 10px;
             padding: 0px 0px;
-            font-size: 20px;
+            font-size: 25px;
             font-weight: bold;
         }
     </style>
@@ -88,85 +64,7 @@
     </div>
 
     
-    <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
-
-      <div class="container">
-        <div class="row align-items-center">
-
-          <div class="col-6 col-xl-2">
-            <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly<span class="text-primary">.</span> </a></div>
-          </div>
-
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="active nav-link">首頁</a></li>
-
-
-                <li class="has-children">
-                  <a href="services.html" class="nav-link">叫車專區</a>
-                  <ul class="dropdown">
-                    <li><a href="#" class="nav-link">附近店家資訊</a></li>
-                    <li class="has-children">
-                      <a href="#">我要叫車</a>
-                      <ul class="dropdown">
-                        <li><a href="#">立即叫車</a></li>
-                        <li><a href="#">預約叫車</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="has-children">
-                  <a href="services.html" class="nav-link">長者專區</a>
-                  <ul class="dropdown">
-                    <li><a href="#" class="nav-link">看護服務</a></li>
-                    <li><a href="#" class="nav-link">輔具購買</a></li>
-                  </ul>
-                </li>
-
-
-                 <li class="has-children">
-                  <a href="services.html" class="nav-link">營養專區</a>
-                  <ul class="dropdown">
-                    <li><a href="#" class="nav-link">營養餐</a></li>
-                    <li><a href="#" class="nav-link">食品資料</a></li>
-                  </ul>
-                </li>
-
-
-                <li class="has-children">
-                  <a href="services.html" class="nav-link">用藥查詢</a>
-                  <ul class="dropdown">
-                    <li><a href="#" class="nav-link">藥品辨識</a></li>
-                    <li><a href="#" class="nav-link">藥品包裝</a></li>
-                  </ul>
-                </li>
-
-                <!-- <li><a href="contact.html" class="nav-link">會員登入</a></li> -->
-                <li class="has-children">
-                  <a href="services.html" class="nav-link">登入</a>
-                  <ul class="dropdown">
-                    <li><a href="#" class="nav-link">會員登入</a></li>
-                    <li><a href="#" class="nav-link">廠商登入</a></li>
-                  </ul>
-                </li>
-                
-                <li><a href="about.html" class="nav-link">關於我們</a></li>
-                <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
-              </ul>
-
-            </nav>
-          </div>
-
-
-          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-white"></span></a></div>
-
-        </div>
-      </div>
-
-    </header>
+<%@ include file="/WEB-INF/pages/user-header.jsp"%>
 
 
     <!-- MAIN -->
@@ -194,9 +92,8 @@
     <div class="site-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
-          <div class="col-10 text-center">
             <div class="heading">
-            <div style="margin:50px 0 100px 0;"><a style="font-weight:bold;font-size:32px;color:black;">你也有這些困擾嗎？</a></div>
+            <div class="text-center" style="margin:50px 0 100px 0;"><a style="font-weight:bold;font-size:32px;color:black;">你也有這些困擾嗎？</a></div>
     <div class="hel">
         <p class="phel">慢性疾病的飲食控制？</p>
         <p class="phel">健身增肌控糖餐食？</p>
@@ -210,9 +107,10 @@
         <p class="phel">孝親照護餐點好難選？</p>
     </div>
     <br><br><div></div>
-    <div style="margin:200px 0 130px 0;"><a style="font-weight:bold;font-size:28px;color:#FF7575;">健康養生餐是你最好的選擇！</a></div>
-              <h2 class="text-black" style="margin:0 0 50px 0;">最新菜單</h2>
+    <div class="text-center" style="margin:270px 0 130px 0;"><a style="font-weight:bold;font-size:30px;color:#FF7575;">健康養生餐是你最好的選擇！</a></div>
+              <h2 class="text-black text-center" style="margin:0 0 50px 0;">最新菜單</h2>
             </div>
+          <div class="col-10 text-center">
             <p style="font-size:18px">餐盒均附營養米飯、配菜、蛋，配菜依照當令季節時蔬略有不同，會不定期更換，皆採現場製作配菜為主。</p>
 <!--             <span class="1" style="color:blue"></span> -->
             <div class="flip" style="float:right;margin:50px 0 0 0;"><input type="button" value="詳細資訊(展開/收合)"></div>
@@ -276,90 +174,14 @@
     </div>
 
     
+<!-- site-footer bg-light -->
 
-
-    <div class="site-footer bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <h2 class="footer-heading mb-4">About</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi cumque tenetur inventore veniam, hic vel ipsa necessitatibus ducimus architecto fugiat!</p>
-            <div class="my-5 social">
-              <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-            </div>
-          </div>
-          <div class="col-lg-8">
-            <div class="row">
-              <div class="col-lg-4">
-                <h2 class="footer-heading mb-4">Quick Links</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">Amazing Atmosphere</a></li>
-                  <li><a href="#">Caring Staff</a></li>
-                  <li><a href="#">FAQs</a></li>
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                </ul>
-              </div>
-              <div class="col-lg-4">
-                <h2 class="footer-heading mb-4">Helpful Link</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">Hospice Care</a></li>
-                  <li><a href="#">Excellent Cuisine</a></li>
-                  <li><a href="#">Privacy</a></li>
-                  <li><a href="#">Terms</a></li>
-                </ul>
-              </div>
-              <div class="col-lg-4">
-                <h2 class="footer-heading mb-4">Resources</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">Health Care</a></li>
-                  <li><a href="#">Elderly Care</a></li>
-                  <li><a href="#">Care with Love</a></li>
-                  <li><a href="#">Quality Care</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-              <p class="copyright"><small>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
+<%@ include file="/WEB-INF/pages/user-site-footer.jsp"%>
 
   </div> <!-- .site-wrap -->
   
-
+<%@ include file="/WEB-INF/pages/user-js.jsp"%>
   
-
-  <script src="/js/jquery-3.3.1.min.js"></script>
-  <script src="/js/jquery-ui.js"></script>
-  <script src="/js/popper.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/owl.carousel.min.js"></script>
-  <script src="/js/jquery.countdown.min.js"></script>
-  <script src="/js/jquery.easing.1.3.js"></script>
-  <script src="/js/aos.js"></script>
-  <script src="/js/jquery.waypoints.min.js"></script>
-  <script src="/js/jquery.animateNumber.min.js"></script>
-  <script src="/js/jquery.fancybox.min.js"></script>
-  <script src="/js/jquery.sticky.js"></script>
-  <script src="/js/isotope.pkgd.min.js"></script>
-
-
-  <script src="/js/main.js"></script>
   <script>
 	  $(function(){
 		  $(".flip").click(function(){
