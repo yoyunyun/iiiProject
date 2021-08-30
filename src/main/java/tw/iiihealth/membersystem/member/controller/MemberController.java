@@ -54,14 +54,20 @@ public class MemberController {
 	// 登入
 	@RequestMapping("/Member/login")
 	public ModelAndView managerLogin2(Model m) {
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String memberaccount = auth.getName();
-		Member user_Member = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user_Member", user_Member);
+		System.out.println("login path entry");
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		String memberaccount = auth.getName();
+//		Member user_Member = memberService.searchUserDetails(memberaccount);
+//		m.addAttribute("user_Member", user_Member);
 		
 		
 		return new ModelAndView("membersystem/Login/MemberLogin");
+	}
+	
+	// 登入失敗
+	@RequestMapping("/Member/login/AccessDenied")
+	public ModelAndView adminAccessError() {
+		return new ModelAndView("membersystem/Login/MemberAccessdenied");
 	}
 	
 	
@@ -71,20 +77,26 @@ public class MemberController {
 		return new ModelAndView("index");
 	}
 	
-//	//首頁(有會員)
-//	@RequestMapping("/Member/guest")
-//	public String indexMember(Model m) {
-//		
+	//首頁(有會員)
+	@RequestMapping("/index")
+	public String indexMember(Model m) {
+		
+//		System.out.println(user_Member);
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //		String memberaccount = auth.getName();
 //		Member user = memberService.searchUserDetails(memberaccount);
 //		m.addAttribute("user", user);
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		String memberaccount = auth.getName();
+//		Member user_Member = memberService.searchUserDetails(memberaccount);
+//		m.addAttribute("user_Member", user_Member);
+//
 //		
-//		Member member = memberService.searchMemberId(user.getMemberid());
+//		Member member = memberService.searchMemberId(user_Member.getMemberid());
 //		m.addAttribute("member", member);
-//		
-//		return "index";
-//	}
+		
+		return "index";
+	}
 
 	// 查詢所有
 	@RequestMapping(path = "/Member/searchAllMemberAction.controller", method = {RequestMethod.GET, RequestMethod.POST})
