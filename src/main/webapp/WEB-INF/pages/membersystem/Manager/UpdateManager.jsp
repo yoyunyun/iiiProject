@@ -75,7 +75,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td><label id="pwd2">確認密碼:</label></td>
+												<td>確認密碼:</td>
 												<td>
 													<input type="password" id="pwd2" maxlength="15" size="15" />
 													<span id="pwd2Check"></span>
@@ -142,6 +142,22 @@
 
 
 	<script>
+	
+    //顯示密碼
+    document.getElementById("showPwd").onclick=showPwd;
+        function showPwd(){
+            let pwdType=document.getElementById("managerpwd").type;
+            //pwdType現在是密碼的話，就轉成文字顯示
+            if(pwdType === "password"){
+                document.getElementById("managerpwd").type="text";
+                document.getElementById("pwd2").type="text";
+                //pwdType現在是文字的話，就轉回密碼來不顯示
+            }else{
+                document.getElementById("managerpwd").type="password";
+                document.getElementById("pwd2").type="password";
+            }
+        }
+	
 	
 	//Check
     let enameCheck = document.getElementById("enameCheck");
@@ -478,21 +494,6 @@ if(val!=true) {
         }
     }
 
-    //顯示密碼
-    document.getElementById("showPwd").onclick=showPwd;
-        function showPwd(){
-            let pwdType=document.getElementById("pwd1").type;
-            //pwdType現在是密碼的話，就轉成文字顯示
-            if(pwdType === "password"){
-                document.getElementById("pwd1").type="text";
-                document.getElementById("pwd2").type="text";
-                //pwdType現在是文字的話，就轉回密碼來不顯示
-            }else{
-                document.getElementById("pwd1").type="password";
-                document.getElementById("pwd2").type="password";
-            }
-        }
-    
 
     //checkSubBtn
     function checkSubBtn() {

@@ -65,9 +65,9 @@
 											<tr>
 												<td><form:label path="membergender">性別:</form:label></td>
 												<td>
-													<form:radiobutton path="membergender" value="男" label="男" />
-            										<form:radiobutton path="membergender" value="女" label="女" />
-            										<form:radiobutton path="membergender" value="其他" label="其他" />
+													<form:radiobutton id="male" path="membergender" value="男" label="男" />
+            										<form:radiobutton id="female" path="membergender" value="女" label="女" />
+            										<form:radiobutton id="other" path="membergender" value="其他" label="其他" />
             										<span id="genderCheck"></span>
             									</td>
 											</tr>
@@ -100,7 +100,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td><label id="pwd2">確認密碼:</label></td>
+												<td><label>確認密碼:</label></td>
 												<td>
 													<input type="password" id="pwd2" maxlength="15" size="15" />
 													<span id="pwd2Check"></span>
@@ -149,8 +149,8 @@
 											<tr>
 												<td><form:label path="dementia">失智症確診:</form:label></td>
 												<td>
-													<form:radiobutton path="dementia" value="有" label="有" />
-            										<form:radiobutton path="dementia" value="無" label="無" />
+													<form:radiobutton id="yesD" path="dementia" value="有" label="有" />
+            										<form:radiobutton id="noD" path="dementia" value="無" label="無" />
             									</td>
 											</tr>
 											<tr>
@@ -181,6 +181,9 @@
 												</td>
 											</tr>
 									</table>
+									
+									<button id="onekey">範例</button>
+									
 								</div>
 								<div class="col-md-6"></div>
 							</div>
@@ -199,26 +202,35 @@
 <script type="text/javascript">
 //一鍵輸入
 $('#onekey').on('click', function(){
-	$('#ename1').val('林政達');
-	$('#sex1').prop('checked',true)
-	$('#account1').val('1258wsdq3');
-	$('#pwd1').val('8755koisnmw3');
-	$('#pwd2').val('8755koisnmw3');
-	$('#year1').val('77');
-	$('#month1').val('5');
-	$('#day1').val('15');
-	$('#email1').val('iiieeit12907@gmail.com');
-}).on('dblclick', function(){
-	$('#ename1').val('黃薇聿');
-	$('#sex2').prop('checked',true)
-	$('#account1').val('dds16585');
-	$('#pwd1').val('rosd28asdfa');
-	$('#pwd2').val('rosd28asdfa');
-	$('#year1').val('73');
-	$('#month1').val('8');
-	$('#day1').val('9');
-	$('#email1').val('iiieeit12907@gmail.com');
+	$('#membername').val('張美麗');
+	$('#female').prop('checked',true)
+	$('#memberyear').val('63');
+	$('#membermonth').val('3');
+	$('#memberday').val('10');
+	$('#memberaccount').val('qwer1234');
+	$('#memberpwd').val('asdf1234');
+	$('#pwd2').val('asdf1234');
+	$('#memberemail').val('iiieeit12907@gmail.com');
+	$('#memberphone').val('0987651822');
+	$('#memberaddress').val('大安路一段17號');
+	$('#yesD').prop('checked',true)
 })
+
+
+    //顯示密碼
+    document.getElementById("showPwd").onclick=showPwd;
+        function showPwd(){
+            let pwdType=document.getElementById("memberpwd").type;
+            //pwdType現在是密碼的話，就轉成文字顯示
+            if(pwdType === "password"){
+                document.getElementById("memberpwd").type="text";
+                document.getElementById("pwd2").type="text";
+                //pwdType現在是文字的話，就轉回密碼來不顯示
+            }else{
+                document.getElementById("memberpwd").type="password";
+                document.getElementById("pwd2").type="password";
+            }
+        }
 </script>
 		
 		
@@ -627,20 +639,20 @@ if(val!=true) {
         }
     }
 
-    //顯示密碼
-    document.getElementById("showPwd").onclick=showPwd;
-        function showPwd(){
-            let pwdType=document.getElementById("pwd1").type;
-            //pwdType現在是密碼的話，就轉成文字顯示
-            if(pwdType === "password"){
-                document.getElementById("pwd1").type="text";
-                document.getElementById("pwd2").type="text";
-                //pwdType現在是文字的話，就轉回密碼來不顯示
-            }else{
-                document.getElementById("pwd1").type="password";
-                document.getElementById("pwd2").type="password";
-            }
-        }
+//     //顯示密碼
+//     document.getElementById("showPwd").onclick=showPwd;
+//         function showPwd(){
+//             let pwdType=document.getElementById("memberpwd").type;
+//             //pwdType現在是密碼的話，就轉成文字顯示
+//             if(pwdType === "password"){
+//                 document.getElementById("memberpwd").type="text";
+//                 document.getElementById("pwd2").type="text";
+//                 //pwdType現在是文字的話，就轉回密碼來不顯示
+//             }else{
+//                 document.getElementById("memberpwd").type="password";
+//                 document.getElementById("pwd2").type="password";
+//             }
+//         }
     
 
     //checkSubBtn

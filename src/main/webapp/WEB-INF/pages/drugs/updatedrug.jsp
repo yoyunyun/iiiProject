@@ -67,11 +67,13 @@
 										<td><form:input path="appearance" /></td>
 									</tr>
 									<tr>
+									    
 										<td><input type="submit" value="送出" class="save"
 														id="update" /></td>
 										<td><input type="button" class="btn"
 											onclick="history.back()" value="取消新增"></td>
 									</tr>
+									<tr><td><input type="button" value="一鍵輸入" id="input"/></td></tr>
 								</table>
 							</form:form>
 						</div>
@@ -123,6 +125,16 @@
 				timer : 1500
 			})
 		}
+		
+		 $("#input").click(function(){
+		    	$("#cnumber").val("衛署藥製字第000639號");
+		    	$("#chinesename").val("強生德利能糖衣錠２５毫克");
+		    	$("#englishname").val("TRYNOL S.C. TABLETS 25MG JOHNSON");
+		    	$("#applicant").val("強生化學製藥廠股份有限公司");
+		    	$("#shape").val("圓凸形");
+		    	$("#color").val("淺藍色");
+		    	$("#appearance").val("圓形糖衣錠");
+		    })
 		</script>
 </body>
 </html>
