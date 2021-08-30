@@ -91,7 +91,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td><label id="pwd2">確認密碼:</label></td>
+												<td>確認密碼:</td>
 												<td>
 													<input type="password" id="pwd2" maxlength="15" size="15" />
 													<span id="pwd2Check"></span>
@@ -120,7 +120,6 @@
 		
 <%@ include file="/WEB-INF/pages/user-site-footer.jsp"%>
 <%@ include file="/WEB-INF/pages/user-js.jsp"%>
-
 
 
 		<script type="text/javascript">
@@ -169,25 +168,22 @@
 	
 </script>
 		<script>
-	let sp1=document.getElementById("idsp1");
-	let sp3=document.getElementById("idsp3");
-	let sp6=document.getElementById("idsp6");
-	let type=document.getElementsByName("type")[0];
-	let city=document.getElementsByName("city")[0];
-	let town=document.getElementsByName("town")[0];
+		
+	    //顯示密碼
+	    document.getElementById("showPwd").onclick=showPwd;
+	        function showPwd(){
+	            let pwdType=document.getElementById("memberpwd").type;
+	            //pwdType現在是密碼的話，就轉成文字顯示
+	            if(pwdType === "password"){
+	                document.getElementById("memberpwd").type="text";
+	                document.getElementById("pwd2").type="text";
+	                //pwdType現在是文字的話，就轉回密碼來不顯示
+	            }else{
+	                document.getElementById("memberpwd").type="password";
+	                document.getElementById("pwd2").type="password";
+	            }
+	        }
 	
-	
-	function CheckandSub(){
-
-		
-		
-		if (true){
-			document.getElementById("newLoc").submit();
-		}else{
-			alert("請輸入完整資訊");
-		}
-		
-	}
-	</script>
+	        </script>
 </body>
 </html>
