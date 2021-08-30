@@ -20,15 +20,12 @@
             left: 1100px;
             top: -80px;
             opacity: 0.5;
+            
         }
         
-        button :hover{
-        	opacity: 1;
-/*         	background-color:red; */
-          	border-radius: 50%; 
-            box-shadow:0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-            width:75px;
-            height:75px;
+        .buttonshd:hover{
+        	box-shadow:0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            
         }
 /*         button>#hos> :hover{ */
 /*         	background-color:#46A3FF; */
@@ -86,7 +83,8 @@
           <div class="col-lg-6 align-self-center">
             <h1 class="heading mb-3">醫療機構資訊</h1>
             <p class="lead text-white mb-5">提供相關醫療店家地址，包含醫院、藥局、長照中心，多個相關需求一次滿足，讓長者的生活充滿便利</p>
-            <p><a href="#" class="btn btn-primary">尋找附近店家</a></p>
+            <p><a href="#start" class="btn btn-primary">尋找醫療機構</a></p>
+          
           </div>
         </div>
       </div>  
@@ -95,14 +93,14 @@
 
 
 
-<div style="margin: 20px; height:150px">
+<div id="start" style="margin: 20px; height:150px">
  <h4 style="position:relative; top:10px; left:50px">請選擇想搜尋的縣市:</h4> 
   <div id="choose">
    <select id="city" name="city"></select><select id="town" name="town"><option value=0>請選擇</option></select>
 	</div>
-	<button id="hos" style="background-color: #C4E1FF;" disabled><h4 style="margin: 2px 2px;">搜尋醫院</h4></button>
-    <button id="med" style="background-color: #FFDCB9;"><h4 style="margin: 2px 2px;">搜尋藥局</h4></button>
-    <button id="care" style="background-color: #E2C2DE;"><h4 style="margin: 2px 2px;">長照中心</h4></button>
+	<button class="buttonshd" id="hos" style="background-color: #C4E1FF;" disabled><h4 style="margin: 2px 2px;">搜尋醫院</h4></button>
+    <button class="buttonshd" id="med" style="background-color: #FFDCB9;"><h4 style="margin: 2px 2px;">搜尋藥局</h4></button>
+    <button class="buttonshd" id="care" style="background-color: #E2C2DE;"><h4 style="margin: 2px 2px;">長照中心</h4></button>
 </div> 
 <div class="site-section" style="padding: 45px 0 90px 0">
       <div class="container" >
@@ -252,7 +250,7 @@ $(function () {
 
 $(function () {
 	$('#care').on('click', function () {
-		tp = "長照中心";
+		tp = "長照";
 		$("#insert").empty();
 		$('#title').text('長照中心');
 		$('#hos').prop('disabled',false)

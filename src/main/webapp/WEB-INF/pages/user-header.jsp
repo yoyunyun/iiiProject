@@ -69,7 +69,7 @@
    
 
                <li class="has-children">
-                  <a href="/Member/searchOneMemberAction.controller" class="nav-link">歡迎您，${user.membername}</a>
+                  <a href="/Member/searchOneMemberAction.controller" class="nav-link">歡迎您</a>
                   <ul class="dropdown">
                    <li class="has-children">
                       <a href="#">會員專區</a>

@@ -13,8 +13,8 @@
 <meta name="author" content="" />
 <title>健康優生網</title>
 <%@ include file="/WEB-INF/pages/css.jsp"%>
-<script type="text/javascript" src="/js/function.js"></script>
-<script src="/js/jquery-3.6.0.js"></script>
+
+<script type="text/javascript" src="../js/function.js"></script>
 <style>
 	td{
 	max-width: 200px;
@@ -36,7 +36,7 @@
 							<div class="col-md-6">
 								<h2 style="margin: 8px 100px">請更新註冊資料</h2>
 								<div class="card-body">
-									<form:form method="POST"
+									<form:form id="sub" method="POST"
 										action="updatecheck.controller"
 										modelAttribute="updatelocation">
 										<table class="table  table-hover">
@@ -48,12 +48,12 @@
 											</tr>
 											<tr>
 												<td><form:label path="store">店家名稱:</form:label></td>
-												<td><form:input path="store" /></td>
+												<td><form:input path="store" onblur="Onblur(this,sp1)"/></td>
 												<td><span id="idsp1"></span></td>
 											</tr>
 											<tr>
 												<td><form:label path="type">類別:</form:label></td>
-												<td><form:select path="type">
+												<td><form:select path="type" >
 														<form:option value="-1" label="--請選擇--" />
 														<form:options items="${typeItems}" />
 													</form:select></td>
@@ -68,7 +68,8 @@
 											</tr>
 											<tr>
 												<td><form:label path="phone">電話:</form:label></td>
-												<td><form:input path="phone" /></td>
+												<td><form:input path="phone" onblur="Onblur(this,sp3)"/></td>
+												<td><span id="idsp3"></span></td>
 											</tr>
 											<tr>
 												<td><form:label path="time">營業時間:</form:label></td>
@@ -95,7 +96,8 @@
 											</tr>
 											<tr>
 												<td><form:label path="address">地址:</form:label></td>
-												<td><form:input path="address" /></td>
+												<td><form:input path="address" onblur="Onblur(this,sp6)"/></td>
+												<td><span id="idsp6"></span></td>
 											</tr>
 											<tr>
 												<td><form:label path="brief">簡介:</form:label></td>
@@ -106,7 +108,7 @@
 												<td><form:input path="site" /></td>
 											</tr>
 											<tr>
-												<td style="text-align: center"><input type="submit" value="送出" /></td>
+												<td style="text-align: center"><input type="button" value="送出" onclick="CheckandSub()"/></td>
 												<td><a href="${pageContext.request.contextPath}/taxi/locmainpage.controller">取消</a></td>
 											</tr>
 										</table>
@@ -119,7 +121,7 @@
 			</main>
 		</div>
 		
-
+<script src="../js/jquery-3.6.0.js"></script>
 		<script type="text/javascript">
 		
 	var cn = "${updatelocation.city}"
@@ -190,7 +192,7 @@
 		
 		
 		if (flag1 & flag2 & flag3 & flag4 & flag5 & flag6){
-			document.getElementById("newLoc").submit();
+			document.getElementById("sub").submit();
 		}else{
 			alert("請輸入完整資訊");
 		}

@@ -46,8 +46,8 @@
 									<th>縣市</th>
 									<th>鄉鎮市區</th>
 									<th>地址</th>
-									<th>簡介</th>
-									<th>網站</th>
+<!-- 									<th>簡介</th> -->
+<!-- 									<th>網站</th> -->
 									<th>修改</th>
 									<th>刪除</th>
 								</tr>
@@ -66,8 +66,8 @@
 										<td>${loc.city}</td>
 										<td>${loc.town}</td>
 										<td>${loc.address}</td>
-										<td>${loc.brief}</td>
-										<td>${loc.site}</td>
+<%-- 										<td>${loc.brief}</td> --%>
+<%-- 										<td>${loc.site}</td> --%>
 										<td>
 											<form action="updateold.controller" method="post">
 												<input type="hidden" name="id" value="${loc.id}"> 

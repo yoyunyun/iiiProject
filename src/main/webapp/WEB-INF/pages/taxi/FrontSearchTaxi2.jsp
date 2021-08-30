@@ -43,7 +43,7 @@
 
     <div class="slide-item overlay" style="background-image: url('/images/Taxi.jpg')">
       <div class="container">
-        <div class="row justify-content-center text-center">
+        <div class="row" style="top: 300px">
           <div class="col-lg-6 align-self-center">
             <h1 class="heading mb-3">計程車資訊</h1>
             <p class="lead text-white">提供多家計程車資訊，不管是跨縣市還是長照專車，均可透過平台搜尋</p>
