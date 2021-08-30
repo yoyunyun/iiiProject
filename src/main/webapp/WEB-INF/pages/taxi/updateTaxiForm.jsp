@@ -139,7 +139,7 @@
 				let flag4= checkckbox(cityN,idsp4);
 				let flag5 = checkradio(careTX, idsp5);
 
-				if (flag1 & flag2 & flag3 & flag5) {
+				if (flag1 & flag2 & flag3 & flag4 & flag5) {
 					document.querySelector('#sub').submit();
 				} else {
 					alert("請輸入完整資訊");
