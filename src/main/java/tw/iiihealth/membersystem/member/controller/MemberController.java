@@ -66,27 +66,24 @@ public class MemberController {
 	
 	
 	//首頁(無會員)
-	@RequestMapping("/HealthProject11")
+	@RequestMapping("/HealthProject")
 	public ModelAndView index1() {
-		System.out.println("3");
 		return new ModelAndView("index");
 	}
 	
 //	//首頁(有會員)
 //	@RequestMapping("/Member/guest")
-//	public ModelAndView indexMember(Model m) {
+//	public String indexMember(Model m) {
 //		
-//		System.out.println("1");
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //		String memberaccount = auth.getName();
-//		Member user_Member = memberService.searchUserDetails(memberaccount);
-//		m.addAttribute("user_Member", user_Member);
-//		System.out.println("2");
+//		Member user = memberService.searchUserDetails(memberaccount);
+//		m.addAttribute("user", user);
 //		
-////		Member member = memberService.searchMemberId(user.getMemberid());
-////		m.addAttribute("member", member);
+//		Member member = memberService.searchMemberId(user.getMemberid());
+//		m.addAttribute("member", member);
 //		
-//		return new ModelAndView("index");
+//		return "index";
 //	}
 
 	// 查詢所有

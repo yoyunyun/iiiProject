@@ -37,7 +37,7 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 //		.and()
 //		.rememberMe().tokenValiditySeconds(86400).key("rememberMe-key")
 		.and().formLogin().loginPage("/Member/login")
-			.defaultSuccessUrl("/HealthProject11")
+			.defaultSuccessUrl("/HealthProject")
 			.failureUrl("/Member/login/AccessDenied")
 		.permitAll()
 		.and().logout().logoutUrl("/Member/logout");
