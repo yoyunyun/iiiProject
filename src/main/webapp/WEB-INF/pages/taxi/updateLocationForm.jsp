@@ -37,7 +37,7 @@
 								<h2 style="margin: 8px 100px">請更新註冊資料</h2>
 								<div class="card-body">
 									<form:form id="sub" method="POST"
-										action="updatecheck.controller"
+										action="updatecheck.controller" enctype="multipart/form-data"
 										modelAttribute="updatelocation">
 										<table class="table  table-hover">
 											<tr>
@@ -45,6 +45,14 @@
 												<td><form:input path="id" readonly="true" /></td>
 												<td><form:hidden path="id" /></td>
 
+											</tr>
+											<tr>
+											<td>上傳預覽</td>
+											<td><img id="sourceImage"  width="100px" height="100px"></td>
+											</tr>
+											<tr>
+												<td><form:label path="photo">店家照片:</form:label></td>
+												<td><input type="file" name="pic" accept="image/*" id="inputImageFile" /></td>
 											</tr>
 											<tr>
 												<td><form:label path="store">店家名稱:</form:label></td>
@@ -59,13 +67,7 @@
 													</form:select></td>
 												<td><span id="idsp2"></span></td>
 											</tr>
-											<tr>
-												<td><form:label path="hos_type">醫療類別:</form:label></td>
-												<td><form:select path="hos_type">
-														<form:option value="-2" label="--請選擇--" />
-														<form:options items="${hostypeItems}" />
-													</form:select></td>
-											</tr>
+										
 											<tr>
 												<td><form:label path="phone">電話:</form:label></td>
 												<td><form:input path="phone" onblur="Onblur(this,sp3)"/></td>
@@ -106,6 +108,10 @@
 											<tr>
 												<td><form:label path="site">網址:</form:label></td>
 												<td><form:input path="site" /></td>
+											</tr>
+											<tr>
+												<td><form:label path="map">位置:</form:label></td>
+												<td><form:input path="map" /></td>
 											</tr>
 											<tr>
 												<td style="text-align: center"><input type="button" value="送出" onclick="CheckandSub()"/></td>
@@ -172,6 +178,22 @@
 	});
 	});
 	
+</script>
+<script>
+
+		/* 更新圖片 or 上傳圖片 */
+	    $("#inputImageFile").change(function(e){
+        	processImageFile(e.target.files[0]);
+    	});
+	    
+	    
+	    function processImageFile(imageObject) {
+	        //顯示分析的圖片
+	        var sourceImageUrl = URL.createObjectURL(imageObject);
+	        //document.querySelector("#sourceImage").src = sourceImageUrl;
+	        $("#sourceImage").attr('src', sourceImageUrl);
+	    }
+		
 </script>
 		<script>
 	let sp1=document.getElementById("idsp1");

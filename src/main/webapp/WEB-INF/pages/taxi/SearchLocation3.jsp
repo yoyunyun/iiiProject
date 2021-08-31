@@ -36,18 +36,19 @@
 
 							<thead>
 								<tr>
-									<th>編號</th>
+<!-- 									<th>編號</th> -->
+									<th>店家照片</th>
 									<th>店家名稱</th>
-									<th>類別</th>
-									<th>醫療類別</th>
+									<th>類別</th>									
 									<th>電話</th>
 									<th>營業時間</th>
 									<th>店休日</th>
 									<th>縣市</th>
 									<th>鄉鎮市區</th>
 									<th>地址</th>
-<!-- 									<th>簡介</th> -->
-<!-- 									<th>網站</th> -->
+									<th>簡介</th>
+									<th>網站</th>
+<!-- 									<th>位置</th> -->
 									<th>修改</th>
 									<th>刪除</th>
 								</tr>
@@ -56,18 +57,22 @@
 								<c:forEach var="loc" items="${listLoc}">
 									<tr>
 
-										<td>${loc.id}</td>
+<%-- 										<td>${loc.id}</td> --%>
+										<td><img src="${pageContext.request.contextPath}/LocationImg/${loc.photo}"
+												onerror="this.src='${pageContext.request.contextPath}/images/hospital2.png'" width="120px"
+												height="120px" /></td>
+												
 										<td>${loc.store}</td>
 										<td>${loc.type}</td>
-										<td>${loc.hos_type}</td>
 										<td>${loc.phone}</td>
 										<td>${loc.time}</td>
 										<td>${loc.close_day}</td>
 										<td>${loc.city}</td>
 										<td>${loc.town}</td>
 										<td>${loc.address}</td>
-<%-- 										<td>${loc.brief}</td> --%>
-<%-- 										<td>${loc.site}</td> --%>
+										<td>${loc.brief}</td>
+										<td>${loc.site}</td>
+										<td>${loc.map}</td>
 										<td>
 											<form action="updateold.controller" method="post">
 												<input type="hidden" name="id" value="${loc.id}"> 
@@ -91,9 +96,7 @@
 			</main>
 		
 		</div>
-		<!--   <div style="text-align:right; margin-right:200px; margin-top:20px"> -->
-		<!-- 	<button class="btn" onclick="location.href='../login.html'">返回登入首頁</button> -->
-		<!-- 	</div> -->
+		
 		
 		<script>
 	function check(id){

@@ -41,6 +41,11 @@ td{
 												<td><form:hidden path="id" /></td>
 											</tr>
 											<tr>
+												<td><form:label path="photo">店家照片:</form:label></td>
+												<td>${updatelocation.photo}</td>
+												<td><form:hidden path="photo" /></td>
+											</tr>
+											<tr>
 												<td><form:label path="store">店家名稱</form:label></td>
 												<td>${updatelocation.store}</td>
 												<td><form:hidden path="store" /></td>
@@ -51,11 +56,7 @@ td{
 												<td><form:hidden path="type" /></td>
 
 											</tr>
-											<tr>
-												<td><form:label path="hos_type">醫療類別:</form:label></td>
-												<td>${updatelocation.hos_type}</td>
-												<td><form:hidden path="hos_type" /></td>
-											</tr>
+											
 											<tr>
 												<td>電話</td>
 												<td>${updatelocation.phone}</td>
@@ -96,6 +97,11 @@ td{
 												<td>${updatelocation.site}</td>
 												<td><form:hidden path="site" /></td>
 											</tr>
+											<tr>
+												<td>位置</td>
+												<td>${locCheck.map}</td>
+												<td><form:hidden path="map" /></td>
+											</tr>
 										</tbody>
 									</table>
 									<div class="sub" style="text-align: center">
@@ -105,9 +111,9 @@ td{
 								</form:form>
 								<form:form id="back" method="POST" action="updatebackloc.controller" modelAttribute="updatelocation">
 								<form:hidden path="id" />
+								<form:hidden path="photo" />
 								<form:hidden path="store" />
 								<form:hidden path="type" />
-								<form:hidden path="hos_type" />
 								<form:hidden path="phone" />
 								<form:hidden path="time" />
 								<form:hidden path="close_day" />
@@ -116,6 +122,7 @@ td{
 								<form:hidden path="address" />
 								<form:hidden path="brief" />
 								<form:hidden path="site" />
+								<form:hidden path="map" />
 								</form:form>
 							</div>
 						</div>

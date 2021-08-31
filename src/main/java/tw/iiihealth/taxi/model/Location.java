@@ -18,7 +18,6 @@ public class Location {
 	private String store;
 	@Column(name="class")
 	private String type;
-	private String hos_type;
 	private String phone;
 	private String time;
 	private String close_day;
@@ -27,6 +26,8 @@ public class Location {
 	private String address;
 	private String brief;
 	private String site;
+	private String photo;
+	private String map;
 	
 	public int getId() {
 		return id;
@@ -46,12 +47,7 @@ public class Location {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getHos_type() {
-		return hos_type;
-	}
-	public void setHos_type(String hos_type) {
-		this.hos_type = hos_type;
-	}
+	
 	public String getPhone() {
 		return phone;
 	}
@@ -99,6 +95,18 @@ public class Location {
 	}
 	public void setSite(String site) {
 		this.site = site;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public String getMap() {
+		return map;
+	}
+	public void setMap(String map) {
+		this.map = map;
 	}
 	
 	
