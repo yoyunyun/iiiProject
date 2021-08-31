@@ -201,8 +201,10 @@ function search(){
             "<div class='col-12 col-sm-6 col-md-4 mb-4'>"+
             "<div class='blog-entry'>"+
               "<a href='/taxi/search/"+(ele.id)+"' class='d-block'>" +
-                "<img src='/images/hospital2.png' alt='Image' class='img-fluid'></a>"+
-              "<div class='post-meta d-flex justify-content-center'>" +
+                "<img src='${pageContext.request.contextPath}/LocationImg/"+(ele.photo)+"' onerror='this.src="+"'${pageContext.request.contextPath}/images/hospital2.png'"+"' alt='Image' class='img-fluid'></a>"+
+                
+					
+                "<div class='post-meta d-flex justify-content-center'>" +
                 "<span>"+
                 	"<span class='icon-phone'></span>" +
             	 	"<span >"+ (ele.phone)+"</span><br/>" +
