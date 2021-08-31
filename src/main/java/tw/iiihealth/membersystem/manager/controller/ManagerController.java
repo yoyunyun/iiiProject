@@ -7,8 +7,6 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import tw.iiihealth.membersystem.manager.model.Manager;
 import tw.iiihealth.membersystem.manager.service.MailService;
@@ -29,7 +27,6 @@ import tw.iiihealth.membersystem.manager.service.ManagerService;
 //	陳厚丞 帳:eeit12904  密:password04
 //	陳宥芸 帳:eeit12905  密:password05
 
-@SessionAttributes(names="user")
 @Controller
 public class ManagerController {
 	
@@ -38,21 +35,52 @@ public class ManagerController {
 
 	@Autowired
 	private MailService mailService;
+	
+	
+	
+//-------------------------------------------------------登入-----------------------------------------------------------------
+
+	//登入
+	@RequestMapping("/iiiHealth/login")
+	public ModelAndView managerLogin2(Model m) {
+		return new ModelAndView("membersystem/Login/ManagerLogin");
+	}
+	
+	//登入失敗(1)
+	@RequestMapping("/iiiHealth/login/AccessDenied")
+	public ModelAndView managerAccessError1() {
+		return new ModelAndView("membersystem/Login/ManagerAccessdenied");
+	}
+
+	//登入失敗(2)
+	@RequestMapping("/iiiHealth/AccessDenied")
+	public ModelAndView managerAccessError2() {	
+		return new ModelAndView("membersystem/Login/ManagerAccessdenied");
+	}
+	
+
+	
+	
+//-------------------------------------------------------首頁(管理員資料表)-----------------------------------------------------------------
+	
+	
 
 	// 查詢所有
 	@RequestMapping(path = "/Manager/searchAllManagerAction.controller", method = {RequestMethod.GET, RequestMethod.POST})
 	public String searchAllManagerAction(Model m) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String manageraccount = auth.getName();
-		Manager user = managerService.searchUserDetails(manageraccount);
-		m.addAttribute("user", user);
 		
 		List<Manager> list = managerService.searchAllManager();
 		m.addAttribute("allManager", list);
 		return "membersystem/Manager/DisplaySearchAllManager";
 	}
 
+	
+	
+	
+//-------------------------------------------------------註冊-----------------------------------------------------------------
+
+	
+	
 	// 註冊單筆(跳轉)
 	@RequestMapping(path = "/Manager/insertManager", method = {RequestMethod.GET, RequestMethod.POST})
 	public String insertManager(@ModelAttribute("manager") Manager manager, Model m) {
@@ -90,7 +118,7 @@ public class ManagerController {
 
 		mailService.register(manager, getSiteURL(request));
 
-		return "membersystem/Manager/RegisterSuccess";
+		return "membersystem/Manager/registerSuccess";
 	}
 
 	// 註冊單筆進SQL(2)
@@ -99,6 +127,15 @@ public class ManagerController {
 		return siteURL.replace(request.getServletPath(), "");
 	}
 
+	
+	
+	
+	
+//-------------------------------------------------------修改-----------------------------------------------------------------
+	
+	
+	
+	
 	// 修改單筆(跳轉)
 	@PostMapping(path = "/Manager/updateManager")
 	public String updateManager(@ModelAttribute("manager") Manager manager,
@@ -141,6 +178,13 @@ public class ManagerController {
 
 		return "redirect:/Manager/searchAllManagerAction.controller";
 	}
+	
+	
+	
+	
+//-------------------------------------------------------刪除-----------------------------------------------------------------
+	
+	
 
 	// 確認刪除的單筆是否正確
 	@PostMapping(path = "/Manager/displayDeleteManager")

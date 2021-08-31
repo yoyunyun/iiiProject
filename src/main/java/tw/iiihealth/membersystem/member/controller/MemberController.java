@@ -51,16 +51,14 @@ public class MemberController {
 	private MemberMailService mailService;
 	
 	
+	
+	
+	
+//-------------------------------------------------------登入-----------------------------------------------------------------
+	
 	// 登入
 	@RequestMapping("/Member/login")
 	public ModelAndView managerLogin2(Model m) {
-		System.out.println("login path entry");
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		String memberaccount = auth.getName();
-//		Member user_Member = memberService.searchUserDetails(memberaccount);
-//		m.addAttribute("user_Member", user_Member);
-		
-		
 		return new ModelAndView("membersystem/Login/MemberLogin");
 	}
 	
@@ -71,46 +69,43 @@ public class MemberController {
 	}
 	
 	
-	//首頁(無會員)
+	
+	
+//-------------------------------------------------------首頁-----------------------------------------------------------------
+	
+	
+	
+	//首頁
 	@RequestMapping("/HealthProject")
 	public ModelAndView index1() {
 		return new ModelAndView("index");
 	}
 	
-	//首頁(有會員)
-	@RequestMapping("/index")
-	public String indexMember(Model m) {
-		
-//		System.out.println(user_Member);
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		String memberaccount = auth.getName();
-//		Member user = memberService.searchUserDetails(memberaccount);
-//		m.addAttribute("user", user);
+	
+	
+	
+
+
+//	// 查詢所有
+//	@RequestMapping(path = "/Member/searchAllMemberAction.controller", method = {RequestMethod.GET, RequestMethod.POST})
+//	public String searchAllMemberAction(Model m) {
+//
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //		String memberaccount = auth.getName();
 //		Member user_Member = memberService.searchUserDetails(memberaccount);
 //		m.addAttribute("user_Member", user_Member);
-//
 //		
-//		Member member = memberService.searchMemberId(user_Member.getMemberid());
-//		m.addAttribute("member", member);
-		
-		return "index";
-	}
+//		List<Member> list = memberService.searchAllMember();
+//		m.addAttribute("allMember", list);
+//		return "membersystem/Member/DisplaySearchAllMember";
+//	}
+	
+	
 
-	// 查詢所有
-	@RequestMapping(path = "/Member/searchAllMemberAction.controller", method = {RequestMethod.GET, RequestMethod.POST})
-	public String searchAllMemberAction(Model m) {
+	
+	
+//-------------------------------------------------------會員個人資料-----------------------------------------------------------------
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String memberaccount = auth.getName();
-		Member user_Member = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user_Member", user_Member);
-		
-		List<Member> list = memberService.searchAllMember();
-		m.addAttribute("allMember", list);
-		return "membersystem/Member/DisplaySearchAllMember";
-	}
 	
 	// 查詢單筆
 	@RequestMapping(path = "/Member/searchOneMemberAction.controller", method = {RequestMethod.GET, RequestMethod.POST})
@@ -119,12 +114,19 @@ public class MemberController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
 		Member user_Member = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user_Member", user_Member);
 		
 		Member member = memberService.searchMemberId(user_Member.getMemberid());
 		m.addAttribute("member", member);
 		return "membersystem/Member/MemberFront";
 	}
+	
+	
+	
+	
+//-------------------------------------------------------註冊-----------------------------------------------------------------
+	
+	
+	
 
 	// 註冊單筆(跳轉)
 	@RequestMapping(path = "/HealthProject/insertMember", method = {RequestMethod.GET, RequestMethod.POST})
@@ -228,6 +230,14 @@ public class MemberController {
 		return siteURL.replace(request.getServletPath(), "");
 	}
 	
+	
+	
+	
+	
+//-------------------------------------------------------修改(基本資料)-----------------------------------------------------------------
+	
+	
+	
 	// 修改單筆(跳轉)(基本資料)
 	@RequestMapping(path = "/Member/updateMember", method = {RequestMethod.GET, RequestMethod.POST})
 	public String updateMember(@ModelAttribute("member") Member member, Model m) {
@@ -235,7 +245,6 @@ public class MemberController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
 		Member user_Member = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user_Member", user_Member);
 		
 		member = memberService.searchMemberId(user_Member.getMemberid());
 		
@@ -254,11 +263,6 @@ public class MemberController {
 	// 修改單筆(返回上一頁)(基本資料)
 	@PostMapping(path = "/Member/reUpdateMember")
 	public String reUpdateMember(@ModelAttribute("member") Member member, HttpServletRequest request, Model m) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String memberaccount = auth.getName();
-		Member user_Member = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user_Member", user_Member);
 		
 		//刪除本機舊圖
 		String saveDir = request.getSession().getServletContext().getRealPath("/") + "MemberPhoto\\";
@@ -282,11 +286,6 @@ public class MemberController {
 	public String displayUpdateMember(@ModelAttribute("member") @Validated Member member, BindingResult result,
 			Model m, @RequestParam("memberphoto") MultipartFile multipartFile, HttpServletRequest request)
 			throws IllegalStateException, IOException {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String memberaccount = auth.getName();
-		Member user_Member = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user_Member", user_Member);
 		
 		if (multipartFile!= null && !multipartFile.isEmpty()) {
 			// 抓取檔案名稱
@@ -332,6 +331,15 @@ public class MemberController {
 		return "redirect:/Member/searchOneMemberAction.controller";
 	}
 	
+	
+	
+	
+	
+//-------------------------------------------------------修改(帳密)-----------------------------------------------------------------
+	
+	
+	
+	
 	// 修改單筆(跳轉)(帳密)
 	@RequestMapping(path = "/Member/updateMemberAP", method = {RequestMethod.GET, RequestMethod.POST})
 	public String updateMemberAP(@ModelAttribute("member") Member member, Model m) {
@@ -339,7 +347,6 @@ public class MemberController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String memberaccount = auth.getName();
 		Member user_Member = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user_Member", user_Member);
 		
 		member = memberService.searchMemberId(user_Member.getMemberid());
 		
@@ -351,11 +358,6 @@ public class MemberController {
 	// 修改單筆(返回上一頁)(帳密)
 	@PostMapping(path = "/Member/reUpdateMemberAP")
 	public String reUpdateMemberAP(@ModelAttribute("member") Member member, Model m) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String memberaccount = auth.getName();
-		Member user_Member = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user_Member", user_Member);
 		
 		m.addAttribute("member", member);
 		
@@ -365,11 +367,6 @@ public class MemberController {
 	// 確認修改的單筆是否正確(帳密)
 	@PostMapping(path = "/Member/displayUpdateMemberAP")
 	public String displayUpdateMemberAP(@ModelAttribute("member") Member member, Model m) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String memberaccount = auth.getName();
-		Member user_Member = memberService.searchUserDetails(memberaccount);
-		m.addAttribute("user_Member", user_Member);
 		
 		m.addAttribute("member", member);
 		
@@ -389,28 +386,27 @@ public class MemberController {
 		
 		return "redirect:/Member/logout";
 	}
-
-	// 確認刪除的單筆是否正確
-	@PostMapping(path = "/Member/displayDeleteMember")
-	public String displayDeleteMember(@RequestParam(name = "memberid") int memberid, Model m) {
-		
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		String memberaccount = auth.getName();
-//		Member user = memberService.searchUserDetails(memberaccount);
-//		m.addAttribute("user", user);
-
-		Member member = memberService.searchMemberId(memberid);
-		m.addAttribute("member", member);
-
-		return "membersystem/Member/DisplayDeleteMember";
-	}
 	
-	// 刪除單筆
-	@PostMapping(path = "/Member/deleteMemberAction.controller")
-	public String processDeleteAction(@RequestParam(name="memberid") int memberid,Model m) {
-		
-		memberService.deleteMember(memberid);
-		
-		return "redirect:/HealthProject/MemberHealth/searchAllMemberAction.controller";
-	}
+	
+	
+	
+
+//	// 確認刪除的單筆是否正確
+//	@PostMapping(path = "/Member/displayDeleteMember")
+//	public String displayDeleteMember(@RequestParam(name = "memberid") int memberid, Model m) {
+//
+//		Member member = memberService.searchMemberId(memberid);
+//		m.addAttribute("member", member);
+//
+//		return "membersystem/Member/DisplayDeleteMember";
+//	}
+//	
+//	// 刪除單筆
+//	@PostMapping(path = "/Member/deleteMemberAction.controller")
+//	public String processDeleteAction(@RequestParam(name="memberid") int memberid,Model m) {
+//		
+//		memberService.deleteMember(memberid);
+//		
+//		return "redirect:/HealthProject/MemberHealth/searchAllMemberAction.controller";
+//	}
 }
