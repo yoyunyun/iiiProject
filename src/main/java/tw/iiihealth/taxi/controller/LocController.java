@@ -168,8 +168,14 @@ public class LocController {
 			// 最終檔案路徑
 			String saveFilePath = saveDir + File.separator+ saveName;
 			File saveFile = new File(saveFilePath);
-			System.out.println("------------");
-			System.out.println(saveFile);
+			
+			// 刪除資料夾原本的圖片 
+		    String deleteName = loc.getPhoto();
+		    if (deleteName != "" && deleteName != null) {
+		        String deleteFilePath = saveDir + File.separator+ deleteName;
+			    File deleteFile = new File(deleteFilePath);
+			    deleteFile.delete();
+		    }
 			
 			// 儲存圖片
 			multipartFile.transferTo(saveFile);
