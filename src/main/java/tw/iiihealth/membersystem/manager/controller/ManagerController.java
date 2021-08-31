@@ -118,7 +118,7 @@ public class ManagerController {
 
 		mailService.register(manager, getSiteURL(request));
 
-		return "membersystem/Manager/RegisterSuccess";
+		return "membersystem/Manager/registerSuccess";
 	}
 
 	// 註冊單筆進SQL(2)
