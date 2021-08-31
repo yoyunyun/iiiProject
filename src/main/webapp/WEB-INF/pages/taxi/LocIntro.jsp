@@ -81,7 +81,7 @@
                     <div class="prdImgWrap">
                         <span class="imgTag">
                         </span>                      
-                        <img src="/images/hospital2.png"/>
+                        <img src="${pageContext.request.contextPath}/LocationImg/${ele.photo}"/>
                         <span class="icon-phone"></span>
                         <span>${ele.phone}</span><br/>
                         <span class="icon-map-marker"></span>

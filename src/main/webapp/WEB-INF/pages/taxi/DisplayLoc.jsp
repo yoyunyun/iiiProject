@@ -34,8 +34,14 @@ td{
 								<h4 style="margin: 10px 20px; text-align: center">登記資料如下請確認</h4>
 								<div class="card-body">
 
-									<form action="addloc" method="post" id="okk">
+									<form action="addloc" method="post" enctype="multipart/form-data" id="okk">
 										<table style="margin: 10px auto">
+											<tr>
+												<td>店家照片</td>
+												<td>${locCheck.photo}</td>
+												<td><input type="hidden" name="photo"
+													value="${locCheck.photo}"></td>
+											</tr>
 											<tr>
 												<td>店家名稱</td>
 												<td>${locCheck.store}</td>
@@ -48,12 +54,7 @@ td{
 												<td><input type="hidden" name="type"
 													value="${locCheck.type}"></td>
 											</tr>
-											<tr>
-												<td>醫療類別</td>
-												<td>${locCheck.hos_type}</td>
-												<td><input type="hidden" name="hos_type"
-													value="${locCheck.hos_type}"></td>
-											</tr>
+											
 											<tr>
 												<td>電話</td>
 												<td>${locCheck.phone}</td>
@@ -102,6 +103,12 @@ td{
 												<td><input type="hidden" name="site"
 													value="${locCheck.site}"></td>
 											</tr>
+											<tr>
+												<td>位置</td>
+												<td>${locCheck.map}</td>
+												<td><input type="hidden" name="map"
+													value="${locCheck.map}"></td>
+											</tr>
 										</table>
 										<div class="sub" style="text-align: center">
 											<input type="button" name="confirm" value="確認" style="margin:10px 25px" onclick="okk()">
@@ -109,9 +116,9 @@ td{
 										</div>
 									</form>
 									<form id="back" action="addback" method="post">
+										<input type="hidden" name="photo" value="${locCheck.photo}">
 										<input type="hidden" name="store" value="${locCheck.store}">
 										<input type="hidden" name="type" value="${locCheck.type}">
-										<input type="hidden" name="hos_type" value="${locCheck.hos_type}">
 										<input type="hidden" name="phone" value="${locCheck.phone}">
 										<input type="hidden" name="time" value="${locCheck.time}">
 										<input type="hidden" name="close_day" value="${locCheck.close_day}">
@@ -120,6 +127,7 @@ td{
 										<input type="hidden" name="address" value="${locCheck.address}">
 										<input type="hidden" name="brief" value="${locCheck.brief}">
 										<input type="hidden" name="site" value="${locCheck.site}">
+										<input type="hidden" name="map" value="${locCheck.map}">
 									
 									</form>
 								</div>
