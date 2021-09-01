@@ -88,9 +88,13 @@
 					<tbody>
 						<c:forEach var="equip" items="${list}">
 							<tr>
-								<td><img src="${pageContext.request.contextPath}/EquipImg/${equip.photo}"
-									onerror="this.style.display='none'" width="120px"
-									height="120px" /></td>
+								<td>
+									<a href="/consumer/findByIdforCustomer/${equip.id}"  >
+										<img src="${pageContext.request.contextPath}/EquipImg/${equip.photo}"
+											onerror="this.style.display='none'" width="120px"
+											height="120px" />
+									</a>	
+								</td>
 								<td>${equip.name}</td>
 								<td>${equip.type}</td>
 								<td>${equip.vendor}</td>
