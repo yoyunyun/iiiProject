@@ -42,7 +42,6 @@ public class ShoppingCartController {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
-	
 		Member member = memberService.getCurrentlyLoggedInMember(auth);
 		
 		List<CartItem> cartItems = shoppingCartService.listCartItems(member);
@@ -62,7 +61,7 @@ public class ShoppingCartController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		Member member = memberService.getCurrentlyLoggedInMember(auth);
-
+		
 		List<CartItem> cartItems = shoppingCartService.listCartItems(member);
 		
 		model.addAttribute("cartItems", cartItems);
@@ -111,7 +110,7 @@ public class ShoppingCartController {
 			
 			OrderDetail orderDetail = new OrderDetail();
 			
-			int price = Integer.parseInt(item.getEquip().getPrice());
+			int price = item.getEquip().getPrice();
 			int quantity =  item.getQuantity();
 			int total = price * quantity;
 			String product = item.getEquip().getName();
@@ -138,8 +137,6 @@ public class ShoppingCartController {
 		
 		//取得訂單編號
 		int oId = order.getId();
-		
-		System.out.println(oId);
 		
 		// 取得訂單資料
 		orderService.findbyId(oId);
