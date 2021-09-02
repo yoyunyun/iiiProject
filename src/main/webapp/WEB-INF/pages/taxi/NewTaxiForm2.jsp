@@ -46,8 +46,8 @@
 									</tr>
 									<tr>								
 										<td><form:label path="phone">聯絡電話:</form:label></td>
-												<td><form:input path="phone" onblur="Onblur(this,sp2)"/></td>
-												<td><span id="idsp2"></span></td>
+										<td><form:input path="phone" onblur="Onblur(this,sp2)"/></td>
+										<td><span id="idsp2"></span></td>
 									</tr>
 									<tr>
 												<td><form:label path="address">地址:</form:label></td>
@@ -70,6 +70,8 @@
 											<form:radiobutton path="careTaxi" value="No" label="否" /></td>
 										<td><span id="idsp5"></span><td>
 									</tr>
+									
+							
 
 				
 									<tr>

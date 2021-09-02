@@ -26,6 +26,7 @@ public class TaxiBean {
 	@Column(name="CARETAXI")
 	private String careTaxi;
 	
+	
 	public int getId() {
 		return id;
 	}
@@ -62,6 +63,7 @@ public class TaxiBean {
 	public void setCareTaxi(String careTaxi) {
 		this.careTaxi = careTaxi;
 	}
+	
 	
 	
 }
