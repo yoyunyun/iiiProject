@@ -101,6 +101,7 @@ public class EquipController {
 	@PostMapping(path="save")
 	public String saveById(@ModelAttribute("equip") Equip equip, 
 						   @RequestParam("pic") MultipartFile multipartFile,
+						   @RequestParam("hot") String hot,
 						   HttpServletRequest request) throws Exception{
 		
 		
@@ -147,6 +148,9 @@ public class EquipController {
 			equip.setPhoto(saveName);
 
 		}
+		
+		// 儲存熱門商品狀態
+		equip.setHot(hot);
 		
 		equipService.save(equip);
 		

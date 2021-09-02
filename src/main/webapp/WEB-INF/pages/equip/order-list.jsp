@@ -225,9 +225,9 @@ var myChart = new Chart(line, {
   type: 'line', //圖表類型
   data: {
     //標題
-   labels: ['May', 'June', 'July', 'Aug', 'Sep'],
+    labels: ['April', 'May', 'June', 'July', 'Aug'],
     datasets: [{
-      data: [4000, 6200, 2800, 3300, 2700], //資料
+      data: [3000, 7500, 2800, 1100, 2000], //資料
       borderColor: 'rgba(132, 193, 255, 1)',
       fill: false,
      

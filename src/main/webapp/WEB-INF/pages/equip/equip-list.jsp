@@ -76,6 +76,7 @@
 										<th>輔具類型</th>
 										<th>販賣商</th>
 										<th>價格</th>
+										<th>熱門</th>
 										<th>衛生署字號</th>
 										<th>更新</th>
 										<th>刪除</th>
@@ -95,6 +96,7 @@
 											<td>${equip.type}</td>
 											<td>${equip.vendor}</td>
 											<td>${equip.price}</td>
+											<td>${equip.hot}</td>
 											<td>${equip.document}</td>
 											<td>
 												<form action="showUpdate" method="post">
@@ -261,9 +263,9 @@ var myChart = new Chart(line, {
   type: 'line', //圖表類型
   data: {
     //標題
-    labels: ['May', 'June', 'July', 'Aug', 'Sep'],
+    labels: ['April', 'May', 'June', 'July', 'Aug'],
     datasets: [{
-      data: [4000, 6200, 2800, 3300, 2700], //資料
+      data: [3000, 7500, 2800, 1100, 2000], //資料
       borderColor: 'rgba(132, 193, 255, 1)',
       fill: false,
      
