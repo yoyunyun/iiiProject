@@ -31,6 +31,8 @@ public class FrontTaxiController {
 		return "taxi/FrontSearchTaxi2";
 	}
 	
+	
+	
 	@GetMapping(path = "/frontstart")
 	public String start() {
 		return "index";
