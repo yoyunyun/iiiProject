@@ -70,7 +70,8 @@
 						<a class="btn btn-outline-secondary btn-lg" style="font-size:20px; display: flex; align-items: center;" href="#">加甚麼看你</a>
 					</div>
 				
-
+				<a href="${pageContext.request.contextPath}/cart/order">會員訂單</a>
+				<a href="${pageContext.request.contextPath}/cart/showcollect">會員收藏</a>
 				
 
 					<div class="col-md-6" style="margin: 0 auto;">
