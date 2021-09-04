@@ -39,6 +39,24 @@
             width: 100%;
             height: 100%;
         }
+        
+        .titleG{
+            color: green;
+            text-align: center;
+            font-style: oblique;
+            font-weight: bolder;
+        }
+
+        .titleR{
+            color: red;
+            text-align: center;
+            font-weight: bolder;
+        }
+        .titleO{
+            color:orange;
+            text-align: center;
+            font-weight: bolder;
+        }
     </style>
 </head>
 
@@ -89,12 +107,12 @@
 
 	
 	//多個標記點
-		const data = [
-            { name: "計程車A", local: [24.9573, 121.19431] },
-            { name: "計程車B", local: [24.96253, 121.16635] },
-            { name: "計程車C", local: [24.96822, 121.18665] },
-            { name: "計程車D", local: [24.95935, 121.17017] }
-        ];
+// 		const data = [
+//             { name: "計程車A", local: [24.9573, 121.19431] },
+//             { name: "計程車B", local: [24.96253, 121.16635] },
+//             { name: "計程車C", local: [24.96822, 121.18665] },
+//             { name: "計程車D", local: [24.95935, 121.17017] }
+//         ];
 		//function裡的L要另外設參數才會作用，否則會無法觸發動作
 		var maplibrary = L;
 		
@@ -115,23 +133,8 @@
             
         }).addTo(map);
 
-//         data.forEach(item => {
-
-// 	            const myIcon = maplibrary.icon({
-// 	                iconUrl: '/images/taxi_icon.png',  //設定 icon 圖片路徑
-// 	                iconSize: [60, 50],      //資料為陣列，設定寬度與高度   
-// 	                iconAnchor: [30, 25],    //資料為陣列，設定 icon 的 X 軸與 Y 軸偏移量
-// 	                popupAnchor: [-3, -76],  //資料為陣列，設定彈跳視窗的 X 軸與 Y 軸偏移量
-
-// 	            });
-// 	            var test=maplibrary.marker(item.local, {
-// 	                title: item.name,
-// 	                icon: myIcon
-// 	            })
-// 	                test.addTo(map)
-// 	                .bindPopup(item.name);
-// 	        	});
-    
+		//建立marker layer
+		var markers = maplibrary.layerGroup().addTo(map);
 	
 	function search() {
 		$.ajax({
@@ -141,6 +144,7 @@
      		contentType:'application/json',
      		success: function(result) {	   		
   	   			newdata=[];
+  	   			markers.clearLayers();
   	   			for(var i in result){
   	   				let m = result[i].map.split(',');
   	   				
@@ -149,7 +153,7 @@
   		   					company: result[i].company,service: result[i].service, local: m}
   		   			)
   	   			}
-
+				
   	   			newdata.forEach(item => {
 
 	            const myIcon = L.icon({
@@ -163,22 +167,52 @@
 	                title: item.name,
 	                icon: myIcon
 	            })
-	            	let list = "服務狀態: "+item.service+"<br/>駕駛: "+item.name+"<br/>車牌: "+item.license+"<br/>所屬公司: "+item.company+
-	            				"<br/>電話: "+item.phone;
-	                test.addTo(map)
+	            	let ser = item.service;
+	            	let list = "";
+	            	if(ser == "可預約"){
+	            		list += "<h6 class='titleG'> "+item.service+"</h6><br/>駕駛: "+item.name+"<br/>車牌: "+item.license+"<br/>所屬公司: "+item.company+
+	            				"<br/>電話: <a href='tel:"+item.phone+"'>"+item.phone+"</a>";
+	            	}else if (ser == "已預約"){
+	            		list += "<h6 class='titleO'> "+item.service+"</h6><br/>駕駛: "+item.name+"<br/>車牌: "+item.license+"<br/>所屬公司: "+item.company+
+	            				"<br/>電話: <a href='tel:"+item.phone+"'>"+item.phone+"</a>";
+	            	}else{
+	            		list += "<h6 class='titleR'> "+item.service+"</h6><br/>駕駛: "+item.name+"<br/>車牌: "+item.license+"<br/>所屬公司: "+item.company+
+	            				"<br/>電話: <a href='tel:"+item.phone+"'>"+item.phone+"</a>";
+	            	}
+	                
+	            	test.addTo(markers)
 	                .bindPopup(list);
 	        	});
   	   			
-  	   			return data;
      		}
   	});
+		setTimeout(() => {
+			time(1);
+		}, 2500);
 		
 	};
+	
+	function time(move){
+		$.ajax({
+     		type:'post',
+     		url:'/taximap/movetaximap/'+move,
+     		dataType:'JSON',
+     		contentType:'application/json',
+     		success: function(result) {
+     			
+     			}
+     		});
+		setTimeout(() => {
+			search();
+		}, 2500);
+	}
 
 	
 	$(document).ready(function(){
 		search();
+		console.log(map);
 	})
+		
 
 </script>
     
