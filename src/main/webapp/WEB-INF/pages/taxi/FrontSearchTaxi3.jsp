@@ -113,6 +113,7 @@
 //             { name: "計程車C", local: [24.96822, 121.18665] },
 //             { name: "計程車D", local: [24.95935, 121.17017] }
 //         ];
+		
 		//function裡的L要另外設參數才會作用，否則會無法觸發動作
 		var maplibrary = L;
 		
@@ -192,6 +193,7 @@
 		
 	};
 	
+	//設定每5秒呼叫一次
 	function time(move){
 		$.ajax({
      		type:'post',
@@ -210,7 +212,6 @@
 	
 	$(document).ready(function(){
 		search();
-		console.log(map);
 	})
 		
 
