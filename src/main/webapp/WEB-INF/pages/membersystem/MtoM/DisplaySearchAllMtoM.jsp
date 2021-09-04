@@ -93,15 +93,16 @@ a.disabled {
 				<!-- 表單總覽 -->
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 管理者表單總覽
+							<i class="fas fa-table me-1"></i> 會員資料表
 							
 						</div>
 						<div class="card-body">
 							<table id="MtoMTable" class="table table-striped table-bordered nowrap" style="width:100%">
 								<thead>
 									<tr>
-										<th>管理者編號</th>
-										<th>管理者姓名</th>
+										<th>會員編號</th>
+										<th>會員姓名</th>
+										<th>權限</th>
 										<th>性別</th>
 										<th>民國年</th>
 										<th>月</th>
@@ -374,6 +375,7 @@ $('#onekey').on('click', function(){
 				columns:[					
 					{data: "memberid"},
 					{data: "membername"},
+					{data: "role"},
 					{data: "membergender"},
 					{data: "memberyear"},
 					{data: "membermonth"},
@@ -402,7 +404,7 @@ $('#onekey').on('click', function(){
 				
 				
 				columnDefs:[{
-					targets : 14,
+					targets : 15,
 					orderable: false, // 禁用排序
 					defaultContent: "",
 					render : function (data) {
@@ -411,7 +413,7 @@ $('#onekey').on('click', function(){
 				},
 					
 					{
-					targets: 15,
+					targets: 16,
 					orderable: false, // 禁用排序
 					defaultContent: "",
 					render: function (data) {
