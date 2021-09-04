@@ -17,4 +17,8 @@ public class TaxiMapService {
 		return taxiMapRepository.findAll();
 	}
 	
+	public TaxiMap updateMap(TaxiMap map) {
+		return taxiMapRepository.save(map);
+	}
+	
 }
