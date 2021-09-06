@@ -28,11 +28,11 @@ public class MemberService {
 		return memberRepository.searchAccount(memberaccount);
 	}
 	
-	//查詢登入後的帳戶資料
+	//忘記密碼
 	public Member searchUserDetails(String memberaccount) {
 		return memberRepository.searchUsername(memberaccount);
 	}
-
+	
 	// 新增資料 or 修改資料
 	public Member saveMember(Member member) {
 		return memberRepository.save(member);

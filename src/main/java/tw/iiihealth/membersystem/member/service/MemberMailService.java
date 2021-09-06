@@ -1,11 +1,14 @@
 package tw.iiihealth.membersystem.member.service;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,66 @@ public class MemberMailService {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	
+	
+	//找回密碼
+	public void sendInlineMail(Member member, String password) throws Exception {
+		
+	    String toAddress = member.getMemberemail();
+	    String fromAddress = "iiieeit12907@gmail.com";
+	    String senderName = "健康優生網";
+	    String subject = "忘記密碼";
+	    String content = "親愛的[[name]],<br>"
+	            + "請使用我們為您準備的帳號密碼:<br><br>"
+	    		+ "<table style=\"font-family: Arial, Helvetica, sans-serif; border-collapse: collapse; width: 1000px;\">"
+	    		+ "<tr>"
+	            + "<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: center; background-color: #04AA6D; color: white; border: 1px solid #ddd; padding: px;\">姓名</th>\r\n"
+	            + "<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: center; background-color: #04AA6D; color: white; border: 1px solid #ddd; padding: 8px;\">權限</th>\r\n"
+	            + "<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: center; background-color: #04AA6D; color: white; border: 1px solid #ddd; padding: 8px;\">帳號</th>\r\n"
+	            + "<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: center; background-color: #04AA6D; color: white; border: 1px solid #ddd; padding: 8px;\">密碼</th>\r\n"
+	            + "</tr>"
+	            + "<tr style=\"background-color: #f2f2f2;\">"
+	            + "<td style=\"border: 2px solid #ddd; padding: 8px; text-align: center;\">[[name]]</td>"
+	            + "<td style=\"border: 2px solid #ddd; padding: 8px; text-align: center;\">[[role]]</td>"
+	            + "<td style=\"border: 2px solid #ddd; padding: 8px; text-align: center;\">[[account]]</td>"
+	            + "<td style=\"border: 2px solid #ddd; padding: 8px; text-align: center;\">[[password]]</td>"
+	            + "</tr>"
+	            + "</table>"
+	    		+ "<br><br><img width=\"150px\" height=\"150px\" src=\"cid:laught\" >"
+	            + "<h3><a href='http://localhost:8080/Member/login'>請點此登入</a></h3>"
+	            + "謝謝,<br>"
+	            + "健康優生網，關心您";
+		
+		
+	    MimeMessage message = mailSender.createMimeMessage();
+	    MimeMessageHelper helper = new MimeMessageHelper(message, true);
+	     
+	    helper.setFrom(fromAddress, senderName);
+	    helper.setTo(toAddress);
+	    helper.setSubject(subject);
+	     
+	    content = content.replace("[[name]]", member.getMembername());
+	    content = content.replace("[[role]]", member.getRole());
+	    content = content.replace("[[account]]", member.getMemberaccount());
+	    content = content.replace("[[password]]", password);
+	     
+		Resource resource = new ClassPathResource("static/images/laught.png");
+		
+		File file = resource.getFile();
+		
+	    helper.setText(content, true);
+	    
+	    helper.addInline("laught", file); 
+	     
+	    mailSender.send(message);
+	    
+	    
+		
+		}
+	
+	
+	
 	
 	//信箱驗證(1)
 	public void memberMailSave(Member member, String siteURL) throws UnsupportedEncodingException, MessagingException {

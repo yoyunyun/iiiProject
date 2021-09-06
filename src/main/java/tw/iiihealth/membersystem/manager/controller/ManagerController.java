@@ -1,7 +1,9 @@
 package tw.iiihealth.membersystem.manager.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,26 +70,16 @@ public class ManagerController {
 //-------------------------------------------------------首頁(管理員資料表)-----------------------------------------------------------------
 	
 	
-
-	// 查詢所有
-	@RequestMapping(path = "/Manager/searchAllManagerAction.controller", method = {RequestMethod.GET, RequestMethod.POST})
-	public String searchAllManagerAction(Model m) {
-		
-		List<Manager> list = managerService.searchAllManager();
-		m.addAttribute("allManager", list);
+	
+	@RequestMapping(path = "/Manager/searchAllManagerAction", method = {RequestMethod.GET, RequestMethod.POST})
+	public String test(@ModelAttribute("manager") Manager manager, Model m) {
 		return "membersystem/Manager/DisplaySearchAllManager";
 	}
 	
 	
-	@RequestMapping(path = "/Manager/test", method = {RequestMethod.GET, RequestMethod.POST})
-	public String test(@ModelAttribute("manager") Manager manager, Model m) {
-		return "membersystem/test";
-	}
-	
-	
-	@PostMapping(path = "/Manager/searchAllRestManagerAction.controller")
+	@GetMapping(path = "/Manager/searchAllManagerAction.controller")
 	@ResponseBody
-	public List<Manager> searchAllRestManagerAction(){
+	public List<Manager> searchAllManagerAction(){
 		return managerService.searchAllManager();
 	}
 
@@ -142,82 +136,59 @@ public class ManagerController {
 		return siteURL.replace(request.getServletPath(), "");
 	}
 
-	
-	
-	
-	
-//-------------------------------------------------------修改-----------------------------------------------------------------
-	
-	
-	
-	
-	// 修改單筆(跳轉)
-	@PostMapping(path = "/Manager/updateManager")
-	public String updateManager(@ModelAttribute("manager") Manager manager,
-			@RequestParam(name = "managerid") int managerid, Model m) {
 
-		manager = managerService.searchManagerId(managerid);
-		
-		m.addAttribute("manager", manager);
+//------------------------------------------------------------------------------------------------------------------------
+	
+	
+	
 
-		return "membersystem/Manager/UpdateManager";
+	// 查詢單筆
+	@GetMapping(path = "/Manager/searchOneManagerAction.controller/{managerid}")
+	@ResponseBody
+	public Manager searchOneMtoMAction(@PathVariable Integer managerid) throws Exception {
+		return managerService.searchManagerId(managerid);
 	}
 
-	// 修改單筆(返回上一頁)
-	@PostMapping(path = "/Manager/reUpdateManager")
-	public String reUpdateManager(@ModelAttribute("manager") Manager manager, Model m) {
-		
-		m.addAttribute("manager", manager);
-
-		return "membersystem/Manager/UpdateManager";
-	}
-
-	// 確認修改的單筆是否正確
-	@PostMapping(path = "/Manager/displayUpdateManager")
-	public String displayUpdateManager(@ModelAttribute("manager") Manager manager, Model m) {
-		
-		m.addAttribute("manager", manager);
-
-		return "membersystem/Manager/DisplayUpdateManager";
-	}
+	
+	
+	
+	
 
 	// 修改單筆進SQL
-	@PostMapping(path = "/Manager/updateManagerAction.controller")
-	public String updateManagerAction(@ModelAttribute("manager") Manager manager, Model m) {
-
+	@PostMapping(path = "/Manager/updateManagerAction.controller", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String updateManagerAction(@ModelAttribute("manager") Manager manager, Model m) throws Exception {
+		
 		//會員密碼加密
 		String managerpwd = new BCryptPasswordEncoder().encode(manager.getManagerpwd());
 		manager.setManagerpwd(managerpwd);
 
 		managerService.saveManager(manager);
 
-		return "redirect:/Manager/searchAllManagerAction.controller";
+		return "success";
 	}
 	
 	
+
 	
 	
-//-------------------------------------------------------刪除-----------------------------------------------------------------
 	
 	
-
-	// 確認刪除的單筆是否正確
-	@PostMapping(path = "/Manager/displayDeleteManager")
-	public String displayDeleteManager(@RequestParam(name = "managerid") int managerid, Model m) {
-
-		Manager manager = managerService.searchManagerId(managerid);
-		m.addAttribute("manager", manager);
-
-		return "membersystem/Manager/DisplayDeleteManager";
-	}
-
 	// 刪除單筆
-	@PostMapping(path = "/Manager/deleteManagerAction.controller")
-	public String deleteManager(@RequestParam(name = "managerid") int managerid, Model m) {
+	@PostMapping(path = "/Manager/deleteManagerAction.controller/{managerid}")
+	@ResponseBody
+	public Map<String,String> deleteManagerAction(@PathVariable Integer managerid) throws Exception {
 
+		Map<String,String> map = new HashMap<String,String>();
 		managerService.deleteManager(managerid);
-
-		return "redirect:/Manager/searchAllManagerAction.controller";
+		Manager torf =managerService.searchManagerId(managerid);
+		
+		if(torf != null) {
+			System.err.println("刪除失敗");
+		} else {
+			map.put("msg","成功刪除id:"+managerid);
+		}
+		return map;
 	}
 
 }

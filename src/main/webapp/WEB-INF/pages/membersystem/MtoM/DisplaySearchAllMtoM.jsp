@@ -103,6 +103,7 @@ a.disabled {
 										<th>會員編號</th>
 										<th>會員姓名</th>
 										<th>權限</th>
+										<th>停權</th>
 										<th>性別</th>
 										<th>民國年</th>
 										<th>月</th>
@@ -129,18 +130,18 @@ a.disabled {
 					
 					
 			<!-- "修改表單"的互動視窗 Modal -->
-					<div class="modal fade" tabindex="-1" role="dialog"
-						id="updateMtoMShow">
+					<div class="modal fade" tabindex="-1" role="dialog" id="updateMtoMShow">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
 									<h4 class="modal-title">修改會員資料</h4>
-									<button type="button" class="btn-close" data-bs-dismiss="modal"
-										aria-label="Close">
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
 									</button>
 								</div>
 							<div class="modal-body">
+							
 								<form:form id="updateForm" modelAttribute="member" enctype="multipart/form-data">
+								
 									<table class="table  table-hover">
 										<tr>
 											<td><form:label path="membername">被看護人姓名:</form:label></td>
@@ -355,27 +356,41 @@ $('#onekey').on('click', function(){
 	
 	<script>
 
-		var table;
-		$(function () {
-			createdatatable();
-		});
+	 $(document).ready(function() {
+		   $('#MtoMTable').DataTable();
+		  });
 		
 		//datatable 
-		function createdatatable() {
-			table = $("#MtoMTable").DataTable({
+  		 var table = $("#MtoMTable").DataTable({
 				responsive: true,
 				
-				ajax:{
-					url: "/Manager/searchAllMtoMAction.controller",
-					dataSrc: ""
+				"ajax":{
+					"url": "/Manager/searchAllMtoMAction.controller",
+					"dataSrc": ""
 				},
 
-				rowId: "memberid",
+// 				rowId: "memberid",
 				
 				columns:[					
 					{data: "memberid"},
 					{data: "membername"},
 					{data: "role"},
+					{data: null,
+			              render:function(data, type, row) {
+			            	  console.log(data.disabled)
+			            	  console.log(data.memberid)
+			              if(data.disabled){
+			                    return "<div class='form-check form-switch'style='position: relative;'>"+
+			       					   "<input class='form-check-input disabled' type='checkbox' id='"+data.memberid+"' checked>"+
+			      					    "</div>";
+			                  }
+			                  else{
+			                    return "<div class='form-check form-switch'style='position: relative;'>"+
+			          					 "<input class='form-check-input disabled' type='checkbox' id='"+data.memberid+"' >"+
+			          					 "</div>";               
+			                  }
+			             },
+			         },
 					{data: "membergender"},
 					{data: "memberyear"},
 					{data: "membermonth"},
@@ -403,8 +418,22 @@ $('#onekey').on('click', function(){
 				],
 				
 				
-				columnDefs:[{
-					targets : 15,
+				columnDefs:[
+					{
+					targets : 3,
+					orderable: false, // 禁用排序
+					defaultContent: "",
+					render : function (data) {
+						console.log(data)
+						if(data){
+					return "是";
+						}
+					return "否";
+					}
+				},
+					
+					{
+					targets : 16,
 					orderable: false, // 禁用排序
 					defaultContent: "",
 					render : function (data) {
@@ -413,7 +442,7 @@ $('#onekey').on('click', function(){
 				},
 					
 					{
-					targets: 16,
+					targets: 17,
 					orderable: false, // 禁用排序
 					defaultContent: "",
 					render: function (data) {
@@ -451,7 +480,6 @@ $('#onekey').on('click', function(){
         },
 				
 	})
-}
 		
 		
 // 		// "新增"按鈕叫出 Modal
@@ -512,9 +540,11 @@ $('#onekey').on('click', function(){
 				method: "GET",
 				dataType: "json",
 				success: function (res) {
+					console.log("aaa")
 					fillWithOrigin(res)
 				},
 				error: function (err) {
+					console.log("bbb")
 					alert(err)
 				}
 			});
@@ -578,7 +608,29 @@ $('#onekey').on('click', function(){
 				}
 			})
 		}
-				
+			
+		
+		
+ 		// "權限控管"Toggle Buttom
+  		$("#MtoMTable tbody").on("click", ".disabled", function () {
+ 		  let memberid=$(this).attr("id");
+ 		  console.log("memberid:"+memberid)
+  			 let dtr = $(this).closest("th");
+  			  $.ajax({
+  			   		 type : "post",
+   				 	   url: "/Manager/changeMemberRole.controller",    
+   			    	  data: {"memberid":memberid}, 
+   		     	  success : function(data)  {
+     	     		 console.log("success")
+    	   		  table.ajax.reload();
+     	     
+    	       		},error: function(data) {
+             			 console.log('無法送出');
+     	     	 }
+   		  });     
+   
+  })
+
 
 				
 	</script>
