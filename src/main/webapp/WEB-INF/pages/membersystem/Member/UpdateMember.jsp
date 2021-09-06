@@ -26,7 +26,7 @@
 
   <!-- 老人圖 -->
 
-    <div class="slide-item overlay" style="background-image: url('${pageContext.request.contextPath}/images/slider-1.jpg')">
+    <div class="slide-item overlay" style="background-image: url('${pageContext.request.contextPath}/images/meme_old_man3.jpg')">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 align-self-center">
