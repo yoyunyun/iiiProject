@@ -1,61 +1,94 @@
 package tw.iiihealth.taxi.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 @Service
 @Transactional
 public class TaxiService {
 
 	@Autowired
-	private TaxiRepository taxiRepository;
+	private  JavaMailSender mailSender;
 	
-	public List<TaxiBean> search(String name){
+	@Autowired
+	freemarker.template.Configuration freemarkerConfig;
+
+	@Autowired
+	private TaxiRepository taxiRepository;
+
+	public List<TaxiBean> search(String name) {
 
 		return taxiRepository.Search(name);
 	}
-	
-	public Page<TaxiBean> query(String name, Pageable pageable){
+
+	public Page<TaxiBean> query(String name, Pageable pageable) {
 
 		Page<TaxiBean> allQueryResults = taxiRepository.findAllBytname(name, pageable);
 		return allQueryResults;
 	}
-	
+
 	public TaxiBean findById(Integer id) {
 		Optional<TaxiBean> pRep = taxiRepository.findById(id);
-		if(pRep.isPresent()) {
+		if (pRep.isPresent()) {
 			return pRep.get();
 		}
 		return null;
 	}
-	
-	
-	public List<TaxiBean> findAll(){
+
+	public List<TaxiBean> findAll() {
 		return taxiRepository.findAll();
 	}
-	
-	public Page<TaxiBean> findAllByPage(Pageable pageable){
+
+	public Page<TaxiBean> findAllByPage(Pageable pageable) {
 		return taxiRepository.findAll(pageable);
 	}
-	
+
 	public TaxiBean insert(TaxiBean taxi) {
-		return taxiRepository.save(taxi);			
+		return taxiRepository.save(taxi);
 	}
-	
+
 	public TaxiBean update(TaxiBean taxi) {
-		return taxiRepository.save(taxi);			
+		return taxiRepository.save(taxi);
 	}
-	
+
 	public void deleteById(Integer id) {
 		taxiRepository.deleteById(id);
 	}
-	
+
+	// 模板mail(出貨通知)
+	public void sendTemplateMail(String mail, String user) throws Exception {
+
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+		helper.setFrom("iiieeit12907@gmail.com");
+		helper.setTo(mail);
+		helper.setSubject("主旨：[健康悠生網] 預約叫車通知");
+
+		// 塞入變數
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("userName", user);
+
+		// mail內容
+		String templateString = FreeMarkerTemplateUtils
+				.processTemplateIntoString(freemarkerConfig.getTemplate("template.html"), model);
+
+		helper.setText(templateString, true);
+
+		// 寄送
+		mailSender.send(mimeMessage);
+	}
+
 }

@@ -69,9 +69,10 @@
 					</a>
 					<div class="collapse" id="collapseLayouts1"
 						aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-						<nav class="sb-sidenav-menu-nested nav"> <a class="nav-link"
-							href="${pageContext.request.contextPath}/taxi/taximainpage.controller">計程車資訊</a> <a class="nav-link"
-							href="${pageContext.request.contextPath}/taxi/locmainpage.controller">店家資訊</a> </nav>
+						<nav class="sb-sidenav-menu-nested nav"> 
+						<a class="nav-link" href="${pageContext.request.contextPath}/taxi/taximainpage.controller">計程車資訊</a> 
+						<a class="nav-link" href="${pageContext.request.contextPath}/taxi/locmainpage.controller">店家資訊</a> 
+						</nav>
 					</div>
 
 
