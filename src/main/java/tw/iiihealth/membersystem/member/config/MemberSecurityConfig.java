@@ -46,7 +46,9 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 			.successHandler(customHandler)
 			.failureUrl("/Member/login/AccessDenied")
 		.permitAll()
-		.and().logout().logoutUrl("/Member/logout").logoutSuccessUrl("/HealthProject");
+		.and().logout()
+		.logoutUrl("/Member/logout")
+		.logoutSuccessUrl("/HealthProject");
 	
 		http.csrf().disable();
 	

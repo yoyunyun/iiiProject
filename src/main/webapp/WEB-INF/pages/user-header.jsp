@@ -80,13 +80,6 @@
                         <li><a href="/HealthProject/insertMember">會員註冊</a></li>
                       </ul>
                     </li>
-                    <li class="has-children">
-                      <a href="#">廠商專區</a>
-                      <ul class="dropdown">
-                        <li><a href="#">廠商登入</a></li>
-                        <li><a href="#">廠商註冊</a></li>
-                      </ul>
-                    </li>
                   </ul>
                 </li>
 </c:if>
@@ -102,13 +95,6 @@
                       <ul class="dropdown">
                         <li><a href="/Member/login">會員登入</a></li>
                         <li><a href="/HealthProject/insertMember">會員註冊</a></li>
-                      </ul>
-                    </li>
-                    <li class="has-children">
-                      <a href="#">廠商專區</a>
-                      <ul class="dropdown">
-                        <li><a href="#">廠商登入</a></li>
-                        <li><a href="#">廠商註冊</a></li>
                       </ul>
                     </li>
                   </ul>
