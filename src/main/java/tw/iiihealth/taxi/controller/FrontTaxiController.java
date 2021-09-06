@@ -3,15 +3,12 @@ package tw.iiihealth.taxi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -63,9 +60,23 @@ public class FrontTaxiController {
 		return city;
 	}
 	
-	@PostMapping(path = "/queryid/{id}")
-	@ResponseBody
-	public TaxiBean QueryId(@PathVariable("id") Integer id) {
-		return tService.findById(id);
-	}
+//	@PostMapping(path = "/queryid/{id}")
+//	@ResponseBody
+//	public TaxiBean QueryId(@PathVariable("id") Integer id) {
+//		return tService.findById(id);
+//	}
+	
+	// Ajax 動態更新出貨狀態
+		@PostMapping(path="/booktaxi")
+		@ResponseBody
+		public String bookTaxibyId(@RequestParam("mail") String mail, @RequestParam("passanger") String user) throws Exception {
+			
+			System.out.println("---------------");
+			System.out.println(mail);
+			System.out.println(user);
+			//寄送
+			tService.sendTemplateMail(mail,user);
+
+			return "mail success";
+		}
 }

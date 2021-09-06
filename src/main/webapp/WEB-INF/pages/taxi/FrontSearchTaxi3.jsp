@@ -158,7 +158,7 @@
   	   			newdata.forEach(item => {
 
 	            const myIcon = L.icon({
-	                iconUrl: '/images/taxi_icon.png',  //設定 icon 圖片路徑
+	                iconUrl: '/images/movemovetaxi.gif',  //設定 icon 圖片路徑
 	                iconSize: [60, 50],      //資料為陣列，設定寬度與高度   
 	                iconAnchor: [30, 25],    //資料為陣列，設定 icon 的 X 軸與 Y 軸偏移量
 	                popupAnchor: [5, -20],  //資料為陣列，設定彈跳視窗的 X 軸與 Y 軸偏移量

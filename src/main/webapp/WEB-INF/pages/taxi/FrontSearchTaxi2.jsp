@@ -311,6 +311,8 @@
         
         });
         
+        
+        
         //Sweetalert
         function yes(){
         	Swal.fire({
@@ -324,7 +326,16 @@
         		  timer: 1500
         		})}).then(()=>{
         			cancel();
+        			
         		})
+        	$.ajax({
+			  url: "/taxiFront/booktaxi",
+			  type: "post",
+			  data:  { "mail" : $('#mail').val() ,"passanger" : $('#passanger').val() },
+		  	  success: function(data){
+		  		console.log(data);  	
+		  	  }
+		})
         }
     </script>
 </body>

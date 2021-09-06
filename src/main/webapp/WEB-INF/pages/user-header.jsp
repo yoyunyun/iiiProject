@@ -21,20 +21,21 @@
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="/HealthProject" class="active nav-link">首頁</a></li>
 
+	  
+              <li class="has-children">
+                  <a href="#" class="nav-link">便利專區</a>
+                  <ul class="dropdown">
+                    <li><a href="/taxiFront/frontlocmainpage.controller" class="nav-link">尋找醫療機構</a></li>
+                    <li class="has-children">
+                      <a href="/taximap/fronttaximap.controller" class="nav-link">叫車資訊</a>
+                      <ul class="dropdown">
+                        <li><a href="/taximap/fronttaximap.controller">計程車即時動態地圖</a></li>
+                        <li><a href="/taxiFront/fronttaximainpage.controller">預約叫車</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
 
-
-
-
-
-
-
-			  <li class="has-children">
-                <a href="#" class="nav-link">便利專區</a>
-                <ul class="dropdown">
-                  <li><a href="/taxiFront/fronttaximainpage.controller" class="nav-link">叫車資訊</a></li>
-                  <li><a href="/taxiFront/frontlocmainpage.controller" class="nav-link">尋找醫療機構</a></li>
-                </ul>
-              </li>
 
      		    <li class="has-children">
                   <a href="#" class="nav-link">長者專區</a>
