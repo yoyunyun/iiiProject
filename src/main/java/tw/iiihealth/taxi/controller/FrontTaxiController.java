@@ -52,7 +52,8 @@ public class FrontTaxiController {
 	@PostMapping(path = "/queryfronttaxi/{search}")
 	@ResponseBody
 	public List<TaxiBean> processQueryCity(@PathVariable("search") String search) {
-	
+		System.out.println("---------");
+		System.out.println("123");
 		List<TaxiBean> city ;
 		if(search.equals("1")) {
 			city = tService.findAll();
@@ -60,6 +61,11 @@ public class FrontTaxiController {
 			city = tService.search(search);
 		}
 		return city;
-
+	}
+	
+	@PostMapping(path = "/queryid/{id}")
+	@ResponseBody
+	public TaxiBean QueryId(@PathVariable("id") Integer id) {
+		return tService.findById(id);
 	}
 }
