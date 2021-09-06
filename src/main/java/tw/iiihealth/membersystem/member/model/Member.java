@@ -14,8 +14,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -91,7 +89,7 @@ public class Member {
 
 	
 	/*訂單收藏*/
-	@OneToMany(mappedBy = "memberId", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH },
+	@OneToMany(mappedBy = "memberId", cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH },
 	fetch = FetchType.LAZY)
 	private List<Order> orders;
 	
