@@ -208,11 +208,8 @@
  <%@ include file="/WEB-INF/pages/user-js.jsp"%>
  
   <script>
-  var city=[];
+  //搜尋縣市
   $("#city").on('change', function search(){
-console.log($('#example').DataTable().row());
-// var row = $('#example').DataTable().rows;
-// console.log(row);  
   	$.ajax({
      		type:'post',
      		url:'/taxiFront/queryfronttaxi/' +this.value,
@@ -221,23 +218,12 @@ console.log($('#example').DataTable().row());
      		success: function(data) {	   
      				$('#example').DataTable().clear().rows.add(data).draw();
      				$(".img2").on('click',imgClick);
-//      			for(var i in data){
-//      			}
-//   	   		city=[];
-//   	   		for(var i in data){
-//   		   		var obj= Object.values(data[i])
-//   		   		obj[0]=('<input type="image" class="img2" src="/images/taxi_icon.png" style="width:30px; " value="'+ data[i]["id"] +'"/>');
-//   		   		city.push(obj);
-//   	   		}
-//   	   	 	console.log(city)
-//   			$('#example').DataTable().clear().rows.add(city).draw();
-  	   		
      		}
   	});
  
   });
 
-
+//起始點
   $(document).ready(function () {
   	load();
       $.getJSON('/json/taiwan_districts.json', function (data) {
@@ -251,6 +237,7 @@ console.log($('#example').DataTable().row());
       
   });
 
+//插入計程車資訊
   function load(){
 	  $('#example').DataTable({
 		    "ajax": {
@@ -261,14 +248,10 @@ console.log($('#example').DataTable().row());
 		             }  
 		    },   
 		    "columns": [
-// 		    	{
-// // 				//column加入叫車圖示
-// 	            defaultContent: '<input type="image" class="img2" src="/images/taxi_icon.png" style="width:30px; " value="'+data["id"]+'"/>'
-	            
-// // // 	            defaultContent: '<a name="img1" href="javascript:void(0);"><image class="img2" src="/images/taxi_icon.png" style="width:30px;" value="12"/></a>'
 
-// 	        },
+
 		        {
+ 				//column加入叫車圖示
 		        	"data": null,
 		        	render:function(data, type, row)
 		            {
@@ -276,7 +259,7 @@ console.log($('#example').DataTable().row());
 		            },
 		            "targets": -1
 		        },
-// 		        { "data": "id"},
+
 		        { "data": "tname" },
 		        { "data": "phone" },
 		        { "data": "address" },
@@ -285,32 +268,14 @@ console.log($('#example').DataTable().row());
 		    ] 
 		});
 	  
-	  
-//   $('#example').DataTable({
-  	
-//       "ajax": {
-
-//               "url": '/taxiFront/queryalltest',
-//               "type": 'post',   	
-//               "dataSrc": function (data) {
-//               	city=[];
-//       	   		for(var i in data){
-//       		   		var obj= Object.values(data[i])
-//       		   		city.push(obj);
-//       	   		}
-//       	   	console.log(city)
-//       		   	return city;
-//                }  
-//       }
-//   });
 	setTimeout(()=>{
 		$(".img2").on('click',imgClick);
 	},500)
 	
   }
 
+//點擊叫出跳出頁面
   function imgClick() {
-		//alert(this.value);
 		$('#taxi').text(this.value); 
 		show();
 	}
@@ -319,22 +284,23 @@ console.log($('#example').DataTable().row());
 </script>
  <!-- 跳出視窗function -->
  <script>
-        $(document).ready(function () {
-            var valueNum = window.sessionStorage.userdata;
-            if (valueNum != "1") {
-                $("#myModal").modal('show');
-            }
-        });
+//         $(document).ready(function () {
+//             var valueNum = window.sessionStorage.userdata;
+//             if (valueNum != "1") {
+//                 $("#myModal").modal('show');
+//             }
+//         });
         function cancel() {
-            window.sessionStorage.userdata = "1";
+//             window.sessionStorage.userdata = "1";
             $("#myModal").modal('hide');
         }
         function show() {
-            window.sessionStorage.userdata = "0";
+//             window.sessionStorage.userdata = "0";
             $("#myModal").modal('show');
             
         }
 
+        //一鍵輸入
         $('#inputdata').click(function() {
           $('#loc').val("林口長庚醫院"); 
           $('#hour').val(10);
@@ -344,6 +310,8 @@ console.log($('#example').DataTable().row());
           $('#mail').val("iiieeit12907@gmail.com");
         
         });
+        
+        //Sweetalert
         function yes(){
         	Swal.fire({
         		  title: '<img src="/images/takicab-taxi-call.gif">',
