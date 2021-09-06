@@ -77,7 +77,6 @@ public class MtoMRestController {
 		//會員密碼加密
 		String memberpwd = new BCryptPasswordEncoder().encode(member.getMemberpwd());
 		member.setMemberpwd(memberpwd);
-//		member.setMemberpwd(member.getMemberpwd());
 		
 		if (multipartFile!= null && !multipartFile.isEmpty()) {
 			// 抓取檔案名稱
@@ -131,4 +130,25 @@ public class MtoMRestController {
 		}
 		return map;
 	}
+	
+	
+	
+	
+	
+	//停權、復權
+	@PostMapping(path = "/Manager/changeMemberRole.controller", produces = "text/plain;charset=UTF-8")
+	public String changeMemberRole(@RequestParam("memberid")int memberid, Model m) throws Exception {
+		System.out.println("here we go");
+		Member member = memberService.searchMemberId(memberid);
+		if(member.isDisabled()) {
+			member.setDisabled(false);
+			memberService.saveMember(member);
+		}else {
+			member.setDisabled(true);
+			memberService.saveMember(member);
+		}
+		return "success";
+	}
+	
+	
 }

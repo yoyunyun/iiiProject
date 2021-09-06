@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,6 +66,71 @@ public class MemberController {
 	public ModelAndView adminAccessError() {
 		return new ModelAndView("membersystem/Login/MemberAccessdenied");
 	}
+	
+	
+	
+	
+	
+	
+//-------------------------------------------------------登入-----------------------------------------------------------------
+
+	
+	//忘記密碼(1)
+	@RequestMapping(path = "/HealthProject/forgetPassword", method = {RequestMethod.GET, RequestMethod.POST})
+	public String forgetPassword(Model m) {
+		return "membersystem/Login/ForgetPassword";
+	}
+	
+	//忘記密碼
+	@RequestMapping(path = "/HealthProject/forgetPassword.controller", method = {RequestMethod.GET, RequestMethod.POST})
+	public String forgetPasswordAction(@RequestParam("membername")String membername, @RequestParam("memberaccount")String memberaccount, @RequestParam("memberemail")String memberemail, Model m) throws Exception {
+		
+		Member checkMember = memberService.searchUserDetails(memberaccount);
+		
+		if(checkMember!=null) {
+			
+			if(membername.equals(checkMember.getMembername())) {
+				
+				System.out.println(checkMember.getMembername());
+				
+				if(memberemail.equals(checkMember.getMemberemail())) {
+					
+					System.out.println(checkMember.getMemberemail());
+					
+					//密碼亂數
+					Random r = new Random();
+					StringBuilder tempName = new StringBuilder();
+					tempName.append(r.nextInt(100000000));
+					String saveName = "user" + tempName.toString();
+					
+					//會員密碼加密
+					String memberpwd = new BCryptPasswordEncoder().encode(saveName);
+					checkMember.setMemberpwd(memberpwd);
+					
+					memberService.saveMember(checkMember);
+					
+					mailService. sendInlineMail(checkMember,saveName);
+					
+					return "membersystem/Login/SuccessForgetPassword";
+					
+				}
+				
+				
+			}
+			
+			
+		}
+		
+		return "membersystem/Login/ErrorForgetPassword";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -232,7 +298,7 @@ public class MemberController {
 		int memberid = Integer.parseInt(saveName);
 		member.setMemberid(memberid);
 		
-//		//會員密碼加密
+		//會員密碼加密
 		String memberpwd = new BCryptPasswordEncoder().encode(member.getMemberpwd());
 		member.setMemberpwd(memberpwd);
 		

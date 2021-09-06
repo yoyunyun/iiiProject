@@ -35,11 +35,11 @@ public class ManagerHandler extends SimpleUrlAuthenticationSuccessHandler{
             getRedirectStrategy().sendRedirect(request, response, defaultSavedRequest.getRedirectUrl());
         }else{
         	
-        	this.setDefaultTargetUrl("/Manager/searchAllManagerAction.controller");
+        	this.setDefaultTargetUrl("/Manager/searchAllManagerAction");
             super.onAuthenticationSuccess(request, response, authentication);
         }
         
-        this.setDefaultTargetUrl("/Manager/searchAllManagerAction.controller");
+        this.setDefaultTargetUrl("/Manager/searchAllManagerAction");
 		super.onAuthenticationSuccess(request, response, authentication);
 	}
 	

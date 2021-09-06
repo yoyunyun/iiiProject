@@ -139,15 +139,15 @@ a.disabled {
 											<td><form:label path="managername">被看護人姓名:</form:label></td>
 											<td>
 												<form:hidden path="managerid" value="${manager.managerid}" /> 
-												<form:hidden path="memberaccount" value="${manager.manageraccount}" />
-												<form:hidden path="memberemail" value="${manager.manageremail}" />
+												<form:hidden path="manageraccount" value="${manager.manageraccount}" />
+												<form:hidden path="manageremail" value="${manager.manageremail}" />
 												<form:hidden path="role" value="${manager.role}" /> 
 												<form:hidden path="disabled" value="${manager.disabled}" /> 
 												<form:hidden path="verificationCode" value="${manager.verificationCode}" />
 												<form:hidden path="accountExpired" value="${manager.accountExpired}" />
 												<form:hidden path="accountLocked" value="${manager.accountLocked}" /> 
 												<form:hidden path="credentialsExpired" value="${manager.credentialsExpired}" /> 
-												<form:input path="membername" size="10" placeholder="例如:王衍申" autofocus="autofocus" /> 
+												<form:input path="managername" size="10" placeholder="例如:王衍申" autofocus="autofocus" /> 
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
@@ -237,64 +237,17 @@ $('#onekey').on('click', function(){
     //顯示密碼
     document.getElementById("showPwd").onclick=showPwd;
         function showPwd(){
-            let pwdType=document.getElementById("memberpwd").type;
+            let pwdType=document.getElementById("managerpwd").type;
             //pwdType現在是密碼的話，就轉成文字顯示
             if(pwdType === "password"){
-                document.getElementById("memberpwd").type="text";
+                document.getElementById("managerpwd").type="text";
                 document.getElementById("pwd2").type="text";
                 //pwdType現在是文字的話，就轉回密碼來不顯示
             }else{
-                document.getElementById("memberpwd").type="password";
+                document.getElementById("managerpwd").type="password";
                 document.getElementById("pwd2").type="password";
             }
         }
-</script>
-	
-	
-<script type="text/javascript">
-	$(document).ready(function(){
-		$.getJSON('/json/taiwan_districts.json',function(data){
-			var resultText='';
-			resultText="<option value=0>請選擇</option>";
-			for(var i=0; i<data.length; i++){
-				resultText+="<option value='"+data[i].name+"'>"+data[i].name+"</option>"
-			}
-			
-			$("#membercity").html(resultText);
-		});
-
-	$("select[name='membercity']").on('change',function(){
-		$.getJSON('/json/taiwan_districts.json',function(data){	
-			let CN=$("select[name='membercity']").val();		
-			for(n=0; n<data.length; n++ ){
-    			if(CN == data[n].name){
-    				var resultText2='';
-    				for(var j=0; j<data[n].districts.length; j++){
-    					resultText2+="<option value='"+data[n].districts[j].name+"'>"+data[n].districts[j].name+"</option>"
-    				}
-    							    				
-    			}
-    		}	
-			$("#membertown").html(resultText2);
-		});		
-	});
-	
-	});
-	
-	
-	/* 更新圖片 or 上傳圖片 */
-    $("#inputImageFile").change(function(e){
-    	processImageFile(e.target.files[0]);
-	});
-    
-    
-    function processImageFile(imageObject) {
-        //顯示分析的圖片
-        var sourceImageUrl = URL.createObjectURL(imageObject);
-        //document.querySelector("#sourceImage").src = sourceImageUrl;
-        $("#sourceImage").attr('src', sourceImageUrl);
-    }
-	
 </script>
 	
 	
@@ -398,24 +351,16 @@ $('#onekey').on('click', function(){
 		function editModal(memberid) {
 			$('#updateForm')[0].reset();
 			let fillWithOrigin = function (res) {
-				$("#memberid").val(res.memberid);
-				$("#membername").val(res.membername);
-				$("[name=membergender]").val([res.membergender]);
-				$("#memberyear").val(res.memberyear);
-				$("#membermonth").val(res.membermonth);
-				$("#memberday").val(res.memberday);
-				$("#memberaccount").val(res.memberaccount);
-				$("#accountdisplay").html(res.memberaccount);
-				$("#memberemail").val(res.memberemail);
-				$("#emaildisplay").val(res.memberemail);
-				$("#memberphone").val(res.memberphone);
-				$("#membercity").val(res.membercity).change();
-				$("#membertown").val(res.membertown).change();
-				$("#memberaddress").val(res.memberaddress);
-				$("#handbook").val(res.handbook).change();
-				$("[name=dementia]").val([res.dementia]);
-				$("#memberphoto").val(res.memberphoto);
-				$('#sourceImage').attr('src',"../MemberPhoto/"+res.memberphoto);
+				$("#managerid").val(res.managerid);
+				$("#managername").val(res.managername);
+				$("[name=managergender]").val([res.managergender]);
+				$("#manageryear").val(res.manageryear);
+				$("#managermonth").val(res.managermonth);
+				$("#managerday").val(res.managerday);
+				$("#manageraccount").val(res.manageraccount);
+				$("#accountdisplay").html(res.manageraccount);
+				$("#manageremail").val(res.manageremail);
+				$("#emaildisplay").val(res.manageremail);
 				$("#verificationCode").val(res.verificationCode);
 				$("#role").val(res.role);
 				$("#disabled").val(res.disabled);
@@ -424,22 +369,16 @@ $('#onekey').on('click', function(){
 				$("#credentialsExpired").val(res.credentialsExpired);
 			}
 
-			findById(memberid, fillWithOrigin)
+			findById(managerid, fillWithOrigin)
 			$('#updateMtoMShow').modal('show');
 			$('#updateMtoMShow').css('overflow-y', 'auto');
-// 			$(".btn-info").on("click", function (e) {
-// 				console.log("button clicked");
-// 				console.log(e.target.id);
-// 				editModal(e.target.id)});						
-// 			$(".btn-danger").on("click", function (e) {
-// 				console.log("button clicked2");
-// 				deleteModal(e.target.id)});
+
 		}			
 				
 		// 啟用"修改"按鈕前置準備，尋找單筆
-		function findById(memberid, fillWithOrigin) {
+		function findById(managerid, fillWithOrigin) {
 			$.ajax({
-				url: "/Manager/searchOneMtoMAction.controller/" + memberid,
+				url: "/Manager/searchOneManagerAction.controller/" + managerid,
 				method: "GET",
 				dataType: "json",
 				success: function (res) {
@@ -456,7 +395,7 @@ $('#onekey').on('click', function(){
 			function () {
 				var updateFormData = new FormData($('#updateForm')[0]);
 				$.ajax({
-					url: "/Manager/updateMemberAction.controller",
+					url: "/Manager/updateManagerAction.controller",
 					method: "POST",
 					data: updateFormData,
 					contentType: false,
@@ -476,8 +415,8 @@ $('#onekey').on('click', function(){
 		
 
 		// "刪除"按鈕按下後執行
-		function deleteModal(memberid) {
-			console.log('delete id=' + memberid);
+		function deleteModal(managerid) {
+			console.log('delete id=' + managerid);
 			Swal.fire({
 				title: '確定要刪除?',
 				text: "刪除後，資料將不再存在",
@@ -490,7 +429,7 @@ $('#onekey').on('click', function(){
 			}).then((torf) => {
 				if (torf.isConfirmed) {
 					$.ajax({
-						url: "/Manager/deleteMtoMAction.controller/" + memberid,
+						url: "/Manager/deleteMtoMAction.controller/" + managerid,
 						method: "POST",
 						dataType: "json",
 						success: function (res) {
