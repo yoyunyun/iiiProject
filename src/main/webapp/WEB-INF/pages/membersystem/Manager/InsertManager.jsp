@@ -103,7 +103,7 @@
 												</td>
 										</form:form>
 												<td>
-													<form action="/Manager/searchAllManagerAction.controller" method="post">
+													<form action="/Manager/searchAllManagerAction" method="post">
 														<input type="submit" class="btn" value="取消">
 													</form>
 												</td>

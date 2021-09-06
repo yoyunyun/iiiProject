@@ -126,6 +126,12 @@ $('#fourkey').on('click', function(){
 	$('#account1').val('1258wsdq3');
 	$('#pwd1').val('8755koisnmw3');
 })
+
+//一鍵輸入
+$('#fivekey').on('click', function(){
+	$('#account1').val('1258wsdq3');
+	$('#pwd1').val('8755koisnmw3');
+})
 </script>	
 	
 	

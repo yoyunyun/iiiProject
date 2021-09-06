@@ -75,7 +75,7 @@
 						</div>
 
 						<div>
-							<a href="#" class="txt1">
+							<a href="/HealthProject/forgetPassword" class="txt1">
 								忘記密碼?
 							</a>
 						</div>
