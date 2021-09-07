@@ -321,21 +321,19 @@
         		  timer: 3250
         		}).then(()=> {Swal.fire({
         		  icon: 'success',
-        		  title: '預約成功!',
-        		  showConfirmButton: false,
-        		  timer: 1500
+        		  title: '預約成功!請前往信箱確認!如一直未收到信件，請再預約一次，感謝',
+        		  showConfirmButton: true,
         		})}).then(()=>{
         			cancel();
-        			
         		})
+        			
         	$.ajax({
 			  url: "/taxiFront/booktaxi",
 			  type: "post",
 			  data:  { "mail" : $('#mail').val() ,"passanger" : $('#passanger').val() },
 		  	  success: function(data){
-		  		console.log(data);  	
 		  	  }
-		})
+			})
         }
     </script>
 </body>

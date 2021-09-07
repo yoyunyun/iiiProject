@@ -103,8 +103,7 @@
     <div id="myMap"></div>
     </div>
     
-    	<script>
-
+    <script>
 	
 	//多個標記點
 // 		const data = [
@@ -164,8 +163,7 @@
 	                popupAnchor: [5, -20],  //資料為陣列，設定彈跳視窗的 X 軸與 Y 軸偏移量
 
 	            });
-	            console.log(myIcon);
-	            console.log(myIcon.options.iconUrl);
+	            
 	            var test=maplibrary.marker(item.local, {
 	                title: item.name,
 	                icon: myIcon

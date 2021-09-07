@@ -47,8 +47,8 @@ public class TaxiMapController {
 			double X=Double.valueOf(array[0]);
 			double Y=Double.valueOf(array[1]);
 				
-			X=(X+moveX<25 && X+moveX>24.95) ? (X+moveX) : (X-2.3*moveX);
-			Y=(Y+moveY<121.24 && Y+moveY>121.14) ? (Y+moveY) : (Y-3.7*moveY);
+			X=(X+moveX<25.0979 && X+moveX>24.88724) ? (X+moveX) : (X-2.3*moveX);
+			Y=(Y+moveY<121.3175 && Y+moveY>121.02020) ? (Y+moveY) : (Y-3.7*moveY);
 			
 			t.setMap(String.valueOf(X)+","+String.valueOf(Y));
 			tMapService.updateMap(t);
