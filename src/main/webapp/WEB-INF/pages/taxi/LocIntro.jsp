@@ -23,7 +23,7 @@
 /* 浮動視窗 */
 .historyArea {
 	width: 300px;
-	height: 400px;
+	height: 800px;
 	z-index: 99;
 	position: absolute;
 	top: 650px;
@@ -220,12 +220,12 @@ div.leaflet-popup-pane {
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 blog-content">
-					<div class="row mb-5">
+					<div>
 						<div class="col-lg-6">
 							<figure>
-								<img src="/images/hospital2.png"
+								<img id="img" src="/images/hospital2.png"
 									alt="Free Website Template by Free-Template.co"
-									class="img-fluid">
+									class="img-fluid" style="">
 							</figure>
 						</div>
 					</div>
@@ -299,6 +299,7 @@ div.leaflet-popup-pane {
 					.next("li").text("地址: "+response.city+response.town+response.address).next("li").text("簡介: "+response.brief)
 					
 					$("#site").attr("href",response.site)
+					$("#img").attr("src","/LocationImg/"+response.photo)
 					
 					let m = response.map.split(',');
 					map.setView(m,15);
