@@ -49,8 +49,7 @@ public class FrontTaxiController {
 	@PostMapping(path = "/queryfronttaxi/{search}")
 	@ResponseBody
 	public List<TaxiBean> processQueryCity(@PathVariable("search") String search) {
-		System.out.println("---------");
-		System.out.println("123");
+		
 		List<TaxiBean> city ;
 		if(search.equals("1")) {
 			city = tService.findAll();
@@ -69,13 +68,15 @@ public class FrontTaxiController {
 	// Ajax 動態更新出貨狀態
 		@PostMapping(path="/booktaxi")
 		@ResponseBody
-		public String bookTaxibyId(@RequestParam("mail") String mail, @RequestParam("passanger") String user) throws Exception {
+		public String bookTaxibyId(@RequestParam("mail") String mail, @RequestParam("passanger") String user, @RequestParam("taxi") String taxi,
+									@RequestParam("loc") String loc, @RequestParam("date") String date, @RequestParam("hour") String hour,
+									@RequestParam("min") String min, @RequestParam("tel") String tel) throws Exception {
 			
-			System.out.println("---------------");
-			System.out.println(mail);
-			System.out.println(user);
+//			System.out.println("---------------");
+//			System.out.println(mail);
+//			System.out.println(taxi);
 			//寄送
-			tService.sendTemplateMail(mail,user);
+			tService.sendTemplateMail(mail, user, taxi, loc, date, hour, min, tel);
 
 			return "mail success";
 		}

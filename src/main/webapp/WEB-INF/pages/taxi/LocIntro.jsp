@@ -23,7 +23,7 @@
 /* 浮動視窗 */
 .historyArea {
 	width: 300px;
-	height: 800px;
+	height: 500px;
 	z-index: 99;
 	position: absolute;
 	top: 650px;
@@ -338,23 +338,23 @@ div.leaflet-popup-pane {
 
 	<!-- 浮動選單 -->
 	<script type="text/javascript">
-		var bottomH = $('body')[0].scrollHeight - $('.historyArea').height()
-				- $('.site-footer').height() - 150;
+		var bottomH = $('body')[0].scrollHeight/1.25 - $('.historyArea').height()
+// 				- $('.site-footer').height();
 		var testH = $('.historyArea').height();
 		var testH2 = $('.site-footer').height();
 
 		$(function() {
 			$(window).scroll(
 					function() {
-						if ($(this).scrollTop() > 500
+						if ($(this).scrollTop() > 620
 								&& $(this).scrollTop() < bottomH) { /* 要滑動到選單的距離 */
-							$('.historyArea').css('top', '150px');
+ 							$('.historyArea').css('top', '30px');
 							$('.historyArea').addClass('navFixed'); /* 幫選單加上固定效果 */
 						} else {
-							if ($(this).scrollTop() <= 500) {
+							if ($(this).scrollTop() <= 620) {
 								$('.historyArea').css('top', '650px');
 							} else {
-								$('.historyArea').css('top', '1100px');
+								$('.historyArea').css('top', bottomH);
 							}
 							$('.historyArea').removeClass('navFixed'); /* 移除選單固定效果 */
 						}

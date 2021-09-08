@@ -71,7 +71,8 @@
                     <table style="margin:auto" class="win">
                         <tr>
                         <td style=" font-weight: 800;font-size:20px;">預約叫車單位:</td>
-                        <td><span id="taxi" style=" font-weight: 800;font-size:20px;"></span></td>
+<!--                         <td><span id="taxi" style=" font-weight: 800;font-size:20px;"></span></td> -->
+                        <td><input type="text" id="taxi" style=" font-weight: 800;font-size:20px;" disabled></td>
                         <td></td>
                         </tr>
                         <tr>
@@ -276,7 +277,8 @@
 
 //點擊叫出跳出頁面
   function imgClick() {
-		$('#taxi').text(this.value); 
+// 		$('#taxi').text(this.value); 
+		$('#taxi').val(this.value); 
 		show();
 	}
  
@@ -330,7 +332,9 @@
         	$.ajax({
 			  url: "/taxiFront/booktaxi",
 			  type: "post",
-			  data:  { "mail" : $('#mail').val() ,"passanger" : $('#passanger').val() },
+			  data:  { "mail" : $('#mail').val() , "passanger" : $('#passanger').val(),
+				  		"taxi" : $('#taxi').val(), "loc" : $('#loc').val(), "date" : $('#date').val(),
+				  		"hour" : $('#hour').val(), "min" : $('#min').val(), "tel" : $('#tel').val()},
 		  	  success: function(data){
 		  	  }
 			})

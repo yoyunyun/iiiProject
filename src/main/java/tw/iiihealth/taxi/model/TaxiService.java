@@ -69,7 +69,8 @@ public class TaxiService {
 	}
 
 	// 模板mail(出貨通知)
-	public void sendTemplateMail(String mail, String user) throws Exception {
+	public void sendTemplateMail(String mail, String user, String taxi, String loc, 
+									String date, String hour, String min, String tel) throws Exception {
 
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
@@ -80,10 +81,16 @@ public class TaxiService {
 		// 塞入變數
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("userName", user);
+		model.put("taxi", taxi);
+		model.put("loc", loc);
+		model.put("date", date);
+		model.put("hour", hour);
+		model.put("min", min);
+		model.put("tel", tel);
 
 		// mail內容
 		String templateString = FreeMarkerTemplateUtils
-				.processTemplateIntoString(freemarkerConfig.getTemplate("template.html"), model);
+				.processTemplateIntoString(freemarkerConfig.getTemplate("BookTaxitemplate.html"), model);
 
 		helper.setText(templateString, true);
 

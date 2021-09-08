@@ -45,6 +45,10 @@
             
 /*          background-attachment: fixed;  */
         }
+        
+        .blog-entry{
+        cursor: url("/images/cursor.png"), pointer;
+        }
    </style>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -83,7 +87,7 @@
           <div class="col-lg-6 align-self-center">
             <h1 class="heading mb-3">醫療機構資訊</h1>
             <p class="lead text-white mb-5">提供相關醫療店家地址，包含醫院、藥局、長照中心，多個相關需求一次滿足，讓長者的生活充滿便利</p>
-            <p><a href="#start" class="btn btn-primary">尋找醫療機構</a></p>
+<!--             <p><a href="#start" class="btn btn-primary">尋找醫療機構</a></p> -->
           
           </div>
         </div>
@@ -201,7 +205,7 @@ function search(){
             "<div class='col-12 col-sm-6 col-md-4 mb-4'>"+
             "<div class='blog-entry'>"+
               "<a href='/taxi/search/"+(ele.id)+"' class='d-block'>" +
-                "<img src='${pageContext.request.contextPath}/LocationImg/"+(ele.photo)+"' onerror='this.src="+"'${pageContext.request.contextPath}/images/hospital2.png'"+"' alt='Image' class='img-fluid'></a>"+
+                "<img src='${pageContext.request.contextPath}/LocationImg/"+(ele.photo)+"' onerror='this.src=\"${pageContext.request.contextPath}/images/hospital2.png\"' alt='Image' class='img-fluid' style='height:300px'></a>"+
                 
 					
                 "<div class='post-meta d-flex justify-content-center'>" +
@@ -232,6 +236,7 @@ $(function () {
 	$('#hos').on('click', function () {
 		tp = "醫院";
 		$("#insert").empty();
+		search();
 		$('#title').text('醫院');
 		$('#hos').prop('disabled',true)
 		$('#med').prop('disabled',false)
@@ -243,6 +248,7 @@ $(function () {
 	$('#med').on('click', function () {
 		tp = "藥局";
 		$("#insert").empty();
+		search();
 		$('#title').text('藥局');
 		$('#hos').prop('disabled',false)
 		$('#med').prop('disabled',true)
@@ -254,6 +260,7 @@ $(function () {
 	$('#care').on('click', function () {
 		tp = "長照";
 		$("#insert").empty();
+		search();
 		$('#title').text('長照中心');
 		$('#hos').prop('disabled',false)
 		$('#med').prop('disabled',false)
