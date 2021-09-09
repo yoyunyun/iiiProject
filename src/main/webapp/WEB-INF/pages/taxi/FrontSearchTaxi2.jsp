@@ -73,7 +73,7 @@
                         <td style=" font-weight: 800;font-size:20px;">預約叫車單位:</td>
 <!--                         <td><span id="taxi" style=" font-weight: 800;font-size:20px;"></span></td> -->
                         <td><input type="text" id="taxi" style=" font-weight: 800;font-size:20px;" disabled></td>
-                        <td></td>
+                        <td><input type="hidden" id="tid"></td>
                         </tr>
                         <tr>
                         <td>預約地點:</td>
@@ -256,7 +256,7 @@
 		        	"data": null,
 		        	render:function(data, type, row)
 		            {
-		              return '<input type="image" class="img2" title="點此預約" src="/images/movemovetaxi.gif" style="width:35px; " value="'+ data["tname"] +'"/>';
+		              return '<input type="hidden" class="tid" value="'+ data["id"] +'"><input type="image" class="img2" title="點此預約" src="/images/movemovetaxi.gif" style="width:35px; " value="'+ data["tname"] +'"/>';
 		            },
 		            "targets": -1
 		        },
@@ -277,9 +277,26 @@
 
 //點擊叫出跳出頁面
   function imgClick() {
-// 		$('#taxi').text(this.value); 
-		$('#taxi').val(this.value); 
-		show();
+	  	$('#taxi').val(this.value);
+		$('#tid').val($(this).prev().val());
+	  $.ajax({
+   		type:'post',
+   		url:'/taxiFront/booktaxi/checklogin',
+   		success: function(data) {
+   			if(data == "success"){
+				show();
+   			}else{
+   				Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: '請先登入會員!',
+				}).then(()=>{
+					window.location.href='/Member/login';
+				})
+   				
+   			}
+   		}
+	});
 	}
  
   
@@ -323,21 +340,25 @@
         		  timer: 3250
         		}).then(()=> {Swal.fire({
         		  icon: 'success',
-        		  title: '預約成功!請前往信箱確認!如一直未收到信件，請再預約一次，感謝',
+        		  title: '預約成功!請前往信箱確認!如未收到信件，請前往會員中心查詢，感謝',
         		  showConfirmButton: true,
         		})}).then(()=>{
         			cancel();
         		})
-        			
+        	
+        	//傳給信件
         	$.ajax({
 			  url: "/taxiFront/booktaxi",
 			  type: "post",
 			  data:  { "mail" : $('#mail').val() , "passanger" : $('#passanger').val(),
 				  		"taxi" : $('#taxi').val(), "loc" : $('#loc').val(), "date" : $('#date').val(),
-				  		"hour" : $('#hour').val(), "min" : $('#min').val(), "tel" : $('#tel').val()},
+				  		"hour" : $('#hour').val(), "min" : $('#min').val(), "tel" : $('#tel').val(),
+				  		"tid" : $('#tid').val()},
 		  	  success: function(data){
 		  	  }
 			})
+			
+			
         }
     </script>
 </body>

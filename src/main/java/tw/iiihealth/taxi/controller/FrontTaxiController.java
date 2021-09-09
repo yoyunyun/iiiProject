@@ -3,6 +3,8 @@ package tw.iiihealth.taxi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import tw.iiihealth.membersystem.member.model.Member;
+import tw.iiihealth.membersystem.member.service.MemberService;
+import tw.iiihealth.taxi.model.BookTaxi;
+import tw.iiihealth.taxi.model.BookTaxiService;
 import tw.iiihealth.taxi.model.TaxiBean;
 import tw.iiihealth.taxi.model.TaxiService;
 
@@ -22,6 +28,12 @@ public class FrontTaxiController {
 
 	@Autowired
 	private TaxiService tService;
+	
+	@Autowired
+	private BookTaxiService bTaxiService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@GetMapping(path = "/fronttaximainpage.controller")
 	public String processQueryMainPage() {		
@@ -65,19 +77,39 @@ public class FrontTaxiController {
 //		return tService.findById(id);
 //	}
 	
-	// Ajax 動態更新出貨狀態
+	// Ajax 寄信
 		@PostMapping(path="/booktaxi")
 		@ResponseBody
-		public String bookTaxibyId(@RequestParam("mail") String mail, @RequestParam("passanger") String user, @RequestParam("taxi") String taxi,
+		public String bookTaxibyId(@RequestParam("mail") String mail, @RequestParam("passanger") String passanger, @RequestParam("taxi") String taxi,
 									@RequestParam("loc") String loc, @RequestParam("date") String date, @RequestParam("hour") String hour,
-									@RequestParam("min") String min, @RequestParam("tel") String tel) throws Exception {
+									@RequestParam("min") String min, @RequestParam("tel") String tel, @RequestParam("tid") int tid) throws Exception {
 			
-//			System.out.println("---------------");
-//			System.out.println(mail);
-//			System.out.println(taxi);
-			//寄送
-			tService.sendTemplateMail(mail, user, taxi, loc, date, hour, min, tel);
-
+			//會員驗證
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			Member member = memberService.getCurrentlyLoggedInMember(auth);
+			
+			BookTaxi bookT = new BookTaxi(member.getMemberid(),tid, taxi, loc, date, hour, min, passanger, tel, mail);
+			bTaxiService.insert(bookT);
+			
+			//寄信
+			tService.sendTemplateMail(mail, passanger, taxi, loc, date, hour, min, tel);
 			return "mail success";
 		}
+		
+		
+		@PostMapping(path="/booktaxi/checklogin")
+		@ResponseBody
+		public String check() {
+			System.out.println("=======");
+			//會員驗證
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			if (auth.getName() != null) {
+				return "success";
+			}else {
+				return "fail";
+			}
+				
+		}
+		
+		
 }
