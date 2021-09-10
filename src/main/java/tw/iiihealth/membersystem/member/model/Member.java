@@ -91,7 +91,7 @@ public class Member {
 	
 	/* 輔具收藏 */
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(name="collect", joinColumns = @JoinColumn(name="memberid"), inverseJoinColumns = @JoinColumn(name="equipid"))
 	private  List<Equip> equips;
 
