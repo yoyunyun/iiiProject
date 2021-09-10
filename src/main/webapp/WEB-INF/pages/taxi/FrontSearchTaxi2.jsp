@@ -73,7 +73,7 @@
                         <td style=" font-weight: 800;font-size:20px;">預約叫車單位:</td>
 <!--                         <td><span id="taxi" style=" font-weight: 800;font-size:20px;"></span></td> -->
                         <td><input type="text" id="taxi" style=" font-weight: 800;font-size:20px;" disabled></td>
-                        <td><input type="hidden" id="tid"></td>
+                        <td></td>
                         </tr>
                         <tr>
                         <td>預約地點:</td>
@@ -88,15 +88,15 @@
                         <tr>
                         <td>預約時間:</td>
                         <td><select class="tex" id="hour">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option selected>8</option>
-                            <option>9</option>
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                            <option>04</option>
+                            <option>05</option>
+                            <option>06</option>
+                            <option>07</option>
+                            <option selected>08</option>
+                            <option>09</option>
                             <option>10</option>
                             <option>11</option>
                             <option>12</option>
@@ -256,7 +256,7 @@
 		        	"data": null,
 		        	render:function(data, type, row)
 		            {
-		              return '<input type="hidden" class="tid" value="'+ data["id"] +'"><input type="image" class="img2" title="點此預約" src="/images/movemovetaxi.gif" style="width:35px; " value="'+ data["tname"] +'"/>';
+		              return '<input type="image" class="img2" title="點此預約" src="/images/movemovetaxi.gif" style="width:35px; " value="'+ data["tname"] +'"/>';
 		            },
 		            "targets": -1
 		        },
@@ -278,7 +278,7 @@
 //點擊叫出跳出頁面
   function imgClick() {
 	  	$('#taxi').val(this.value);
-		$('#tid').val($(this).prev().val());
+// 		$('#tid').val($(this).prev().val());  //<input type="hidden" class="tid" value="'+ data["id"] +'">
 	  $.ajax({
    		type:'post',
    		url:'/taxiFront/booktaxi/checklogin',
@@ -353,7 +353,7 @@
 			  data:  { "mail" : $('#mail').val() , "passanger" : $('#passanger').val(),
 				  		"taxi" : $('#taxi').val(), "loc" : $('#loc').val(), "date" : $('#date').val(),
 				  		"hour" : $('#hour').val(), "min" : $('#min').val(), "tel" : $('#tel').val(),
-				  		"tid" : $('#tid').val()},
+				  	},
 		  	  success: function(data){
 		  	  }
 			})

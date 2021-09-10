@@ -95,7 +95,7 @@ public class Member {
 	private List<Order> orders;
 	
 	/*叫車訂單*/
-	@OneToMany(mappedBy = "member_id", cascade = { CascadeType.ALL},
+	@OneToMany(mappedBy = "member_id", cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH },
 			fetch = FetchType.LAZY)
 	private List<BookTaxi> bookT;
 	
