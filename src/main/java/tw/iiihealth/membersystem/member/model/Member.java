@@ -91,21 +91,20 @@ public class Member {
 	
 	/* 輔具收藏 */
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name="collect", joinColumns = @JoinColumn(name="memberid"), inverseJoinColumns = @JoinColumn(name="equipid"))
 	private  List<Equip> equips;
 
 	
 	/*訂單收藏*/
-	@OneToMany(mappedBy = "memberId", cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH },
-			fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Order> orders;
 	
 	
 	/*叫車訂單*/
-	@OneToMany(mappedBy = "member_id", cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH },
-			fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<BookTaxi> bookT;
+	
 	
 	private boolean disabled;
 
