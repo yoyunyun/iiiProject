@@ -85,7 +85,7 @@ public class Member {
 	
 	
 	/* 購物車 */
-	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	private List<CartItem> CartItem;
 	
 	
@@ -97,12 +97,12 @@ public class Member {
 
 	
 	/*訂單收藏*/
-	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "memberId", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	private List<Order> orders;
 	
 	
 	/*叫車訂單*/
-	@OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "member_id", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	private List<BookTaxi> bookT;
 	
 	
