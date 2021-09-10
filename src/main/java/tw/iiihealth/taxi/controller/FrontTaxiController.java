@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import tw.iiihealth.elder.model.Equip;
 import tw.iiihealth.membersystem.member.model.Member;
 import tw.iiihealth.membersystem.member.service.MemberService;
 import tw.iiihealth.taxi.model.BookTaxi;
@@ -77,6 +79,9 @@ public class FrontTaxiController {
 //		return tService.findById(id);
 //	}
 	
+	
+	
+/////////////	預約叫車  //////////////////
 	// Ajax 寄信
 		@PostMapping(path="/booktaxi")
 		@ResponseBody
@@ -88,7 +93,7 @@ public class FrontTaxiController {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			Member member = memberService.getCurrentlyLoggedInMember(auth);
 			
-			BookTaxi bookT = new BookTaxi(member.getMemberid(),tid, taxi, loc, date, hour, min, passanger, tel, mail);
+			BookTaxi bookT = new BookTaxi(member,tid, taxi, loc, date, hour, min, passanger, tel, mail);
 			bTaxiService.insert(bookT);
 			
 			//寄信
@@ -96,11 +101,10 @@ public class FrontTaxiController {
 			return "mail success";
 		}
 		
-		
+		//叫車時檢查是否有登入
 		@PostMapping(path="/booktaxi/checklogin")
 		@ResponseBody
 		public String check() {
-			System.out.println("=======");
 			//會員驗證
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			if (auth.getName() != null) {
@@ -111,5 +115,24 @@ public class FrontTaxiController {
 				
 		}
 		
+		//會員顯示叫車訂單
+		@GetMapping(path="/booktaxi/searchbooking")
+		public String searchBook(Model model) {
+			
+			//會員驗證
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			Member member = memberService.getCurrentlyLoggedInMember(auth);
+			
+			List<BookTaxi> list= member.getBookT();
+			model.addAttribute("Blist", list);
+			
+			return "taxi/BookList";
+		}
+		
+//		//會員修改訂單
+//		@PostMapping(path="/booktaxi/updatebook")
+//		public BookTaxi updateBook() {
+//			
+//		}
 		
 }

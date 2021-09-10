@@ -1,13 +1,18 @@
 package tw.iiihealth.taxi.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import tw.iiihealth.membersystem.member.model.Member;
 
 @Entity @Table(name = "booktaxi")
 @Component
@@ -16,7 +21,11 @@ public class BookTaxi {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="book_id")
 	private int book_id;
-	private int member_id;
+	
+	@ManyToOne(cascade = { CascadeType.ALL})
+	@JoinColumn(name="member_id")
+	private Member member_id;
+	
 	private int taxi_id;
 	private String tname;
 	private String address;
@@ -27,9 +36,10 @@ public class BookTaxi {
 	private String phone;
 	private String mail;
 	
+	
 	public BookTaxi() {};
 	
-	public BookTaxi(int member_id, int taxi_id, String tname, String address, String date, String hour, String min,
+	public BookTaxi(Member member_id, int taxi_id, String tname, String address, String date, String hour, String min,
 			        String passenger,String phone, String mail) {
 		this.member_id = member_id;
 		this.taxi_id = taxi_id;
@@ -43,12 +53,15 @@ public class BookTaxi {
 		this.mail = mail;
 	}
 	
-	public int getMember_id() {
+	
+	public Member getMember_id() {
 		return member_id;
 	}
-	public void setMember_id(int member_id) {
+
+	public void setMember_id(Member member_id) {
 		this.member_id = member_id;
 	}
+
 	public int getBook_id() {
 		return book_id;
 	}

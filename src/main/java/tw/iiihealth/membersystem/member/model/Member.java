@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tw.iiihealth.elder.model.Equip;
 import tw.iiihealth.elder.model.Order;
+import tw.iiihealth.taxi.model.BookTaxi;
 
 @Entity // 指自己就是java bean //給Hibernate看的
 @Table(name = "member") // 指bean對應到名為member的table //給Hibernate看的
@@ -90,9 +91,13 @@ public class Member {
 	
 	/*訂單收藏*/
 	@OneToMany(mappedBy = "memberId", cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH },
-	fetch = FetchType.LAZY)
+			fetch = FetchType.LAZY)
 	private List<Order> orders;
 	
+	/*叫車訂單*/
+	@OneToMany(mappedBy = "member_id", cascade = { CascadeType.ALL},
+			fetch = FetchType.LAZY)
+	private List<BookTaxi> bookT;
 	
 	private boolean disabled;
 
@@ -322,6 +327,19 @@ public class Member {
 		else {
 			orders.add(order);
 		}
+	}
+
+	
+	
+	
+	
+	/*預約叫車*/
+	public List<BookTaxi> getBookT() {
+		return bookT;
+	}
+
+	public void setBookT(List<BookTaxi> bookT) {
+		this.bookT = bookT;
 	}
 	
 	
