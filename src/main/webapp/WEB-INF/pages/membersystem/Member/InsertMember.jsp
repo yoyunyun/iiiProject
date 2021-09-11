@@ -88,7 +88,7 @@
 												<td><form:label path="memberaccount">帳號:</form:label></td>
 												<td>
 													<form:input path="memberaccount" maxlength="15" size="15" />
-													<span id="accountCheck"></span>
+													<span style="color: red;" id="accountCheck"></span>
 												</td>
 											</tr>
 											<tr>
@@ -234,6 +234,46 @@ $('#onekey').on('click', function(){
                 document.getElementById("pwd2").type="password";
             }
         }
+        
+        
+        
+        //確認帳號是否重複
+        $(document).ready(function(){
+   		 $("#memberaccount").blur(function(){
+        var memberaccount = $("#memberaccount").val();
+        console.log('memberaccount:' + memberaccount);
+
+        var params = {
+        		"memberaccount":memberaccount
+        };
+
+        $.ajax({
+            type:'post',
+            url:'/checkMemberAccount',
+            contentType:'application/json',
+            data:JSON.stringify(params),
+            success: function(data){
+               console.log("Success");
+               if(data=='Y'){
+            	   console.log("帳號已被使用");
+                  $("#accountCheck").html('帳號已被使用');
+               }
+
+               if(data=='N'){
+            	   console.log("帳號未被使用");
+            	  $("#accountCheck").html('帳號未被使用');
+               }
+            },
+            error:function(e){
+               console.log(e);
+            }
+        });
+    });	
+});
+        
+        
+        
+        
 </script>
 		
 		

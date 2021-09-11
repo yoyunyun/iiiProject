@@ -40,6 +40,7 @@ public class MemberService {
 
 	// 刪除單筆資料
 	public void deleteMember(Integer memberid) {
+		System.out.println("deleteMember:"+memberid);
 		memberRepository.deleteById(memberid);
 	}
 

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tw.iiihealth.elder.model.Equip;
 import tw.iiihealth.elder.model.Order;
+import tw.iiihealth.membersystem.health.model.Health;
 
 @Entity // 指自己就是java bean //給Hibernate看的
 @Table(name = "member") // 指bean對應到名為member的table //給Hibernate看的
@@ -93,6 +95,11 @@ public class Member {
 	fetch = FetchType.LAZY)
 	private List<Order> orders;
 	
+	
+	/*健康資料表*/
+    @OneToOne(mappedBy = "memberHealth")
+    @JsonIgnore
+    private Health health;
 	
 	private boolean disabled;
 
@@ -323,6 +330,19 @@ public class Member {
 			orders.add(order);
 		}
 	}
+
+	
+	
+	/*健康資料表*/
+	public Health getHealth() {
+		return health;
+	}
+
+	public void setHealth(Health health) {
+		this.health = health;
+	}
+	
+	
 	
 	
 }

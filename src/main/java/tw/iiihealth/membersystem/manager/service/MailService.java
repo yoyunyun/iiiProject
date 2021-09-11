@@ -87,7 +87,7 @@ public class MailService {
 	    String toAddress = manager.getManageremail();
 	    String fromAddress = "iiieeit12907@gmail.com";
 	    String senderName = "健康優生網";
-	    String subject = "請驗證您註冊的帳戶";
+	    String subject = "主旨：[健康悠生網] 請驗證您註冊的帳戶";
 	    String content = "親愛的[[name]],<br>"
 	            + "請點選下面的連結來驗證您註冊的帳戶:<br>"
 	            + "<h3><a href=\"[[URL]]\" target=\"_self\">請點此驗證</a></h3>"

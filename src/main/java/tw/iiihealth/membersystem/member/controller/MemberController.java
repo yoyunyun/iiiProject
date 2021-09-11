@@ -13,6 +13,8 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,9 +22,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,7 +74,7 @@ public class MemberController {
 	
 	
 	
-//-------------------------------------------------------登入-----------------------------------------------------------------
+//-------------------------------------------------------忘記密碼-----------------------------------------------------------------
 
 	
 	//忘記密碼(1)
@@ -144,25 +146,7 @@ public class MemberController {
 	public ModelAndView index1() {
 		return new ModelAndView("index");
 	}
-	
-	
-	
-	
 
-
-//	// 查詢所有
-//	@RequestMapping(path = "/Member/searchAllMemberAction.controller", method = {RequestMethod.GET, RequestMethod.POST})
-//	public String searchAllMemberAction(Model m) {
-//
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		String memberaccount = auth.getName();
-//		Member user_Member = memberService.searchUserDetails(memberaccount);
-//		m.addAttribute("user_Member", user_Member);
-//		
-//		List<Member> list = memberService.searchAllMember();
-//		m.addAttribute("allMember", list);
-//		return "membersystem/Member/DisplaySearchAllMember";
-//	}
 	
 	
 
@@ -185,24 +169,7 @@ public class MemberController {
 	}
 	
 	
-//	// 查詢單筆
-//	@RequestMapping(path = "/test", method = {RequestMethod.GET, RequestMethod.POST})
-//	public String test(@ModelAttribute("member") Member member,Model m) {
-//
-//		return "membersystem/test";
-//	}
-//	
-//	// 查詢單筆
-//	@GetMapping(path = "/Member/searchOneRestMemberAction.controller/{memberid}")
-//	@ResponseBody
-//	public Member searchOneRestMemberAction(@PathVariable Integer memberid) throws Exception {
-//		
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		String memberaccount = auth.getName();
-//		Member user_Member = memberService.searchUserDetails(memberaccount);
-//		
-//		return memberService.searchMemberId(user_Member.getMemberid());
-//	}
+
 	
 	
 	
@@ -313,6 +280,24 @@ public class MemberController {
 		String siteURL = request.getRequestURL().toString();
 		return siteURL.replace(request.getServletPath(), "");
 	}
+	
+
+	
+
+//-------------------------------------------------------註冊(確認帳號是否不同)-----------------------------------------------------------------
+	
+
+	
+	@PostMapping(path = "/checkMemberAccount")
+	public ResponseEntity<String> checkMemberAccount(@RequestBody Member member) {
+		
+		List<Member> list = memberService.searchMemberAccount(member.getMemberaccount());
+		if(list.isEmpty()) {
+			return new ResponseEntity<String>("N", HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("Y", HttpStatus.OK);
+	}
+	
 	
 	
 	
@@ -471,26 +456,4 @@ public class MemberController {
 		return "redirect:/Member/logout";
 	}
 	
-	
-	
-	
-
-//	// 確認刪除的單筆是否正確
-//	@PostMapping(path = "/Member/displayDeleteMember")
-//	public String displayDeleteMember(@RequestParam(name = "memberid") int memberid, Model m) {
-//
-//		Member member = memberService.searchMemberId(memberid);
-//		m.addAttribute("member", member);
-//
-//		return "membersystem/Member/DisplayDeleteMember";
-//	}
-//	
-//	// 刪除單筆
-//	@PostMapping(path = "/Member/deleteMemberAction.controller")
-//	public String processDeleteAction(@RequestParam(name="memberid") int memberid,Model m) {
-//		
-//		memberService.deleteMember(memberid);
-//		
-//		return "redirect:/HealthProject/MemberHealth/searchAllMemberAction.controller";
-//	}
 }

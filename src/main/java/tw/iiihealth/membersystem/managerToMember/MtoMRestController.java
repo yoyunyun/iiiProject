@@ -11,6 +11,8 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,9 +22,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import tw.iiihealth.membersystem.health.model.Health;
+import tw.iiihealth.membersystem.health.service.HealthService;
 import tw.iiihealth.membersystem.member.model.Member;
 import tw.iiihealth.membersystem.member.service.MemberService;
 
@@ -44,6 +49,9 @@ public class MtoMRestController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private HealthService healthService;
 
 
 	// 查詢所有
@@ -65,6 +73,19 @@ public class MtoMRestController {
 	}
 
 	
+	
+
+	// 查詢單筆
+	@GetMapping(path = "/Manager/searchOneMtoMHealth.controller/{memberid}")
+	@ResponseBody
+	public Health searchOneHealth(@PathVariable Integer memberid) {
+		Health checkHealth = healthService.checkHealth(memberid);
+		if(checkHealth == null) {
+			System.out.println("checkHealth: "+checkHealth);
+			return null;
+		}
+		return checkHealth;
+	}
 	
 	
 	
@@ -120,12 +141,20 @@ public class MtoMRestController {
 	public Map<String,String> deleteMtoMAction(@PathVariable Integer memberid) throws Exception {
 		
 		Map<String,String> map = new HashMap<String,String>();
+		
+		Health health = healthService.checkHealth(memberid);
+		
+		if(health != null) {
+			healthService.deleteHealth(health.getHealthid());
+		}
+		
 		memberService.deleteMember(memberid);
 		Member torf =memberService.searchMemberId(memberid);
 		
 		if(torf != null) {
 			System.err.println("刪除失敗");
 		} else {
+			System.err.println("刪除成功");
 			map.put("msg","成功刪除id:"+memberid);
 		}
 		return map;
