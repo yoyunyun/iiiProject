@@ -104,7 +104,7 @@
 					<div class="col-md-8" style="margin: 0 auto;">
 						
 				          <c:choose>
-					          <c:when test="${not empty cartItems}">
+					          <c:when test="${not empty orders}">
 					          
 					          <c:forEach var="order" items="${orders}">
 					          <div style="margin-bottom:100px">
@@ -119,7 +119,7 @@
 						          <input type="button" class="btn btn-outline-info" style="font-size:16px; font-weight:bold" value="訂單內容" onclick="show(${order.id})">
 						     		 <div style="display:none" id="${order.id}">
 							          	<table class="table table-hover" >
-											<thead style="background-color:#F5F5F5"> 
+											<thead class="table-primary"> 
 												<tr>
 													<th>輔具照片</th>
 													<th>輔具名稱</th>

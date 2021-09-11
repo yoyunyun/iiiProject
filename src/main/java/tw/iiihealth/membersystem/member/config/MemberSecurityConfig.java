@@ -37,7 +37,7 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		http
 		.requestMatchers()
-		.antMatchers("/Member/**","/cart/**")
+		.antMatchers("/Member/**","/cart/**","/taxiFront/booktaxi/**")
 		.and()
 		.authorizeRequests().anyRequest().authenticated()
 //		.and()

@@ -71,7 +71,8 @@
                     <table style="margin:auto" class="win">
                         <tr>
                         <td style=" font-weight: 800;font-size:20px;">預約叫車單位:</td>
-                        <td><span id="taxi" style=" font-weight: 800;font-size:20px;"></span></td>
+<!--                         <td><span id="taxi" style=" font-weight: 800;font-size:20px;"></span></td> -->
+                        <td><input type="text" id="taxi" style=" font-weight: 800;font-size:20px;" disabled></td>
                         <td></td>
                         </tr>
                         <tr>
@@ -87,15 +88,15 @@
                         <tr>
                         <td>預約時間:</td>
                         <td><select class="tex" id="hour">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option selected>8</option>
-                            <option>9</option>
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                            <option>04</option>
+                            <option>05</option>
+                            <option>06</option>
+                            <option>07</option>
+                            <option selected>08</option>
+                            <option>09</option>
                             <option>10</option>
                             <option>11</option>
                             <option>12</option>
@@ -276,8 +277,27 @@
 
 //點擊叫出跳出頁面
   function imgClick() {
-		$('#taxi').text(this.value); 
-		show();
+	  	$('#taxi').val(this.value);
+// 		$('#tid').val($(this).prev().val());  //<input type="hidden" class="tid" value="'+ data["id"] +'">
+	  $.ajax({
+   		type:'get',
+   		url:'/taxiFront/booktaxi/checklogin',
+   		success: function(data) {
+   			if(data == "success"){
+				show();
+   			}else{
+   				Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: '請先登入會員!',
+				})
+				.then(()=>{
+					window.location.href='/taxiFront/booktaxi/checklogin';
+				})
+   				
+   			}
+   		}
+	});
 	}
  
   
@@ -321,21 +341,25 @@
         		  timer: 3250
         		}).then(()=> {Swal.fire({
         		  icon: 'success',
-        		  title: '預約成功!',
-        		  showConfirmButton: false,
-        		  timer: 1500
+        		  title: '預約成功!請前往信箱確認!如未收到信件，請前往會員中心查詢，感謝',
+        		  showConfirmButton: true,
         		})}).then(()=>{
         			cancel();
-        			
         		})
+        	
+        	//傳給信件
         	$.ajax({
 			  url: "/taxiFront/booktaxi",
 			  type: "post",
-			  data:  { "mail" : $('#mail').val() ,"passanger" : $('#passanger').val() },
+			  data:  { "mail" : $('#mail').val() , "passanger" : $('#passanger').val(),
+				  		"taxi" : $('#taxi').val(), "loc" : $('#loc').val(), "date" : $('#date').val(),
+				  		"hour" : $('#hour').val(), "min" : $('#min').val(), "tel" : $('#tel').val(),
+				  	},
 		  	  success: function(data){
-		  		console.log(data);  	
 		  	  }
-		})
+			})
+			
+			
         }
     </script>
 </body>

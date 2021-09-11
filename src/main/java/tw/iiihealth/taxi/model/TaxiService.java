@@ -68,9 +68,9 @@ public class TaxiService {
 		taxiRepository.deleteById(id);
 	}
 
-	// 模板mail(出貨通知)
-	public void sendTemplateMail(String mail, String user) throws Exception {
-
+	// 模板mail(訂單通知)
+	public void sendTemplateMail(String mail, String user, String taxi, String loc, 
+									String date, String hour, String min, String tel) throws Exception {
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 		helper.setFrom("iiieeit12907@gmail.com");
@@ -80,15 +80,43 @@ public class TaxiService {
 		// 塞入變數
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("userName", user);
+		model.put("taxi", taxi);
+		model.put("loc", loc);
+		model.put("date", date);
+		model.put("hour", hour);
+		model.put("min", min);
+		model.put("tel", tel);
 
 		// mail內容
 		String templateString = FreeMarkerTemplateUtils
-				.processTemplateIntoString(freemarkerConfig.getTemplate("template.html"), model);
+				.processTemplateIntoString(freemarkerConfig.getTemplate("BookTaxitemplate.html"), model);
 
 		helper.setText(templateString, true);
 
 		// 寄送
 		mailSender.send(mimeMessage);
 	}
+	
+	
+	// 模板mail(刪除通知)
+		public void sendDelTemplateMail(String mail, String user) throws Exception {
+			MimeMessage mimeMessage = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+			helper.setFrom("iiieeit12907@gmail.com");
+			helper.setTo(mail);
+			helper.setSubject("主旨：[健康悠生網] 預約叫車取消");
+			
+			// 塞入變數
+			Map<String, Object> model = new HashMap<String, Object>();
+			model.put("userName", user);
+			
+			// mail內容
+			String templateString = FreeMarkerTemplateUtils
+					.processTemplateIntoString(freemarkerConfig.getTemplate("DelBookTaxitemplate.html"), model);
+
+			helper.setText(templateString, true);
+			// 寄送
+			mailSender.send(mimeMessage);
+		}
 
 }
