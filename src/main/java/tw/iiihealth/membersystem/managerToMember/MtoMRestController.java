@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import tw.iiihealth.elder.cartmodel.ShoppingCartService;
+import tw.iiihealth.elder.model.Equip;
 import tw.iiihealth.membersystem.health.model.Health;
 import tw.iiihealth.membersystem.health.service.HealthService;
 import tw.iiihealth.membersystem.member.model.Member;
@@ -52,18 +52,12 @@ public class MtoMRestController {
 	@Autowired
 	private HealthService healthService;
 
-	@Autowired
-	private ShoppingCartService shoppingCartService;
 
 	// 查詢所有
 	@GetMapping(path = "/Manager/searchAllMtoMAction.controller")
 	public List<Member> searchAllMtoMAction(Model m) {
 		return memberService.searchAllMember();
 	}
-	
-	
-	
-	
 	
 	
 	
@@ -150,21 +144,20 @@ public class MtoMRestController {
 			healthService.deleteHealth(health.getHealthid());
 		}
 		
+		
 		// 找出member
 		Member member = memberService.searchMemberId(memberid);
 		
-		// member 購物車不為空時刪除此member所有購物車物件
-		if (!shoppingCartService.listCartItems(member).isEmpty()) {
-			shoppingCartService.removeCart(member);
-		};
-		
 		// 刪除輔具收藏
-		member.getEquips().clear();
+		List<Equip> equips= member.getEquips();
+		equips.clear();
 		
-		
+
 		// 刪除member
 		memberService.deleteMember(memberid);
-		Member torf =memberService.searchMemberId(memberid);
+		
+		
+		Member torf = memberService.searchMemberId(memberid);
 		
 		if(torf != null) {
 			System.err.println("刪除失敗");

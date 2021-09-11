@@ -89,7 +89,7 @@ public class Member {
 	
 	
 	/* 購物車 */
-	@OneToMany(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "member", cascade = {CascadeType.ALL})
 	private List<CartItem> CartItem;
 	
 	

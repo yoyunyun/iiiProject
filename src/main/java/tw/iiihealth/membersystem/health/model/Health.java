@@ -52,7 +52,7 @@ public class Health {
 	
 	
     @OneToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH },
-    		fetch = FetchType.LAZY)
+    		fetch = FetchType.EAGER)
     @JoinColumn(name = "memberid")
 	private Member memberHealth;
 	
