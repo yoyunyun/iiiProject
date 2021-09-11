@@ -252,7 +252,7 @@
 							<c:otherwise>
 								<tbody>
 									<tr>
-										<td colspan=7 style="text-align: center;"><span
+										<td colspan=10 style="text-align: center;"><span
 											style="font-size: 25px;">目前沒有任何訂單喔</span></td>
 									</tr>
 								</tbody>
@@ -293,24 +293,26 @@
 		  cancelButtonText: '取消刪除'
 		}).then((result) => {
 		  if (result.isConfirmed) {
+			  del(id);
 			  Swal.fire({
 				  icon: 'success',
 				  title: '刪除成功',
 				  showConfirmButton: false,
-				  timer: 1000
-				})	
-				setTimeout(() => del(id), 1000)
+				  timer: 2000
+				})
+// 				setTimeout(() => del(id), 1000)
 		  }
 		})
 	}
 	
 	function del(id){
-		console.log(id);
 		$.ajax({
 			  url: "/taxiFront/booktaxi/del/"+id,
 			  type: "post",
 		  	  success: function(data){
-		  		  console.log(data);
+// 		  		  console.log(data);
+		window.location.href='/taxiFront/booktaxi/searchbooking'
+// 		setTimeout(() =>window.location.href='/taxiFront/booktaxi/searchbooking', 1100)
 		  	  }
 			})
 	}
@@ -364,6 +366,7 @@ function yes(){
 		  showConfirmButton: true,
 		})}).then(()=>{
 			cancel();
+			setTimeout(() =>window.location.href='/taxiFront/booktaxi/searchbooking', 1000)
 		})
 	
 	//傳給信件

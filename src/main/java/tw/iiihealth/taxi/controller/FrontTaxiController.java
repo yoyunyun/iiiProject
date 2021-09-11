@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -118,13 +119,15 @@ public class FrontTaxiController {
 	}
 
 	// 叫車時檢查是否有登入
-	@PostMapping(path = "/booktaxi/checklogin")
+	@GetMapping(path = "/booktaxi/checklogin")
+//	@RequestMapping(path = "/booktaxi/checklogin", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public String check() {
 		// 會員驗證
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth.getName() != null) {
 			return "success";
+//			return "taxi/FrontSearchTaxi2";
 		} else {
 			return "fail";
 		}
@@ -157,11 +160,9 @@ public class FrontTaxiController {
 			
 			String user = member.getMembername();
 			String mail = member.getMemberemail();
-			System.out.println("==========");
-			System.out.println(user);
-			System.out.println(mail);
+			
 			// 寄信
-			tService.sendDelTemplateMail(user,mail);
+			tService.sendDelTemplateMail(mail,user);
 			
 			bTaxiService.deleteById(id);
 			return "delete success";

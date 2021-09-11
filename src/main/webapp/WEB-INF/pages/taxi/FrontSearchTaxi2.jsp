@@ -280,7 +280,7 @@
 	  	$('#taxi').val(this.value);
 // 		$('#tid').val($(this).prev().val());  //<input type="hidden" class="tid" value="'+ data["id"] +'">
 	  $.ajax({
-   		type:'post',
+   		type:'get',
    		url:'/taxiFront/booktaxi/checklogin',
    		success: function(data) {
    			if(data == "success"){
@@ -290,8 +290,9 @@
 					  icon: 'error',
 					  title: 'Oops...',
 					  text: '請先登入會員!',
-				}).then(()=>{
-					window.location.href='/Member/login';
+				})
+				.then(()=>{
+					window.location.href='/taxiFront/booktaxi/checklogin';
 				})
    				
    			}

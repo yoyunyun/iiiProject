@@ -71,7 +71,6 @@ public class TaxiService {
 	// 模板mail(訂單通知)
 	public void sendTemplateMail(String mail, String user, String taxi, String loc, 
 									String date, String hour, String min, String tel) throws Exception {
-
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 		helper.setFrom("iiieeit12907@gmail.com");
@@ -101,29 +100,23 @@ public class TaxiService {
 	
 	// 模板mail(刪除通知)
 		public void sendDelTemplateMail(String mail, String user) throws Exception {
-			System.out.println("-----------");
-			System.out.println(user);
-			System.out.println(mail);
 			MimeMessage mimeMessage = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 			helper.setFrom("iiieeit12907@gmail.com");
 			helper.setTo(mail);
 			helper.setSubject("主旨：[健康悠生網] 預約叫車取消");
-			System.out.println("----123-----");
+			
 			// 塞入變數
 			Map<String, Object> model = new HashMap<String, Object>();
 			model.put("userName", user);
 			
-			System.out.println("----456-----");
 			// mail內容
 			String templateString = FreeMarkerTemplateUtils
 					.processTemplateIntoString(freemarkerConfig.getTemplate("DelBookTaxitemplate.html"), model);
 
 			helper.setText(templateString, true);
-			System.out.println("----789-----");
 			// 寄送
 			mailSender.send(mimeMessage);
-			System.out.println("----1001-----");
 		}
 
 }
