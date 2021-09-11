@@ -22,13 +22,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import tw.iiihealth.elder.cartmodel.CartItem;
 import tw.iiihealth.elder.model.Equip;
 import tw.iiihealth.elder.model.Order;
-<<<<<<< HEAD
+
 import tw.iiihealth.membersystem.health.model.Health;
 
-=======
 import tw.iiihealth.taxi.model.BookTaxi;
 	
->>>>>>> 2b88dbd506b76d957f3fc9d37e7e1c1bf7bf6708
 @Entity // 指自己就是java bean //給Hibernate看的
 @Table(name = "member") // 指bean對應到名為member的table //給Hibernate看的
 @Component("Member") // 指自己就是java bean，並且名稱為Member //給Spring看的，重點是HQL要對到這
@@ -107,17 +105,16 @@ public class Member {
 	private List<Order> orders;
 	
 	
-<<<<<<< HEAD
 	/*健康資料表*/
     @OneToOne(mappedBy = "memberHealth")
     @JsonIgnore
     private Health health;
-=======
+
+
 	/*叫車訂單*/
 	@OneToMany(mappedBy = "member_id", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	private List<BookTaxi> bookT;
 	
->>>>>>> 2b88dbd506b76d957f3fc9d37e7e1c1bf7bf6708
 	
 	private boolean disabled;
 
