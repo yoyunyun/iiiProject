@@ -11,8 +11,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import tw.iiihealth.elder.cartmodel.ShoppingCartService;
 import tw.iiihealth.membersystem.health.model.Health;
 import tw.iiihealth.membersystem.health.service.HealthService;
 import tw.iiihealth.membersystem.member.model.Member;
@@ -53,6 +52,8 @@ public class MtoMRestController {
 	@Autowired
 	private HealthService healthService;
 
+	@Autowired
+	private ShoppingCartService shoppingCartService;
 
 	// 查詢所有
 	@GetMapping(path = "/Manager/searchAllMtoMAction.controller")
@@ -144,10 +145,24 @@ public class MtoMRestController {
 		
 		Health health = healthService.checkHealth(memberid);
 		
+		// 健康資料表不為空時，刪除
 		if(health != null) {
 			healthService.deleteHealth(health.getHealthid());
 		}
 		
+		// 找出member
+		Member member = memberService.searchMemberId(memberid);
+		
+		// member 購物車不為空時刪除此member所有購物車物件
+		if (!shoppingCartService.listCartItems(member).isEmpty()) {
+			shoppingCartService.removeCart(member);
+		};
+		
+		// 刪除輔具收藏
+		member.getEquips().clear();
+		
+		
+		// 刪除member
 		memberService.deleteMember(memberid);
 		Member torf =memberService.searchMemberId(memberid);
 		

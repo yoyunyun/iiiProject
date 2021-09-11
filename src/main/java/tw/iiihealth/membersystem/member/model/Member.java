@@ -101,7 +101,7 @@ public class Member {
 
 	
 	/*訂單收藏*/
-	@OneToMany(mappedBy = "memberId", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Order> orders;
 	
 	
@@ -113,7 +113,7 @@ public class Member {
 
     
 	/*叫車訂單*/
-	@OneToMany(mappedBy = "member_id", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL)
 	private List<BookTaxi> bookT;
 	
 	
