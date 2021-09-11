@@ -111,6 +111,7 @@ public class Member {
     private Health health;
 
 
+    
 	/*叫車訂單*/
 	@OneToMany(mappedBy = "member_id", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	private List<BookTaxi> bookT;
