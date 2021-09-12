@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <!-- 會員資料索引 -->	
-<div class="sort btn-group-vertical">
-	<span class="btn btn-dark btn-lg" style="font-size:20px; display: flex; align-items: center;" class="btn btn-outline-secondary btn-lg">會員資料索引</span>
+<div class="sort btn-group-vertical" style="width:210px; line-height:50px; float:left;">
+	<span class="btn btn-dark btn-lg" style="font-size:20px; display: flex; align-items: center;"  class="btn btn-outline-secondary btn-lg">會員資料索引</span>
 	<a class="btn btn-outline-secondary btn-lg" style="font-size:20px; display: flex; align-items: center;" href="/Member/updateMember">修改個人資料</a>
 	<a class="btn btn-outline-secondary btn-lg" style="font-size:20px; display: flex; align-items: center;" href="/Member/updateMemberAP">修改密碼</a>
 	<a class="btn btn-outline-secondary btn-lg" style="font-size:20px; display: flex; align-items: center;" href="/Member/gotoHealth">健康資料表</a>
