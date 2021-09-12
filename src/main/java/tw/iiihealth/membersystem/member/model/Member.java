@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import tw.iiihealth.drugs.model.CommentMain;
 import tw.iiihealth.elder.cartmodel.CartItem;
 import tw.iiihealth.elder.model.Equip;
 import tw.iiihealth.elder.model.Order;
@@ -104,6 +105,9 @@ public class Member {
 	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Order> orders;
 	
+	/*留言系統*/
+	@OneToMany(mappedBy = "memberid", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<CommentMain> comment;
 	
 	/*健康資料表*/
     @OneToOne(mappedBy = "memberHealth")
@@ -346,6 +350,16 @@ public class Member {
 			orders.add(order);
 		}
 	}
+	
+	/* 留言收藏 */
+	public List<CommentMain> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<CommentMain> comment) {
+		this.comment = comment;
+	}
+	
 
 	
 	

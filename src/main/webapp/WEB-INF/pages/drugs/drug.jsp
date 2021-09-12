@@ -32,6 +32,27 @@
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">藥物查詢系統</h1>
+					<div class="row">
+					   <div class="col-lg-6">
+                             <div class="card mb-4">
+                                   <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                       	 藥品新增數量
+                                    </div>
+                                    <div class="card-body"><canvas id="chart-area" width="100%" height="50"></canvas></div>
+                              </div>
+                      </div>
+                      
+                      <div class="col-lg-6">
+                            <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-area me-1"></i>
+                                每月單筆查詢次數
+                            </div>
+                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="50"></canvas></div>
+                        </div>
+                      </div>
+					</div>
 					<div class="card mb-4">
 						<div class="card-header">
 
@@ -132,6 +153,85 @@
 		  }
 		})
 	}
+	<!-- bar chart-->
+	var ctx = document.getElementById('chart-area');
+
+	var myChart = new Chart(ctx, {
+	  type: 'bar', //圖表類型
+	  data: {
+	    //標題
+	    labels: ['糖漿類', '膠囊類', '藥錠類', '外用藥膏', '保健藥物', '其他外用藥品'],
+	    datasets: [{
+	      data: [34, 55, 34, 31 , 11, 2], //資料
+	      //圖表背景色
+	      backgroundColor: [
+	        'rgba(255, 99, 132, 0.5)',
+	        'rgba(54, 162, 235, 0.5)',
+	        'rgba(255, 206, 86, 0.5)',
+	        'rgba(75, 192, 192, 0.5)',
+	        'rgba(153, 102, 255, 0.5)',
+	        'rgba(255, 159, 64, 0.5)'
+	      ],
+	      //圖表外框線色
+	      borderColor: [
+	        'rgba(255, 99, 132, 1)',
+	        'rgba(54, 162, 235, 1)',
+	        'rgba(255, 206, 86, 1)',
+	        'rgba(75, 192, 192, 1)',
+	        'rgba(153, 102, 255, 1)',
+	        'rgba(255, 159, 64, 1)'
+	      ],
+	      //外框線寬度
+	      borderWidth: 1
+	    }]
+	  },
+	  options: {
+		 legend: {
+	          display: false,
+	      },
+	    scales: {
+	      yAxes: [{
+	        ticks: {
+	          beginAtZero: true,
+	          responsive: true //符合響應式
+	        }
+	      }]
+	    }
+	  }
+	});
+
+
+	<!-- line chart -->
+	var line = document.getElementById('myAreaChart');
+
+	var myChart = new Chart(line, {
+	  type: 'line', //圖表類型
+	  data: {
+	    //標題
+	    labels: ['April', 'May', 'June', 'July', 'Aug'],
+	    datasets: [{
+	      data: [2321, 1432, 3421, 3241, 4512], //資料
+	      borderColor: 'rgba(132, 193, 255, 1)',
+	      fill: false,
+	     
+	      //外框線寬度
+	      borderWidth: 1
+	    }]
+	  },
+	  options: {
+		 legend: {
+	          display: false,
+	      },
+	    scales: {
+	      yAxes: [{
+	        ticks: {
+	          beginAtZero: true,
+	          responsive: true //符合響應式
+	        }
+	      }]
+	    }
+	  }
+	});
 	</script>
 </body>
 </html>
