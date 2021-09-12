@@ -117,6 +117,7 @@ a.disabled {
 										<th>身心障礙手冊/證明</th>
 										<th>失智症確診</th>
 										<th>大頭照</th>
+										<th>健康資料</th>
 										<th>功能</th>
 									</tr>
 								</thead>
@@ -251,6 +252,31 @@ a.disabled {
 					<!-- /.modal-dialog -->
 					</div>
 				<!-- /.modal -->
+				
+				
+				
+				
+				<!-- "健康資料表"的互動視窗 Modal -->
+					<div class="modal fade" tabindex="-1" role="dialog" id="healthMtoMShow">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">健康資料表</h4>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+									</button>
+								</div>
+							<div class="modal-body">
+							
+									<table class="table  table-hover" id="showHealthModal">
+										
+									</table>
+								</div>
+							</div>
+						<!-- /.modal-content -->
+						</div>
+					<!-- /.modal-dialog -->
+					</div>
+				<!-- /.modal -->
 
 
 
@@ -377,8 +403,6 @@ $('#onekey').on('click', function(){
 					{data: "role"},
 					{data: null,
 			              render:function(data, type, row) {
-			            	  console.log(data.disabled)
-			            	  console.log(data.memberid)
 			              if(data.disabled){
 			                    return "<div class='form-check form-switch'style='position: relative;'>"+
 			       					   "<input class='form-check-input disabled' type='checkbox' id='"+data.memberid+"' checked>"+
@@ -405,6 +429,7 @@ $('#onekey').on('click', function(){
 					{data: "dementia"},
 					{data: "memberphoto"},
 					{data: "memberid"},
+					{data: "memberid"},
 // 					{
 //                         //這裡的data變數值為sysid，相等於row.sysid
 //                         data: "formId",//資料行繫結屬性
@@ -420,19 +445,6 @@ $('#onekey').on('click', function(){
 				
 				columnDefs:[
 					{
-					targets : 3,
-					orderable: false, // 禁用排序
-					defaultContent: "",
-					render : function (data) {
-						console.log(data)
-						if(data){
-					return "是";
-						}
-					return "否";
-					}
-				},
-					
-					{
 					targets : 16,
 					orderable: false, // 禁用排序
 					defaultContent: "",
@@ -446,13 +458,23 @@ $('#onekey').on('click', function(){
 					orderable: false, // 禁用排序
 					defaultContent: "",
 					render: function (data) {
+
+						return '<button id="' + data + '" onclick="showHealth(this.id)"  data-bs-dismiss="modal" class="btn btn-info btn-sm"><i class="fa fa-user"></i></button>';
+					}
+				},
+					{
+					targets: 18,
+					orderable: false, // 禁用排序
+					defaultContent: "",
+					render: function (data) {
 // 						return '<button id="' + data + '" onclick="editModal(this.id)"  data-bs-dismiss="modal" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i>修改</button>' 
 // 						+ '<button id="' + data + '" onclick="deleteModal(this.id)"  data-bs-dismiss="modal" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>刪除</button>';
 
 						return '<input type="image" id="' + data + '" onclick="editModal(this.id)"  data-bs-dismiss="modal" src="${pageContext.request.contextPath}/images/update.jpg">' 
 						+ '<input type="image" id="' + data + '" onclick="deleteModal(this.id)"  data-bs-dismiss="modal" src="${pageContext.request.contextPath}/images/delete.png">';
 					}
-				}],
+				}
+					],
 
 // 				initComplete: function () {
 // 						console.log("table created");
@@ -493,7 +515,9 @@ $('#onekey').on('click', function(){
 		
 		// "修改"按鈕抓出資料，叫出 Modal
 		function editModal(memberid) {
+			
 			$('#updateForm')[0].reset();
+			
 			let fillWithOrigin = function (res) {
 				$("#memberid").val(res.memberid);
 				$("#membername").val(res.membername);
@@ -631,6 +655,55 @@ $('#onekey').on('click', function(){
    
   })
 
+  
+  
+  		function showHealth(memberid) {
+			$.ajax({
+				url: "/Manager/searchOneMtoMHealth.controller/" + memberid,
+				method: "GET",
+				success: function (data) {
+					
+					table.ajax.reload();
+					
+					console.log("aaa")
+					console.log(data)
+					
+				 $("#showHealthModal").empty();	
+					
+				 var div =  $("#showHealthModal");
+				
+				 var content =""
+				 
+					 if (data != ""){		
+						 
+						 content += 
+							    "<tr><td>收縮壓:</td><td style='text-align: center'>" + data.systolicBloodPressure + "</td></tr>"
+							    +"<tr><td>舒張壓:</td><td style='text-align: center'>" + data.diastolicBloodPressure + "</td></tr>"
+							    +"<tr><td>心率(心跳數):</td><td style='text-align: center'>" + data.heartRate + "</td></tr>"
+							    +"<tr><td>飯前(空腹)血糖:</td><td style='text-align: center'>" + data.fastingBloodSugar + "</td></tr>"						
+								+"<tr><td>飯後血糖:</td><td style='text-align: center'>" + data.bloodSugarAfterMeal + "</td></tr>"					
+								+"<tr><td>身高:</td><td style='text-align: center'>" + data.height + "</td></tr>"					
+								+"<tr><td>體重:</td><td style='text-align: center'>" + data.weight + "</td></tr>"					
+								+"<tr><td>BMI:</td><td style='text-align: center'>" + data.bmi + "</td></tr>"					
+								+"<tr><td>腰圍:</td><td style='text-align: center'>" + data.waistline + "</td></tr>"					
+								+"<tr><td>血氧濃度:</td><td style='text-align: center'>" + data.oxygenSaturation + "</td></tr>"					
+								+"<tr><td>體溫:</td><td style='text-align: center'>" + data.temperature + "</td></tr>"					
+								+"<tr><td>疾病史:</td><td style='text-align: center'>" + data.medicalHistory + "</td></tr>"					
+					
+					 }else{
+						 content += 
+							    "<tr><td>健康資訊:</td><td style='text-align: center'>此會員還未填寫</td></tr>"
+					 }
+				div.html(content);			
+				 $('#healthMtoMShow').modal('show');
+				},
+				error: function (err) {
+					console.log("bbb")
+					console.log(err)
+				}
+			});
+ 		}
+  
 
 				
 	</script>

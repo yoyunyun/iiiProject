@@ -54,8 +54,8 @@ public class MemberMailService {
 	            + "<h3><a href='http://localhost:8080/Member/login'>請點此登入</a></h3>"
 	            + "謝謝,<br>"
 	            + "健康優生網，關心您";
-		
-		
+	    
+	    
 	    MimeMessage message = mailSender.createMimeMessage();
 	    MimeMessageHelper helper = new MimeMessageHelper(message, true);
 	     

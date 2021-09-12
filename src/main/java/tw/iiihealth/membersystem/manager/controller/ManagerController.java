@@ -9,6 +9,8 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,16 +18,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import tw.iiihealth.membersystem.manager.model.Manager;
 import tw.iiihealth.membersystem.manager.service.MailService;
 import tw.iiihealth.membersystem.manager.service.ManagerService;
-import tw.iiihealth.membersystem.member.model.Member;
 
 //	紀岱昀 帳:eeit12901  密:password01
 //	林昱伸 帳:eeit12902  密:password02
@@ -136,6 +137,27 @@ public class ManagerController {
 		return siteURL.replace(request.getServletPath(), "");
 	}
 
+	
+	
+	
+//-------------------------------------------------------註冊(確認帳號是否不同)-----------------------------------------------------------------
+	
+
+	
+		@PostMapping(path = "/checkManagerAccount")
+		public ResponseEntity<String> checkManagerAccount(@RequestBody Manager manager) {
+			
+			List<Manager> list = managerService.searchManagerAccount(manager.getManageraccount());
+			if(list.isEmpty()) {
+				return new ResponseEntity<String>("N", HttpStatus.OK);
+			}
+			return new ResponseEntity<String>("Y", HttpStatus.OK);
+		}
+		
+		
+		
+		
+		
 
 //------------------------------------------------------------------------------------------------------------------------
 	

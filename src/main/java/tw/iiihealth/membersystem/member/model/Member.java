@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -21,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import tw.iiihealth.elder.cartmodel.CartItem;
 import tw.iiihealth.elder.model.Equip;
 import tw.iiihealth.elder.model.Order;
+
+import tw.iiihealth.membersystem.health.model.Health;
+
 import tw.iiihealth.taxi.model.BookTaxi;
 	
 @Entity // 指自己就是java bean //給Hibernate看的
@@ -85,7 +89,7 @@ public class Member {
 	
 	
 	/* 購物車 */
-	@OneToMany(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "member", cascade = {CascadeType.ALL})
 	private List<CartItem> CartItem;
 	
 	
@@ -97,12 +101,19 @@ public class Member {
 
 	
 	/*訂單收藏*/
-	@OneToMany(mappedBy = "memberId", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Order> orders;
 	
 	
+	/*健康資料表*/
+    @OneToOne(mappedBy = "memberHealth")
+    @JsonIgnore
+    private Health health;
+
+
+    
 	/*叫車訂單*/
-	@OneToMany(mappedBy = "member_id", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL)
 	private List<BookTaxi> bookT;
 	
 	
@@ -335,6 +346,19 @@ public class Member {
 			orders.add(order);
 		}
 	}
+
+	
+	
+	/*健康資料表*/
+	public Health getHealth() {
+		return health;
+	}
+
+	public void setHealth(Health health) {
+		this.health = health;
+	}
+	
+	
 	
 	
 	

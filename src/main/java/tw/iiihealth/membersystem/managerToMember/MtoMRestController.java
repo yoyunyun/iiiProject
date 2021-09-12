@@ -20,9 +20,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import tw.iiihealth.elder.model.Equip;
+import tw.iiihealth.membersystem.health.model.Health;
+import tw.iiihealth.membersystem.health.service.HealthService;
 import tw.iiihealth.membersystem.member.model.Member;
 import tw.iiihealth.membersystem.member.service.MemberService;
 
@@ -44,6 +48,9 @@ public class MtoMRestController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private HealthService healthService;
 
 
 	// 查詢所有
@@ -54,10 +61,6 @@ public class MtoMRestController {
 	
 	
 	
-	
-	
-	
-	
 	// 查詢單筆
 	@GetMapping(path = "/Manager/searchOneMtoMAction.controller/{memberid}")
 	public Member searchOneMtoMAction(@PathVariable Integer memberid) throws Exception {
@@ -65,6 +68,19 @@ public class MtoMRestController {
 	}
 
 	
+	
+
+	// 查詢單筆
+	@GetMapping(path = "/Manager/searchOneMtoMHealth.controller/{memberid}")
+	@ResponseBody
+	public Health searchOneHealth(@PathVariable Integer memberid) {
+		Health checkHealth = healthService.checkHealth(memberid);
+		if(checkHealth == null) {
+			System.out.println("checkHealth: "+checkHealth);
+			return null;
+		}
+		return checkHealth;
+	}
 	
 	
 	
@@ -120,12 +136,33 @@ public class MtoMRestController {
 	public Map<String,String> deleteMtoMAction(@PathVariable Integer memberid) throws Exception {
 		
 		Map<String,String> map = new HashMap<String,String>();
+		
+		Health health = healthService.checkHealth(memberid);
+		
+		// 健康資料表不為空時，刪除
+		if(health != null) {
+			healthService.deleteHealth(health.getHealthid());
+		}
+		
+		
+		// 找出member
+		Member member = memberService.searchMemberId(memberid);
+		
+		// 刪除輔具收藏
+		List<Equip> equips= member.getEquips();
+		equips.clear();
+		
+
+		// 刪除member
 		memberService.deleteMember(memberid);
-		Member torf =memberService.searchMemberId(memberid);
+		
+		
+		Member torf = memberService.searchMemberId(memberid);
 		
 		if(torf != null) {
 			System.err.println("刪除失敗");
 		} else {
+			System.err.println("刪除成功");
 			map.put("msg","成功刪除id:"+memberid);
 		}
 		return map;
