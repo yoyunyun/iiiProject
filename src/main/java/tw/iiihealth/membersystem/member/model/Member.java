@@ -91,6 +91,7 @@ public class Member {
 	
 	/* 購物車 */
 	@OneToMany(mappedBy = "member", cascade = {CascadeType.ALL})
+	@JsonIgnore
 	private List<CartItem> CartItem;
 	
 	
@@ -103,6 +104,7 @@ public class Member {
 	
 	/*訂單收藏*/
 	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Order> orders;
 	
 	/*留言系統*/
@@ -117,7 +119,8 @@ public class Member {
 
     
 	/*叫車訂單*/
-	@OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<BookTaxi> bookT;
 	
 	

@@ -73,6 +73,7 @@
 	    left: -10px;  /*設置水平位置，依所放的內容多寡需要自行手動調整*/
 	    background: transparent;  /*背景顏色*/
 		transition-duration:1s;
+		z-index:5;
 	}
 	
 	
@@ -180,8 +181,23 @@
       
       #sakura{
        position: relative;
-       top:0px;
+       top:0px;      
+      }
       
+      #cat{
+        position: absolute;  
+	    bottom: 808px;  
+	    left: 120px; 
+	    background: transparent;  
+	    z-index:0;
+      }
+      
+      #cat2{
+        position: absolute;  
+	    bottom: 808px;  
+	    right: 80px; 
+	    background-image: transparent;  
+	    z-index:0;
       }
       
   </style>  
@@ -249,6 +265,8 @@
     
   
 <div id="sakura">  
+
+
 
     <!-- 最上面 -->
     <div id="top">
@@ -330,10 +348,15 @@
 	       
         </div>
       </div>
-      
-      
     </div>
-		
+	
+	<div id="cat">
+		<img src="${pageContext.request.contextPath}/images/cat.jpg" style="width:160px; height:170px">
+	</div>
+	
+	<div id="cat2">
+		<img src="${pageContext.request.contextPath}/images/cat2.jpg" style="width:220px; height:180px">
+	</div>
 	
 
 	<div id="button">
