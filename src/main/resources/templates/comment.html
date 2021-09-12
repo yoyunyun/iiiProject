@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv = "Content-Type" content = "text/html;charset=UTF-8">
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1">
+        <meta name = "viewport"
+              content = "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta charset = "UTF-8">
+        <link th:href = "@{/css/bootstrap.min.css}" rel = "stylesheet" />
+    <title>留言板</title>
+    </head>
+    <body>
+
+        <div class = "container">
+
+            <div class = "text-danger" id = "descr"></div>
+            <form th:action = "@{/addcomment}" method = "post" class = "form">
+             <h1>留言板</h1>
+                <label for = "comment-id">留言ID（修改/删除 時填寫）</label>
+                <input placeholder = "留言ID" name = "comment-id" id = "comment-id" type = "number"
+                       class = "form-control" />
+                <label for = "author">用戶名稱</label>
+                <input placeholder = "留言的名稱" name = "author" id = "author" class = "form-control" />
+                <label for = "aid">留言區域</label>
+                <select name = "aid" id = "aid" class = "form-control form-select-button">
+                    <option value = "0" selected>選擇區域</option>
+                    <option value = "1">計程車專區</option>
+                    <option value = "2">輔具商品專區</option>
+                    <option value = "3">食品專區</option>
+                </select>
+                <label for = "content">留言内容</label>
+                <textarea placeholder = "留言内容" rows = "3" name = "content" id = "content"
+                          class = "form-control"></textarea>
+<br>
+                <button type = "button" class = "btn btn-danger" onclick = "sendComment()">發送留言</button>
+            </form>
+            <hr>
+
+            <h2>留言內容</h2>
+            <div class = "list-group" id = "comment-list">
+
+            </div>
+        </div>
+
+
+        <script th:src = "@{/js/jquery-3.6.0.js}"></script>
+        <script th:src = "@{/js/bootstrap.min.js}"></script>
+      
+
+        <script>
+            function getComment() {
+                $.ajax({
+                        url: "/comment/all",
+                        type: "post",
+                        async: false,
+                        dataType: "json",
+                        success: function (e) {
+                            var html = "";
+                            if (e)
+                                e.forEach(function (t) {
+                                    html+= '<div class="list-group-item">' +
+                                        '<div class="panel panel-danger">' +
+                                        '<div class="panel-heading"><div class="panel-title">' + t.author +
+                                        '<small> [留言ID：' + t.id + ']: [文章aId: ' + t.aid + ']: </small>' +
+                                        '</div></div>' +
+                                        '<div class="panel-body">' + t.content + '</div>' +
+                                        '<div class="panel-footer">' + t.time + ' ' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>';
+                                })
+                            $("#comment-list").html(html);
+                        },
+                        error: function (e) {
+                            html+= '最後一頁';
+                        }
+                        ,
+                    }
+                )
+            }
+
+            getComment();
+
+            function sendComment() {
+                $.ajax({
+                    url: "/insertComment",
+                    type: "post",
+                    dataType: "json",
+                    async: false,
+                    data: {
+                        id: $("#comment-id").val() || -1,
+                        aid: $("#aid").val(),
+                        author: $("#author").val(),
+                        content: $("#content").val(),
+                    },
+                    success: function (e) {
+                        $("#descr").html(e.descr);
+                    }
+                })
+                $("#aid").val(0);
+                $("#content").val("");
+                $("#comment-id").val("");
+                getComment();
+            }
+        </script>
+    </body>
+</html>
