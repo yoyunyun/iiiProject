@@ -95,6 +95,7 @@
                       <ul class="dropdown">
                         <li><a href="/Member/login">會員登入</a></li>
                         <li><a href="/HealthProject/insertMember">會員註冊</a></li>
+                        <li><a href="/Member/logout">重新整理</a></li>
                       </ul>
                     </li>
                   </ul>

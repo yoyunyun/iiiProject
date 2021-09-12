@@ -233,7 +233,7 @@ div.leaflet-popup-pane {
 					<ul id="data">
 						<li style="font-size: 35px;"></li>
 						<li style="font-size: 25px;"></li>
-						<li style='font-size: 25px;'></li>
+						<li style='font-size: 25px;'><a id="tel" href=''></a></li>
 						<li style='font-size: 25px;'></li>
 						<li style='font-size: 25px;'></li>
 						<li style='font-size: 25px;'></li>
@@ -295,9 +295,10 @@ div.leaflet-popup-pane {
 				success : function(response) {
 
 					$( "#data" ).children("li").first().text(response.store).next("li").text("類別: "+response.type)
-					.next("li").text("電話: "+response.phone).next("li").text("營業時間: "+response.time).next("li").text("店休日: "+response.close_day)
+					.next("li").children().text("電話: "+response.phone).parent().next("li").text("營業時間: "+response.time).next("li").text("店休日: "+response.close_day)
 					.next("li").text("地址: "+response.city+response.town+response.address).next("li").text("簡介: "+response.brief)
 					
+					$('#tel').attr("href","tel:"+response.phone)
 					$("#site").attr("href",response.site)
 					$("#img").attr("src","/LocationImg/"+response.photo)
 					

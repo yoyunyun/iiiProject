@@ -133,23 +133,24 @@ button:focus {
                 <div class="all-steps" id="all-steps"> <span class="step"><i class="fa fa-user"></i></span> <span class="step"><i class="fa fa-user-circle"></i></span> <span class="step"><i class="fa fa-envelope"></i></span> </div>
                 <div class="tab">
                     <h6>請告訴我們姓名?</h6>
-                    <p> <input placeholder="姓名是..." oninput="this.className = ''" name="membername"></p>
+                    <p> <input id="membername" placeholder="姓名是..." oninput="this.className = ''" name="membername"></p>
                 </div>
                 <div class="tab">
                     <h6>請告訴我們帳號?</h6>
-                    <p><input placeholder="帳號是..." oninput="this.className = ''" name="memberaccount"></p>
+                    <p><input id="memberaccount" placeholder="帳號是..." oninput="this.className = ''" name="memberaccount"></p>
                 </div>
                 <div class="tab">
                     <h6>請告訴我們信箱?</h6>
-                    <p><input placeholder="信箱是..." oninput="this.className = ''" name="memberemail"></p>
+                    <p><input id="memberemail" placeholder="信箱是..." oninput="this.className = ''" name="memberemail"></p>
                 </div>
                 <div class="thanks-message text-center" id="text-message"> <img src="https://i.imgur.com/O18mJ1K.png" width="100" class="mb-4">
-                    <h3>感謝您耐心的回答!</h3> <span>請前往您的信箱，並取得最新的密碼!</span><br>
+                    <h3>感謝您耐心的回答!</h3> <span>請前往您的信箱，並取得最新的密碼!</span><br><br>
                 	<button ><i class="fa fa-angle-double-right"></i></button>
                 </div>
                 <div style="overflow:auto;" id="nextprevious">
                 	<div style="display: inline-block;">
-                		<a href="/Member/login">取消</a>
+                	<button type="button" id="returnLogin"><i class="fa fa-home"></i></button>
+                		<button type="button" id="onekey">一鍵輸入</button>
                 	</div>
                     <div style="float:right; display: inline-block">
                     	<button type="button" id="prevBtn" onclick="nextPrev(-1)"><i class="fa fa-angle-double-left"></i></button> 
@@ -164,6 +165,32 @@ button:focus {
 
 
 <script type="text/javascript">
+
+
+
+//一鍵輸入
+$('#onekey').on('click', function (){
+	$('#membername').val('張美麗');
+	$('#memberaccount').val('qwer1234');
+	$('#memberemail').val('iiieeit12907@gmail.com');
+})
+
+
+//返回首頁
+$("#returnLogin").click(function(){
+　　  $.ajax({ 
+　　　　  type : "get", 
+　　  　　url : "", 
+　　　  　data : "", 
+　  　　　async : false,   //注意：此處是同步，不是非同步
+　　  　　success : function(data){ 
+　　　　　　　　window.location.href="/Member/login";//需要跳轉的地址
+　　   　　} 
+　　   }); 
+})
+
+
+
 
 var currentTab = 0;
 document.addEventListener("DOMContentLoaded", function(event) {

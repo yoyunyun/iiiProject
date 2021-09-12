@@ -12,16 +12,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import tw.iiihealth.elder.cartmodel.CartItem;
 import tw.iiihealth.elder.model.Equip;
 import tw.iiihealth.elder.model.Order;
-import tw.iiihealth.taxi.model.BookTaxi;
 
+import tw.iiihealth.membersystem.health.model.Health;
+
+import tw.iiihealth.taxi.model.BookTaxi;
+	
 @Entity // 指自己就是java bean //給Hibernate看的
 @Table(name = "member") // 指bean對應到名為member的table //給Hibernate看的
 @Component("Member") // 指自己就是java bean，並且名稱為Member //給Spring看的，重點是HQL要對到這
@@ -82,6 +87,12 @@ public class Member {
 	@Column(name = "role")
 	private String role;
 	
+	
+	/* 購物車 */
+	@OneToMany(mappedBy = "member", cascade = {CascadeType.ALL})
+	private List<CartItem> CartItem;
+	
+	
 	/* 輔具收藏 */
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
@@ -90,14 +101,21 @@ public class Member {
 
 	
 	/*訂單收藏*/
-	@OneToMany(mappedBy = "memberId", cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH },
-			fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Order> orders;
 	
+	
+	/*健康資料表*/
+    @OneToOne(mappedBy = "memberHealth")
+    @JsonIgnore
+    private Health health;
+
+
+    
 	/*叫車訂單*/
-	@OneToMany(mappedBy = "member_id", cascade = { CascadeType.ALL},
-			fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL)
 	private List<BookTaxi> bookT;
+	
 	
 	private boolean disabled;
 
@@ -331,6 +349,18 @@ public class Member {
 
 	
 	
+	/*健康資料表*/
+	public Health getHealth() {
+		return health;
+	}
+
+	public void setHealth(Health health) {
+		this.health = health;
+	}
+	
+	
+	
+	
 	
 	
 	/*預約叫車*/
@@ -341,6 +371,4 @@ public class Member {
 	public void setBookT(List<BookTaxi> bookT) {
 		this.bookT = bookT;
 	}
-	
-	
 }

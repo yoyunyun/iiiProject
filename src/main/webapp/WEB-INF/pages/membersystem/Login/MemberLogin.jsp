@@ -98,10 +98,12 @@
 							</span>
 						</div>
 					</div>
-						<a id="onekey" href="#">林家瑋/吳哲瑋</a><br>
-						<a id="twokey" href="#">林睿梅/張仲淑</a><br>
-						<a id="threekey" href="#">張美麗:改前</a><br>
-						<a id="fourkey" href="#">張美麗:改後</a>
+						<a id="onekey" href="#">林家瑋</a>/
+						<a id="twokey" href="#">吳哲瑋</a><br>
+						<a id="threekey" href="#">林睿梅</a>/
+						<a id="fourkey" href="#">張仲淑</a><br>
+						<a id="fivekey" href="#">張美麗:改前</a>/
+						<a id="sixkey" href="#">張美麗:改後</a>
 				</form>
 
 				<div class="login100-more" style="background-image: url('${pageContext.request.contextPath}/login/images/login_elder.jpg');">
@@ -117,28 +119,34 @@
 $('#onekey').on('click', function(){
 	$('#account1').val('2z5fhjaxmase');
 	$('#pwd1').val('a8jbuxt8');
-}).on('dblclick', function(){
+})
+
+//一鍵輸入
+$('#twokey').on('click', function(){
 	$('#account1').val('xchbfp5132uswuzc');
 	$('#pwd1').val('fb4swqiw');
 })
 
 //一鍵輸入
-$('#twokey').on('click', function(){
+$('#threekey').on('click', function(){
 	$('#account1').val('kpxcepbjgu3h');
 	$('#pwd1').val('df3isjbj');
-}).on('dblclick', function(){
+})
+
+//一鍵輸入
+$('#fourkey').on('click', function(){
 	$('#account1').val('cj4y24mabc7');
 	$('#pwd1').val('bp969hg8');
 })
 
 //一鍵輸入
-$('#threekey').on('click', function(){
+$('#fivekey').on('click', function(){
 	$('#account1').val('qwer1234');
 	$('#pwd1').val('asdf1234');
 })
 
 //一鍵輸入
-$('#fourkey').on('click', function(){
+$('#sixkey').on('click', function(){
 	$('#account1').val('qwer1234');
 	$('#pwd1').val('test1234');
 })

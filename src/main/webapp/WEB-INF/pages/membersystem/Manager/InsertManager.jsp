@@ -56,7 +56,7 @@
 												<td><form:label path="manageraccount">帳號:</form:label></td>
 												<td>
 													<form:input path="manageraccount" maxlength="15" size="15" />
-													<span id="accountCheck"></span>
+													<span style="color: red;" id="accountCheck"></span>
 												</td>
 											</tr>
 											<tr>
@@ -148,6 +148,48 @@ $('#onekey').on('click', function(){
 	$('#managerday').val('15');
 	$('#manageremail').val('iiieeit12907@gmail.com');
 })
+
+
+        
+        
+        
+        //確認帳號是否重複
+        $(document).ready(function(){
+   		 $("#manageraccount").blur(function(){
+        var memberaccount = $("#manageraccount").val();
+        console.log('manageraccount:' + memberaccount);
+
+        var params = {
+        		"manageraccount":memberaccount
+        };
+
+        $.ajax({
+            type:'post',
+            url:'/checkManagerAccount',
+            contentType:'application/json',
+            data:JSON.stringify(params),
+            success: function(data){
+               console.log("Success");
+               if(data=='Y'){
+            	   console.log("帳號已被使用");
+                  $("#accountCheck").html('帳號已被使用');
+               }
+
+               if(data=='N'){
+            	   console.log("帳號未被使用");
+            	  $("#accountCheck").html('帳號未被使用');
+               }
+            },
+            error:function(e){
+               console.log(e);
+            }
+        });
+    });	
+});
+        
+        
+        
+        
 </script>
 
 	<script>
