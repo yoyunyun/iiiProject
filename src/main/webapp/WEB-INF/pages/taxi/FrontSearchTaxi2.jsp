@@ -290,11 +290,10 @@
 					  icon: 'error',
 					  title: 'Oops...',
 					  text: '請先登入會員!',
+				}).then(()=>{
+					window.location.href='/taxiFront/booktaxi/fronttaximainpage.controller';
 				})
-				.then(()=>{
-					window.location.href='/taxiFront/booktaxi/checklogin';
-				})
-   				
+				
    			}
    		}
 	});

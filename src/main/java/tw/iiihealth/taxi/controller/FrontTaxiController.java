@@ -41,6 +41,10 @@ public class FrontTaxiController {
 	public String processQueryMainPage() {
 		return "taxi/FrontSearchTaxi2";
 	}
+	@GetMapping(path = "/booktaxi/fronttaximainpage.controller")
+	public String bookQueryMainPage() {
+		return "taxi/FrontSearchTaxi2";
+	}
 
 	@GetMapping(path = "/frontstart")
 	public String start() {
