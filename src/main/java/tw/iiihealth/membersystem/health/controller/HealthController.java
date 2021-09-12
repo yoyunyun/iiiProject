@@ -62,10 +62,10 @@ public class HealthController {
 		String memberaccount = auth.getName();
 		Member memberDetail = memberService.searchUserDetails(memberaccount);
 
+		double intBMI = ((health.getWeight()*100000)/((health.getHeight()*health.getHeight())));
+		double ansBMI = (intBMI/10);		
+
 		
-		double ansBMI = (health.getWeight()/100)/(health.getHeight()/100)^2;
-
-
 		health.setBmi(ansBMI);
 		health.setMedicalHistory(health.getMedicalHistory().trim());
 		
@@ -86,9 +86,9 @@ public class HealthController {
 		String memberaccount = auth.getName();
 		Member memberDetail = memberService.searchUserDetails(memberaccount);
 		
-		double ansBMI = (health.getWeight()/100)/(health.getHeight()/100)^2;
-		
-		System.out.println(ansBMI);
+		double intBMI = ((health.getWeight()*100000)/((health.getHeight()*health.getHeight())));
+		double ansBMI = (intBMI/10);
+
 
 		health.setBmi(ansBMI);
 
