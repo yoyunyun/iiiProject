@@ -44,11 +44,11 @@
 }
 
 .historyArea b {
-	height: 19px;
-	background-color: #A0A0A0;
-	font: 12px/20px Helvetica; #
-	font: 12px/21px Helvetica;
-	color: #FFFFFF;
+	height: auto;
+	background-color: 	#FFEEDD;
+/* 	font: 12px/20px Helvetica; # */
+/* 	font: 12px/21px Helvetica; */
+	color: #000000;
 	text-align: center;
 	cursor: default
 }
@@ -64,13 +64,13 @@
 		url(//image.momoshop.com.tw/ecm/img/cmm/shopcar/topbkimg.gif)
 		no-repeat 10px 5px;
 	width: 100px;
-	color: 999999;
+	color: #3C3C3C;
 	font-size: 11px;
 	font-weight: bold;
 	display: block;;
 	margin: 2px;
 	font-family: Arial;
-	color: #999999
+	color: #3C3C3C
 }
 
 .historyArea dd {
@@ -113,6 +113,10 @@
 	margin: 0;
 	width: 100%;
 	height: auto
+}
+
+.historyArea a{
+	color:#000093;
 }
 
 .navFixed {
@@ -249,7 +253,7 @@ div.leaflet-popup-pane {
 				<div class="historyArea" id="fixed">
 					<dl>
 						<dd class="tips" style="display: block;">
-							<b>相關搜尋</b>
+							<b><img src="/images/showHospital.png" style="max-width: 30px;margin:10px">相關搜尋</b>
 						</dd>
 						<c:forEach var="ele" items="${listLoc}">
 							<dd class="tips" style="display: block;">
