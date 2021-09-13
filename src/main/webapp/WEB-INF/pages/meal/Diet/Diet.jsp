@@ -11,17 +11,11 @@
 <head>
   <title>Elderly &mdash; Website Template by Colorlib</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">   
 <%@ include file="/WEB-INF/pages/css.jsp"%>
 
 <%@ include file="/WEB-INF/pages/user-css-js.jsp"%>
 
-         <style>
-        	img{
-			  cursor:pointer;//滑鼠手型
-			  transition:all 0.6s ease-in-out;//過渡
-			}
-        </style>
         <style>
 	        .hel2 {
 	            background-color: #FF8000;
@@ -54,6 +48,7 @@
 	            font-size: 25px;
 	            font-weight: bold;
 	        }
+
 	    </style>
 
 </head>
@@ -135,7 +130,7 @@
         <a style="font-weight:bold;font-size:25px;color:black;">碳水化合物</a>
         <p style="font-size:16px">
         碳水化合物對人體相當重要，在一個健康、均衡的飲食中，碳水化合物是提供人體熱量的主要能源。
-        碳水化合物會在消化道先被分解為葡萄糖後，進入細胞當做能源，是維持身體功能正常運作的必須營養素。
+        碳水化合物會在消化道先被分解為葡萄糖後，進入細胞當做能源，是維持身體正常運作的必須營養素。
         </p>
     </div>
     <div class="hel3">
@@ -149,60 +144,19 @@
     </div>
     <div></div>
     <div class="text-center" style="margin:200px 0 200px 0;"><a style="font-weight:bold;font-size:30px;color:#FF7575;">民以食為天，聰明選食，吃出人生精彩下半場！</a></div>
-              <h2 class="text-black text-center"  style="margin:0 0 50px 0;">最新食材</h2>
+              <h2 class="text-black text-center"  style="margin:0 0 50px 0;">了解食物，善待自己</h2>
             </div>
           <div class="col-10 text-center">
             <p style="font-size:18px">食物是為生物提供營養的物質，來源通常是植物、動物、菌類，包含著維生所需的營養素，如蛋白質、脂肪、水等，能夠藉由進食或飲用為生物提供營養、維持生命或愉悅的物質。生物攝取食物後，被生物的細胞同化，提供能量，維持生命及刺激成長。</p>
           </div>
         </div>
         
-<div class="row">
-<div id="layoutSidenav_content">
-			<main>
-				<div class="container-fluid px-4">
-					<div class="card mb-4">
-						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 食品資料庫
-						</div>
-						<div class="card-body">
-							
-							
-							
-					<table id="datatablesSimple">
-						<thead>
-							<tr>
-						        <th>食品名稱</th>
-						        <th>食品分類</th>
-						        <th>熱量(kcal)</th>
-						        <th>蛋白質</th>
-						        <th>碳水化合物(g)</th>
-						        <th>脂肪(g)</th>
-						        <th>糖(g)</th>
-						        <th>鈉(mg)</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="diet" items="${queryAll}">
-								<tr>
-									<td>${diet.name}</td>
-									<td>${diet.type}</td>
-									<td>${diet.calories}</td>
-									<td>${diet.protein}</td>
-									<td>${diet.carbohydrates}</td>
-									<td>${diet.fat}</td>
-									<td>${diet.sugar}</td>
-									<td>${diet.na}</td>
-								</tr>
-								</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
+		<div class="row">
+			<div class="text-center" style="width:500px;margin:0 auto">
+				<p><a class="btn btn-primary" onclick="window.open('dietTest');" style="color:white;font-size:20px" >前往食品計算機</a></p>
+			</div>
 			
-		</div>
-
-
+			
         </div>
       </div>
     </div>
@@ -213,9 +167,11 @@
 <%@ include file="/WEB-INF/pages/user-site-footer.jsp"%>
 
   </div> <!-- .site-wrap -->
+  
 
 <script src="/js/jquery-3.3.1.min.js"></script>
 <%@ include file="/WEB-INF/pages/user-js.jsp"%>
+
 
 </body>
 </html>
