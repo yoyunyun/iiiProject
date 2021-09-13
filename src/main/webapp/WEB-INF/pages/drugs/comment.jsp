@@ -75,6 +75,21 @@
 		font-family:serif;
 	}
 	
+  .js-social-share {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-left: 0;
+    line-height: 1;
+    list-style: none;
+  }
+  .js-social-share li {
+    padding-right: 1rem;
+    height: 22px;
+  }
 	
   </style>  
   
@@ -82,7 +97,9 @@
 
   
 </head>
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div id="fb-root"></div>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v11.0" nonce="1ABcZKz1"></script>
 
 
   <div id="overlayer"></div>
@@ -146,8 +163,7 @@
                           class = "form-control"></textarea>
 <br>
                 <button type = "button" class = "btn btn-danger" onclick = "sendComment()" id="submit">發送留言</button>
-                <button type="button" class = "btn btn-danger" id="input">一鍵輸入</button>
-                       
+                <button type="button" class = "btn btn-danger" id="input">一鍵輸入</button>       
             </form>
             <hr>
 
@@ -189,10 +205,11 @@
                                     '</div>'+
                                     '<ul class="list-group list-group-flush">'+
                                      '<li class="list-group-item">'+ t.content +'</li>'+
-                                     '<li class="list-group-item">'+ t.time +'</li>'+
-                                      
+                                     '<li class="list-group-item">'+ t.time +'<br>'+'<br>'+'<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/like-button" data-width="" data-layout="button" data-action="like" data-size="large" data-share="true">'+'</div>'+'</li>'+
+                              
                                   '</ul>'+
-                                  '</div>'
+                                  '</div>'+
+                                  '</br>'
                                 })
                             $("#comment-list").html(html);
                         },
@@ -228,10 +245,47 @@
                 getComment();
             }
             
-
-        </script>
-    
+            
+</script>
+  <script>
+  var el = document.querySelector('.entry-content');
+  var notIndex = location.pathname !== '/';
+  var notCategory = location.pathname.indexOf('category') === -1;
+  var notTag = location.pathname.indexOf('tag') === -1;
   
+  // 載入JS檔
+  function appendJS(src) {
+    var script = document.createElement("script");
+    script.src = src;
+    document.head.appendChild(script);
+  }
+
+  if(el && notIndex && notCategory && notTag) {
+    
+    var currentUri = document.querySelector('[rel="canonical"]').href;
+    
+    var fbBtn = '<div class="fb-like" data-href="' + currentUri + '" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>';
+    var lineBtn = '<div class="line-it-button" data-lang="zh_Hant" data-type="share-a" data-ver="3" data-url="' + currentUri + '" data-color="default" data-size="small" data-count="true" style="display: none;"></div>';
+    var twitterBtn = '<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>';
+    
+    var socialHTML = '<ul class="js-social-share">' +
+      '<li>' + fbBtn + '</li>' +
+      '<li>' + lineBtn + '</li>' +
+      '<li>' + twitterBtn + '</li>' +
+    '</ul>';
+    el.insertAdjacentHTML('beforebegin', socialHTML);
+
+    if(document.querySelector('.sharedaddy')) {
+      var originShare = document.querySelector('.sharedaddy');
+      originShare.insertAdjacentHTML('beforebegin', socialHTML);
+    }
+    
+    appendJS('https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js');
+    appendJS('https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.0');
+    appendJS('https://platform.twitter.com/widgets.js');
+    
+  }
+</script>
     
     <!-- Footer -->
 
