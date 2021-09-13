@@ -211,8 +211,8 @@
 
 						<c:choose>
 							<c:when test="${not empty Blist}">
+								<tbody id="datalist">
 								<c:forEach var="booking" items="${Blist}">
-									<tbody>
 										<tr id="${booking.book_id}">
 											<td>${booking.book_id}</td>
 											<td>${booking.tname}</td>
@@ -225,8 +225,8 @@
 											<td><input type="image" class="updateBook" name="update" src="/images/update.jpg"  onclick="updClick(${booking.book_id})"/></td>
 											<td><input type="image" src="/images/delete.png" class="delete" onclick="delcheck(${booking.book_id})"></td>
 										</tr>
-									</tbody>
 								</c:forEach>
+								</tbody>
 							</c:when>
 							<c:otherwise>
 								<tbody>
@@ -244,11 +244,6 @@
 			</div>
 		</main>
 	</div>
-
-
-
-
-
 
 	<!-- Footer -->
 
@@ -279,7 +274,6 @@
 				  showConfirmButton: false,
 				  timer: 2000
 				})
-// 				setTimeout(() => del(id), 1000)
 		  }
 		})
 	}
@@ -288,11 +282,25 @@
 		$.ajax({
 			  url: "/taxiFront/booktaxi/del/"+id,
 			  type: "post",
-		  	  success: function(data){
-// 		  		  console.log(data);
-		window.location.href='/taxiFront/booktaxi/searchbooking'
-// 		setTimeout(() =>window.location.href='/taxiFront/booktaxi/searchbooking', 1100)
-		  	  }
+			  success: function(data){
+			  		 $('#datalist').empty();
+			  		  for (var i in data){
+			  			  $('#datalist').append(
+			  					"<tr id="+(data[i].book_id)+">"+
+								"<td>"+(data[i].book_id)+"</td>"+
+								"<td>"+(data[i].tname)+"</td>"+
+								"<td>"+(data[i].address)+"</td>"+
+								"<td>"+(data[i].date)+"</td>"+
+								"<td>"+(data[i].hour)+":"+(data[i].min)+"</td>"+
+								"<td>"+(data[i].passenger)+"</td>"+
+								"<td>"+(data[i].phone)+"</td>"+
+								"<td>"+(data[i].mail)+"</td>"+
+								"<td><input type='image' class='updateBook' name='update' src='/images/update.jpg'  onclick='updClick("+(data[i].book_id)+")'/></td>"+
+								"<td><input type='image' src='/images/delete.png' class='delete' onclick='delcheck("+(data[i].book_id)+")'></td>"+
+							"</tr>"	  
+			  			  )
+			  		  }
+			  	  }
 			})
 	}
 	
@@ -345,7 +353,6 @@ function yes(){
 		  showConfirmButton: true,
 		})}).then(()=>{
 			cancel();
-			setTimeout(() =>window.location.href='/taxiFront/booktaxi/searchbooking', 1000)
 		})
 	
 	//傳給信件
@@ -357,6 +364,23 @@ function yes(){
 		  		"hour" : $('#hour').val(), "min" : $('#min').val(), "tel" : $('#tel').val(),
 		  		"bid" : $('#bid').val()},
   	  success: function(data){
+  		 $('#datalist').empty();
+  		  for (var i in data){
+  			  $('#datalist').append(
+  					"<tr id="+(data[i].book_id)+">"+
+					"<td>"+(data[i].book_id)+"</td>"+
+					"<td>"+(data[i].tname)+"</td>"+
+					"<td>"+(data[i].address)+"</td>"+
+					"<td>"+(data[i].date)+"</td>"+
+					"<td>"+(data[i].hour)+":"+(data[i].min)+"</td>"+
+					"<td>"+(data[i].passenger)+"</td>"+
+					"<td>"+(data[i].phone)+"</td>"+
+					"<td>"+(data[i].mail)+"</td>"+
+					"<td><input type='image' class='updateBook' name='update' src='/images/update.jpg'  onclick='updClick("+(data[i].book_id)+")'/></td>"+
+					"<td><input type='image' src='/images/delete.png' class='delete' onclick='delcheck("+(data[i].book_id)+")'></td>"+
+				"</tr>"	  
+  			  )
+  		  }
   	  }
 	})
 }

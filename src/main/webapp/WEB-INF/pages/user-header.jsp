@@ -61,8 +61,10 @@
                     <li><a href="${pageContext.request.contextPath}/Drugfront/findalldrugproductFront" class="nav-link">藥品包裝</a></li>
                   </ul>
                 </li>
-                
-                
+            
+                <li><a href="${pageContext.request.contextPath}/comment" class="nav-link">留言專區</a><a href="${pageContext.request.contextPath}/contact" class="nav-link">聯絡我們</a></li>
+<!--                 <li><a href="about.html" class="nav-link">關於我們</a></li> -->
+         
                 
 
 
@@ -103,10 +105,7 @@
 
 </c:if>
 
-
-<!--                 <li><a href="about.html" class="nav-link">關於我們</a></li> -->
-                <li><a href="${pageContext.request.contextPath}/contact" class="nav-link">聯絡我們</a></li>
-
+          
               </ul>
 
             </nav>

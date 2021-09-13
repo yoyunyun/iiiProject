@@ -105,7 +105,7 @@ public class FrontTaxiController {
 	// Ajax 修改寄信
 	@PostMapping(path = "/booktaxi/update")
 	@ResponseBody
-	public String updTaxibyId(@RequestParam("mail") String mail, @RequestParam("passanger") String passanger,
+	public List<BookTaxi> updTaxibyId(@RequestParam("mail") String mail, @RequestParam("passanger") String passanger,
 			@RequestParam("taxi") String taxi, @RequestParam("loc") String loc, @RequestParam("date") String date,
 			@RequestParam("hour") String hour, @RequestParam("min") String min, @RequestParam("tel") String tel,
 			@RequestParam("bid") int bid) throws Exception {
@@ -119,7 +119,8 @@ public class FrontTaxiController {
 
 		// 寄信
 		tService.sendTemplateMail(mail, passanger, taxi, loc, date, hour, min, tel);
-		return "mail success";
+		
+		return member.getBookT();
 	}
 
 	// 叫車時檢查是否有登入
@@ -155,7 +156,7 @@ public class FrontTaxiController {
 //		//會員刪除訂單
 		@PostMapping(path="/booktaxi/del/{id}")
 		@ResponseBody
-		public String delBook(@PathVariable("id") int id) throws Exception {
+		public List<BookTaxi> delBook(@PathVariable("id") int id) throws Exception {
 			
 			// 會員驗證
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -169,7 +170,7 @@ public class FrontTaxiController {
 			tService.sendDelTemplateMail(mail,user);
 			
 			bTaxiService.deleteById(id);
-			return "delete success";
+			return member.getBookT();
 		}
 
 }

@@ -60,6 +60,13 @@ public class CommentController {
     @GetMapping("/comment")
     public String comment() {
         
-        return "comment";
+        return "drugs/comment";
     }
+
+
+@GetMapping("/commentfront")
+public String comment1() {
+    
+    return "drugs/commentfront";
+}
 }
