@@ -48,20 +48,28 @@
 
 	<div id="layoutSidenav_content">
 		<main>
-			<div class="card mb-4">
-				<div class="card-header" style="margin-bottom:20px;">
-					<i class="fas fa-table me-1"></i> 會員系統
-				</div>
+			<div class="card-header" style="margin-bottom: 60px;">
+				<i class="fas fa-table me-1"></i> 會員系統
+			</div>
 
-				
-				
-				<div class="row" style="margin-bottom:50px;">
-				
-				
-				
-					<!-- 會員資料索引 -->	
+
+			<!-- 第一列 -->
+			<div class=row style="margin-bottom: 18px">
+				<div class="col-md-2"></div>
+				<div class="col-md-9" style="margin: 0 auto;">
+				</div>
+				<div class="col-md-1"></div>
+
+			</div>
+
+
+			<!-- 第二列 -->
+			<div class="row" style="margin-bottom: 100px">
+
+				<div class="col-md-2">
+					<!-- 會員資料索引 -->
 					<%@ include file="/WEB-INF/pages/Member-index.jsp"%>
-				
+				</div>
 
 					<div class="col-md-6" style="margin: 0 auto;">
 					
@@ -133,7 +141,6 @@
 				
 				
 				
-				</div>
 			</div>
 		</main>
 	</div>
