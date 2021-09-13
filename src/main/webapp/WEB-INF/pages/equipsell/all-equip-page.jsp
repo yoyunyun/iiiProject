@@ -33,7 +33,9 @@
   	
   	#button{
   		width:200px;
-  		margin: 0 auto 20px auto;
+  	    position: absolute; 
+	    top: 920px;  
+	    left: 700px; 
   	}
   	
   	#myPage{
@@ -73,7 +75,6 @@
 	    left: -10px;  /*設置水平位置，依所放的內容多寡需要自行手動調整*/
 	    background: transparent;  /*背景顏色*/
 		transition-duration:1s;
-		z-index:5;
 	}
 	
 	
@@ -120,7 +121,6 @@
 		background-size: cover;
 	}
 	
-
 	
 	#span{
 		font-size: 30px;
@@ -181,15 +181,18 @@
       
       #sakura{
        position: relative;
-       top:0px;      
+       top:0px; 
       }
-      
+		
+	  #outer{
+	  	height:1000px;
+	  }	
+		      
       #cat{
         position: absolute; 
 	    top: 827px;  
 	    left: 120px; 
 	    background: transparent;  
-	    z-index:0;
       }
       
       #cat2{
@@ -265,8 +268,7 @@
     
   
 <div id="sakura">  
-
-
+<div id="outer">
 
     <!-- 最上面 -->
     <div id="top">
@@ -366,8 +368,7 @@
 		</c:forEach>
 		 -->
     </div>
-
-
+</div>
     
     
     <!-- Footer -->
