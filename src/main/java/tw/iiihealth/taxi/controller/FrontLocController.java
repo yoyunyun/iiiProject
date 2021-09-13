@@ -1,36 +1,44 @@
 package tw.iiihealth.taxi.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import tw.iiihealth.membersystem.member.model.Member;
+import tw.iiihealth.membersystem.member.service.MemberService;
 import tw.iiihealth.taxi.model.LocService;
 import tw.iiihealth.taxi.model.Location;
 
 @Controller
 @RequestMapping(path="/taxiFront")
+@Transactional
 public class FrontLocController {
 
 	@Autowired
 	private LocService locService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@GetMapping(path = "/frontlocmainpage.controller")
 	public String processQueryLocMainPage() {		
 		return "taxi/FrontSearchLoc";
 	}
 	
-	@GetMapping(path = "/frontloctest.controller")
-	public String processQueryLocTest() {		
-		return "taxi/test";
+	@GetMapping(path = "/booktaxi/frontloc.controller")
+	public String processQueryLocLogin() {		
+		return "taxi/FrontSearchLoc";
 	}
 	
 	@PostMapping(path = "/querylocall")
@@ -70,6 +78,30 @@ public class FrontLocController {
 		return locService.findById(id);
 	}
 	
+	/////////////	收藏店家  //////////////////
+	// Ajax 會員收藏產品
+	@GetMapping(path="/booktaxi/collect/{lid}")
+	@ResponseBody
+	public String collect(@PathVariable("lid") int lid) {
+				
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Member member = memberService.getCurrentlyLoggedInMember(auth);
+		
+		// 不能重複加一樣的產品
+		for (Location tempLoc:  member.getLocation()) {
+			if (tempLoc.getId() == lid) {
+					return "duplicate";
+				}
+			}
+				
+		// 沒有重複 查詢產品
+		Location loc= locService.findById(lid);
+		
+		// 加到join table
+		member.addLoc(loc);
+			
+		return "success";
+		}
 	
 	
 }

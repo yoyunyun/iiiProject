@@ -49,6 +49,18 @@
         .blog-entry{
         cursor: url("/images/cursor.png"), pointer;
         }
+        
+        .heart{
+		-webkit-filter:opacity(0.2);
+		width: 44px;
+		cursor:pointer
+		}
+	
+		.heart:hover{
+		-webkit-filter:opacity(1);
+		width: 44px;
+		cursor:pointer
+		}
    </style>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -204,20 +216,19 @@ function search(){
                 		  
             "<div class='col-12 col-sm-6 col-md-4 mb-4'>"+
             "<div class='blog-entry'>"+
-              "<a href='/taxi/search/"+(ele.id)+"' class='d-block'>" +
+              "<h2><a href='/taxiFront/search/"+(ele.id)+"' target='_blank'>"+ (ele.store) +"</h2>" +
                 "<img src='${pageContext.request.contextPath}/LocationImg/"+(ele.photo)+"' onerror='this.src=\"${pageContext.request.contextPath}/images/hospital2.png\"' alt='Image' class='img-fluid' style='height:300px'></a>"+
                 
-					
-                "<div class='post-meta d-flex justify-content-center'>" +
-                "<span>"+
-                	"<span class='icon-phone'></span>" +
-            	 	"<span >"+ (ele.phone)+"</span><br/>" +
-                	"<span class='icon-map-marker'></span>"+
-                 	"<span >"+ (ele.city)+ (ele.town)+ (ele.address) +"</span>"+
-                  	
-                "</span>" +
-              "</div>" +
-              "<h2><a href='/taxiFront/search/"+(ele.id)+"' target='_blank'>"+ (ele.store) +"</a></h2>" +
+				"<div class='d-flex justify-content-between'>"+	
+                	"<div class='post-meta d-flex align-items-start flex-column' style='margin:10px 0'>" +
+                		"<span class='icon-phone'>"+ (ele.phone)+"</span>" +
+                		"<span class='icon-map-marker'>"+ (ele.city)+ (ele.town)+ (ele.address) +"</span>"+
+              		"</div>" +
+              		"<div class='align-self-center'>"+
+              		"<img src='/images/heart.png' class='heart' title='加入收藏' onclick='collect("+(ele.id)+")'>" +
+              		"</div>"+
+              	"</div>"+
+              
               "<p>"+ (ele.brief) + "</p>" +
             "</div>" +
           "</div>"
@@ -267,6 +278,40 @@ $(function () {
 		$('#care').prop('disabled',true)
 	})
 })
+
+
+ <!-- 收藏 -->
+ function collect(lid){
+	
+	 $.ajax({
+			  type:"get",
+			  url:"/taxiFront/booktaxi/collect/" + lid,
+			  success: function(data){
+					
+					if (data == "success"){
+						Swal.fire('已為您加入收藏清單')
+					}
+					
+					else if (data == "duplicate"){
+						Swal.fire({
+							  icon: 'error',
+							  title: 'Oops...',
+							  text: '已經收藏過囉!',
+						})
+					}	
+					
+					else{
+						Swal.fire({
+							  icon: 'error',
+							  title: 'Oops...',
+							  text: '請先登入會員!',
+						}).then(()=>{
+							window.location.href='/taxiFront/booktaxi/frontloc.controller';
+						})
+					}
+				 }
+			 })
+		 };
 </script>
 
 </body>

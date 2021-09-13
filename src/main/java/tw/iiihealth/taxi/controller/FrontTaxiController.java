@@ -172,5 +172,7 @@ public class FrontTaxiController {
 			bTaxiService.deleteById(id);
 			return member.getBookT();
 		}
+		
+	
 
 }
