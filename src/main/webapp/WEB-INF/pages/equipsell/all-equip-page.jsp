@@ -185,8 +185,8 @@
       }
       
       #cat{
-        position: absolute;  
-	    bottom: 808px;  
+        position: absolute; 
+	    top: 827px;  
 	    left: 120px; 
 	    background: transparent;  
 	    z-index:0;
@@ -194,7 +194,7 @@
       
       #cat2{
         position: absolute;  
-	    bottom: 808px;  
+	    top: 815px;  
 	    right: 80px; 
 	    background-image: transparent;  
 	    z-index:0;
