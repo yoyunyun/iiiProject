@@ -62,12 +62,6 @@
                   </ul>
                 </li>
             
-                <li><a href="${pageContext.request.contextPath}/comment" class="nav-link">留言專區</a><a href="${pageContext.request.contextPath}/contact" class="nav-link">聯絡我們</a></li>
-<!--                 <li><a href="about.html" class="nav-link">關於我們</a></li> -->
-         
-                
-
-
 <c:if test="${not empty user_Member}">
    
 
@@ -104,6 +98,13 @@
                 </li>
 
 </c:if>
+
+                <li><a href="${pageContext.request.contextPath}/comment" class="nav-link">留言專區</a><a href="${pageContext.request.contextPath}/contact" class="nav-link">聯絡我們</a></li>
+<!--                 <li><a href="about.html" class="nav-link">關於我們</a></li> -->
+         
+                
+
+
 
           
               </ul>
