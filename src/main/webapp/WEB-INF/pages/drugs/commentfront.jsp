@@ -120,7 +120,7 @@
 	    
             function getComment() {
                 $.ajax({
-                        url: "/comment/all",
+                        url: "/comment/front",
                         type: "post",
                         async: false,
                         dataType: "json",
@@ -150,29 +150,6 @@
             }
 
             getComment();
-
-            function sendComment() {
-                $.ajax({
-                    url: "/insertComment",
-                    type: "post",
-                    dataType: "json",
-                    async: false,
-                    data: {
-                        id: $("#comment-id").val() || -1,
-                        aid: $("#aid").val(),
-                        author: $("#author").val(),
-                        content: $("#content").val(),
-                    },
-                    success: function (e) {
-                        $("#descr").html(e.descr);
-                    }
-                })
-                $("#aid").val(0);
-                $("#content").val("");
-                $("#comment-id").val("");
-                getComment();
-            }
-            
 
         </script>
   
