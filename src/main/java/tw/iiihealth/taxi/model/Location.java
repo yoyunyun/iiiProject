@@ -1,13 +1,24 @@
 package tw.iiihealth.taxi.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import tw.iiihealth.membersystem.member.model.Member;
 
 @Entity @Table(name="location")
 @Component
@@ -28,6 +39,11 @@ public class Location {
 	private String site;
 	private String photo;
 	private String map;
+	
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinTable(name="location_collect", joinColumns = @JoinColumn(name="locationid"), inverseJoinColumns = @JoinColumn(name="memberid"))
+	private List<Member> members;
 	
 	public int getId() {
 		return id;
@@ -108,6 +124,13 @@ public class Location {
 	public void setMap(String map) {
 		this.map = map;
 	}
+	public List<Member> getMembers() {
+		return members;
+	}
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
+
 	
 	
 }

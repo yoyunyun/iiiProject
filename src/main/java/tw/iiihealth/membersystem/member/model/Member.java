@@ -27,6 +27,7 @@ import tw.iiihealth.elder.model.Order;
 import tw.iiihealth.membersystem.health.model.Health;
 
 import tw.iiihealth.taxi.model.BookTaxi;
+import tw.iiihealth.taxi.model.Location;
 	
 @Entity // 指自己就是java bean //給Hibernate看的
 @Table(name = "member") // 指bean對應到名為member的table //給Hibernate看的
@@ -123,6 +124,12 @@ public class Member {
 	@OneToMany(mappedBy = "member_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<BookTaxi> bookT;
+	
+	/* 店家收藏 */
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinTable(name="location_collect", joinColumns = @JoinColumn(name="memberid"), inverseJoinColumns = @JoinColumn(name="locationid"))
+	private  List<Location> location;
 	
 	
 	private boolean disabled;
@@ -380,7 +387,6 @@ public class Member {
 	
 	
 	
-	
 	/*預約叫車*/
 	public List<BookTaxi> getBookT() {
 		return bookT;
@@ -389,4 +395,28 @@ public class Member {
 	public void setBookT(List<BookTaxi> bookT) {
 		this.bookT = bookT;
 	}
+
+	
+	/*店家收藏*/
+	public List<Location> getLocation() {
+		return location;
+	}
+
+	public void setLocation(List<Location> location) {
+		this.location = location;
+	}
+	public void addLoc(Location loc) {
+		if (location == null) {
+			location = new ArrayList<Location>();
+		}
+		location.add(loc);
+	}
+	
+	
+	public void removeLoc(Location loc) {
+		if (location != null) {
+			location.remove(loc);
+		}
+	}
+	
 }
