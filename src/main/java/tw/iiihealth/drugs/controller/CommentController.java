@@ -2,6 +2,8 @@ package tw.iiihealth.drugs.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import tw.iiihealth.drugs.model.CommentMain;
 import tw.iiihealth.drugs.model.CommentService;
 import tw.iiihealth.drugs.model.Function;
+import tw.iiihealth.membersystem.member.model.Member;
+import tw.iiihealth.membersystem.member.service.MemberService;
 
 import java.util.List;
 
@@ -18,26 +22,44 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+	private MemberService memberService;   
+    
     @ResponseBody
     @PostMapping("/comment/all")
-    public List<CommentMain> findAll() { // 4. 查询所有
+    public List<CommentMain> findAll() {
     List<CommentMain> list = commentService.findAll(Sort.by(Sort.Direction.DESC,"time"));
     return list;
     }
-    public void updateById(int id, int aId, String author, String content) {
-        CommentMain commentMain = commentService.findById(id);
+    public void updateById(int id, int aId, String author,String content) {
+        CommentMain commentMain = commentService.findById(id); 
         commentMain.setaId(aId);
         commentMain.setAuthor(author);
         commentMain.setContent(content);
         commentMain.setTime(new Function().getDateTime());
+    
         commentService.updateComment(commentMain);
     }
-
+    
     @ResponseBody
-    @RequestMapping(value = "/insertComment", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @PostMapping("/comment/front")
+    public List<CommentMain> searchBymemberId(String memberid) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	Member member = memberService.getCurrentlyLoggedInMember(auth);
+    List<CommentMain> commentMainList = commentService.searchBymemberId(member);
+    return commentMainList;
+    }
+
+   
+    @ResponseBody
+    @RequestMapping(value = "/comment/insertComment", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String insertComment(@RequestParam("id") int id, @RequestParam("aid") int aId, @RequestParam("author") String author, @RequestParam("content") String content) {
-        author = new Function().sqlReplaceAll(author);
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	Member member = memberService.getCurrentlyLoggedInMember(auth);
+    	System.out.println(auth);
+    	author = new Function().sqlReplaceAll(author);
         content = new Function().sqlReplaceAll(content);
+        
         if (id != -1) {
             if (aId == 0 && new Function().StringIsNull(author) && new Function().StringIsNull(content)) { // 1. 删除
                 commentService.delectCommentById(id);
@@ -47,11 +69,13 @@ public class CommentController {
                 return "{\"descr\": \"修改成功\"}";
             }
         } else { // 3. 插入
+        	
             CommentMain commentMain = new CommentMain();
             commentMain.setaId(aId);
             commentMain.setAuthor(author);
-            commentMain.setContent(content);
+            commentMain.setContent(content); 
             commentMain.setTime(new Function().getDateTime());
+            commentMain.setMemberid(member);
             commentService.insertComment(commentMain);
             return "{\"descr\": \"插入成功\"}";
         }
@@ -64,7 +88,7 @@ public class CommentController {
     }
 
 
-@GetMapping("/commentfront")
+@GetMapping("/comment/commentfront")
 public String comment1() {
     
     return "drugs/commentfront";

@@ -2,6 +2,8 @@ package tw.iiihealth.drugs.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import tw.iiihealth.elder.model.Order;
 import tw.iiihealth.elder.model.OrderDetail;
 import tw.iiihealth.membersystem.member.model.Member;
@@ -45,6 +47,7 @@ public class CommentMain implements Serializable  {
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name="memberid")
+	@JsonIgnore
 	private Member memberid;
     
     
@@ -56,6 +59,7 @@ public class CommentMain implements Serializable  {
 		this.memberid = memberid;
 	}
 
+	
 	@Override
     public String toString() {
         return "{" +

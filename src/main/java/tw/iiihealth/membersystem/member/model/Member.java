@@ -110,6 +110,7 @@ public class Member {
 	
 	/*留言系統*/
 	@OneToMany(mappedBy = "memberid", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<CommentMain> comment;
 	
 	/*健康資料表*/

@@ -16,7 +16,7 @@
         <script src="/js/datatables-simple-demo.js"></script>
         <script src="/js/sweetalert2.all.min.js"></script>
 <%@ include file="/WEB-INF/pages/user-css-js.jsp"%>
-  
+  <link href = "${pageContext.request.contextPath}/css/bootstrap.min.css" rel = "stylesheet" />
   <style>
   	
   	#button{
@@ -147,6 +147,7 @@
 <br>
                 <button type = "button" class = "btn btn-danger" onclick = "sendComment()" id="submit">發送留言</button>
                 <button type="button" class = "btn btn-danger" id="input">一鍵輸入</button>
+                       
             </form>
             <hr>
 
@@ -182,16 +183,16 @@
                             var html = "";
                             if (e)
                                 e.forEach(function (t) {
-                                    html += '<div class="list-group-item">' +
-                                        '<div class="panel panel-danger">' +
-                                        '<div class="panel-heading"><div class="panel-title">' + t.author +
-                                        '<small> [留言ID：' + t.id + ']: [文章aId: ' + t.aid + ']: </small>' +
-                                        '</div></div>' +
-                                        '<div class="panel-body">' + t.content + '</div>' +
-                                        '<div class="panel-footer">' + t.time + ' ' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>';
+                                    html += '<div class="card" style="width: 70rem;">'+
+                                    '<div class="card-header">'+ t.author +
+                                    '<small> [留言ID：' + t.id + ']: [文章aId: ' + t.aid + ']: </small>' +
+                                    '</div>'+
+                                    '<ul class="list-group list-group-flush">'+
+                                     '<li class="list-group-item">'+ t.content +'</li>'+
+                                     '<li class="list-group-item">'+ t.time +'</li>'+
+                                      
+                                  '</ul>'+
+                                  '</div>'
                                 })
                             $("#comment-list").html(html);
                         },
@@ -207,7 +208,7 @@
 
             function sendComment() {
                 $.ajax({
-                    url: "/insertComment",
+                    url: "/comment/insertComment",
                     type: "post",
                     dataType: "json",
                     async: false,
