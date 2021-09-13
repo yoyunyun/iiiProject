@@ -88,7 +88,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-
 		<!-- free maker模組 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

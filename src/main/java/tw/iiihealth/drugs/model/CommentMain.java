@@ -1,7 +1,14 @@
 package tw.iiihealth.drugs.model;
 
 import javax.persistence.*;
+
+import tw.iiihealth.elder.model.Order;
+import tw.iiihealth.elder.model.OrderDetail;
+import tw.iiihealth.membersystem.member.model.Member;
+import tw.iiihealth.membersystem.member.model.*;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 评论实体类
@@ -36,7 +43,20 @@ public class CommentMain implements Serializable  {
     }
 
 
-    @Override
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name="memberid")
+	private Member memberid;
+    
+    
+    public Member getMemberid() {
+		return memberid;
+	}
+
+	public void setMemberid(Member memberid) {
+		this.memberid = memberid;
+	}
+
+	@Override
     public String toString() {
         return "{" +
                 "\"id\": " + id +
