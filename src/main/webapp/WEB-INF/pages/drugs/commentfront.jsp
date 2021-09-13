@@ -68,7 +68,7 @@
 				<div class=row  style="margin-bottom:30px">
 				<div class="col-md-2"></div>
 				<div class="col-md-9" style="margin: 0 auto;">
-					<h3 style="text-align:center;">會員留言</h3>
+				
 				</div>
 				<div class="col-md-1"></div>
 				
@@ -130,7 +130,7 @@
                                 e.forEach(function (t) {
                                     html += '<div class="card" style="width: 70rem;">'+
                                     '<div class="card-header">'+ t.author +
-                                    '<small> [留言ID：' + t.id + ']: [文章aId: ' + t.aid + ']: </small>' +
+                                    '<small> [留言ID：' + t.id + ']: [文章aId: '+ t.aid + ']: </small>' +
                                     '</div>'+
                                     '<ul class="list-group list-group-flush">'+
                                      '<li class="list-group-item">'+ t.content +'</li>'+

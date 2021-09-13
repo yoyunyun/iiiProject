@@ -15,6 +15,14 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/js/datatables-simple-demo.js"></script>
         <script src="/js/sweetalert2.all.min.js"></script>
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="https://mindmup.s3.amazonaws.com/lib/jquery.hotkeys.js"></script>
+<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+<link href="index.css" rel="stylesheet">
+<script src="bootstrap-wysiwyg.js"></script>
 <%@ include file="/WEB-INF/pages/user-css-js.jsp"%>
   <link href = "${pageContext.request.contextPath}/css/bootstrap.min.css" rel = "stylesheet" />
   <style>
@@ -90,7 +98,7 @@
     padding-right: 1rem;
     height: 22px;
   }
-	
+	 #editor {overflow:scroll; max-height:300px}
   </style>  
   
    
@@ -146,9 +154,6 @@
             <form action = "/addcomment" method = "post" class = "form">
              <br>
              <h1>留言板</h1>
-                <label for = "comment-id">留言ID（修改/删除 時填寫）</label>
-                <input placeholder = "留言ID" name = "comment-id" id = "comment-id" type = "number"
-                       class = "form-control" />
                 <label for = "author">用戶名稱</label>
                 <input placeholder = "留言的名稱" name = "author" id = "author" class = "form-control" />
                 <label for = "aid">留言區域</label>
@@ -161,6 +166,7 @@
                 <label for = "content">留言内容</label>
                 <textarea placeholder = "留言内容" rows = "3" name = "content" id = "content"
                           class = "form-control"></textarea>
+               
 <br>
                 <button type = "button" class = "btn btn-danger" onclick = "sendComment()" id="submit">發送留言</button>
                 <button type="button" class = "btn btn-danger" id="input">一鍵輸入</button>       
@@ -172,14 +178,13 @@
 
             </div>
         </div>
-        
+       
         
 <br>
 
       <script src = "/js/jquery-3.6.0.js"></script>
        <script src = "/js/bootstrap.min.js"></script>
-      
-
+  
         <script>
     
         
