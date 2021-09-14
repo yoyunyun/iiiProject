@@ -130,8 +130,13 @@
 
 						</nav>
 					</div>
-
-				</div>
+ <div class="sb-sidenav-menu-heading">線上客服</div>
+                         
+                            <a class="nav-link" href="${pageContext.request.contextPath}/chat">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                聊天室
+                            </a>
+                        </div>
 			</div>
 			
 			</nav>
