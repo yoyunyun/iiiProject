@@ -95,7 +95,7 @@
 											<td>${member.dementia}</td>
 										</tr>
 										<tr>
-											<td>大頭照:${member.memberphoto}</td>
+											<td>大頭照:</td>
 											<td><img src="${pageContext.request.contextPath}/MemberPhoto/${member.memberphoto}"
 														onerror="this.style.display='none'" width="200px" height="200px" ></td>
 										</tr>

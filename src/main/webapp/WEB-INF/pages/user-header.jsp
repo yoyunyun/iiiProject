@@ -99,9 +99,16 @@
 
 </c:if>
 
-                <li><a href="${pageContext.request.contextPath}/comment" class="nav-link">留言專區</a><a href="${pageContext.request.contextPath}/contact" class="nav-link">聯絡我們</a></li>
+                
 <!--                 <li><a href="about.html" class="nav-link">關於我們</a></li> -->
-         
+          <li class="has-children">
+                  <a href="#" class="nav-link">留言專區</a>
+                  <ul class="dropdown">
+                    <li><a href="${pageContext.request.contextPath}/comment" class="nav-link">留言板</a></li>
+                    <li><a href="${pageContext.request.contextPath}/contact"  class="nav-link">聯絡我們</a></li>
+                    <li><a href="${pageContext.request.contextPath}/chat"  class="nav-link">線上客服</a></li>
+                  </ul>
+                </li>
                 
 
 

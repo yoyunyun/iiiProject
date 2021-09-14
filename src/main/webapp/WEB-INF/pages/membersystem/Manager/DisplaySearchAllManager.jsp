@@ -88,6 +88,29 @@ a.disabled {
 					</ol>
 
 
+			<!-- 假圖表 -->
+					<div class="row">
+					   <div class="col-lg-6">
+                             <div class="card mb-4">
+                                   <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                       	 本月管理者計數表
+                                    </div>
+                                    <div class="card-body"><canvas id="chart-area" width="100%" height="50"></canvas></div>
+                              </div>
+                      </div>
+                      
+                      <div class="col-lg-6">
+                            <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-area me-1"></i>
+                                每月管理者總登入次數
+                            </div>
+                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="50"></canvas></div>
+                        </div>
+                      </div>
+					</div>
+
 
 
 				<!-- 表單總覽 -->
@@ -264,6 +287,7 @@ $('#onekey').on('click', function(){
 		function createdatatable() {
 			table = $("#managerTable").DataTable({
 				responsive: true,
+				
 				
 				ajax:{
 					url: "/Manager/searchAllManagerAction.controller",
@@ -457,7 +481,79 @@ $('#onekey').on('click', function(){
 		}
 				
 
+  		<!-- bar chart-->
+  		var ctx = document.getElementById('chart-area');
 
+  		var myChart = new Chart(ctx, {
+  		  type: 'bar', //圖表類型
+  		  data: {
+  		    //標題
+  		    labels: ['男性', '女性', '管理者註冊次數'],
+  		    datasets: [{
+  		      data: [4, 2, 6], //資料
+  		      //圖表背景色
+  		      backgroundColor: [
+  		        'rgba(54, 162, 235, 0.5)',
+  		        'rgba(255, 99, 132, 0.5)',
+  		        'rgba(255, 159, 64, 0.5)'
+  		      ],
+  		      //圖表外框線色
+  		      borderColor: [
+  		        'rgba(54, 162, 235, 1)',
+  		        'rgba(255, 99, 132, 1)',
+  		        'rgba(255, 159, 64, 1)'
+  		      ],
+  		      //外框線寬度
+  		      borderWidth: 1
+  		    }]
+  		  },
+  		  options: {
+  			 legend: {
+  		          display: false,
+  		      },
+  		    scales: {
+  		      yAxes: [{
+  		        ticks: {
+  		          beginAtZero: true,
+  		          responsive: true //符合響應式
+  		        }
+  		      }]
+  		    }
+  		  }
+  		});
+
+
+  		<!-- line chart -->
+  		var line = document.getElementById('myAreaChart');
+
+  		var myChart = new Chart(line, {
+  		  type: 'line', //圖表類型
+  		  data: {
+  		    //標題
+  		    labels: ['四月', '五月', '六月', '七月', '八月'],
+  		    datasets: [{
+  		      data: [0, 0, 0, 0, 6], //資料
+  		      borderColor: 'rgba(132, 193, 255, 1)',
+  		      fill: false,
+  		     
+  		      //外框線寬度
+  		      borderWidth: 1
+  		    }]
+  		  },
+  		  options: {
+  			 legend: {
+  		          display: false,
+  		      },
+  		    scales: {
+  		      yAxes: [{
+  		        ticks: {
+  		          beginAtZero: true,
+  		          responsive: true //符合響應式
+  		        }
+  		      }]
+  		    }
+  		  }
+  		}); 		
 		
 				
 	</script>
