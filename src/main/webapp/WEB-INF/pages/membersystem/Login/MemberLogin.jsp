@@ -68,7 +68,7 @@
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="rememberMe-key">
 							<label class="label-checkbox100" for="ckb1">
 								記住我
 							</label>

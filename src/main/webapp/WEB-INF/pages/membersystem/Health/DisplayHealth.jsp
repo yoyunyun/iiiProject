@@ -58,26 +58,35 @@
 	<!-- 表單 -->
 	   <div id="layoutSidenav_content">
 		<main>
-			<div class="card mb-4">
-				<div class="card-header" style="margin-bottom:20px;">
-					<i class="fas fa-table me-1"></i> 會員系統
-				</div>
+			<div class="card-header" style="margin-bottom: 60px;">
+				<i class="fas fa-table me-1"></i> 會員系統
+			</div>
 
-				
-				
-				<div class="row" style="margin-bottom:50px;">
-				
-				
-				
-					<!-- 會員資料索引 -->	
+
+			<!-- 第一列 -->
+			<div class=row style="margin-bottom: 18px">
+				<div class="col-md-2"></div>
+				<div class="col-md-9" style="margin: 0 auto;">
+				</div>
+				<div class="col-md-1"></div>
+
+			</div>
+
+
+			<!-- 第二列 -->
+			<div class="row" style="margin-bottom: 100px">
+
+				<div class="col-md-2">
+					<!-- 會員資料索引 -->
 					<%@ include file="/WEB-INF/pages/Member-index.jsp"%>
+				</div>	
 					
 					
 		<!-- 表單 ajax -->	
 		<div class='col-md-6' style='margin: 0 auto;' id="showContent">	</div>
 		
 		
-	</div></div></main></div>	
+	</div></main></div>	
 		
 		
 		
@@ -99,70 +108,70 @@
 										<tr>
 											<td>收縮壓:</td>
 											<td>
-												<input type='text' id='systolicBloodPressure' name='systolicBloodPressure'/> 
+												<input type='text' id='systolicBloodPressure' name='systolicBloodPressure' size="5"/> mmHg
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>舒張壓:</td>
 											<td>
-												<input type='text' id='diastolicBloodPressure' name='diastolicBloodPressure'/>
+												<input type='text' id='diastolicBloodPressure' name='diastolicBloodPressure' size="5"/> mmHg
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>心率:</td>
 											<td>
-												<input type='text' id='heartRate' name='heartRate'/>
+												<input type='text' id='heartRate' name='heartRate' size="5"/> 次/分鐘
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>飯前(空腹)血糖:</td>
 											<td>
-												<input type='text' id='fastingBloodSugar' name='fastingBloodSugar'/>
+												<input type='text' id='fastingBloodSugar' name='fastingBloodSugar' size="5"/> mg/dl
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>飯後血糖:</td>
 											<td>
-												<input type='text' id='bloodSugarAfterMeal' name='bloodSugarAfterMeal'/>
+												<input type='text' id='bloodSugarAfterMeal' name='bloodSugarAfterMeal' size="5"/> mg/dl
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>身高:</td>
 											<td>
-												<input type='text' id='height' name='height'/>
+												<input type='text' id='height' name='height' size="5"/> 公分
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>體重:</td>
 											<td>
-												<input type='text' id='weight' name='weight'/>
+												<input type='text' id='weight' name='weight' size="5"/> 公斤
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>腰圍:</td>
 											<td>
-												<input type='text' id='waistline' name='waistline'/>
+												<input type='text' id='waistline' name='waistline' size="5"/> 公分
 												<span id='nameCheck'></span>
 											</td>
 										</tr>
 										<tr>
 											<td>血氧濃度:</td>
 											<td>
-												<input type='text' id='oxygenSaturation' name='oxygenSaturation'/>
+												<input type='text' id='oxygenSaturation' name='oxygenSaturation' size="5"/> %
 												<span id='nameCheck'></span>
 											</td>
 										</tr>
 										<tr>
 										<td>體溫:</td>
 											<td>
-												<input type='text' id='temperature' name='temperature'/>
+												<input type='text' id='temperature' name='temperature' size="5"/> 度c
 												<span id='nameCheck'></span>
 											</td>
 										</tr>
@@ -207,71 +216,71 @@
 										<tr>
 											<td>收縮壓:</td>
 											<td>
-												<input type='hidden' id='healthid1' name='healthid'/> 
-												<input type='text' id='systolicBloodPressure1' name='systolicBloodPressure'/> 
+												<input type='hidden' id='healthid1' name='healthid'/>
+												<input type='text' id='systolicBloodPressure1' name='systolicBloodPressure' size="5"/> mmHg
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>舒張壓:</td>
 											<td>
-												<input type='text' id='diastolicBloodPressure1' name='diastolicBloodPressure'/>
+												<input type='text' id='diastolicBloodPressure1' name='diastolicBloodPressure' size="5"/> mmHg
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>心率:</td>
 											<td>
-												<input type='text' id='heartRate1' name='heartRate'/>
+												<input type='text' id='heartRate1' name='heartRate' size="5"/> 次/分鐘
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>飯前(空腹)血糖:</td>
 											<td>
-												<input type='text' id='fastingBloodSugar1' name='fastingBloodSugar'/>
+												<input type='text' id='fastingBloodSugar1' name='fastingBloodSugar' size="5"/> mg/dl
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>飯後血糖:</td>
 											<td>
-												<input type='text' id='bloodSugarAfterMeal1' name='bloodSugarAfterMeal'/>
+												<input type='text' id='bloodSugarAfterMeal1' name='bloodSugarAfterMeal' size="5"/> mg/dl
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>身高:</td>
 											<td>
-												<input type='text' id='height1' name='height'/>
+												<input type='text' id='height1' name='height' size="5"/> 公分
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>體重:</td>
 											<td>
-												<input type='text' id='weight1' name='weight'/>
+												<input type='text' id='weight1' name='weight' size="5"/> 公斤
 												<span id="nameCheck"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>腰圍:</td>
 											<td>
-												<input type='text' id='waistline1' name='waistline'/>
+												<input type='text' id='waistline1' name='waistline' size="5"/> 公分
 												<span id='nameCheck'></span>
 											</td>
 										</tr>
 										<tr>
 											<td>血氧濃度:</td>
 											<td>
-												<input type='text' id='oxygenSaturation1' name='oxygenSaturation'/>
+												<input type='text' id='oxygenSaturation1' name='oxygenSaturation' size="5"/> %
 												<span id='nameCheck'></span>
 											</td>
 										</tr>
 										<tr>
 										<td>體溫:</td>
 											<td>
-												<input type='text' id='temperature1' name='temperature'/>
+												<input type='text' id='temperature1' name='temperature' size="5"/> 度c
 												<span id='nameCheck'></span>
 											</td>
 										</tr>
@@ -348,20 +357,21 @@ function load(){
 						 
 						 content += 
 								"<h2 style='margin: 8px 150px;  text-align:center;''>健康資料表</h2><div class='card-body'><table class='table  table-hover'>"
-							    +"<tr><td>收縮壓:</td><td style='text-align: center'>" + data.systolicBloodPressure + "</td></tr>"
-							    +"<tr><td>舒張壓:</td><td style='text-align: center'>" + data.diastolicBloodPressure + "</td></tr>"
-							    +"<tr><td>心率(心跳數):</td><td style='text-align: center'>" + data.heartRate + "</td></tr>"
-							    +"<tr><td>飯前(空腹)血糖:</td><td style='text-align: center'>" + data.fastingBloodSugar + "</td></tr>"						
-								+"<tr><td>飯後血糖:</td><td style='text-align: center'>" + data.bloodSugarAfterMeal + "</td></tr>"					
-								+"<tr><td>身高:</td><td style='text-align: center'>" + data.height + "</td></tr>"					
-								+"<tr><td>體重:</td><td style='text-align: center'>" + data.weight + "</td></tr>"					
-								+"<tr><td>BMI:</td><td style='text-align: center'>" + data.bmi + "</td></tr>"					
-								+"<tr><td>腰圍:</td><td style='text-align: center'>" + data.waistline + "</td></tr>"					
-								+"<tr><td>血氧濃度:</td><td style='text-align: center'>" + data.oxygenSaturation + "</td></tr>"					
-								+"<tr><td>體溫:</td><td style='text-align: center'>" + data.temperature + "</td></tr>"					
-								+"<tr><td>疾病史:</td><td style='text-align: center'>" + data.medicalHistory + "</td></tr>"					
+							    +"<tr><td>收縮壓:</td><td>" + data.systolicBloodPressure + " mmHg</td><td id='showSystolicBloodPressure'></td></tr>"
+							    +"<tr><td>舒張壓:</td><td>" + data.diastolicBloodPressure + " mmHg</td><td id='showDiastolicBloodPressure'></td></tr>"
+							    +"<tr><td>心率(心跳數):</td><td>" + data.heartRate + " 次/分鐘</td><td id='showHeartRate'></td></tr>"
+							    +"<tr><td>飯前(空腹)血糖:</td><td>" + data.fastingBloodSugar + " mg/dl</td><td id='showFastingBloodSugar'></td></tr>"						
+								+"<tr><td>飯後血糖:</td><td>" + data.bloodSugarAfterMeal + " mg/dl</td><td id='showBloodSugarAfterMeal'></td></tr>"					
+								+"<tr><td>身高:</td><td>" + data.height + " 公分</td><td></td></tr>"					
+								+"<tr><td>體重:</td><td>" + data.weight + " 公斤</td><td></td></tr>"					
+								+"<tr><td>BMI:</td><td>" + data.bmi + " 公斤/平方公尺</td><td id='showBMI'></td></tr>"					
+								+"<tr><td>腰圍:</td><td>" + data.waistline + " 公分</td><td id='showWaistline'></td></tr>"					
+								+"<tr><td>血氧濃度:</td><td>" + data.oxygenSaturation + " %</td><td id='showOxygenSaturation'></td></tr>"					
+								+"<tr><td>體溫:</td><td>" + data.temperature + " 度c</td><td id='showTemperature'></td></tr>"					
+								+"<tr><td>疾病史:</td><td>" + data.medicalHistory + "</td><td id='showMedicalHistory'></td></tr>"					
 								+"<tr><td colspan='2' style='text-align: center'><input type='submit' class='btn' id='gotoUpdateHealthBtn' style='font-size:20px;' value='修改' /></td></tr></table>"					
-								+"</div><div class='col-md-6'></div>"					
+								+"</div><div class='col-md-6'></div>"	
+								
 													
 					 }else{
 						 
@@ -404,9 +414,11 @@ function load(){
 
 				 
 				 
-				div.html(content);	
+				div.html(content);
 				
-				
+				if (data != ""){
+				showHealthCheck();
+				}
 				
 
 						//一鍵輸入
@@ -443,7 +455,115 @@ function load(){
 						
 						
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------						
-						
+
+
+
+						function showHealthCheck() {
+							
+						    let showSystolicBloodPressure = document.getElementById("showSystolicBloodPressure");
+						    let showDiastolicBloodPressure = document.getElementById("showDiastolicBloodPressure");
+						    let showHeartRate = document.getElementById("showHeartRate");
+						    let showFastingBloodSugar = document.getElementById("showFastingBloodSugar");
+						    let showBloodSugarAfterMeal = document.getElementById("showBloodSugarAfterMeal");
+						    let showBMI = document.getElementById("showBMI");
+						    let showWaistline = document.getElementById("showWaistline");
+						    let showOxygenSaturation = document.getElementById("showOxygenSaturation");
+						    let showTemperature = document.getElementById("showTemperature");
+						    let showMedicalHistory = document.getElementById("showMedicalHistory");
+							
+						    //收縮壓
+							if(data.systolicBloodPressure>140){
+								showSystolicBloodPressure.innerHTML="&nbsp&nbsp<span style='color:red;'>收縮壓過高</span>";
+							}else if(data.systolicBloodPressure<120){
+								showSystolicBloodPressure.innerHTML="&nbsp&nbsp<span style='color:gray;'>收縮壓過低</span>";
+							}else{
+								showSystolicBloodPressure.innerHTML="&nbsp&nbsp<span style='color:green;'>收縮壓正常</span>";
+							}
+							
+							//舒張壓
+							if(data.diastolicBloodPressure>90){
+								showDiastolicBloodPressure.innerHTML="&nbsp&nbsp<span style='color:red;'>舒張壓過高</span>";
+							}else if(data.diastolicBloodPressure<80){
+								showDiastolicBloodPressure.innerHTML="&nbsp&nbsp<span style='color:gray;'>舒張壓過低</span>";
+							}else{
+								showDiastolicBloodPressure.innerHTML="&nbsp&nbsp<span style='color:green;'>舒張壓正常</span>";
+							}
+							
+							//心率(心跳數)
+							if(data.heartRate>100){
+								showHeartRate.innerHTML="&nbsp&nbsp<span style='color:red;'>心率過高</span>";
+							}else if(data.heartRate<60){
+								showHeartRate.innerHTML="&nbsp&nbsp<span style='color:gray;'>心率過低</span>";
+							}else{
+								showHeartRate.innerHTML="&nbsp&nbsp<span style='color:green;'>心率正常</span>";
+							}
+							
+							//飯前(空腹)血糖
+							if(data.fastingBloodSugar>99){
+								showFastingBloodSugar.innerHTML="&nbsp&nbsp<span style='color:red;'>空腹血糖過高</span>";
+							}else if(data.systolicBloodPressure<70){
+								showFastingBloodSugar.innerHTML="&nbsp&nbsp<span style='color:gray;'>空腹血糖過低</span>";
+							}else{
+								showFastingBloodSugar.innerHTML="&nbsp&nbsp<span style='color:green;'>空腹血糖正常</span>";
+							}
+							
+							//飯後血糖
+							if(data.bloodSugarAfterMeal>140){
+								showBloodSugarAfterMeal.innerHTML="&nbsp&nbsp<span style='color:red;'>飯後血糖過高</span>";
+							}else if(data.bloodSugarAfterMeal<80){
+								showBloodSugarAfterMeal.innerHTML="&nbsp&nbsp<span style='color:gray;'>飯後血糖過低</span>";
+							}else{
+								showBloodSugarAfterMeal.innerHTML="&nbsp&nbsp<span style='color:green;'>飯後血糖正常</span>";
+							}
+							
+							//BMI
+							if(data.bmi>=24 && data.bmi<27){
+								showBMI.innerHTML="&nbsp&nbsp<span style='color:red;'>體重過重</span>";
+							}else if(data.bmi>=27 && data.bmi<30){
+								showBMI.innerHTML="&nbsp&nbsp<span style='color:red;'>輕度肥胖</span>";
+							}else if(data.bmi>=30 && data.bmi<35){
+								showBMI.innerHTML="&nbsp&nbsp<span style='color:red;'>中度肥胖</span>";
+							}else if(data.bmi>=35){
+								showBMI.innerHTML="&nbsp&nbsp<span style='color:red;'>重度肥胖</span>";
+							}else if(data.bmi<18.5){
+								showBMI.innerHTML="&nbsp&nbsp<span style='color:gray;'>體重過輕</span>";
+							}else{
+								showBMI.innerHTML="&nbsp&nbsp<span style='color:green;'>體重正常</span>";
+							}
+							
+							//腰圍
+							if(data.waistline>85){
+								showWaistline.innerHTML="&nbsp&nbsp<span style='color:red;'>腹部肥胖</span>";
+							}else{
+								showWaistline.innerHTML="&nbsp&nbsp<span style='color:green;'>腰圍正常</span>";
+							}
+							
+							//血氧濃度
+							if(data.oxygenSaturation>=95 && data.oxygenSaturation<=100){
+								showOxygenSaturation.innerHTML="&nbsp&nbsp<span style='color:green;'>血氧濃度正常</span>";
+							}else if(data.oxygenSaturation>=90 && data.oxygenSaturation<95){
+								showOxygenSaturation.innerHTML="&nbsp&nbsp<span style='color:green;'>血氧濃度偏低，但正常</span>";
+							}else if(data.oxygenSaturation<90){
+								showOxygenSaturation.innerHTML="&nbsp&nbsp<span style='color:red;'>血氧濃度過低</span>";
+							}
+							
+							//體溫
+							if(data.temperature>38){
+								showTemperature.innerHTML="&nbsp&nbsp<span style='color:red;'>體溫過高</span>";
+							}else if(data.temperature<36){
+								showTemperature.innerHTML="&nbsp&nbsp<span style='color:gray;'>體溫過低</span>";
+							}else{
+								showTemperature.innerHTML="&nbsp&nbsp<span style='color:green;'>體溫正常</span>";
+							}
+							
+						}
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------						
+
+
+
 						// "新增"按鈕叫出 Modal
 						$('#gotoInsertHealthBtn').click(function (e) {
 								e.preventDefault();

@@ -68,7 +68,7 @@
 				<div class=row  style="margin-bottom:30px">
 				<div class="col-md-2"></div>
 				<div class="col-md-9" style="margin: 0 auto;">
-					<h3 style="text-align:center;">會員留言</h3>
+				
 				</div>
 				<div class="col-md-1"></div>
 				
@@ -128,16 +128,17 @@
                             var html = "";
                             if (e)
                                 e.forEach(function (t) {
-                                    html += '<div class="list-group-item">' +
-                                        '<div class="panel panel-danger">' +
-                                        '<div class="panel-heading"><div class="panel-title">' + t.author +
-                                        '<small> [留言ID：' + t.id + ']: [文章aId: ' + t.aid + ']: </small>' +
-                                        '</div></div>' +
-                                        '<div class="panel-body">' + t.content + '</div>' +
-                                        '<div class="panel-footer">' + t.time + ' ' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>';
+                                    html += '<div class="card" style="width: 70rem;">'+
+                                    '<div class="card-header">'+ t.author +
+                                    '<small> [留言ID：' + t.id + ']: [文章aId: '+ t.aid + ']: </small>' +
+                                    '</div>'+
+                                    '<ul class="list-group list-group-flush">'+
+                                     '<li class="list-group-item">'+ t.content +'</li>'+
+                                     '<li class="list-group-item">'+ t.time +'</li>'+
+                                      
+                                  '</ul>'+
+                                  '</div>'+
+                                  '<br>'
                                 })
                             $("#comment-list").html(html);
                         },

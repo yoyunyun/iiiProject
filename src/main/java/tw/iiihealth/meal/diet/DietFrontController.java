@@ -37,6 +37,26 @@ public class DietFrontController {
 		
 		return "meal/Diet/Diet";
 	}
+	
+	@RequestMapping(path = "/dietIndex2.controller", method = { RequestMethod.POST, RequestMethod.GET })
+	public String dietIndex2(HttpServletRequest request,Model m) throws SQLException {
+		
+		List<DietBean> db = dietService.findAllDiet();
+		
+		request.getSession().setAttribute("queryAll", db);
+		
+		return "meal/Diet/Diet2";
+	}
+	
+	@RequestMapping(path = "/dietTest", method = { RequestMethod.POST, RequestMethod.GET })
+	public String dietTest(HttpServletRequest request,Model m) throws SQLException {
+		
+		List<DietBean> db = dietService.findAllDiet();
+		
+		request.getSession().setAttribute("queryAll", db);
+		
+		return "meal/Diet/DietTest";
+	}
 
 	// 查詢食品資料庫
 	@RequestMapping(path="/dietView.controller",method = { RequestMethod.POST, RequestMethod.GET })
