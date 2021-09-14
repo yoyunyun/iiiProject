@@ -11,7 +11,7 @@
  
 
 <style>
-        button{
+        .buttonshd{
             width:75px; 
             height: 75px; 
             border-radius: 50%;
@@ -297,7 +297,7 @@ $(function () {
 							  icon: 'error',
 							  title: 'Oops...',
 							  text: '已經收藏過囉!',
-						})
+							})
 					}	
 					
 					else{
