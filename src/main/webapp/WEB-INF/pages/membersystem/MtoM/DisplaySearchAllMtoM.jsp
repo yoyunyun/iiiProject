@@ -677,17 +677,17 @@ $('#onekey').on('click', function(){
 					 if (data != ""){		
 						 
 						 content += 
-							    "<tr><td>收縮壓:</td><td style='text-align: center'>" + data.systolicBloodPressure + "</td></tr>"
-							    +"<tr><td>舒張壓:</td><td style='text-align: center'>" + data.diastolicBloodPressure + "</td></tr>"
-							    +"<tr><td>心率(心跳數):</td><td style='text-align: center'>" + data.heartRate + "</td></tr>"
-							    +"<tr><td>飯前(空腹)血糖:</td><td style='text-align: center'>" + data.fastingBloodSugar + "</td></tr>"						
-								+"<tr><td>飯後血糖:</td><td style='text-align: center'>" + data.bloodSugarAfterMeal + "</td></tr>"					
-								+"<tr><td>身高:</td><td style='text-align: center'>" + data.height + "</td></tr>"					
-								+"<tr><td>體重:</td><td style='text-align: center'>" + data.weight + "</td></tr>"					
-								+"<tr><td>BMI:</td><td style='text-align: center'>" + data.bmi + "</td></tr>"					
-								+"<tr><td>腰圍:</td><td style='text-align: center'>" + data.waistline + "</td></tr>"					
-								+"<tr><td>血氧濃度:</td><td style='text-align: center'>" + data.oxygenSaturation + "</td></tr>"					
-								+"<tr><td>體溫:</td><td style='text-align: center'>" + data.temperature + "</td></tr>"					
+							    "<tr><td>收縮壓:</td><td style='text-align: center'>" + data.systolicBloodPressure + " mmHg</td></tr>"
+							    +"<tr><td>舒張壓:</td><td style='text-align: center'>" + data.diastolicBloodPressure + " mmHg</td></tr>"
+							    +"<tr><td>心率(心跳數):</td><td style='text-align: center'>" + data.heartRate + " 次/分鐘</td></tr>"
+							    +"<tr><td>飯前(空腹)血糖:</td><td style='text-align: center'>" + data.fastingBloodSugar + " mg/dl</td></tr>"						
+								+"<tr><td>飯後血糖:</td><td style='text-align: center'>" + data.bloodSugarAfterMeal + " mg/dl</td></tr>"					
+								+"<tr><td>身高:</td><td style='text-align: center'>" + data.height + " 公分</td></tr>"					
+								+"<tr><td>體重:</td><td style='text-align: center'>" + data.weight + " 公斤</td></tr>"					
+								+"<tr><td>BMI:</td><td style='text-align: center'>" + data.bmi + " 公斤/平方公尺</td></tr>"					
+								+"<tr><td>腰圍:</td><td style='text-align: center'>" + data.waistline + " 公分</td></tr>"					
+								+"<tr><td>血氧濃度:</td><td style='text-align: center'>" + data.oxygenSaturation + " %</td></tr>"					
+								+"<tr><td>體溫:</td><td style='text-align: center'>" + data.temperature + " 度c</td></tr>"					
 								+"<tr><td>疾病史:</td><td style='text-align: center'>" + data.medicalHistory + "</td></tr>"					
 					
 					 }else{
