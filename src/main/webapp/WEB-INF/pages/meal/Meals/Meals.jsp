@@ -116,6 +116,7 @@
             <div class="flip" style="float:right;margin:50px 0 0 0;"><input type="button" value="詳細資訊(展開/收合)"></div>
           </div>
         </div>
+          <div class="settime" endtime="2021-9-24 23:59:59" style="text-align:left; color:red;font-size:25px;margin:30px 0"></div>
         <div class="row">
 
 <table >
@@ -197,6 +198,34 @@
                       .html("<img src='"+src+"' class='carousel-inner img-responsive img-rounded' data-dismiss='modal'>");
         $("#imgModal").modal('show');
     }
+  </script>
+  <script>
+	  $(function() {
+		    updateEndTime();
+		})
+		//倒數計時函數
+		function updateEndTime() {
+		    var date = new Date();
+		    var time = date.getTime(); 
+		    $(".settime").each(function(i) {
+		        var endDate = this.getAttribute("endTime"); //结束
+		        //轉換為時間日期類型
+		        var endDate1 = eval('new Date(' + endDate.replace(/\d+(?=-[^-]+$)/, function(a) {
+		            return parseInt(a, 10) - 1;
+		        }).match(/\d+/g) + ')');
+		        var endTime = endDate1.getTime(); //结束時間毫秒數
+		        var lag = (endTime - time) / 1000; //當前時間和結束時間之間的秒數
+		        if (lag > 0) {
+		            var second = Math.floor(lag % 60);
+		            var minite = Math.floor((lag / 60) % 60);
+		            var hour = Math.floor((lag / 3600) % 24);
+		            var day = Math.floor((lag / 3600) / 24);
+		            $(this).html("距離團購結束的時間：" + day + "天" + hour + "小時" + minite + "分" + second + "秒");
+		        } else
+		            $(this).html("團購已經結束了！下檔優惠敬請期待！");
+		    });
+		    setTimeout("updateEndTime()", 1000);
+		}
   </script>
 </body>
 </html>
