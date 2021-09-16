@@ -390,10 +390,6 @@ public class MemberController {
 	@PostMapping(path = "/Member/updateMemberAction.controller")
 	public String updateMemberAction(@ModelAttribute("member") Member member, Model m) {
 		
-		//會員密碼加密
-		String memberpwd = new BCryptPasswordEncoder().encode(member.getMemberpwd());
-		member.setMemberpwd(memberpwd);
-		
 		memberService.saveMember(member);
 		
 		
