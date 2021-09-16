@@ -14,6 +14,8 @@
 <meta name="author" content="" />
 <title>健康優生網</title>
 <%@ include file="/WEB-INF/pages/css.jsp"%>
+
+
 </head>
 <body class="sb-nav-fixed">
 	<%@ include file="/WEB-INF/pages/left-top-bar.jsp"%>
@@ -59,7 +61,7 @@
 							
 						</form>
 
-						<table id="datatablesSimple">
+						<table id="datatablesSimple" >
 
 							<thead>
 								<tr>
@@ -73,9 +75,9 @@
 									<th>縣市</th>
 									<th>鄉鎮市區</th>
 									<th>地址</th>
-									<th>簡介</th>
-									<th>網站</th>
-									<th>位置</th>
+<!-- 									<th>簡介</th> -->
+<!-- 									<th>網站</th> -->
+<!-- 									<th>位置</th> -->
 									<th>修改</th>
 									<th>刪除</th>
 								</tr>
@@ -97,9 +99,9 @@
 										<td>${loc.city}</td>
 										<td>${loc.town}</td>
 										<td>${loc.address}</td>
-										<td>${loc.brief}</td>
-										<td>${loc.site}</td>
-										<td>${loc.map}</td>
+<%-- 										<td>${loc.brief}</td> --%>
+<%-- 										<td>${loc.site}</td> --%>
+<%-- 										<td>${loc.map}</td> --%>
 										<td>
 											<form action="updateold.controller" method="post">
 												<input type="hidden" name="id" value="${loc.id}"> 
@@ -148,6 +150,8 @@
 			  }
 		})
 	}
+	
+
 	
 	<!-- bar chart-->
 	var ctx = document.getElementById('chart-area');

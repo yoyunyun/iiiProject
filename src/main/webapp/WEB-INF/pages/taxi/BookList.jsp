@@ -272,7 +272,7 @@
 				  icon: 'success',
 				  title: '刪除成功',
 				  showConfirmButton: false,
-				  timer: 2000
+				  timer: 2500
 				})
 		  }
 		})
