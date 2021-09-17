@@ -21,6 +21,24 @@
 			  transition:all 0.6s ease-in-out;//過渡
 			}
         </style>
+        <style>
+        .win td {
+            padding: 5px;
+        }
+
+        .tex {
+            margin: 5px;
+        }
+
+        .win tbody :hover {
+            background-color: #E0E0E0;
+        }
+
+        button:hover {
+            background-color: #E0E0E0;
+        }
+        
+    </style>
             <style>
         .hel {
             background-color: #66B3FF;
@@ -116,9 +134,82 @@
             <div class="flip" style="float:right;margin:50px 0 0 0;"><input type="button" value="詳細資訊(展開/收合)"></div>
           </div>
         </div>
-          <div class="settime" endtime="2021-9-24 23:59:59" style="text-align:left; color:red;font-size:25px;margin:30px 0"></div>
-        <div class="row">
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color:red;" id="exampleModalLabel">　　　　　　　　　　本檔優惠!!炙燒慾望明太子嫩烤雞胸-團購表單</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table style="margin:auto" class="win">
+                        <tr>
+                        <td style=" font-weight: 800;font-size:20px;">預約訂購商品:</td>
+                        <td><img src="/images/炙燒慾望明太子嫩烤雞胸.jpg" width="200px"></td><br/>
+                        <td style="color:red;">限時優惠:$1299 (10份/組)</td>
+                        </tr>
+                        <tr>
+                        <td>預訂組數:</td>
+                        <td><select class="tex" id="quy">
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option></select>
+                        <td>每位限購10組!</td>
+                        </tr>
+                    <tr>
+                        <td>客戶大名:</td>
+                        <td><input type="text" id="name" class="tex" placeholder="必填"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>客戶電話:</td>
+                        <td><input type="text" id="phone" class="tex" placeholder="必填"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>客戶信箱:</td>
+                        <td><input type="text" id="mail" class="tex" placeholder="必填"></td>
+                        <td></td>
+                    </tr>
+                </table>
+      </div>
+      <div class="modal-footer">
+        <form action="mealIndex.controller"	method="post" id="add" enctype="multipart/form-data">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+        <button type="button" class="btn btn-primary" onclick="add()">送出</button>
+        <button type="button" class="btn btn-primary" id="inputdata">一鍵輸入</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+          <!-- Button trigger modal -->
+        <div class="settime" endtime="2021-9-25 00:16:00" style="text-align:left; color:red;font-size:25px;margin:30px 0">
+        </div>
+        <div class="settime" endtime="2021-9-16 00:16:00" style="color:red;font-size:25px;margin:30px 0">
+        </div>
+<!-- 			<button style="border:none;" type="button" class="" data-toggle="modal" data-target="#exampleModal" font-size="25px"> -->
+<!-- 			   <input type="image" src="/images/fire01.gif" width="100px"> -->
+<!-- 			</button> -->
+        
+        
+        
+        
+<div class="row">
 <table >
 	<thead></thead>
 	<tbody>
@@ -148,7 +239,6 @@
               </div>
               <h2><a style="color: #2894FF;">${meals.name}</a></h2>
 			  <div class="panel" style="display:none">
-<%-- 			  	  價格：${meals.price}<br/> --%>
 			  	  主原料：${meals.material}<br/>
 			  	  熱量(kcal)：${meals.calories}<br/>
 			  	  蛋白質(g)：${meals.protein}<br/>
@@ -220,12 +310,139 @@
 		            var minite = Math.floor((lag / 60) % 60);
 		            var hour = Math.floor((lag / 3600) % 24);
 		            var day = Math.floor((lag / 3600) / 24);
-		            $(this).html("距離團購結束的時間：" + day + "天" + hour + "小時" + minite + "分" + second + "秒");
+		            $(this).html("距離團購結束的時間：" + day + "天" + hour + "小時" + minite + "分" + second + "秒" +
+					'<button style="border:none;" type="button"  data-toggle="modal" data-target="#exampleModal" font-size="25px">' +
+// 					   '<input type="image" src="/images/fire02.png" width="30px">' +
+					   '<a style="color:blue;font-weight: bold">→→→點此訂購!!!<a>' +
+					'</button>');
 		        } else
 		            $(this).html("團購已經結束了！下檔優惠敬請期待！");
 		    });
 		    setTimeout("updateEndTime()", 1000);
 		}
   </script>
+  <script>
+//插入計程車資訊
+  function load(){
+	  $('#example').DataTable({
+		    "ajax": {
+		            "url": '/taxiFront/queryalltest',
+		            "type": 'post',   	
+		            "dataSrc": function (test) {
+		                 return test;
+		             }  
+		    },   
+		    "columns": [
+
+
+		        {
+ 				//column加入叫車圖示
+		        	"data": null,
+		        	render:function(data, type, row)
+		            {
+		              return '<input type="image" class="img2" title="點此預約" src="/images/movemovetaxi.gif" style="width:35px; " value="'+ data["tname"] +'"/>';
+		            },
+		            "targets": -1
+		        },
+
+		        { "data": "tname" },
+		        { "data": "phone" },
+		        { "data": "address" },
+		        { "data": "serCity" },
+		        { "data": "careTaxi" },
+		    ] 
+		});
+	  
+	setTimeout(()=>{
+		$(".img2").on('click',imgClick);
+	},500)
+	
+  }
+
+//點擊叫出跳出頁面
+  function imgClick() {
+	  	$('#taxi').val(this.value);
+// 		$('#tid').val($(this).prev().val());  //<input type="hidden" class="tid" value="'+ data["id"] +'">
+	  $.ajax({
+   		type:'get',
+   		url:'/taxiFront/booktaxi/checklogin',
+   		success: function(data) {
+   			if(data == "success"){
+				show();
+   			}else{
+   				Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: '請先登入會員!',
+				}).then(()=>{
+					window.location.href='/taxiFront/booktaxi/fronttaximainpage.controller';
+				})
+				
+   			}
+   		}
+	});
+	}
+ 
+</script>
+ <script>
+        function cancel() {
+            $("#myModal").modal('hide');
+        }
+        function show() {
+            $("#myModal").modal('show');
+            
+        }
+
+        
+        //Sweetalert
+        function yes(){
+        	Swal.fire({
+        		  title: '<img src="/images/takicab-taxi-call.gif">',
+        		  showConfirmButton: false,
+        		  timer: 3250
+        		}).then(()=> {Swal.fire({
+        		  icon: 'success',
+        		  title: '預約成功!請前往信箱確認!如未收到信件，請前往會員中心查詢，感謝',
+        		  showConfirmButton: true,
+        		})}).then(()=>{
+        			cancel();
+        		})
+        	
+        	//傳給信件
+        	$.ajax({
+			  url: "/taxiFront/booktaxi",
+			  type: "post",
+			  data:  { "mail" : $('#mail').val() , "passanger" : $('#passanger').val(),
+				  		"taxi" : $('#taxi').val(), "loc" : $('#loc').val(), "date" : $('#date').val(),
+				  		"hour" : $('#hour').val(), "min" : $('#min').val(), "tel" : $('#tel').val(),
+				  	},
+		  	  success: function(data){
+		  	  }
+			})
+			
+			
+        }
+    </script>
+		<script>
+		function add(){
+			Swal.fire({
+				  icon: 'success',
+				  title: '訂購成功,後續將由人員主動與您聯繫確認!',
+				  showConfirmButton: false,
+				  timer: 1300
+				})	
+				setTimeout(() => document.getElementById("add").submit(), 1500)
+		}
+	</script>
+	<script>
+	    //一鍵輸入
+	    $('#inputdata').click(function() {
+	      $('#quy').val(3); 
+	      $('#name').val("林小伸");
+	      $('#phone').val("0988123456");
+	      $('#mail').val("EEIT12907@gmail.com");
+	    
+	    });
+	</script>
 </body>
 </html>

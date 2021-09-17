@@ -10,6 +10,10 @@
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<!-- css for sweet alert2  -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
    <style type="text/css">
    body {
@@ -145,7 +149,7 @@ button:focus {
                 </div>
                 <div class="thanks-message text-center" id="text-message"> <img src="https://i.imgur.com/O18mJ1K.png" width="100" class="mb-4">
                     <h3>感謝您耐心的回答!</h3> <span>請前往您的信箱，並取得最新的密碼!</span><br><br>
-                	<button ><i class="fa fa-angle-double-right"></i></button>
+                	<button id="clickBottom" ><i class="fa fa-angle-double-right"></i></button>
                 </div>
                 <div style="overflow:auto;" id="nextprevious">
                 	<div style="display: inline-block;">
@@ -190,6 +194,25 @@ $("#returnLogin").click(function(){
 })
 
 
+//確認送信
+$("#clickBottom").click(function(){
+　　  $.ajax({ 
+　　　　  type : "get", 
+　　  　　url : "", 
+　　　  　data : "", 
+　  　　　async : false,   //注意：此處是同步，不是非同步
+　　  　　success : function(){ 
+	  
+	  Swal.fire({
+		  icon: 'success',
+		  title: '信件送出中，請稍後...',
+		  showConfirmButton: false,
+		  timer: 20000
+		})
+
+　　   　　} 
+　　   }); 
+})
 
 
 var currentTab = 0;

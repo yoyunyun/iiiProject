@@ -203,16 +203,14 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 									<td>${diet.na}</td>
 									<td>
 										<form action="updateDietByName.controller" method="post">
-											<input type="image" src="/images/update001.jpg" />
+											<input type="image" src="/images/update.jpg" />
 											<input type="hidden" name="name" value="${diet.name}" /> 
 										</form>
 									</td>
 									<td>
 										<form id="delete${diet.ID}" action="deleteDietConfirm.controller" method="post">
 											<input type="hidden" name="selected" value="${diet.ID}">
-											<button type="button" style="border-width:0" onclick="check(${diet.ID})"><img src="/images/delete001.png"></button>
-<%-- 											<input type="button" onclick="check(${meals.ID})" value="刪除">  --%>
-<%-- 											<input type="image" src="/images/delete.png" onclick="check(${meals.ID})"/> --%>
+											<input type="button" class="btn" style="background-image:url(/images/delete.png);background-repeat:no-repeat;" onclick="check(${diet.ID})">
 										</form>
 											</td>
 										</tr>
