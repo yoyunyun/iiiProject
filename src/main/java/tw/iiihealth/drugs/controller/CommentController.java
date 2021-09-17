@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import tw.iiihealth.drugs.model.CommentMain;
 import tw.iiihealth.drugs.model.CommentService;
+import tw.iiihealth.drugs.model.Drug;
 import tw.iiihealth.drugs.model.Function;
 import tw.iiihealth.membersystem.member.model.Member;
 import tw.iiihealth.membersystem.member.service.MemberService;
@@ -37,9 +38,36 @@ public class CommentController {
         commentMain.setAuthor(author);
         commentMain.setContent(content);
         commentMain.setTime(new Function().getDateTime());
-    
         commentService.updateComment(commentMain);
     }
+    
+    @RequestMapping(path="/findallcomment")
+	public String ListAllDrug(Model model) {
+		List<CommentMain> list = commentService.findAll();
+		model.addAttribute("list", list);
+		return "drugs/commentmanger";
+	}
+	
+    @RequestMapping(path = "delete", method = RequestMethod.POST)
+	public String delete(@RequestParam("eId") int eId) {
+    	commentService.delete(eId);
+		return "redirect:/findallcomment";
+	}
+    
+    
+    @RequestMapping(path="/findallcommentfront")
+	public String ListAllDrug1(Model model) {
+		List<CommentMain> list = commentService.findAll();
+		model.addAttribute("list", list);
+		return "drugs/commentmanger";
+	}
+	
+    @RequestMapping(path = "deletefront", method = RequestMethod.POST)
+	public String delete1(@RequestParam("eId") int eId) {
+    	commentService.delete(eId);
+		return "redirect:/findallcomment";
+	}
+
     
     @ResponseBody
     @PostMapping("/comment/front")
@@ -48,6 +76,11 @@ public class CommentController {
     	Member member = memberService.getCurrentlyLoggedInMember(auth);
     List<CommentMain> commentMainList = commentService.searchBymemberId(member);
     return commentMainList;
+    }
+    
+    @PostMapping("/comment/delet")
+    public void delectById(int id) {
+    	commentService.delectCommentById(id);
     }
 
    
@@ -63,10 +96,10 @@ public class CommentController {
         if (id != -1) {
             if (aId == 0 && new Function().StringIsNull(author) && new Function().StringIsNull(content)) { // 1. 删除
                 commentService.delectCommentById(id);
-                return "{\"descr\": \"删除成功\"}";
-            } else { // 2. 修改
+                return null;
+        } else { // 2. 修改
                 updateById(id, aId, author, content);
-                return "{\"descr\": \"修改成功\"}";
+                return null;
             }
         } else { // 3. 插入
         	
@@ -77,7 +110,7 @@ public class CommentController {
             commentMain.setTime(new Function().getDateTime());
             commentMain.setMemberid(member);
             commentService.insertComment(commentMain);
-            return "{\"descr\": \"插入成功\"}";
+             return null;
         }
     }
 

@@ -35,7 +35,16 @@ public class CommentService {
 		Optional<CommentMain> commentMainList = commentRepository.findById(eid);
 		return commentMainList.get();
 	}
-	
+    
+    
+    public List<CommentMain> findAll() {
+		return commentRepository.findAll();
+	}
+    
+	public void delete(int eId) {
+		commentRepository.deleteById(eId);
+	}
+
   
 
     // 其中#p0的意思是注解的方法中的第一个参数
@@ -61,8 +70,6 @@ public class CommentService {
     }
 
     public  List<CommentMain> searchBymemberId(Member memberid) {
-    	System.out.println(memberid);
-    	System.out.println("----------------------------------");
     	 List<CommentMain> commentMainList = commentRepository.searchBymemberId(memberid);
       return commentMainList;
     }

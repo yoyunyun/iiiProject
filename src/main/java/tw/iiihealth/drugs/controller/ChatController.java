@@ -32,6 +32,12 @@ public class ChatController {
 		return "drugs/index";
 	}
     
+    @GetMapping("/chatback")
+	public String ShowContactForm() {
+		
+		return "drugs/index1";
+	}
+    
     /**
      * 處理前端送來的聊天訊息，並把訊息推送給前端
      */

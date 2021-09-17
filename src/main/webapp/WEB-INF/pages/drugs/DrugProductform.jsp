@@ -204,8 +204,8 @@
 	    
 	    $("#input").click(function(){
 	    	$("#releasedate").val("2021/08/27");
-	    	$("#drugname").val("Menopur Powder for Injection equivalent to FSH 75 IU & LH 75 IU/vial");
-	    	$("#direction").val("藥證標示主成分名稱由「menotropin」變更為「menotrophin」，藥瓶包裝標籤變更起始批號為S12302C。");	    
+	    	$("#drugname").val("Menopur Powder for Injection equivalent");
+	    	$("#direction").val("藥證標示主成分名稱由「menotropin」變更為「menotrophin」");	    
 	    })
 		
 	</script>

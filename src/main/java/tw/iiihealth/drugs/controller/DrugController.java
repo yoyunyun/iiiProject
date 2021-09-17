@@ -39,16 +39,12 @@ public class DrugController {
 	}
 
 	
-	
-	
 	@PostMapping(path="showUpdate")
 	public String SearchById(@RequestParam("eId") int eid, Model model) {
 		Drug Drug = DrugService.findById(eid);
 		model.addAttribute("Drug", Drug);
 		return "drugs/updatedrug";
 	}
-	
-	
 	
 	
 	@PostMapping(path = "/showFormForAdd")

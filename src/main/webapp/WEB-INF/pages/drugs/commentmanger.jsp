@@ -23,112 +23,88 @@
 	crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-
-<%@ include file="/WEB-INF/pages/left-top-bar.jsp"%>
+	
+	
+	<%@ include file="/WEB-INF/pages/left-top-bar.jsp"%>
+		
 		
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">藥品管理系統</h1>
-					
+					<h1 class="mt-4">留言管理</h1>
 					<div class="row">
 					   <div class="col-lg-6">
-                             <div class="card mb-4">
-                                   <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                       	 本月藥品包裝變更總類
-                                    </div>
-                                    <div class="card-body"><canvas id="chart-area" width="100%" height="50"></canvas></div>
-                              </div>
+                             
                       </div>
                       
                       <div class="col-lg-6">
-                            <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-chart-area me-1"></i>
-                                每月單筆查詢數量
-                            </div>
-                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="50"></canvas></div>
-                        </div>
+                            
+                           
+                  
+                       
                       </div>
 					</div>
-          
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 藥品資料
+
+							<i class="fas fa-table me-1"></i> 留言清單
 						</div>
 						<div class="card-body">
-							
-							<div>
-									<form:form action="showFormForAdd" method="post">
-								<input type="submit" value="新增藥品" />
-							</form:form>
+						<div>
+					
 							</div>
-							<br/>
-
-
-							<table id="datatablesSimple">
+							<c:if test="${!empty list}">
+								<table id="datatablesSimple">
 								<thead>
-									<tr>
-										<th>更改日期</th>
-										<th>更改前照片</th>
-										<th>更改後照片</th>
-										<th>藥品名稱</th>
-										<th>更改描述</th>
-										<th>更新</th>
-										<th>刪除</th>
-									</tr>
-								</thead>
-
-
-								<tbody>
-									<c:forEach var="drugproduct" items="${list}">
-
-							
-										<tr>
-											<td>${drugproduct.releasedate}</td>
-											<td><img src="${pageContext.request.contextPath}/DrugProductImg/${drugproduct.beforechange}"
-												onerror="this.style.display='none'" width="120px"
-												height="120px" /></td>
-											<td><img src="${pageContext.request.contextPath}/DrugProductImg/${drugproduct.afterchange}"
-												onerror="this.style.display='none'" width="120px"
-												height="120px" /></td>
-											<td>${drugproduct.drugname}</td>
-											<td>${drugproduct.direction}</td>
-											<td>
-												<form action="showUpdate" method="post">
-													<input type="hidden" name="eId" value="${drugproduct.id}" /> 
-													<input type="image" src="/images/update.jpg" />
-												</form>
-											</td>
-											<td>
-												<form id="delT${drugproduct.id}" action="delete" method="post">
-												<input type="button" class="btn" style="background-image:url(/images/delete.png);background-repeat:no-repeat;" onclick="check(${drugproduct.id})">
-												<input type="hidden" name="eId" value="${drugproduct.id}">
-												</form>
-											</td>
+								        <tr> 
+											<td>ID</td>
+											<td>留言姓名</td>
+											<td>留言區域</td>
+											<td>留言內容</td>
+										    <td>刪除留言</td>
 										</tr>
-
-									</c:forEach>
-								</tbody>
-							</table>
+								</thead>
+								<c:forEach items="${list}" var="CommentMain">
+										    <tr>
+												<td>${CommentMain.id}</td>
+												<td>${CommentMain.author}</td>
+												<td>${CommentMain.aId}</td>
+												<td>${CommentMain.content}</td>
+								             <td>
+												<form id="delT${CommentMain.id}" action="delete" method="post">
+												<input type="button" class="btn" style="background-image:url(/images/delete.png);background-repeat:no-repeat;" onclick="check(${CommentMain.id})">
+												<input type="hidden" name="eId" value="${CommentMain.id}">
+											</form>
+											</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</c:if>
 						</div>
 					</div>
 				</div>
 			</main>
+						
 			
 		</div>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="/js/scripts.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="../js/scripts.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+		crossorigin="anonymous"></script>
 	<script src="assets/demo/chart-area-demo.js"></script>
 	<script src="assets/demo/chart-bar-demo.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-	<script src="/js/datatables-simple-demo.js"></script>
-	<script src="/js/jquery-3.6.0.js"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<!--  sweet alert -->
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+		crossorigin="anonymous"></script>
+	<script
+		src="../js/datatables-simple-demo.js"></script>
+		
+		<!--  sweet alert -->
 		<script src="/js/sweetalert2.all.min.js"></script>
 		
 		<!--  jQuery -->
@@ -150,7 +126,7 @@
 		  }
 		})
 	}
-	
+	<!-- bar chart-->
 	var ctx = document.getElementById('chart-area');
 
 	var myChart = new Chart(ctx, {
@@ -159,7 +135,7 @@
 	    //標題
 	    labels: ['糖漿類', '膠囊類', '藥錠類', '外用藥膏', '保健藥物', '其他外用藥品'],
 	    datasets: [{
-	      data: [22, 13, 22, 14 , 33, 23], //資料
+	      data: [34, 55, 34, 31 , 11, 2], //資料
 	      //圖表背景色
 	      backgroundColor: [
 	        'rgba(255, 99, 132, 0.5)',
@@ -207,7 +183,7 @@
 	    //標題
 	    labels: ['April', 'May', 'June', 'July', 'Aug'],
 	    datasets: [{
-	      data: [3433, 2133, 4231, 3241, 4512], //資料
+	      data: [2321, 1432, 3421, 3241, 4512], //資料
 	      borderColor: 'rgba(132, 193, 255, 1)',
 	      fill: false,
 	     

@@ -130,9 +130,12 @@
 
 						</nav>
 					</div>
- <div class="sb-sidenav-menu-heading">線上客服</div>
-                         
-                            <a class="nav-link" href="${pageContext.request.contextPath}/chat">
+ <div class="sb-sidenav-menu-heading">線上服務與留言</div>
+                             <a class="nav-link" href="${pageContext.request.contextPath}/findallcomment">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                留言管理
+                            </a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/chatback">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 聊天室
                             </a>

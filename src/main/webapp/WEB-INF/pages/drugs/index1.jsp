@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>客服系統</title>
+<link rel="stylesheet" href="/css/main1.css" />
 </head>
 <style>
 * {
@@ -234,7 +235,7 @@ button.accent {
 #messageForm .input-group input {
     float: left;
     width: calc(100% - 85px);
-    margin-top: -5px;
+    margin-top: -28px;
 }
 
 #messageForm .input-group button {
@@ -242,7 +243,7 @@ button.accent {
     width: 80px;
     height: 38px;
     margin-left: 5px;
-    margin-top: -5px;
+    margin-top: -28px;
 }
 
 .chat-header {
@@ -357,21 +358,21 @@ button.accent {
     <noscript>
         <h2>Sorry! Your browser doesn't support Javascript</h2>
     </noscript>
+
     <!-- 進入頁面 -->
     <div id="username-page">
         <div class="username-page-container">
-            <h1 class="title">請輸入您的名子</h1>
-            
+            <h1 class="title">請輸入管理者名稱</h1>
+         
             <form id="usernameForm" name="usernameForm">
                 <div class="form-group popup">
-                    <input type="text" id="name" placeholder="請輸入您的大名"
+                    <input type="text" id="name" placeholder="管理者名稱"
                         autocomplete="off" class="form-control popup" />
-                    <span class="popuptext" id="hint">請輸入您的名子</span>
-                 
+                    <span class="popuptext" id="hint">管理者名稱</span>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="accent username-submit">連接至客服聊天室</button>
-                       <br><br>       <input type="button" value="林家瑋" id="input5"/>
+                    <br><br>       <input type="button" value="林羽墨" id="input5"/>
                 </div>
             </form>
         </div>
@@ -381,15 +382,16 @@ button.accent {
     <div id="chat-page" class="hidden">
         <div class="chat-container">
             <div class="chat-header">
-                <h2>線上客服服務</h2><a  class="nav-link" href="/">返回首頁</a>
-                <input type="button" value="您好" id="input"/>
-                <input type="button" value="請問輔具要在哪裡訂購" id="input1"/>
-                <input type="button" value="留言區要如何使用" id="input2"/>
-                <input type="button" value="會員密碼忘記怎麼辦" id="input3"/>
-                 <input type="button" value="感謝您的幫助" id="input4"/>
+                <h2>線上客服服務</h2><a  class="nav-link" href="/Manager/searchAllMtoM">返回後台</a>
+                <input type="button" value="您好 請問需要甚麼服務" id="input"/>
+                <input type="button" value="在輔具專區可以購買我們的商品" id="input1"/>
+                <input type="button" value="登入後可以進行留言" id="input2"/>
+                <input type="button" value="可以選擇忘記密碼領取信件更新密碼" id="input3"/>
+                 <input type="button" value="隨時歡迎您的提問" id="input4"/>
             </div>
             <div class="connecting">Connecting...</div>
             <ul id="messageArea">
+
             </ul>
             <form id="messageForm" name="messageForm">
                 <div class="form-group">
@@ -402,32 +404,33 @@ button.accent {
             </form>
         </div>
     </div>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-        <script src = "/js/jquery-3.6.0.js"></script>
-   <script> 
+     <script src = "/js/jquery-3.6.0.js"></script>
+    <script> 
     $("#input").click(function(){
-    $("#message").val("您好");
+    $("#message").val("您好 請問需要甚麼服務");
     })
     $("#input1").click(function(){
-    $("#message").val("請問輔具要在哪裡訂購");
+    $("#message").val("在輔具專區可以購買我們的商品");
     })
      $("#input2").click(function(){
-    $("#message").val("留言區要如何使用");
+    $("#message").val("登入後可以進行留言");
     })
      $("#input3").click(function(){
-    $("#message").val("會員密碼忘記怎麼辦");
+    $("#message").val("可以選擇忘記密碼領取信件更新密碼");
     })
      $("#input4").click(function(){
-    $("#message").val("感謝您的幫助");
+    $("#message").val("隨時歡迎您的提問");
     })
-    $("#input5").click(function(){
-    $("#name").val("林家瑋");
+         $("#input5").click(function(){
+    $("#name").val("林羽墨");
     })
     
     </script>
     <script> 'use strict';
-   
+
     var usernamePage = document.querySelector('#username-page');
     var chatPage = document.querySelector('#chat-page');
     var usernameForm = document.querySelector('#usernameForm');
@@ -606,8 +609,5 @@ button.accent {
     nameInput.addEventListener('focus', removePopup, true)
     usernameForm.addEventListener('submit', connect, true)
     messageForm.addEventListener('submit', sendMessage, true)</script>
-    
-    
-  
 </body>
 </html>
