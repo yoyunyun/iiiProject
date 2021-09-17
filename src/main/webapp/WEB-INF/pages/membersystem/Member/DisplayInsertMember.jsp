@@ -15,6 +15,9 @@
 
 <script src="../js/jquery-3.6.0.js"></script>
 
+<!-- css for sweet alert2  -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <%@ include file="/WEB-INF/pages/user-css-js.jsp"%>
 </head>
 
@@ -117,7 +120,7 @@
 													<form:hidden path="handbook" value="${member.handbook}" />
 													<form:hidden path="dementia" value="${member.dementia}" />
 													<form:hidden path="memberphoto" value="${member.memberphoto}" />
-													 <input type="submit" class="btn" style="font-size:20px;" name="insertToSQL" value="確認">
+													<button class="btn" id="clickBottom" style="font-size:20px;">確認</button>
 												</form:form>
 											</td>
 											<td>
@@ -154,6 +157,23 @@
 <%@ include file="/WEB-INF/pages/user-site-footer.jsp"%>
 <%@ include file="/WEB-INF/pages/user-js.jsp"%>
 
+
+<script type="text/javascript">
+
+//確認送信
+$("#clickBottom").click(function(){
+	  
+	  
+	  Swal.fire({
+		  icon: 'success',
+		  title: '信件送出中，請稍後...',
+		  showConfirmButton: false,
+		  timer: 20000
+		})
+		
+})
+
+</script>
 
 </body>
 </html>

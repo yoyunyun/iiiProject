@@ -13,6 +13,10 @@
 <meta name="author" content="" />
 <title>健康優生網</title>
 
+<!-- css for sweet alert2  -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 </head>
 <body class="sb-nav-fixed">
 
@@ -69,7 +73,7 @@
 													<form:hidden path="manageraccount" value="${manager.manageraccount}" />
 													<form:hidden path="managerpwd" value="${manager.managerpwd}" />
 													<form:hidden path="manageremail" value="${manager.manageremail}" />
-													<input type="submit" class="btn" value="確認">
+													<input id="clickBottom" type="submit" class="btn" value="確認">
 												</form:form>
 											</td>
 											<td>
@@ -108,7 +112,23 @@
 				</div>
 			</footer>
 		</div>
-	</div>
+
+<script type="text/javascript">
+
+//確認送信
+$("#clickBottom").click(function(){
+	  
+	  
+	  Swal.fire({
+		  icon: 'success',
+		  title: '信件送出中，請稍後...',
+		  showConfirmButton: false,
+		  timer: 20000
+		})
+		
+})
+
+</script>
 
 	
 </body>

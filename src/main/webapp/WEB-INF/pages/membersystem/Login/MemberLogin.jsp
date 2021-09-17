@@ -43,19 +43,23 @@
 					</span>
 					
 					
+					<span>帳號</span>
 					<span style="color: red;" id="acntCheck"></span>
 					<div class="wrap-input100 validate-input">
 						<input class="input100" type="text" id="account1" name="username">
 						<span class="focus-input100"></span>
-						<span class="label-input100">帳號</span>
+<!-- 						<span class="label-input100">帳號</span> -->
+						<span class="label-input100"></span>
 					</div>
 					
 					
+					<span>密碼</span>
 					<span style="color: red;" id="pwd1Check"></span>
 					<div class="wrap-input100 validate-input">
 						<input class="input100" type="password" id="pwd1" name="password">
 						<span class="focus-input100"></span>
-						<span class="label-input100">密碼</span>
+<!-- 						<span class="label-input100">密碼</span> -->
+						<span class="label-input100"></span>
 					</div>
 					
 						<div class="contact100-form-checkbox">
