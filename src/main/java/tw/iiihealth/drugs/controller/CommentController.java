@@ -55,17 +55,19 @@ public class CommentController {
 	}
     
     
-    @RequestMapping(path="/findallcommentfront")
+    @RequestMapping(path="/comment/findallcommentfront")
 	public String ListAllDrug1(Model model) {
-		List<CommentMain> list = commentService.findAll();
+      	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	Member member = memberService.getCurrentlyLoggedInMember(auth);
+        List<CommentMain> list = commentService.searchBymemberId(member);
 		model.addAttribute("list", list);
-		return "drugs/commentmanger";
+		return "drugs/commentfront";
 	}
 	
-    @RequestMapping(path = "deletefront", method = RequestMethod.POST)
+    @RequestMapping(path = "/comment/deletefront", method = RequestMethod.POST)
 	public String delete1(@RequestParam("eId") int eId) {
     	commentService.delete(eId);
-		return "redirect:/findallcomment";
+		return "redirect: /commentfront";
 	}
 
     

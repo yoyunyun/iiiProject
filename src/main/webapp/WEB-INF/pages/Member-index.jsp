@@ -12,5 +12,5 @@
 	<a class="btn btn-outline-secondary btn-lg" style="font-size:20px; display: flex; align-items: center;" href="${pageContext.request.contextPath}/cart/order">輔具訂單紀錄</a>
 	<a class="btn btn-outline-secondary btn-lg" style="font-size:20px; display: flex; align-items: center;" href="${pageContext.request.contextPath}/taxiFront/booktaxi/searchbooking">預約叫車訂單</a>
 	<a class="btn btn-outline-secondary btn-lg" style="font-size:20px; display: flex; align-items: center;" href="${pageContext.request.contextPath}/taxiFront/booktaxi/loccollect">店家收藏</a>
-	<a class="btn btn-outline-secondary btn-lg" style="font-size:20px; display: flex; align-items: center;" href="${pageContext.request.contextPath}/comment/commentfront">會員留言</a>
+	<a class="btn btn-outline-secondary btn-lg" style="font-size:20px; display: flex; align-items: center;" href="${pageContext.request.contextPath}/comment/findallcommentfront">會員留言</a>
 </div>
