@@ -317,8 +317,7 @@
         '<table class="table table-hover" id="' + idCartTable + '"></table>' +
         '</div>' +
         '<div class="modal-footer">' +
-//        '<button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button>' +
-        '<button type="button" class="btn btn-primary ' + clearCart + '">清空</button>' +
+        '<button type="button" class="btn btn-secondary ' + clearCart + '">清空</button>' +
         '<button type="button" class="btn btn-primary ' + tableToExcel + '">下載</button>' +
         '</div>' +
         '</div>' +

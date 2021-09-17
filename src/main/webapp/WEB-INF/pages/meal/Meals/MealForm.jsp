@@ -84,7 +84,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										</tr>
 										<tr>
 											<td>商店編號</td>
-											<td><input type="radio" id="store1" name="store_ID" value="1"> 
+											<td><input type="radio" id="store1" name="store_ID" value="1" checked> 
 												<label for="store1">1</label> 
 												<input type="radio" id="store2"	name="store_ID" value="2"> 
 												<label for="store2">2</label> 
@@ -99,6 +99,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										<tr>
 											<td><label></label></td>
 											<td>
+											<button type="button" id="inputdata" >一鍵輸入</button>
 											<input type="button" name="confirm" value="送出" onclick="add()">
 											<input type="button" value="取消" onclick="window.location.href='mealView.controller'" />
 											</td>
@@ -174,6 +175,20 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 	        $("#sourceImage").attr('src', sourceImageUrl);
 	    }
 		
+	</script>
+	<script>
+	    //一鍵輸入
+	    $('#inputdata').click(function() {
+	      $('#name').val("資策會養生餐"); 
+	      $('#price').val(199);
+	      $('#material').val("JAVA、SQL、Spring Boot");
+	      $('#calories').val(1129);
+	      $('#protein').val(41);
+	      $('#carbohydrates').val(88);
+	      $('#fat').val(19);
+	      $('#store3').val(3);
+	    
+	    });
 	</script>
 </body>
 </html>
