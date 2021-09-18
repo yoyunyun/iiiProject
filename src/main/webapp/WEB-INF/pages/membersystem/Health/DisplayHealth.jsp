@@ -440,16 +440,16 @@ function load(){
 						//一鍵輸入
 						$('#twokey').on('click', function twoClick() {
 							console.log("一鍵輸入");
-							$('#systolicBloodPressure1').val(120);
-							$('#diastolicBloodPressure1').val(120);
-							$('#heartRate1').val(100);
-							$('#fastingBloodSugar1').val(100);
-							$('#bloodSugarAfterMeal1').val(150);
-							$('#height1').val(180);
-							$('#weight1').val(66);
-							$('#waistline1').val(68);
-							$('#oxygenSaturation1').val(91);
-							$('#temperature1').val(38.2);
+							$('#systolicBloodPressure1').val(300);
+							$('#diastolicBloodPressure1').val(300);
+							$('#heartRate1').val(300);
+							$('#fastingBloodSugar1').val(300);
+							$('#bloodSugarAfterMeal1').val(300);
+							$('#height1').val(166);
+							$('#weight1').val(300);
+							$('#waistline1').val(300);
+							$('#oxygenSaturation1').val(60);
+							$('#temperature1').val(300);
 							$('#medicalHistory1').val('青光眼、失眠、厭食症、躁鬱症、腸胃炎');
 						})						
 						
