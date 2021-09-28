@@ -41,7 +41,7 @@ public class ContactController {
 
 		
 		
-		String mailSuject = "優生網， 來自"+  lastName.trim() +firstName.trim()  + "的郵件";
+		String mailSuject = "悠生網， 來自"+  lastName.trim() +firstName.trim()  + "的郵件";
 		String mailContent = "<p><b>寄件者:</b>  " + lastName.trim() + firstName.trim() + "</p>"
 							+ "<p><b>信箱:</b> " + email.trim()  + "</p>"
 							+ "<p><b>主題:</b> " + subject  + "</p>"

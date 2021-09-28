@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>健康優生網</title>
+<title>健康悠生網</title>
 
 <!-- css for sweet alert2  -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

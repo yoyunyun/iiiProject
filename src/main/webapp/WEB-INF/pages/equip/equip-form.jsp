@@ -12,7 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>健康優生網</title>
+<title>健康悠生網</title>
 
 <%@ include file="/WEB-INF/pages/css.jsp"%>
 </head>

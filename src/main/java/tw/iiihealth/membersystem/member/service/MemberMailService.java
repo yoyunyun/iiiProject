@@ -32,7 +32,7 @@ public class MemberMailService {
 		
 	    String toAddress = member.getMemberemail();
 	    String fromAddress = "iiieeit12907@gmail.com";
-	    String senderName = "健康優生網";
+	    String senderName = "健康悠生網";
 	    String subject = "忘記密碼";
 	    String content = "親愛的[[name]],<br>"
 	            + "請使用我們為您準備的帳號密碼:<br><br>"
@@ -53,7 +53,7 @@ public class MemberMailService {
 	    		+ "<br><br><img width=\"150px\" height=\"150px\" src=\"cid:laught\" >"
 	            + "<h3><a href='http://localhost:8080/Member/login'>請點此登入</a></h3>"
 	            + "謝謝,<br>"
-	            + "健康優生網，關心您";
+	            + "健康悠生網，關心您";
 	    
 	    
 	    MimeMessage message = mailSender.createMimeMessage();
@@ -106,13 +106,13 @@ public class MemberMailService {
 	        throws MessagingException, UnsupportedEncodingException {
 	    String toAddress = member.getMemberemail();
 	    String fromAddress = "iiieeit12907@gmail.com";
-	    String senderName = "健康優生網";
+	    String senderName = "健康悠生網";
 	    String subject = "請驗證您註冊的帳戶";
 	    String content = "親愛的[[name]],<br>"
 	            + "請點選下面的連結來驗證您註冊的帳戶:<br>"
 	            + "<h3><a href=\"[[URL]]\" target=\"_self\">請點此驗證</a></h3>"
 	            + "謝謝,<br>"
-	            + "健康優生網，關心您";
+	            + "健康悠生網，關心您";
 	     
 	    MimeMessage message = mailSender.createMimeMessage();
 	    MimeMessageHelper helper = new MimeMessageHelper(message);
